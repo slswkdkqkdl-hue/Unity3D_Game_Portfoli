@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
         {
             I = this;
             DontDestroyOnLoad(this.gameObject);
+            InitSavePath(); // 세이브경로 설정
         }
         else
         {
@@ -28,9 +29,9 @@ public class DataManager : MonoBehaviour
         return File.Exists(savePath);
     }
     // 처음 경로 생성
-    public void Setpath()
+    public void InitSavePath()
     {
-        savePath = Path.Combine(Application.dataPath, "SaveData.json");
+        savePath = Path.Combine(Application.persistentDataPath, "SaveData.json");
     }
     // 게임 저장
     public void SaveGame()
@@ -43,7 +44,7 @@ public class DataManager : MonoBehaviour
     {
         string json = File.ReadAllText(savePath);
         saveData = JsonUtility.FromJson<SaveData>(json);
-        // 씬이동 
+        //
     }
 
     // 새로운 게임
