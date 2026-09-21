@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Unit_Swordsman
   m_EditorClassIdentifier: Assembly-CSharp::UnitDescData
   Unit_Id: 3
-  unitName: "\uAC80\uBCF4\uBCD1"
+  unitClass: "\uAC80\uBCF4\uBCD1"
   portrait: {fileID: 0}
   description: "\uD3C9\uBC94\uD55C \uAC80\uC0AC \uBCF4\uBCD1\uC785\uB2C8\uB2E4."
   hp: 70

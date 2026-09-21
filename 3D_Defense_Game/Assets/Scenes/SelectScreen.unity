@@ -411,7 +411,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -548,7 +550,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -809,14 +813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0470085151efa9f439c599ff8d006c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectManager
-  heroDataList:
-  - {fileID: 11400000, guid: 8cd41b6281151804d9bd7060107409bf, type: 2}
-  - {fileID: 11400000, guid: 1800d395b1407654e9682cca6b402670, type: 2}
-  - {fileID: 11400000, guid: df82b757597a8a74bbfdc39e330c8da0, type: 2}
-  unitDataList:
-  - {fileID: 11400000, guid: 16bc5ff8f9ac65343b4d15f6c17541e0, type: 2}
-  - {fileID: 11400000, guid: 62cee062f630ae546bd0b7fbcff10bed, type: 2}
-  - {fileID: 11400000, guid: 9d9ab990315ee814697712d583e6ba6e, type: 2}
   selectedHero: {fileID: 0}
   selectedUnits: []
 --- !u!1 &376260496
@@ -859,7 +855,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 90}
-  m_SizeDelta: {x: 475, y: 230}
+  m_SizeDelta: {x: 480, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376260498
 MonoBehaviour:
@@ -882,7 +878,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 235, y: 75}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 10, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &384365320
@@ -1177,7 +1173,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -1451,7 +1449,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -1588,7 +1588,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -1725,7 +1727,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -1852,10 +1856,11 @@ MonoBehaviour:
   heroArt: {fileID: 117581147}
   heroDescription: {fileID: 1120482114}
   unitDescription: {fileID: 386386475}
+  StartButton: 2
   heroSelectButtons:
   - {fileID: 6023959217316006147}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 9160997937347285446}
+  - {fileID: 2843690731233322256}
   unitArrayParent: {fileID: 1352509779}
   unitBoxPrefab: {fileID: 5035875224957227719, guid: aa8c778c8e11a0741864f3e2ee85aeff, type: 3}
 --- !u!1 &638728479
@@ -2017,7 +2022,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -2154,7 +2161,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -2328,7 +2337,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -2602,7 +2613,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC80\uC744 \uC4F0\uB294 \uBCF4\uBCD1 \uC785\uB2C8\uB2E4. "
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -2838,7 +2851,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -2975,7 +2990,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -3311,9 +3328,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC5EC\uAE30\uB294 \uADF8 \uC601\uC6C5\uC774 \uC5B4\uB5A4\uC601\uC6C5\uC778\uC9C0
-    \uC5B4\uB5A0\uD55C \uB0B4\uC6A9\uC774 \uC788\uB294\uC9C0 \uADF8\uB7F0\uAC78 \uC801\uB294
-    \uCE78 "
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -3481,7 +3498,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -3601,7 +3620,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -5}
-  m_SizeDelta: {x: 400, y: 230}
+  m_SizeDelta: {x: 470, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1692244662
 MonoBehaviour:
@@ -3623,8 +3642,8 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 75}
-  m_Spacing: {x: 0, y: 0}
+  m_CellSize: {x: 225, y: 75}
+  m_Spacing: {x: 20, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &1707935046
@@ -3685,7 +3704,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC601\uC6C5 \uC774\uB984 :  \uC54C\uB809\uC2A4 "
+  m_text: '0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
   m_sharedMaterial: {fileID: -1880947923095949045, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}
@@ -4016,7 +4037,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2141411209}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 523088134}
+        m_TargetAssemblyTypeName: UIManager_Select, Assembly-CSharp
+        m_MethodName: NewGameStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2141411209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4357,9 +4390,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100e8608d986af64cbffe59aa2e882e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroSelectButton
-  heroClass: -1
-  heroId: -1
-  units: 
+  heroData: {fileID: 0}
+  unitDatas: []
   classNameText: {fileID: 5999127623264507860}
   button: {fileID: 5045480628978885462}
 --- !u!114 &2859391671229889479
@@ -4802,9 +4834,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100e8608d986af64cbffe59aa2e882e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroSelectButton
-  heroClass: "\uC218\uD638\uC790"
-  heroId: 1
-  units: 010000000200000003000000
+  heroData: {fileID: 11400000, guid: 8cd41b6281151804d9bd7060107409bf, type: 2}
+  unitDatas:
+  - {fileID: 11400000, guid: 9d9ab990315ee814697712d583e6ba6e, type: 2}
+  - {fileID: 11400000, guid: 62cee062f630ae546bd0b7fbcff10bed, type: 2}
+  - {fileID: 11400000, guid: 16bc5ff8f9ac65343b4d15f6c17541e0, type: 2}
   classNameText: {fileID: 2859391671229889479}
   button: {fileID: 3668906185900330821}
 --- !u!224 &6113656102656593432
@@ -4914,9 +4948,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100e8608d986af64cbffe59aa2e882e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroSelectButton
-  heroClass: -1
-  heroId: -1
-  units: 
+  heroData: {fileID: 0}
+  unitDatas: []
   classNameText: {fileID: 798712154109403906}
   button: {fileID: 2184689297984509824}
 --- !u!1660057539 &9223372036854775807

@@ -1,13 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager_Select : MonoBehaviour
 {   
     public static UIManager_Select I;
 
+    [Header("각 UI 데이터")]
     public HeroArt heroArt;
     public HeroDescription heroDescription;
     public UnitDescription unitDescription;
+
+    [Header("게임시작버튼")]
+    public  SceneType StartButton;
 
     [Header("영웅 선택버튼모음")]
     public List<HeroSelectButton> heroSelectButtons;
@@ -107,5 +112,17 @@ public class UIManager_Select : MonoBehaviour
         {
             unitDescription.SetUnitInfo(unitDescData);
         }
+    }
+
+    // 게임시작 버튼 
+    public void NewGameStart()
+    {
+       var Heor = SelectManager.I.GetSelectedHero();
+       var units = SelectManager.I.GetSelectedUnits();
+
+        if (Heor == null || units == null) return;
+
+        DataManager.I.NewGame();
+        LoadingManager.LoadScene(StartButton);
     }
 }

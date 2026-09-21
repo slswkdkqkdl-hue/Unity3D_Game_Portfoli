@@ -146,9 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100e8608d986af64cbffe59aa2e882e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroSelectButton
-  heroClass: "\uC218\uD638"
-  heroId: 1
-  units: 010000000200000003000000
+  heroData: {fileID: 11400000, guid: 8cd41b6281151804d9bd7060107409bf, type: 2}
+  unitDatas: []
   classNameText: {fileID: 6519807676819270651}
   button: {fileID: 5710293462795018105}
 --- !u!1 &9167529692755417382

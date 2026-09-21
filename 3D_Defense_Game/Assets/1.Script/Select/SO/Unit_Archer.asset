@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Unit_Archer
   m_EditorClassIdentifier: Assembly-CSharp::UnitDescData
   Unit_Id: 2
-  unitName: "\uAD81\uBCD1"
+  unitClass: "\uAD81\uBCD1"
   portrait: {fileID: 0}
   description: "\uC0AC\uC815\uAC70\uB9AC\uAC00 \uAE34 \uD65C \uBCD1\uC0AC\uC785\uB2C8\uB2E4."
   hp: 40
