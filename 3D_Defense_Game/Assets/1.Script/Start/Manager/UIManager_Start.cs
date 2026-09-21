@@ -40,13 +40,13 @@ public class UIManager_Start : MonoBehaviour
     private void OnClickNewGame()
     {
         Debug.Log("새로하기 클릭"); 
-        LoadingManager.LoadScene(newGameTargetScene);
+        LoadingManager.LoadScene(newGameTargetScene,false);
     }   
     // 이어하기 시작 버튼
     private void OnClickContinue()
     {
         Debug.Log("이어하기 클릭");
-        LoadingManager.LoadScene(continueTargetScene);
+        LoadingManager.LoadScene(continueTargetScene,true);
     }
     // 설정 팝업창
     private void OnClickSetting()

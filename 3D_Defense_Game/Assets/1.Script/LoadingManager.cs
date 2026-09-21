@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// 게임 내 프로젝트의 모든 씬 종류를 정의하는 열거형
+/// </summary>
 public enum SceneType 
 {
     StartScreen,
@@ -12,22 +15,34 @@ public enum SceneType
     EndScreen
 }
 
+/// <summary>
+/// 씬 전환 및 비동기 로딩 연출을 총괄하는 매니저 클래스
+/// </summary>
 public class LoadingManager : MonoBehaviour
 {
     [Header("UI Elements")]
-    [SerializeField] private Image progressBar;
+    [SerializeField] private Image progressBar; 
 
     [Header("Loading Settings")]
-    [SerializeField] private float fakeLoadingDuration = 2f; // 인스펙터에서 원하는 초로 조절 가능!
+    [SerializeField] private float fakeLoadingDuration = 2f; 
 
-    private static SceneType nextScene;
+    private static SceneType nextScene; // 다음에 이동할 목적지 씬
 
-    public static void LoadScene(SceneType sceneType)
+    /// <summary>
+    /// 씬 전환 함수 (true: 로딩씬 거치는 비동기 이동 / false: 바로 이동하는 동기 이동)
+    /// </summary>
+    public static void LoadScene(SceneType sceneType, bool useLoadingScene = true)
     {
-        nextScene = sceneType;
-        SceneManager.LoadScene("LoadingScene");
+        if (useLoadingScene)
+        {
+            nextScene = sceneType;
+            SceneManager.LoadScene("LoadingScene");
+        }
+        else
+        {
+            SceneManager.LoadScene(sceneType.ToString());
+        }
     }
-
     private string GetSceneName(SceneType sceneType)
     {
         return sceneType.ToString();
@@ -35,14 +50,24 @@ public class LoadingManager : MonoBehaviour
     
     private void Start()
     {
-        StartCoroutine(LoadSceneProgress());
+        if (progressBar != null)
+        {
+            progressBar.fillAmount = 0f;
+            StartCoroutine(LoadSceneProgress());
+        }
     }
 
+    /// <summary>
+    /// 실제 목적지 씬을 비동기로 로드하면서 로딩 바 UI 연출을 보간 처리하는 코루틴
+    /// </summary>
     private IEnumerator LoadSceneProgress()
     {   
         string targetSceneName = GetSceneName(nextScene);
 
+        // 비동기로 목적지 씬을 백그라운드에서 로드 시작
         AsyncOperation op = SceneManager.LoadSceneAsync(targetSceneName);
+        
+        // 씬 로딩이 끝나도 자동으로 바로 넘어가가지 않도록 대기 설정 (90% 지점에서 멈춤)
         op.allowSceneActivation = false;
 
         float timer = 0f;
@@ -51,24 +76,25 @@ public class LoadingManager : MonoBehaviour
         {   
             yield return null;
 
-            // 0 ~ 0.9 구간: 실제 로딩 진행률 반영
+            // 1. 0 ~ 90% 구간: 실제 백그라운드 데이터 로딩 진행률 반영
             if (op.progress < 0.9f)
             {
                 progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, op.progress, Time.unscaledDeltaTime);
             }
-            // 0.9 ~ 1.0 구간: 설정한 fakeLoadingDuration(초) 동안 대기 연출
+            // 2. 90 ~ 100% 구간: 연출용 가짜 로딩(fakeLoadingDuration) 시간을 채운 뒤 씬 전환
             else
             {
                 timer += Time.unscaledDeltaTime;
                 
-                // fakeLoadingDuration이 0 이하일 경우 0으로 나누는 에러 방지
+                // 0초 입력 시 나누기 0 예외 방지
                 float duration = Mathf.Max(0.01f, fakeLoadingDuration); 
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer / duration);
 
+                // 게이지가 완전히 채워지면 목적지 씬으로 최종 전환
                 if (progressBar.fillAmount >= 0.99f)
                 {
                     progressBar.fillAmount = 1f;
-                    op.allowSceneActivation = true; // 씬 전환
+                    op.allowSceneActivation = true; // 씬 넘어가기 허용
                     yield break;
                 }
             }

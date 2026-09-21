@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Game
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 553
     height: 450
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 126}
+  m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 30
+  controlID: 19
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 28
+  controlID: 17
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: GameView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -201,13 +201,13 @@ MonoBehaviour:
     height: 851
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 15}
   - {fileID: 19}
   - {fileID: 20}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 2
+  m_LastSelected: 1
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 29
+  controlID: 18
   draggingID: 0
 --- !u!114 &14
 MonoBehaviour:
@@ -701,7 +701,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/1.Script
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/1.Script
   m_LastFoldersGridSize: 64
   m_LastProjectPath: C:\UnityProjects\unity_file1_2\Unity3D_Game_Portfoli\3D_Defense_Game
   m_LockTracker:
@@ -720,17 +720,17 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 47090
+    - m_Data: 47140
     m_LastClickedID:
-      m_Data: 47090
+      m_Data: 47140
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46778
-    - m_Data: 46780
-    - m_Data: 47084
-    - m_Data: 56444
-    - m_Data: 57646
-    - m_Data: 57652
+    - m_Data: 47136
+    - m_Data: 47138
+    - m_Data: 47140
+    - m_Data: 47142
+    - m_Data: 47144
+    - m_Data: 47146
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -764,8 +764,12 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 46778
-    - m_Data: 46780
+    - m_Data: 47136
+    - m_Data: 47138
+    - m_Data: 47140
+    - m_Data: 47142
+    - m_Data: 47144
+    - m_Data: 47146
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -792,8 +796,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 46760
+    m_LastClickedInstanceID: 46760
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 46610
@@ -930,97 +935,13 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: []
+      m_SelectedIDs:
+      - m_Data: 46760
       m_LastClickedID:
-        m_Data: 0
+        m_Data: 46760
       m_ExpandedIDs:
-      - m_Data: -135722
-      - m_Data: -135166
-      - m_Data: -134756
-      - m_Data: -130188
-      - m_Data: -129066
-      - m_Data: -127804
-      - m_Data: -126748
-      - m_Data: -125936
-      - m_Data: -122640
-      - m_Data: -118894
-      - m_Data: -117202
-      - m_Data: -116774
-      - m_Data: -116616
-      - m_Data: -114292
-      - m_Data: -113634
-      - m_Data: -112488
-      - m_Data: -111292
-      - m_Data: -110648
-      - m_Data: -109758
-      - m_Data: -108686
-      - m_Data: -71692
-      - m_Data: -70154
-      - m_Data: -69078
-      - m_Data: -68984
-      - m_Data: -66512
-      - m_Data: -64286
-      - m_Data: -55568
-      - m_Data: -47768
-      - m_Data: -39074
-      - m_Data: -38174
-      - m_Data: -36082
-      - m_Data: -29162
-      - m_Data: -29070
-      - m_Data: -25664
-      - m_Data: -24968
-      - m_Data: -24558
-      - m_Data: -20564
-      - m_Data: -11014
-      - m_Data: -9064
-      - m_Data: -3848
-      - m_Data: -2382
-      - m_Data: -1342
-      - m_Data: 46684
-      - m_Data: 46692
-      - m_Data: 59358
-      - m_Data: 59366
-      - m_Data: 59372
-      - m_Data: 59402
-      - m_Data: 59416
-      - m_Data: 59436
-      - m_Data: 59502
-      - m_Data: 107274
-      - m_Data: 107280
-      - m_Data: 107388
-      - m_Data: 108370
-      - m_Data: 108408
-      - m_Data: 108478
-      - m_Data: 108534
-      - m_Data: 108722
-      - m_Data: 108760
-      - m_Data: 108830
-      - m_Data: 108886
-      - m_Data: 110182
-      - m_Data: 110188
-      - m_Data: 110296
-      - m_Data: 110352
-      - m_Data: 111176
-      - m_Data: 111284
-      - m_Data: 111310
-      - m_Data: 111340
-      - m_Data: 112632
-      - m_Data: 112638
-      - m_Data: 112746
-      - m_Data: 112950
-      - m_Data: 117464
-      - m_Data: 117470
-      - m_Data: 117578
-      - m_Data: 119256
-      - m_Data: 119262
-      - m_Data: 119370
-      - m_Data: 121056
-      - m_Data: 121094
-      - m_Data: 121108
-      - m_Data: 121164
-      - m_Data: 121190
-      - m_Data: 121220
-      - m_Data: 121280
+      - m_Data: -1340
+      - m_Data: -12
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1912,7 +1833,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1

@@ -123,6 +123,6 @@ public class UIManager_Select : MonoBehaviour
         if (Heor == null || units == null) return;
 
         DataManager.I.NewGame();
-        LoadingManager.LoadScene(StartButton);
+        LoadingManager.LoadScene(StartButton,true);
     }
 }
