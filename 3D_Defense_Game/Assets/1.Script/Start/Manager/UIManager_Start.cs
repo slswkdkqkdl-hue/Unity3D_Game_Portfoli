@@ -9,8 +9,16 @@ public class UIManager_Start : MonoBehaviour
     public Button settingButton;     // 설정 버튼
     public Button exitButton;        // 나가기 버튼
 
+    [Header("팝업창")]
+    [SerializeField]GameObject ContiunePopUp;
+    [SerializeField]GameObject settingPopUp;
+
+
     [SerializeField] private SceneType newGameTargetScene;
     [SerializeField] private SceneType continueTargetScene;
+
+
+    
 
     public void InitEvents()
     {
@@ -26,8 +34,7 @@ public class UIManager_Start : MonoBehaviour
 
         if (exitButton != null)
             exitButton.onClick.AddListener(() => OnClickExit()); 
-    }
-
+    }   
     // 이어하기 버튼의 활성/비활성 상태를 바꿔주는 함수
     public void SetContinueButtonActive(bool isActive)
     {
