@@ -16,10 +16,7 @@ public class UIManager_Select : MonoBehaviour
     {
         I = this;
     }
-    void Start()
-    {
-   
-    }
+
 
 
 
