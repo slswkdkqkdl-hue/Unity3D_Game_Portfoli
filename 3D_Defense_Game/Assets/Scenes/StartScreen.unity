@@ -508,7 +508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &143417368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1523,7 +1523,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 23.2, y: 0}
-  m_SizeDelta: {x: 0, y: 40}
+  m_SizeDelta: {x: 0.01, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &717093606
 MonoBehaviour:
@@ -2156,7 +2156,7 @@ GameObject:
   - component: {fileID: 1017545574}
   - component: {fileID: 1017545573}
   m_Layer: 5
-  m_Name: faction_Text (TMP) (1)
+  m_Name: Play_Time_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2319,7 +2319,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 23.2, y: 0}
-  m_SizeDelta: {x: 0, y: 40}
+  m_SizeDelta: {x: 0.01, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1018342354
 MonoBehaviour:
@@ -3224,7 +3224,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 23.2, y: 0}
-  m_SizeDelta: {x: 0, y: 40}
+  m_SizeDelta: {x: 0.01, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1676323435
 MonoBehaviour:
@@ -3354,7 +3354,7 @@ GameObject:
   - component: {fileID: 1828875059}
   - component: {fileID: 1828875058}
   m_Layer: 5
-  m_Name: faction_Text (TMP) (1)
+  m_Name: Play_Time_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3573,7 +3573,7 @@ GameObject:
   - component: {fileID: 2089267244}
   - component: {fileID: 2089267243}
   m_Layer: 5
-  m_Name: faction_Text (TMP) (1)
+  m_Name: Play_Time_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

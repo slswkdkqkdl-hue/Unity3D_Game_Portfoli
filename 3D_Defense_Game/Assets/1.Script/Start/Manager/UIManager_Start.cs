@@ -53,7 +53,7 @@ public class UIManager_Start : MonoBehaviour
     private void OnClickSetting()
     {
         Debug.Log("설정 클릭");
-        TogglePopUp(continuePopUp);
+        TogglePopUp(settingPopUp);
     }
 
     private void OnClickExit()
