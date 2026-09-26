@@ -17,10 +17,10 @@ public class StartManager : MonoBehaviour
     {
         if (uiManager == null) return;
 
-        // 2. DataManager를 통해 세이브 파일 검수
-        bool hasSave = (DataManager.I != null && DataManager.I.HasSaveData());
+        // 데이터 경로에 데이터가 하나라도 있는지 확인
+        bool hasSaveData = DataManager.I.HasAnySaveData(); 
 
-        // 3. 검수 결과에 따라 UI 매니저에게 지시
-        uiManager.SetContinueButtonActive(hasSave);
+        // 결과에 따라 UI 활성/비활성 처리
+        uiManager.SetContinueButtonActive(hasSaveData);
     }
 }
