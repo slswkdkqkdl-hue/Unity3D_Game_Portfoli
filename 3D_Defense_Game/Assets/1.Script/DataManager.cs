@@ -96,7 +96,9 @@ public class DataManager : MonoBehaviour
     {
         // 새로운 세이브데이터 생성
         saveData = new SaveData();
+        // 런타임 플레이어 데이터 생성
     }
+
 
     // 저장 데이터 삭제
     public void DeleteSave(int slot)

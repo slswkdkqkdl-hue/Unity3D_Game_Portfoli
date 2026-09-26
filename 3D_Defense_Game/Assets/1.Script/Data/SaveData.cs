@@ -8,7 +8,7 @@ using UnityEngine;
 public class SaveData
 {   
     public float playTime = 0f;// 플레이 타임
-    public float Money = 0f; // 소유한 돈 
+    public float Np = 0f; // 소유한 국가 포인트
     public DomainData nation = new DomainData(); //영지 정보 
 
     public List<int> clearedStageIDs = new List<int>(); // 클리어한 스테이지 정보

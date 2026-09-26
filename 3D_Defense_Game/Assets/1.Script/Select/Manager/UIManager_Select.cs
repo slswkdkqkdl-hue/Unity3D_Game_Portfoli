@@ -22,7 +22,8 @@ public class UIManager_Select : MonoBehaviour
 
     // 게임시작 버튼 
     public void NewGameStart()
-    {
+    {    
+
         DataManager.I.NewGame();
         LoadingManager.LoadScene(StartButton,true);
     }

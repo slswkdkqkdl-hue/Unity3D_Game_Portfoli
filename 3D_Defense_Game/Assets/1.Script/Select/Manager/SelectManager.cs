@@ -7,8 +7,7 @@ public class SelectManager : MonoBehaviour
 
 
     [Header("현재 선택된 데이터 (확인용)")]
-    [SerializeField] private HeroDescData selectedHero;
-    [SerializeField] private List<UnitDescData> selectedUnits = new List<UnitDescData>();
+    private int test;
 
     void Awake()
     {
