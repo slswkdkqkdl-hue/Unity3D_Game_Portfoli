@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40c6cc7a31ac63e4ca4a6b702578b0be, type: 3}
-  m_Name: Unit_Swordsman
+  m_Name: UI_Unit
   m_EditorClassIdentifier: Assembly-CSharp::UnitDescData
-  Unit_Id: 3
+  Unit_Id: 10
   unitClass: "\uAC80\uBCF4\uBCD1"
   portrait: {fileID: 0}
-  description: "\uD3C9\uBC94\uD55C \uAC80\uC0AC \uBCF4\uBCD1\uC785\uB2C8\uB2E4."
-  hp: 70
-  mp: 10
-  attack: 10
-  defense: 2
-  attackSpeed: 2
+  description: "\uC7A5\uAC80\uC744 \uC0AC\uC6A9\uD55C \uC0AC\uAC70\uB9AD\uAC00 \uAE34
+    \uBCF4\uBCD1\uC785\uB2C8\uB2E4."
+  hp: 110
+  mp: 0
+  attack: 15
+  defense: 3
+  attackSpeed: 2.5
   moveSpeed: 2

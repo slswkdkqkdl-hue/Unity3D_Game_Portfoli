@@ -32,7 +32,7 @@ public class HeroDescription : MonoBehaviour
 
         if (heroText != null) heroText.text = descData.description;
     }
-        /// <summary>
+    /// <summary>
     /// 표시할 유닛이 없을 때 텍스트 초기화
     /// </summary>
     public void ClearUI()
