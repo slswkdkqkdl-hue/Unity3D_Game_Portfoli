@@ -635,11 +635,10 @@ MonoBehaviour:
   maxSlotCount: 3
   saveData:
     playTime: 0
-    Money: 0
     nation:
       domainType: 0
       domainTier: 0
-      growthPoint: 0
+      Np: 0
     clearedStageIDs: 
     heorDatas: []
     unitDatas: []

@@ -2,7 +2,9 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "HeroDesc_", menuName = "Scriptable Objects/Hero Desc Data")]
 public class HeroDescData : ScriptableObject
-{
+{   
+    [Header("UI 보기용 영웅모델")]
+    public GameObject prefab;
     [Header("UI 표시용 정보")]
     public int Hero_Id;
     public string heroName;

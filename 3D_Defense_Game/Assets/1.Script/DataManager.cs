@@ -110,4 +110,7 @@ public class DataManager : MonoBehaviour
             File.Delete(path);
         }
     }
+
+    //세이브 데이터를 매개변수로 받고 그걸 런타임데이터에 변환하는 함수 
+    //런타임데이터를 매개변수로 받고 그걸 세이브데이터로 변환해서 담는함수
 }
