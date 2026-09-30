@@ -7,6 +7,7 @@ public class UIManager_Select : MonoBehaviour
 
     [Header("UI 패널 참조")]
     public HeroPenl heroPanel;
+    public HeroModelViewer hero_viewer;
 
     [Header("버튼 관련")]
     public SceneType StartButton = SceneType.LobbyScreen;
@@ -18,10 +19,9 @@ public class UIManager_Select : MonoBehaviour
     public Transform domainRoot;
     public Transform unitRoot;
 
-    private readonly List<DomainSlot> domainSlots = new List<DomainSlot>();
-    private readonly Dictionary<TerritoryData, List<UnitInfoSlot>> unitSlotCache= new Dictionary<TerritoryData, List<UnitInfoSlot>>(); //  영지에 유닛슬룻 갖고있음
-
-    private TerritoryData currentTerritory;
+    private readonly List<DomainSlot> domainSlots = new List<DomainSlot>(); // 처음 도메인 선택용
+    private readonly Dictionary<TerritoryData, List<UnitInfoSlot>> unitSlotCache= new Dictionary<TerritoryData, List<UnitInfoSlot>>(); // 각 영지 유닛슬룻 저장용
+    private readonly Dictionary<TerritoryData, GameObject> heroModelCache = new Dictionary<TerritoryData, GameObject>(); // 각 영지 영웅모델 저장용
 
     void Awake()
     {
@@ -47,7 +47,7 @@ public class UIManager_Select : MonoBehaviour
             return;
         }
 
-        // 1. 영지 슬롯 전부 생성
+        // 1. 영지 슬롯 전부 생성 + 각 영지 영웅 모델생성
         foreach (var territory in territories)
         {
             GameObject dom = Instantiate(domainSlotPrefab, domainRoot);
@@ -55,6 +55,10 @@ public class UIManager_Select : MonoBehaviour
             slot.Init(territory);
             slot.onSlotSelected += OnDomainSlotSelected;
             domainSlots.Add(slot);
+
+            // 영웅 모델 미리 생성
+            GameObject createdHero = hero_viewer.SpawnHero(territory.heroDescDatas.prefab);
+            heroModelCache.Add(territory, createdHero);
         }
 
         // 2. 생성이 모두 끝난 뒤 첫 번째 영지 자동 선택
@@ -63,8 +67,7 @@ public class UIManager_Select : MonoBehaviour
 
     private void OnDomainSlotSelected(TerritoryData territory)
     {
-        if (territory == null || territory == currentTerritory) return;
-        currentTerritory = territory;
+        if (territory == null) return;
 
         // 1. 영웅 패널 갱신
         if (heroPanel != null)
@@ -78,8 +81,23 @@ public class UIManager_Select : MonoBehaviour
         // 3. 선택한 영지의 유닛 슬롯 표시 (없으면 처음 한 번만 생성)
         foreach (var unitSlot in GetOrCreateUnitSlots(territory))
             unitSlot.gameObject.SetActive(true);
-    }
 
+        // 4.영웅뷰 표시(활성화) 
+        foreach (var pair in heroModelCache)
+        {
+            bool isSelected = (pair.Key == territory);
+            if (pair.Value != null)
+            {
+                pair.Value.SetActive(isSelected);
+            }
+        }
+        // 5. 뷰어에게 이름 변경 요청
+        if (hero_viewer != null && territory.heroDescDatas != null)
+        {
+            hero_viewer.SetHeroName(territory.heroDescDatas.hero_name);
+        }
+    }
+    // 선택한 영지 유닛 슬룻 가져오기
     private List<UnitInfoSlot> GetOrCreateUnitSlots(TerritoryData territory)
     {
         if (unitSlotCache.TryGetValue(territory, out var cached))
@@ -100,7 +118,6 @@ public class UIManager_Select : MonoBehaviour
 
     public void NewGameStart()
     {
-        // 선택한 영지를 넘겨야 맵 씬에서 domainType을 사용할 수 있음
         DataManager.I.NewGame();
         LoadingManager.LoadScene(StartButton, true);
     }

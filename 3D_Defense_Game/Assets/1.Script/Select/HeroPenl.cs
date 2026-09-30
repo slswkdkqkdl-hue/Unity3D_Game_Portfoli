@@ -28,7 +28,7 @@ public class HeroPenl : MonoBehaviour
         // 2. 영웅 이름 설정
         if (Hero_Name != null)
         {
-            Hero_Name.text = heroData.heroName;
+            Hero_Name.text = heroData.hero_PullName;
         }
 
         // 3. 영웅 설명 설정

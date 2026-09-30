@@ -7,7 +7,8 @@ public class HeroDescData : ScriptableObject
     public GameObject prefab;
     [Header("UI 표시용 정보")]
     public int Hero_Id;
-    public string heroName;
+    public string hero_PullName;
+    public string hero_name;
     public Sprite portrait;
     [TextArea(3, 5)]
     public string description;
