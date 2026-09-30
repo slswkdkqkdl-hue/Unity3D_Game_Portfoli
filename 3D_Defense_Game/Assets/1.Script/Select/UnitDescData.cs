@@ -7,6 +7,7 @@ public class UnitDescData : ScriptableObject
     public int Unit_Id; // 유닛 찾기용 고유id
     public string Unit_Name; // 유닛 병종
     public Sprite portrait; // 유닛 초상화
+    public CharacterType type; 
     [TextArea(3, 5)]
     public string description; // 유닛설명
 

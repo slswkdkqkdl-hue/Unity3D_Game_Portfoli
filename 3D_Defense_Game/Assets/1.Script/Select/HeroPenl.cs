@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class HeroPenl : MonoBehaviour
-{
+{   
+    [SerializeField]private HeroDescData heroDescData;
     [Header("UI 컴포넌트")]
     public Image Image;                     // 영웅 초상화 이미지
     public TextMeshProUGUI Hero_Name;       // 영웅 이름 (칭호 포함)
@@ -11,13 +12,13 @@ public class HeroPenl : MonoBehaviour
 
 
     public void Init(HeroDescData heroData)
-    {
+    {   
         if (heroData == null)
         {
             Clear();
             return;
         }
-
+        this.heroDescData = heroData;
         // 1. 영웅 초상화 이미지 설정
         if (Image != null)
         {

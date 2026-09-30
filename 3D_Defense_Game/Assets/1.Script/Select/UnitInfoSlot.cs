@@ -4,7 +4,7 @@ using UnityEngine.UI; // Image 컴포넌트 사용을 위해 추가
 
 public class UnitInfoSlot : MonoBehaviour
 {
-    private UnitDescData unitData;
+    [SerializeField]private UnitDescData unitData;
 
     [Header("UI 컴포넌트")]
     public Image Image;                    // 유닛 초상화 또는 클래스 아이콘

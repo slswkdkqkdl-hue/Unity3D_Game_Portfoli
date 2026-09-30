@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DomainSlot : MonoBehaviour
 {   
-    private TerritoryData territoryData;
+    [SerializeField]private TerritoryData territoryData;
     [Space(15)] 
     [Header("UI 컴포넌트")] 
     public Image Image;                 

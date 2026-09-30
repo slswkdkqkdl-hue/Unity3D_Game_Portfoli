@@ -1,5 +1,12 @@
 using UnityEngine;
 
+public enum CharacterType
+{
+    Melee,      // 근접 
+    Ranged,     // 원거리 
+    Magic       // 마법
+}
+
 [CreateAssetMenu(fileName = "HeroDesc_", menuName = "Scriptable Objects/Hero Desc Data")]
 public class HeroDescData : ScriptableObject
 {   
@@ -10,6 +17,7 @@ public class HeroDescData : ScriptableObject
     public string hero_PullName;
     public string hero_name;
     public Sprite portrait;
+    public CharacterType type; 
     [TextArea(3, 5)]
     public string description;
 
