@@ -8,6 +8,8 @@ using UnityEngine;
 public class SaveData
 {   
     public float playTime = 0f;// 플레이 타임
+
+    public DomainType domainType = DomainType.None; // 선택한 영지 종류
     public DomainData nation = new DomainData(); //영지 정보 
 
     public List<int> clearedStageIDs = new List<int>(); // 클리어한 스테이지 정보

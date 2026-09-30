@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: UI_Unit 1
   m_EditorClassIdentifier: Assembly-CSharp::UnitDescData
   Unit_Id: 11
-  unitClass: "\uCC99\uD6C4\uBCD1"
-  portrait: {fileID: 0}
-  description: "\uBE60\uB978 \uC774\uB3D9\uC18D\uB3C4\uB97C \uAC00\uC9C0\uACE0\uC788\uB294
-    \uBCD1\uC0AC\uC785\uB2C8\uB2E4"
+  Unit_Name: "\uC815\uCC30\uBCD1"
+  portrait: {fileID: 21300000, guid: 144f466b22aef414aa888ffbdcf12313, type: 3}
+  description: "\uBBF8\uC9C0\uC758 \uC9C0\uD615\uC744 \uC790\uC720\uB86D\uAC8C \uB204\uBE44\uBA70
+    \uC544\uAD70\uC5D0\uAC8C \uC2B9\uB9AC\uC758 \uBC1C\uD310\uC744 \uB9C8\uB828\uD574\uC8FC\uB294
+    \uB0A0\uB835\uD55C \uC815\uCC30\uBCD1\uC785\uB2C8\uB2E4."
   hp: 50
   mp: 0
   attack: 10

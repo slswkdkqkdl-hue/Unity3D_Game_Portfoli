@@ -12,8 +12,8 @@ public enum DomainTier
 public enum DomainType
 {   
     None,
-    Roenfeldt, // 영지 A
-    FactionB, // 영지 B
+    Greenhaven, // 영지 A
+    WhiteMoon, // 영지 B
     FactionC  // 영지 C
 }
 
@@ -21,7 +21,6 @@ public enum DomainType
 [System.Serializable]
 public class DomainData
 {
-    public DomainType domainType = DomainType.None; // 선택한 영지 종류
     public DomainTier domainTier = DomainTier.Small;   // 현재 영지 티어 (소국 -> 강국 -> 대국)
     public float Np = 0f; // 소유한 국가 포인트
 }

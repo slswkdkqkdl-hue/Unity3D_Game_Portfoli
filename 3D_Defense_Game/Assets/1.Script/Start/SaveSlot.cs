@@ -25,7 +25,7 @@ public class SaveSlot : MonoBehaviour
         if (data != null)
         {
             // 데이터가 있는 경우
-            domainNameText.text = $"영지명 : {data.nation.domainType}";
+            domainNameText.text = $"영지명 : {data.domainType}";
 
             TimeSpan time = TimeSpan.FromSeconds(data.playTime);
             int hours = (int)time.TotalHours;
