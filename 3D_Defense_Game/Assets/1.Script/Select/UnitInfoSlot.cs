@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI; // Image 컴포넌트 사용을 위해 추가
+using UnityEngine.EventSystems;
 
-public class UnitInfoSlot : MonoBehaviour
+public class UnitInfoSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField]private UnitDescData unitData;
 
@@ -64,5 +65,19 @@ public class UnitInfoSlot : MonoBehaviour
         {
             Unit_Description.text = string.Empty;
         }
+    }
+
+    // 마우스가 UI 요소 위로 올라왔을 때 호출
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // 여기서 툴팁 팝업을 켜고 데이터를 넣어줍니다.
+        SelectPopUp.Instance.ShowInfoPopup(unitData);
+    }
+
+    // 마우스가 UI 요소에서 나갔을 때 호출
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // 여기서 툴팁 팝업을 끄거나 초기화합니다.
+          SelectPopUp.Instance.HideInfoPopup();
     }
 }

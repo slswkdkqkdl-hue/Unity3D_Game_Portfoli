@@ -29,15 +29,35 @@ public class InfoPopup : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moveSpeedText;
 
 
-    // 최대 기준값 설정 (필요에 따라 조절)
-    [Header("Max Stat Values for Fill Ratio")]
-    public float maxHp = 200;
-    public float maxMp = 200f;
-    public float maxAtk = 100f;
-    public float maxDef = 50f;
-    public float maxAtkSpeed = 10f;
-    public float maxMoveSpeed = 10f;
+    [Header("Max Stat Values (Unit)")]
+    public float unitMaxHp = 200f;
+    public float unitMaxMp = 200f;
+    public float unitMaxAtk = 100f;
+    public float unitMaxDef = 50f;
+    public float unitMaxAtkSpeed = 10f;
+    public float unitMaxMoveSpeed = 10f;
 
+    // [cite: 1, 2, 13] 최대 기준값 설정 분리 (영웅용 - 더 높게 설정)
+    [Header("Max Stat Values (Hero)")]
+    public float heroMaxHp = 3000;
+    public float heroMaxMp = 200f;
+    public float heroMaxAtk = 50f;
+    public float heroMaxDef = 50f;
+    public float heroMaxAtkSpeed = 10f;
+    public float heroMaxMoveSpeed = 10f;
+
+    private RectTransform rectTransform;
+    private Canvas parentCanvas;
+
+    void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+        parentCanvas = GetComponentInParent<Canvas>();
+    }
+    void Update()
+    {
+        FollowMousePosition(); // 마우스 따라다니기
+    }
     /// <summary>
     /// HeroDescData나 UnitDescData 아무거나 받아서 UI를 갱신하는 제네릭 메서드
     /// </summary>
@@ -53,11 +73,14 @@ public class InfoPopup : MonoBehaviour
         switch (data)
         {
             case HeroDescData hero:
-                UpdateAllUI(hero.type, hero.hp, hero.mp, hero.attack, hero.defense, hero.attackSpeed, hero.moveSpeed);
+                UpdateAllUI(hero.type, hero.hp, hero.mp, hero.attack, hero.defense, hero.attackSpeed, hero.moveSpeed,
+                    heroMaxHp, heroMaxMp, heroMaxAtk, heroMaxDef, heroMaxAtkSpeed, heroMaxMoveSpeed); // [cite: 3]
                 break;
 
+            // [cite: 3, 5] 유닛 데이터일 때 유닛용 최대 수치 전달
             case UnitDescData unit:
-                UpdateAllUI(unit.type, unit.hp, unit.mp, unit.attack, unit.defense, unit.attackSpeed, unit.moveSpeed);
+                UpdateAllUI(unit.type, unit.hp, unit.mp, unit.attack, unit.defense, unit.attackSpeed, unit.moveSpeed,
+                    unitMaxHp, unitMaxMp, unitMaxAtk, unitMaxDef, unitMaxAtkSpeed, unitMaxMoveSpeed); // [cite: 3]
                 break;
 
             default:
@@ -68,11 +91,11 @@ public class InfoPopup : MonoBehaviour
     }
 
     // 실제 UI 바 및 텍스트 갱신을 담당하는 내부 함수
-    private void UpdateAllUI(CharacterType type, float hp, float mp, float atk, float def, float atkSpd, float moveSpd)
+    private void UpdateAllUI(CharacterType type, float hp, float mp, float atk, float def, float atkSpd, float moveSpd,float curMaxHp, float curMaxMp, float curMaxAtk, float curMaxDef, float curMaxAtkSpd, float curMaxMoveSpd)
     {
         if (typeIconImage != null && typeImage != null)
         {
-            int index = (int)type; //
+            int index = (int)type; // 0 검 , 1 활 , 2 마법
             if (index >= 0 && index < typeImage.Length)
             {
                 typeIconImage.sprite = typeImage[index];
@@ -80,12 +103,12 @@ public class InfoPopup : MonoBehaviour
             }
         }
 
-        UpdateStatRow(hpFillImage, hpText, "체력", hp, maxHp);
-        UpdateStatRow(mpFillImage, mpText, "마나", mp, maxMp);
-        UpdateStatRow(atkFillImage, atkText, "공격력", atk, maxAtk);
-        UpdateStatRow(defFillImage, defText, "방어력", def, maxDef);
-        UpdateStatRow(atkSpeedFillImage, atkSpeedText, "공격속도", atkSpd, maxAtkSpeed);
-        UpdateStatRow(moveSpeedFillImage, moveSpeedText, "이동속도", moveSpd, maxMoveSpeed);
+        UpdateStatRow(hpFillImage, hpText, "체력", hp, curMaxHp);
+        UpdateStatRow(mpFillImage, mpText, "마나", mp, curMaxMp);
+        UpdateStatRow(atkFillImage, atkText, "공격력", atk, curMaxAtk);
+        UpdateStatRow(defFillImage, defText, "방어력", def, curMaxDef);
+        UpdateStatRow(atkSpeedFillImage, atkSpeedText, "공격속도", atkSpd, curMaxAtkSpd);
+        UpdateStatRow(moveSpeedFillImage, moveSpeedText, "이동속도", moveSpd, curMaxMoveSpd);
     }
 
     private void UpdateStatRow(Image fillImg, TextMeshProUGUI textComp, string label, float value, float maxValue)
@@ -101,6 +124,20 @@ public class InfoPopup : MonoBehaviour
     {
         if (typeIconImage != null)
             typeIconImage.gameObject.SetActive(false);
-        UpdateAllUI(0, 0, 0, 0, 0, 0, 0);
+
+        // [cite: 3] UpdateAllUI 매개변수 구조에 맞춰서 유닛 최대 스탯 값을 전달해 줘야 함
+        UpdateAllUI(CharacterType.Melee, 0, 0, 0, 0, 0, 0,
+            unitMaxHp, unitMaxMp, unitMaxAtk, unitMaxDef, unitMaxAtkSpeed, unitMaxMoveSpeed); // [cite: 3]
+    }
+    private void FollowMousePosition()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+
+        // Canvas의 Render Mode가 Screen Space - Overlay 일 때
+        if (parentCanvas != null && parentCanvas.renderMode == RenderMode.ScreenSpaceOverlay)
+        {
+            rectTransform.position = mousePosition;
+        }
+
     }
 }

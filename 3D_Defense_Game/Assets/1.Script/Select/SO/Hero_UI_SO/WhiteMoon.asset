@@ -17,6 +17,7 @@ MonoBehaviour:
   hero_PullName: "[\uBC31\uC6D4\uC120\uB140] \uBC31\uC124\uD654"
   hero_name: "\uBC31\uC124\uD654"
   portrait: {fileID: -1285227857, guid: 1b6f421d263cbd34abc52fb10078564c, type: 3}
+  type: 2
   description: "\uBC31\uC6D4\uAC00\uBB38\uC758 \uAC00\uC8FC\uB97C \uCDA9\uC2EC\uC73C\uB85C
     \uBCF4\uD544\uD558\uBA70, \uAC00\uBB38\uC758 \uBC31\uC131\uB4E4\uC744 \uC81C
     \uBAB8\uCC98\uB7FC \uC544\uB07C\uB294 \uACE0\uACB0\uD55C \uC778\uBB3C\uC785\uB2C8\uB2E4."
