@@ -17,6 +17,7 @@ public class UIManager_Start : MonoBehaviour
     [SerializeField] private SceneType newGameTargetScene;
     [SerializeField] private SceneType continueTargetScene;
 
+    [SerializeField] private FadeOut fadeOut;
     void Start()
     {
         CloseAllPopUps();
@@ -40,25 +41,28 @@ public class UIManager_Start : MonoBehaviour
 
     private void OnClickNewGame()
     {
-        Debug.Log("새로하기 클릭"); 
-        LoadingManager.LoadScene(newGameTargetScene, false);
+        newGameButton.interactable = false;
+        fadeOut.DoFadeOut(()=>
+        {
+            LoadingManager.LoadScene(newGameTargetScene, false);            
+        });
     }   
 
     private void OnClickContinue()
     {
-        Debug.Log("이어하기 클릭");
+
         TogglePopUp(continuePopUp);
     }
 
     private void OnClickSetting()
     {
-        Debug.Log("설정 클릭");
+
         TogglePopUp(settingPopUp);
     }
 
     private void OnClickExit()
     {
-        Debug.Log("게임 종료 클릭");
+
         TogglePopUp(exitPopUp);
     }
 
@@ -87,4 +91,5 @@ public class UIManager_Start : MonoBehaviour
         if (settingPopUp != null) settingPopUp.Close();
         if (exitPopUp != null) exitPopUp.Close();
     }
+  
 }

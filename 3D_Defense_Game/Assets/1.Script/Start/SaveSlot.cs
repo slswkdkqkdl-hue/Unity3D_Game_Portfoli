@@ -7,6 +7,7 @@ public class SaveSlot : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI domainNameText;
     [SerializeField] private TextMeshProUGUI playerTimeText;
+    [SerializeField] private TextMeshProUGUI DefultText;
     
     public int slotNumber; // 유니티 인스펙터에서 0, 1, 2 지정
     public Button button;  // 슬롯 클릭 버튼
@@ -33,18 +34,18 @@ public class SaveSlot : MonoBehaviour
             int seconds = time.Seconds;
 
             playerTimeText.text = $"플레이 타임 : {hours:D2}시 {minutes:D2}분 {seconds:D2}초";
+            DefultText.text = string.Empty;
             
-            // 데이터가 있으므로 버튼 클릭 가능
-            // if (button != null) button.interactable = true;
+            if (button != null) button.interactable = true;
         }
         else
         {
             // 데이터가 없는 경우
-            domainNameText.text = "No Data";
-            playerTimeText.text = "";
+            domainNameText.text = string.Empty;
+            playerTimeText.text = string.Empty;
+            DefultText.text = "No Data";
             
-            // 불러오기 창에서는 데이터가 없는 슬롯을 누를 수 없게 비활성화
-            // if (button != null) button.interactable = false;
+            if (button != null) button.interactable = false;
         }
     }
 }

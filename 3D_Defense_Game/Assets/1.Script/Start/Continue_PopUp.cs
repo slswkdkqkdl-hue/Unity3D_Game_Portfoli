@@ -7,6 +7,7 @@ public class Continue_PopUp : UIPopUp
     [SerializeField] private SceneType targetScene = SceneType.LobbyScreen;
     [Header("슬릇 데이터")] 
     [SerializeField] private List<SaveSlot> saveSlots = new List<SaveSlot>();
+    [SerializeField]private FadeOut fadeOut;
 
 
     private void OnEnable()
@@ -16,10 +17,10 @@ public class Continue_PopUp : UIPopUp
             SaveSlot slot = saveSlots[i];
             slot.Init();
 
-            // 1. 기존에 연결된 클릭 이벤트 깨끗이 제거 (중복 등록 방지)
+
             slot.button.onClick.RemoveAllListeners();
 
-            // 2. 람다식 변수 캡처 문제 방지를 위해 로컬 변수 사용
+
             int targetSlotIndex = slot.slotNumber;
 
             // 3. 해당 슬롯 번호를 전달받아 실행하도록 이벤트 연결
@@ -34,7 +35,10 @@ public class Continue_PopUp : UIPopUp
         if (DataManager.I.LoadGame(slotIndex))
         {
             Debug.Log($"{slotIndex}번 슬롯 불러오기 성공");
-            LoadingManager.LoadScene(targetScene);
+            fadeOut.DoFadeOut(() =>
+            {
+                LoadingManager.LoadScene(targetScene); 
+            });
         }
         else
         {
