@@ -2,3 +2,5 @@
 3D_Defense_Game/Assets/Resources/ATE/Skybox/Textures/TSI_Skybox_Background_01A.tga.meta
 3D_Defense_Game/Assets/Resources/ATE/Skybox/Textures/TSI_Skybox_Midground_01A.tga
 3D_Defense_Game/Assets/Resources/ATE/Skybox/Textures/TSI_Skybox_Midground_01A.tga.meta
+*.tga
+*.meta

@@ -2985,7 +2985,7 @@ Light:
   serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 0.9529412, b: 0.8039216, a: 1}
-  m_Intensity: 3
+  m_Intensity: 3.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -11802,6 +11802,7 @@ Transform:
   - {fileID: 6900524130833064779}
   - {fileID: 7332306193109180913}
   - {fileID: 2636677395487644618}
+  - {fileID: 8566512470916000232}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3493080842541511333
@@ -23454,8 +23455,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9054923663821157202}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 364.79, y: 16.84, z: 613.6}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -114.78595, y: 16.84, z: 203.80942}
   m_LocalScale: {x: 0.8, y: 0.7, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23463,7 +23464,7 @@ Transform:
   - {fileID: 9102063892689028173}
   - {fileID: 6407035576561615797}
   - {fileID: 9048615466750942025}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 3489447832515885987}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8572040324248120893
 PrefabInstance:
@@ -24912,7 +24913,7 @@ GameObject:
   - component: {fileID: 8566512470916000232}
   - component: {fileID: 3510628602446634649}
   m_Layer: 0
-  m_Name: TSI_Broadleaf_Tree_01A
+  m_Name: Tree
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25149,4 +25150,3 @@ SceneRoots:
   - {fileID: 376160685}
   - {fileID: 1872682172}
   - {fileID: 3489447832515885987}
-  - {fileID: 8566512470916000232}
