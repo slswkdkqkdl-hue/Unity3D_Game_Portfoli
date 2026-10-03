@@ -3565,7 +3565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FadeOut
   fadeImage: {fileID: 773759103}
-  fadeTime: 0.5
+  fadeTime: 0.7
 --- !u!1 &773759101
 GameObject:
   m_ObjectHideFlags: 0
