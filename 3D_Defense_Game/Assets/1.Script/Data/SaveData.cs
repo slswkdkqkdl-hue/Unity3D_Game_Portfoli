@@ -14,14 +14,14 @@ public class SaveData
 
     public List<int> clearedStageIDs = new List<int>(); // 클리어한 스테이지 정보
 
-    public List<HeroData> heorDatas = new List<HeroData>(); // 소유한 영웅
-    public List<UnitData> unitDatas = new List<UnitData>(); // 소유한 유닛
-    public List<ItemData> itemDatas = new List<ItemData>(); // 소유한 아이템
+    public List<HeroSaveData> heorDatas = new List<HeroSaveData>(); // 소유한 영웅
+    public List<UnitSaveData> unitDatas = new List<UnitSaveData>(); // 소유한 유닛
+    public List<ItemSaveData> itemDatas = new List<ItemSaveData>(); // 소유한 아이템
 
 
-    public List<ItemData> StartingItems = new List<ItemData>()
+    public List<ItemSaveData> StartingItems = new List<ItemSaveData>()
     {
-        new ItemData { ItemId = 1, Size = 1 }, // 시작 무기
-        new ItemData { ItemId = 1, Size = 1 } // 시작 방어구
+        new ItemSaveData { ItemId = 1, Size = 1 }, // 시작 무기
+        new ItemSaveData { ItemId = 1, Size = 1 } // 시작 방어구
     };
 }

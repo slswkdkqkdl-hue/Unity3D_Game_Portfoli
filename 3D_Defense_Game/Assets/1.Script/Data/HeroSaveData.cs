@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class HeroData
+public class HeroSaveData
 {
     public int HeroId = -1; // 히어로 검색 ID
     public int Level = 0; // 히어로 레벨

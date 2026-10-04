@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class UnitData 
+public class UnitSaveData 
 {
     public int UnitId = -1; // 검색할 유닛 ID
     public int Level = 0; // 유닛 레벨
