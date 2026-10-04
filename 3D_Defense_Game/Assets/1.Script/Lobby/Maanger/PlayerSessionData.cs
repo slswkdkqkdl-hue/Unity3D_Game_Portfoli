@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerSessionData
 {
     // 외부 접근을 위해 public 리스트로 선언하거나 프로퍼티 사용
-    public List<RuntimeHeroData> HeroDatas { get; private set; }
-    public List<RuntimeUnitData> RuntimeUnits { get; private set; }
-    public List<RuntimeItemData> ItemDatas { get; private set; }
+    [SerializeField]private List<RuntimeHeroData> HeroDatas;
+    [SerializeField]private List<RuntimeUnitData> RuntimeUnits;
+    [SerializeField]private List<RuntimeItemData> ItemDatas;
 
     public PlayerSessionData()
     {
