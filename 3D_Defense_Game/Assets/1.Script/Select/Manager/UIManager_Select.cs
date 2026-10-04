@@ -19,6 +19,9 @@ public class UIManager_Select : MonoBehaviour
     public Transform domainRoot;
     public Transform unitRoot;
 
+    [Header("현재 선택된 세력")]
+    public TerritoryData selectedTerritory;
+
     private readonly List<DomainSlot> domainSlots = new List<DomainSlot>(); // 처음 도메인 선택용
     private readonly Dictionary<TerritoryData, List<UnitInfoSlot>> unitSlotCache= new Dictionary<TerritoryData, List<UnitInfoSlot>>(); // 각 영지 유닛슬룻 저장용
     private readonly Dictionary<TerritoryData, GameObject> heroModelCache = new Dictionary<TerritoryData, GameObject>(); // 각 영지 영웅모델 저장용
@@ -69,6 +72,7 @@ public class UIManager_Select : MonoBehaviour
     {
         if (territory == null) return;
 
+        selectedTerritory = territory;
         // 1. 영웅 패널 갱신
         if (heroPanel != null)
             heroPanel.Init(territory.heroDescDatas);
@@ -118,7 +122,7 @@ public class UIManager_Select : MonoBehaviour
 
     public void NewGameStart()
     {
-        DataManager.I.NewGame();
+        DataManager.I.NewGame(selectedTerritory);
         LoadingManager.LoadScene(StartButton, true);
     }
 

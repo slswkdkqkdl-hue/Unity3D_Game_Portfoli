@@ -7,7 +7,9 @@ public class DataManager : MonoBehaviour
 
     [SerializeField] private int maxSlotCount = 3; //슬룻 수 
 
+    [Header("현재 데이터")]
     public SaveData saveData;
+    public PlayerSessionData sessionData;
 
     private void Awake()
     {
@@ -92,12 +94,15 @@ public class DataManager : MonoBehaviour
     }
 
     // 새로운 게임 시작
-    public void NewGame()
+    public void NewGame(TerritoryData data)
     {
         // 새로운 세이브데이터 생성
         saveData = new SaveData();
-        // 런타임 플레이어 데이터 생성
+        sessionData = new PlayerSessionData();
+
+
     }
+
 
 
     // 저장 데이터 삭제

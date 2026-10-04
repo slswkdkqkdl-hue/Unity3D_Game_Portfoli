@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class PlayManager : MonoBehaviour
+public class LobbyManager : MonoBehaviour
 {   
 
-    public static PlayManager I;
+    public static LobbyManager I;
 
     public UIManager_Play uIManager_;
 
