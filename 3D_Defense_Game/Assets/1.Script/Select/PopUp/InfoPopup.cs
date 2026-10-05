@@ -72,13 +72,13 @@ public class InfoPopup : MonoBehaviour
         // 제네릭 T 타입에 따라 분기 처리
         switch (data)
         {
-            case RuntimeHeroData hero:
+            case HeroData hero:
                 UpdateAllUI(hero.type, hero.hp, hero.mp, hero.attack, hero.defense, hero.attackSpeed, hero.moveSpeed,
                     heroMaxHp, heroMaxMp, heroMaxAtk, heroMaxDef, heroMaxAtkSpeed, heroMaxMoveSpeed); // [cite: 3]
                 break;
 
             // [cite: 3, 5] 유닛 데이터일 때 유닛용 최대 수치 전달
-            case RuntimeUnitData unit:
+            case UnitData unit:
                 UpdateAllUI(unit.type, unit.hp, unit.mp, unit.attack, unit.defense, unit.attackSpeed, unit.moveSpeed,
                     unitMaxHp, unitMaxMp, unitMaxAtk, unitMaxDef, unitMaxAtkSpeed, unitMaxMoveSpeed); // [cite: 3]
                 break;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "RunUnitData", menuName = "Scriptable Objects/RunUnitData")]
-public class RuntimeUnitData : ScriptableObject
+public class UnitData : ScriptableObject
 {
     [Header("유닛 프리팹 (전투)")]
     public GameObject prefab_Play;

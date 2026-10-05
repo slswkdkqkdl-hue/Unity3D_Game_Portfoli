@@ -6,7 +6,7 @@ using UnityEngine.AddressableAssets;
 public struct ItemEntry
 {
     public int itemId;
-    public AssetReferenceT<RuntimeItemData> itemRef;
+    public AssetReferenceT<ItemData> itemRef;
 }
 
 [CreateAssetMenu(fileName = "ItemDB",menuName ="Database/ItemDB")]
@@ -17,7 +17,7 @@ public class ItemDB : ScriptableObject
 
 
 
-    public AssetReferenceT<RuntimeItemData> GetItemRef(int itemId_)
+    public AssetReferenceT<ItemData> GetItemRef(int itemId_)
     {
         var entry = items.Find(x => x.itemId == itemId_);
         return entry.itemRef; // 레퍼런스 주소만 반환

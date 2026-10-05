@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class UnitInfoSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField]private RuntimeUnitData unitData;
+    [SerializeField]private UnitData unitData;
 
     [Header("UI 컴포넌트")]
     public Image Image;                    // 유닛 초상화 또는 클래스 아이콘
@@ -16,7 +16,7 @@ public class UnitInfoSlot : MonoBehaviour,IPointerEnterHandler, IPointerExitHand
     /// <summary>
     /// UnitData를 받아와 유닛 정보 패널의 UI를 초기화하는 메서드
     /// </summary>
-    public void Init(RuntimeUnitData unitData)
+    public void Init(UnitData unitData)
     {
         if (unitData == null)
         {

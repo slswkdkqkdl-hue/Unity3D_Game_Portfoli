@@ -13,12 +13,12 @@ public class TerritoryData : ScriptableObject
     [TextArea] public string passiveDescription; // 영지 패시브 설명
 
     [Header("Hero Addressable Reference")]
-    public AssetReferenceT<RuntimeHeroData> heroRef; 
+    public AssetReferenceT<HeroData> heroRef; 
 
     [Header("Unit Addressable References")]
-    public List<AssetReferenceT<RuntimeUnitData>> unitRefs = new List<AssetReferenceT<RuntimeUnitData>>();
+    public List<AssetReferenceT<UnitData>> unitRefs = new List<AssetReferenceT<UnitData>>();
 
     // 얘는 게임실행중에 런타임용을 잔깐 사용할것 담아두기 데이터  에셋파일 저장하면안댐 
-    [System.NonSerialized] public RuntimeHeroData heroDescDatas;
-    [System.NonSerialized] public List<RuntimeUnitData> unitDescDatas = new List<RuntimeUnitData>();
+    [System.NonSerialized] public HeroData heroDescDatas;
+    [System.NonSerialized] public List<UnitData> unitDescDatas = new List<UnitData>();
 }

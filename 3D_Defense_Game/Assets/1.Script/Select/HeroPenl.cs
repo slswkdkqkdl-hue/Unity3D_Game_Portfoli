@@ -5,14 +5,14 @@ using UnityEngine.EventSystems;
 
 public class HeroPenl : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 {   
-    [SerializeField]private RuntimeHeroData heroDescData;
+    [SerializeField]private HeroData heroDescData;
     [Header("UI 컴포넌트")]
     public Image Image;                     // 영웅 초상화 이미지
     public TextMeshProUGUI Hero_Name;       // 영웅 이름 (칭호 포함)
     public TextMeshProUGUI Hero_Description;// 영웅 설명
 
 
-    public void Init(RuntimeHeroData heroData)
+    public void Init(HeroData heroData)
     {   
         if (heroData == null)
         {

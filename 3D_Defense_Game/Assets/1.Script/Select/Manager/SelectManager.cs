@@ -37,7 +37,7 @@ public class SelectManager : MonoBehaviour
             {
                 if (unitRef != null && unitRef.RuntimeKeyIsValid())
                 {
-                    RuntimeUnitData loadedUnit = unitRef.LoadAssetAsync().WaitForCompletion();
+                    UnitData loadedUnit = unitRef.LoadAssetAsync().WaitForCompletion();
                     data.unitDescDatas.Add(loadedUnit);
                 }
             }

@@ -8,7 +8,7 @@ using UnityEngine.AddressableAssets;
 public struct HeroEntry
 {
     public int heroId;
-    public AssetReferenceT<RuntimeHeroData> heroRef; 
+    public AssetReferenceT<HeroData> heroRef; 
 }
 
 
@@ -22,7 +22,7 @@ public class HeroDB : ScriptableObject
     /// <summary>
     /// ID 기반 영웅 어드레서블 참조 검색
     /// </summary>
-    public AssetReferenceT<RuntimeHeroData> GetHeroRef(int heroId)
+    public AssetReferenceT<HeroData> GetHeroRef(int heroId)
     {
         var entry = heroList.Find(x => x.heroId == heroId);
         return entry.heroRef; // 레퍼런스 주소만 반환

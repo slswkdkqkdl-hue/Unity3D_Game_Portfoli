@@ -10,7 +10,7 @@ public enum CharacterType
 
 
 [CreateAssetMenu(fileName = "RunHeroData", menuName = "Scriptable Objects/RunHeroData")]
-public class RuntimeHeroData : ScriptableObject
+public class HeroData : ScriptableObject
 {
     [Header("영웅 프리팹 (전투)")]
     public GameObject prefab_Play;
@@ -54,4 +54,6 @@ public class RuntimeHeroData : ScriptableObject
     // [Header("선택한 패시브스킬,액티브스킬")]
     // public List<int> SelectPassiveSkill = new List<int>(); // 선택한 패시브스킬
     // public List<int> SelectActiveSkill = new List<int>(); // 선택한 액티브스킬
+
+    //추가해야함 모든 스킬 담고있기
 }

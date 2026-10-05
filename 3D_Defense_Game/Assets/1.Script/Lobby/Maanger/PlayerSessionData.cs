@@ -4,21 +4,78 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSessionData
 {
-    public List<RuntimeHeroData> runtimeHeroDatas;
-    public List<RuntimeUnitData> runtimeUnits;
-    public List<RuntimeItemData> runtimeItemDatas;
-
-
+    public List<HeroRuntimeData> heroes;
+    public List<UnitRuntimeData> units;
+    public List<ItemRuntimeData> items;
 
     public PlayerSessionData()
     {
-        runtimeHeroDatas = new List<RuntimeHeroData>();
-        runtimeUnits = new List<RuntimeUnitData>();
-        runtimeItemDatas = new List<RuntimeItemData>();
+        heroes = new List<HeroRuntimeData>();
+        units = new List<UnitRuntimeData>();
+        items = new List<ItemRuntimeData>();
     }
-    // 데이터 추가용 편의 메서드 (DataManager에서 사용)
-    public void AddHero(RuntimeHeroData hero) { if (!runtimeHeroDatas.Contains(hero)) runtimeHeroDatas.Add(hero); }
-    public void AddUnit(RuntimeUnitData unit) { if (!runtimeUnits.Contains(unit)) runtimeUnits.Add(unit); }
-    public void AddItem(RuntimeItemData item) { if (!runtimeItemDatas.Contains(item)) runtimeItemDatas.Add(item); }
 
+    // 데이터 추가용 편의 메서드
+    public void AddHero(HeroData hero)
+    {
+        if (hero == null)
+            return;
+
+        foreach (var result in heroes)
+        {
+            if (result.heroData != null &&
+                result.heroData.Hero_Id == hero.Hero_Id)
+            {
+                return;
+            }
+        }
+
+        heroes.Add(new HeroRuntimeData
+        {
+            heroData = hero,
+            level = 1
+        });
+    }
+
+    public void AddUnit(UnitData unit)
+    {
+        if (unit == null)
+            return;
+
+        foreach (var result in units)
+        {
+            if (result.unitData != null &&
+                result.unitData.Unit_Id == unit.Unit_Id)
+            {
+                return;
+            }
+        }
+
+        units.Add(new UnitRuntimeData
+        {
+            unitData = unit,
+            level = 1
+        });
+    }
+    public void AddItem(ItemData item)
+    {
+        if (item == null)
+            return;
+
+        foreach (var result in items)
+        {
+            if (result.itemData != null &&
+                result.itemData.item_Id == item.item_Id)
+            {
+                result.size++;
+                return;
+            }
+        }
+
+        items.Add(new ItemRuntimeData
+        {
+            itemData = item,
+            size = 1
+        });
+    }
 }

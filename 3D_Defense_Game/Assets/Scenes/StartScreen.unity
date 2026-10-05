@@ -1195,7 +1195,7 @@ MonoBehaviour:
       domainTier: 0
       Np: 0
     clearedStageIDs: 
-    heorDatas: []
+    heroDates: []
     unitDatas: []
     itemDatas:
     - ItemId: 1
@@ -1203,9 +1203,9 @@ MonoBehaviour:
     - ItemId: 2
       Size: 1
   sessionData:
-    runtimeHeroDatas: []
-    runtimeUnits: []
-    runtimeItemDatas: []
+    heroes: []
+    units: []
+    items: []
   heroDB: {fileID: 11400000, guid: a29695ab347c78542aef0ebcc5fba264, type: 2}
   unitDB: {fileID: 11400000, guid: 169c12d2abd019f4faf1c458251e978a, type: 2}
   itemDB: {fileID: 11400000, guid: b5ecb6e542d0c4341a02bd530f3cd2c9, type: 2}
