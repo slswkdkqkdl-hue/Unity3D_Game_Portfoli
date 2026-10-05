@@ -1,12 +1,19 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
 public class PlayerSessionData
-{
+{   
+    [Header("현재 있는 영웅/유닛/아이템 데이터")]
     public List<HeroRuntimeData> heroes;
     public List<UnitRuntimeData> units;
     public List<ItemRuntimeData> items;
+
+    [Header("세력정보")]
+    public DomainType domainType; 
+    public DomainData domainData;
+
 
     public PlayerSessionData()
     {

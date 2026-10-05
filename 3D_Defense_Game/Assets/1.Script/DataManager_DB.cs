@@ -119,6 +119,9 @@ public partial class DataManager : MonoBehaviour
 
                 Debug.Log($"[유닛 로드 완료] ID: {unitSave.UnitId}");
             }
+            // 세션 타입 + 국가 초기설정 
+            sessionData.domainType = saveData.domainType;
+            sessionData.domainData = saveData.nation;
         }
 
 
