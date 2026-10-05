@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SO_Data
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: SO_Data
+  m_GUID: 378b30ca040a2674c8419f5820e48659
+  m_SerializeEntries:
+  - m_GUID: 13e8c49dec7552e45b1960c978eb8b45
+    m_Address: Assets/8.SO/Item_SO/Amor.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ae1063d82dea554ea6bcff9168278dc
+    m_Address: Assets/8.SO/Unit_SO/Scout.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 609d0543d933e984dbbc6e6d8b4de2eb
+    m_Address: Assets/8.SO/Unit_SO/Knight.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8489cadf1279d30428882eb1cd70cbee
+    m_Address: Assets/8.SO/Unit_SO/Taoist.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 977c4b12af1617c4db0c8af78834c84b
+    m_Address: Assets/8.SO/Unit_SO/Musa.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: abeb5f267e47e524fb24c83cd1d14d79
+    m_Address: Assets/8.SO/Hero_SO/Arden.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed2e0a8031a588e4e95a69a38bf50bfd
+    m_Address: Assets/8.SO/Item_SO/Sword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ee5de30f897bd6b4fa8eef33dd7ec1fc
+    m_Address: Assets/8.SO/Hero_SO/Seolhwa.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f8042e044e79ed3468ee5af579015cc1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 33b071a8f67513f44973bdd16eb3811b, type: 2}
+    - {fileID: 11400000, guid: 8310ac9271ba17347b6f400272f75d4a, type: 2}

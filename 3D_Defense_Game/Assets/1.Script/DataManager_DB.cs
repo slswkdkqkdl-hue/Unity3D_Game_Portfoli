@@ -24,28 +24,39 @@ public partial class DataManager : MonoBehaviour
             // ----------------------------------------------------
             // ① 영웅 복원
             // ----------------------------------------------------
-            if (saveData.heorDatas != null && heroDB != null)
+            // ① 영웅 복원 부분 수정
+            if (saveData.heroDates != null && heroDB != null) // heorDatas -> heroDatas 오탈자 수정
             {
-                Debug.Log($"[DataManager] 영웅 복원 시작 (총 {saveData.heorDatas.Count}개)");
-                foreach (HeroSaveData heroSave in saveData.heorDatas)
+                Debug.Log($"[DataManager] 영웅 복원 시작 (총 {saveData.heroDates.Count}개)");
+                foreach (HeroSaveData heroSave in saveData.heroDates)
                 {
                     var heroRef = heroDB.GetHeroRef(heroSave.HeroId);
                     Debug.Log($"[영웅 검색] ID: {heroSave.HeroId}, 결과: {(heroRef != null ? "성공" : "실패(Null)")}");
                     
                     if (heroRef != null)
                     {
-                        var handle = heroRef.LoadAssetAsync();
-                        RuntimeHeroData loadedHero = await handle.Task;
-                        
-                        if (loadedHero != null)
+                        try
                         {
-                            sessionData.AddHero(loadedHero);
-                            Debug.Log($"[영웅 로드 완료] ID: {heroSave.HeroId}");
+                            var handle = heroRef.LoadAssetAsync();
+                            RuntimeHeroData loadedHero = await handle.Task;
+                            
+                            if (loadedHero != null)
+                            {
+                                sessionData.AddHero(loadedHero);
+                                Debug.Log($"[영웅 로드 완료] ID: {heroSave.HeroId}");
+                            }
+                            else
+                            {
+                                Debug.LogError($"[영웅 로드 실패] ID: {heroSave.HeroId} - 에셋은 불러왔으나 데이터가 Null입니다.");
+                            }
+                        }
+                        catch (System.Exception e)
+                        {
+                            Debug.LogError($"[영웅 로드 예외 발생] ID: {heroSave.HeroId}, 에러: {e.Message}");
                         }
                     }
                 }
             }
-
             // ----------------------------------------------------
             // ② 유닛 복원
             // ----------------------------------------------------
@@ -105,14 +116,14 @@ public partial class DataManager : MonoBehaviour
         if (saveData == null) saveData = new SaveData();
         if (sessionData == null) return;
 
-        saveData.heorDatas.Clear();
+        saveData.heroDates.Clear();
         saveData.unitDatas.Clear();
         saveData.itemDatas.Clear();
 
         // ① 영웅 변환
         foreach (var hero in sessionData.runtimeHeroDatas)
         {
-            saveData.heorDatas.Add(new HeroSaveData
+            saveData.heroDates.Add(new HeroSaveData
             {
                 HeroId = hero.Hero_Id,
                 Level = hero.Current_Level,

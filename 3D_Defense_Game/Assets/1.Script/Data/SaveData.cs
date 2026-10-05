@@ -14,7 +14,7 @@ public class SaveData
 
     public List<int> clearedStageIDs = new List<int>(); // 클리어한 스테이지 정보
 
-    public List<HeroSaveData> heorDatas = new List<HeroSaveData>(); // 소유한 영웅
+    public List<HeroSaveData> heroDates = new List<HeroSaveData>(); // 소유한 영웅
     public List<UnitSaveData> unitDatas = new List<UnitSaveData>(); // 소유한 유닛
     public List<ItemSaveData> itemDatas = new List<ItemSaveData>(); // 소유한 아이템
 

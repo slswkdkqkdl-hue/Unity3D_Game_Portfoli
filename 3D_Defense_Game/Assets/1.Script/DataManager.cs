@@ -110,7 +110,7 @@ public partial class DataManager : MonoBehaviour
         // 3. 영웅 ID 저장 (data.heroDescDatas에서 ID 추출)
         if (data.heroDescDatas != null)
         {
-            saveData.heorDatas.Add(new HeroSaveData
+            saveData.heroDates.Add(new HeroSaveData
             {
                 HeroId = data.heroDescDatas.Hero_Id, // 인스펙터/SO 상의 Hero_Id 필드명 확인
                 Level = 1

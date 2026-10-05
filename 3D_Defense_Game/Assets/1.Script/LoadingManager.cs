@@ -54,50 +54,55 @@ public class LoadingManager : MonoBehaviour
         if (progressBar != null)
         {
             progressBar.fillAmount = 0f;
-            StartDataLoading();
-            StartCoroutine(LoadSceneProgress()) ;
+            StartCoroutine(LoadRoutine());
         }
     }
+    private IEnumerator LoadRoutine()
+    {
+        // 1단계: 데이터 로딩 (씬 로딩 시작 전에 끝낸다)
+        isDataLoadingComplete = false;
+        StartDataLoading();
 
+        while (!isDataLoadingComplete)
+        {
+            // 데이터 로딩 중에는 바를 0~50% 사이에서 천천히 채워 연출
+            progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, 0.5f, Time.unscaledDeltaTime * 0.3f);
+            yield return null;
+        }
+
+        // 2단계: 이제 씬 비동기 로드
+        yield return StartCoroutine(LoadSceneProgress());
+    }
     /// <summary>
     /// 실제 목적지 씬을 비동기로 로드하면서 로딩 바 UI 연출을 보간 처리하는 코루틴
     /// </summary>
     private IEnumerator LoadSceneProgress()
-    {   
+    {
         string targetSceneName = GetSceneName(nextScene);
-
-        // 비동기로 목적지 씬을 백그라운드에서 로드 시작
         AsyncOperation op = SceneManager.LoadSceneAsync(targetSceneName);
-        
-        // 씬 로딩이 끝나도 자동으로 바로 넘어가가지 않도록 대기 설정 (90% 지점에서 멈춤)
         op.allowSceneActivation = false;
 
         float timer = 0f;
-
         while (!op.isDone)
-        {   
+        {
             yield return null;
 
-            // 1. 0 ~ 90% 구간: 실제 백그라운드 데이터 로딩 진행률 반영
             if (op.progress < 0.9f)
             {
-                progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, op.progress, Time.unscaledDeltaTime);
+                // 0.5 ~ 0.9 구간
+                float target = Mathf.Lerp(0.5f, 0.9f, op.progress / 0.9f);
+                progressBar.fillAmount = Mathf.MoveTowards(progressBar.fillAmount, target, Time.unscaledDeltaTime);
             }
-            // 2. 90 ~ 100% 구간: 연출용 가짜 로딩(fakeLoadingDuration) 시간을 채운 뒤 씬 전환
             else
             {
                 timer += Time.unscaledDeltaTime;
-                
-                // 0초 입력 시 나누기 0 예외 방지
-                float duration = Mathf.Max(0.01f, fakeLoadingDuration); 
+                float duration = Mathf.Max(0.01f, fakeLoadingDuration);
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer / duration);
 
-                // 게이지가 완전히 채워지면 목적지 씬으로 최종 전환
-                if (progressBar.fillAmount >= 0.99f && isDataLoadingComplete)
+                if (progressBar.fillAmount >= 0.99f)
                 {
                     progressBar.fillAmount = 1f;
-                    op.allowSceneActivation = true; // 씬 넘어가기 허용
-
+                    op.allowSceneActivation = true;
                     yield break;
                 }
             }
