@@ -27,6 +27,7 @@ public class LoadingManager : MonoBehaviour
     [SerializeField] private float fakeLoadingDuration = 2f; 
 
     private static SceneType nextScene; // 다음에 이동할 목적지 씬
+    private bool isDataLoadingComplete;
 
     /// <summary>
     /// 씬 전환 함수 (true: 로딩씬 거치는 비동기 이동 / false: 바로 이동하는 동기 이동)
@@ -53,7 +54,8 @@ public class LoadingManager : MonoBehaviour
         if (progressBar != null)
         {
             progressBar.fillAmount = 0f;
-            StartCoroutine(LoadSceneProgress());
+            StartDataLoading();
+            StartCoroutine(LoadSceneProgress()) ;
         }
     }
 
@@ -91,13 +93,32 @@ public class LoadingManager : MonoBehaviour
                 progressBar.fillAmount = Mathf.Lerp(0.9f, 1f, timer / duration);
 
                 // 게이지가 완전히 채워지면 목적지 씬으로 최종 전환
-                if (progressBar.fillAmount >= 0.99f)
+                if (progressBar.fillAmount >= 0.99f && isDataLoadingComplete)
                 {
                     progressBar.fillAmount = 1f;
                     op.allowSceneActivation = true; // 씬 넘어가기 허용
+
                     yield break;
                 }
             }
+        }
+    }
+
+    private async void StartDataLoading()
+    {   
+        if (nextScene == SceneType.LobbyScreen)
+        {
+            isDataLoadingComplete = false;
+            Debug.Log("실행중");
+            if (DataManager.I != null)
+            {
+                await DataManager.I.BuildSessionFromSaveDataAsync();
+            }
+            isDataLoadingComplete = true;
+        }
+        else
+        {
+            isDataLoadingComplete = true;
         }
     }
 }

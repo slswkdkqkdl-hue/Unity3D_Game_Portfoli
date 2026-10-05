@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "RunData", menuName = "Scriptable Objects/RunUnitData")]
+[CreateAssetMenu(fileName = "RunUnitData", menuName = "Scriptable Objects/RunUnitData")]
 public class RuntimeUnitData : ScriptableObject
 {
     [Header("유닛 프리팹")]

@@ -8,7 +8,7 @@ public enum ItemType
 }
 
 
-[CreateAssetMenu(fileName = "RunData", menuName = "Scriptable Objects/RunItemData")]
+[CreateAssetMenu(fileName = "RunItemData", menuName = "Scriptable Objects/RunItemData")]
 public class RuntimeItemData : ScriptableObject
 {
     [Header("기본 정보")]

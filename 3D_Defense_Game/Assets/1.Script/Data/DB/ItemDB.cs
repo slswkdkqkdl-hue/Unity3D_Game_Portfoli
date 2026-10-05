@@ -1,16 +1,31 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
-public class ItemDB : MonoBehaviour
+[System.Serializable]
+public struct ItemEntry
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int itemId;
+    public AssetReferenceT<RuntimeItemData> itemRef;
+}
 
-    // Update is called once per frame
-    void Update()
+[CreateAssetMenu(fileName = "ItemDB",menuName ="Database/ItemDB")]
+public class ItemDB : ScriptableObject
+{
+    [SerializeField] 
+    private List<ItemEntry> items = new List<ItemEntry>();
+
+
+
+    public AssetReferenceT<RuntimeItemData> GetItemRef(int Id)
     {
         
+        ItemEntry  runtimeItem =  items.Find(x => x.itemId == Id);
+        if (runtimeItem.itemRef != null)
+        {
+            return runtimeItem.itemRef;
+        }
+
+        return null;
     }
 }

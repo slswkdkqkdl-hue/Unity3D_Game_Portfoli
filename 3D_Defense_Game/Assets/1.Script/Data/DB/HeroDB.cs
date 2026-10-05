@@ -16,7 +16,7 @@ public struct HeroEntry
 public class HeroDB : ScriptableObject
 {
     [Header("영웅 DB 목록")]
-    public List<HeroEntry> heroList = new List<HeroEntry>();
+    [SerializeField]private List<HeroEntry> heroList = new List<HeroEntry>();
 
 
     /// <summary>

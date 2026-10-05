@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "RunData", menuName = "Scriptable Objects/RunHeroData")]
+[CreateAssetMenu(fileName = "RunHeroData", menuName = "Scriptable Objects/RunHeroData")]
 public class RuntimeHeroData : ScriptableObject
 {
     [Header("영웅 프리팹")]

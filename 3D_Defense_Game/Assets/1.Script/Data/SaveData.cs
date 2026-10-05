@@ -19,9 +19,9 @@ public class SaveData
     public List<ItemSaveData> itemDatas = new List<ItemSaveData>(); // 소유한 아이템
 
 
-    public List<ItemSaveData> StartingItems = new List<ItemSaveData>()
+    public SaveData()
     {
-        new ItemSaveData { ItemId = 1, Size = 1 }, // 시작 무기
-        new ItemSaveData { ItemId = 1, Size = 1 } // 시작 방어구
-    };
+        itemDatas.Add(new ItemSaveData { ItemId = 1, Size = 1 }); // 시작 무기
+        itemDatas.Add(new ItemSaveData { ItemId = 2, Size = 1 }); // 시작 방어구
+    }
 }

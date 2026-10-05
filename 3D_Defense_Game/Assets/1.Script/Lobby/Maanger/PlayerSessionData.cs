@@ -4,44 +4,105 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSessionData
 {
-    // 외부 접근을 위해 public 리스트로 선언하거나 프로퍼티 사용
-    [SerializeField]private List<RuntimeHeroData> HeroDatas;
-    [SerializeField]private List<RuntimeUnitData> RuntimeUnits;
-    [SerializeField]private List<RuntimeItemData> ItemDatas;
+    [SerializeField] private List<RuntimeHeroData> runtimeHeroDatas;
+    [SerializeField] private List<RuntimeUnitData> runtimeUnits;
+    [SerializeField] private List<RuntimeItemData> runtimeItemDatas;
+
+    // --- 외부 읽기용 프로퍼티 (SyncSessionToSaveData 등에서 사용) ---
+    public IReadOnlyList<RuntimeHeroData> HeroDatas => runtimeHeroDatas;
+    public IReadOnlyList<RuntimeUnitData> UnitDatas => runtimeUnits;
+    public IReadOnlyList<RuntimeItemData> ItemDatas => runtimeItemDatas;
 
     public PlayerSessionData()
     {
-        HeroDatas = new List<RuntimeHeroData>();
-        RuntimeUnits = new List<RuntimeUnitData>();
-        ItemDatas = new List<RuntimeItemData>();
+        runtimeHeroDatas = new List<RuntimeHeroData>();
+        runtimeUnits = new List<RuntimeUnitData>();
+        runtimeItemDatas = new List<RuntimeItemData>();
     }
 
-    // --- 데이터 추가용 함수들 ---
-
-    // 1. 영웅 데이터 추가
+    // ==========================================
+    // --- 1. 영웅 데이터 관리 ---
+    // ==========================================
     public void AddHero(RuntimeHeroData hero)
     {
-        if (hero != null && !HeroDatas.Contains(hero))
+        if (hero != null && !runtimeHeroDatas.Contains(hero))
         {
-            HeroDatas.Add(hero);
+            runtimeHeroDatas.Add(hero);
         }
     }
 
-    // 2. 유닛 데이터 추가
+    // 영웅 삭제
+    public bool RemoveHero(RuntimeHeroData hero)
+    {
+        return runtimeHeroDatas.Remove(hero);
+    }
+
+    // ID로 영웅 삭제
+    public bool RemoveHeroById(int heroId)
+    {
+        RuntimeHeroData target = runtimeHeroDatas.Find(x => x.Hero_Id == heroId);
+        if (target != null)
+        {
+            return runtimeHeroDatas.Remove(target);
+        }
+        return false;
+    }
+
+
+    // ==========================================
+    // --- 2. 유닛 데이터 관리 ---
+    // ==========================================
     public void AddUnit(RuntimeUnitData unit)
     {
-        if (unit != null && !RuntimeUnits.Contains(unit))
+        if (unit != null && !runtimeUnits.Contains(unit))
         {
-            RuntimeUnits.Add(unit);
+            runtimeUnits.Add(unit);
         }
     }
 
-    // 3. 아이템 데이터 추가
+    // 유닛 삭제
+    public bool RemoveUnit(RuntimeUnitData unit)
+    {
+        return runtimeUnits.Remove(unit);
+    }
+
+    // ID로 유닛 삭제
+    public bool RemoveUnitById(int unitId)
+    {
+        RuntimeUnitData target = runtimeUnits.Find(x => x.Unit_Id == unitId);
+        if (target != null)
+        {
+            return runtimeUnits.Remove(target);
+        }
+        return false;
+    }
+
+
+    // ==========================================
+    // --- 3. 아이템 데이터 관리 ---
+    // ==========================================
     public void AddItem(RuntimeItemData item)
     {
         if (item != null)
         {
-            ItemDatas.Add(item);
+            runtimeItemDatas.Add(item);
         }
+    }
+
+    // 아이템 삭제 (가장 먼저 검색되는 1개만 제거)
+    public bool RemoveItem(RuntimeItemData item)
+    {
+        return runtimeItemDatas.Remove(item);
+    }
+
+    // ID로 아이템 삭제
+    public bool RemoveItemById(int itemId)
+    {
+        RuntimeItemData target = runtimeItemDatas.Find(x => x.item_Id == itemId);
+        if (target != null)
+        {
+            return runtimeItemDatas.Remove(target);
+        }
+        return false;
     }
 }
