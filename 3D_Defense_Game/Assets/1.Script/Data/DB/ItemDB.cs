@@ -17,15 +17,9 @@ public class ItemDB : ScriptableObject
 
 
 
-    public AssetReferenceT<RuntimeItemData> GetItemRef(int Id)
+    public AssetReferenceT<RuntimeItemData> GetItemRef(int itemId_)
     {
-        
-        ItemEntry  runtimeItem =  items.Find(x => x.itemId == Id);
-        if (runtimeItem.itemRef != null)
-        {
-            return runtimeItem.itemRef;
-        }
-
-        return null;
+        var entry = items.Find(x => x.itemId == itemId_);
+        return entry.itemRef; // 레퍼런스 주소만 반환
     }
 }

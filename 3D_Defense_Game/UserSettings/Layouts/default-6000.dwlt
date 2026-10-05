@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Project
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 338}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 117
+  controlID: 67
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 146
+  controlID: 42
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -737,7 +737,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/1.Script/Data/DB/SO
+    - Assets/AddressableAssetsData/AssetGroupTemplates
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -747,20 +747,26 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/1.Script/Data/DB/SO
+  - Assets/AddressableAssetsData/AssetGroupTemplates
   m_LastFoldersGridSize: 64
   m_LastProjectPath: C:\UnityProjects\unity_file1_2\Unity3D_Game_Portfoli\3D_Defense_Game
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
+    scrollPos: {x: 0, y: 336}
     m_SelectedIDs:
-    - m_Data: 74364
+    - m_Data: 61138
     m_LastClickedID:
-      m_Data: 74364
+      m_Data: 61138
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 60946
+    - m_Data: 60948
+    - m_Data: 60950
+    - m_Data: 60952
+    - m_Data: 60954
+    - m_Data: 60956
     - m_Data: 60958
     - m_Data: 60960
     - m_Data: 60962
@@ -779,12 +785,6 @@ MonoBehaviour:
     - m_Data: 60988
     - m_Data: 60990
     - m_Data: 60992
-    - m_Data: 60994
-    - m_Data: 60996
-    - m_Data: 60998
-    - m_Data: 61000
-    - m_Data: 61002
-    - m_Data: 61004
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -817,6 +817,12 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
+    - m_Data: 60946
+    - m_Data: 60948
+    - m_Data: 60950
+    - m_Data: 60952
+    - m_Data: 60954
+    - m_Data: 60956
     - m_Data: 60958
     - m_Data: 60960
     - m_Data: 60962
@@ -835,12 +841,6 @@ MonoBehaviour:
     - m_Data: 60988
     - m_Data: 60990
     - m_Data: 60992
-    - m_Data: 60994
-    - m_Data: 60996
-    - m_Data: 60998
-    - m_Data: 61000
-    - m_Data: 61002
-    - m_Data: 61004
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1022,12 +1022,15 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -50396
-      - m_Data: -49914
-      - m_Data: -49778
-      - m_Data: -49658
-      - m_Data: -15528
-      - m_Data: -1340
+      - m_Data: -22078
+      - m_Data: -21790
+      - m_Data: -21068
+      - m_Data: -21056
+      - m_Data: -21024
+      - m_Data: -20974
+      - m_Data: -15826
+      - m_Data: -9962
+      - m_Data: -1346
       - m_Data: -12
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -1755,15 +1758,15 @@ MonoBehaviour:
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 1
+  m_2DMode: 0
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 822.3818, y: 454.84515, z: -5.8634624}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: 822.3818, y: 454.84515, z: -5.8634624}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1779,7 +1782,7 @@ MonoBehaviour:
     showImageEffects: 1
     showParticleSystems: 1
     showVisualEffectGraphs: 1
-    m_FxEnabled: 0
+    m_FxEnabled: 1
   m_Grid:
     xGrid:
       m_Fade:
@@ -1791,17 +1794,17 @@ MonoBehaviour:
       m_Size: {x: 0, y: 0}
     yGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -1809,17 +1812,17 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
-    m_Target: 724.3006
+    m_Target: 7.071068
     speed: 2
-    m_Value: 724.3006
+    m_Value: 7.071068
   m_Ortho:
-    m_Target: 1
+    m_Target: 0
     speed: 2
-    m_Value: 1
+    m_Value: 0
   m_CameraSettings:
     m_Speed: 1
     m_SpeedNormalized: 0.5

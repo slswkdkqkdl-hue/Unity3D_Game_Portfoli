@@ -8,77 +8,95 @@ public partial class DataManager : MonoBehaviour
     public UnitDB unitDB;
     public ItemDB itemDB;
 
-
-
-
-
-
-
-
-    // 세이브 데이터를 런타임 데이터로 변환
+    // 세이브 데이터를 런타임 데이터로 변환 (어드레서블 비동기 로드 방식)
     public async Task BuildSessionFromSaveDataAsync()
     {   
-
         if (sessionData == null) return;
         if (saveData == null) return;
-        if (sessionData != null && (sessionData.HeroDatas.Count > 0 || sessionData.UnitDatas.Count > 0 || sessionData.ItemDatas.Count > 0))
+        
+        // 이미 데이터가 로드되어 있는지 체크 (오타 수정: runtimeHeroDatas 등 올바른 필드 참조)
+        if (sessionData.runtimeHeroDatas.Count > 0 || sessionData.runtimeUnits.Count > 0 || sessionData.runtimeItemDatas.Count > 0)
         {
             Debug.Log("[DataManager] 이미 세션 데이터가 메모리에 로드되어 있어 복원을 스킵합니다.");
             return;
         }
 
-
-        // ----------------------------------------------------
-        // ① 영웅 복원 (HeroSaveData -> RuntimeHeroData)
-        // ----------------------------------------------------
-        if (saveData.heorDatas != null && heroDB != null)
-        {
-            foreach (HeroSaveData heroSave in saveData.heorDatas)
+            // ----------------------------------------------------
+            // ① 영웅 복원
+            // ----------------------------------------------------
+            if (saveData.heorDatas != null && heroDB != null)
             {
-                var heroRef = heroDB.GetHeroRef(heroSave.HeroId);
-                if (heroRef != null)
+                Debug.Log($"[DataManager] 영웅 복원 시작 (총 {saveData.heorDatas.Count}개)");
+                foreach (HeroSaveData heroSave in saveData.heorDatas)
                 {
-                    RuntimeHeroData loadedHero = await heroRef.LoadAssetAsync().Task;
-                    sessionData.AddHero(loadedHero);
+                    var heroRef = heroDB.GetHeroRef(heroSave.HeroId);
+                    Debug.Log($"[영웅 검색] ID: {heroSave.HeroId}, 결과: {(heroRef != null ? "성공" : "실패(Null)")}");
+                    
+                    if (heroRef != null)
+                    {
+                        var handle = heroRef.LoadAssetAsync();
+                        RuntimeHeroData loadedHero = await handle.Task;
+                        
+                        if (loadedHero != null)
+                        {
+                            sessionData.AddHero(loadedHero);
+                            Debug.Log($"[영웅 로드 완료] ID: {heroSave.HeroId}");
+                        }
+                    }
                 }
             }
-        }
 
-        // ----------------------------------------------------
-        // ② 유닛 복원 (UnitSaveData -> RuntimeUnitData)
-        // ----------------------------------------------------
-        if (saveData.unitDatas != null && unitDB != null)
-        {
-            foreach (UnitSaveData unitSave in saveData.unitDatas)
+            // ----------------------------------------------------
+            // ② 유닛 복원
+            // ----------------------------------------------------
+            if (saveData.unitDatas != null && unitDB != null)
             {
-                var unitRef = unitDB.GetUnitRef(unitSave.UnitId);
-                if (unitRef != null)
+                Debug.Log($"[DataManager] 유닛 복원 시작 (총 {saveData.unitDatas.Count}개)");
+                foreach (UnitSaveData unitSave in saveData.unitDatas)
                 {
-                    RuntimeUnitData loadedUnit = await unitRef.LoadAssetAsync().Task;
-                    sessionData.AddUnit(loadedUnit);
+                    var unitRef = unitDB.GetUnitRef(unitSave.UnitId);
+                    Debug.Log($"[유닛 검색] ID: {unitSave.UnitId}, 결과: {(unitRef != null ? "성공" : "실패(Null)")}");
+                    
+                    if (unitRef != null)
+                    {
+                        var handle = unitRef.LoadAssetAsync();
+                        RuntimeUnitData loadedUnit = await handle.Task;
+                        
+                        if (loadedUnit != null)
+                        {
+                            sessionData.AddUnit(loadedUnit);
+                            Debug.Log($"[유닛 로드 완료] ID: {unitSave.UnitId}");
+                        }
+                    }
                 }
             }
-        }
 
-        // ----------------------------------------------------
-        // ③ 아이템 복원 (ItemSaveData -> RuntimeItemData)
-        // ----------------------------------------------------
-        if (saveData.itemDatas != null && itemDB != null)
-        { 
-            Debug.Log(" 실행중 5");
-            foreach (ItemSaveData itemSave in saveData.itemDatas)
-            {
-                var itemRef = itemDB.GetItemRef(itemSave.ItemId);
-                Debug.Log($"[검색 요청] ItemId: {itemSave.ItemId} / 찾은 itemRef: {(itemRef != null ? itemRef.RuntimeKey : "null")}");
-
-                if (itemRef != null)
+            // ----------------------------------------------------
+            // ③ 아이템 복원
+            // ----------------------------------------------------
+            if (saveData.itemDatas != null && itemDB != null)
+            { 
+                Debug.Log($"[DataManager] 아이템 복원 시작 (총 {saveData.itemDatas.Count}개)");
+                foreach (ItemSaveData itemSave in saveData.itemDatas)
                 {
-                    RuntimeItemData loadedItem = await itemRef.LoadAssetAsync().Task;
-                    sessionData.AddItem(loadedItem);
-                    Debug.Log("아이템 데이터 넣기완료");
+                    var itemRef = itemDB.GetItemRef(itemSave.ItemId);
+                    Debug.Log($"[아이템 검색] ID: {itemSave.ItemId}, 결과: {(itemRef != null ? "성공" : "실패(Null)")}");
+
+                    if (itemRef != null)
+                    {
+                        var handle = itemRef.LoadAssetAsync();
+                        RuntimeItemData loadedItem = await handle.Task;
+                        
+                        if (loadedItem != null)
+                        {
+                            sessionData.AddItem(loadedItem);
+                            Debug.Log($"[아이템 로드 완료] ID: {itemSave.ItemId}");
+                        }
+                    }
                 }
             }
-        }
+            Debug.Log("[DataManager] 모든 세션 데이터 복원 완료!");
+
     }
 
     // 런타임 데이터를 세이브 데이터로 변환
@@ -87,101 +105,88 @@ public partial class DataManager : MonoBehaviour
         if (saveData == null) saveData = new SaveData();
         if (sessionData == null) return;
 
-        // 기존 저장 목록 비우기
         saveData.heorDatas.Clear();
         saveData.unitDatas.Clear();
         saveData.itemDatas.Clear();
 
         // ① 영웅 변환
-        foreach (var hero in sessionData.HeroDatas)
+        foreach (var hero in sessionData.runtimeHeroDatas)
         {
             saveData.heorDatas.Add(new HeroSaveData
             {
                 HeroId = hero.Hero_Id,
                 Level = hero.Current_Level,
-
-                // 필요한 추가 가변 정보(레벨 등)가 있다면 여기에 대입
             });
         }
 
         // ② 유닛 변환
-        foreach (var unit in sessionData.UnitDatas)
+        foreach (var unit in sessionData.runtimeUnits)
         {
             saveData.unitDatas.Add(new UnitSaveData
             {
                 UnitId = unit.Unit_Id
-                // 필요한 추가 가변 정보(레벨, 장비 ID 등)가 있다면 여기에 대입
             });
         }
 
         // ③ 아이템 변환
-        foreach (var item in sessionData.ItemDatas)
+        foreach (var item in sessionData.runtimeItemDatas)
         {
             saveData.itemDatas.Add(new ItemSaveData
             {
                 ItemId = item.item_Id
-               // 필요한 추가 가변 정보(강화 수치 등)가 있다면 여기에 대입
             });
         }
     }
 
     // 세션 해제 및 어드레서블 에셋 메모리 언로드
-    // 얘는 게임종료하거나 시작씬 으로갔을때 세션데이터 초기화 
     public void ClearSessionAndReleaseAssets()
     {
         if (sessionData == null) return;
 
-        // 1. 영웅 에셋 메모리 해제
-        if (sessionData.HeroDatas != null)
+        // 1. 영웅 어드레서블 에셋 언로드
+        if (sessionData.runtimeHeroDatas != null && heroDB != null)
         {
-            foreach (var hero in sessionData.HeroDatas)
+            foreach (var hero in sessionData.runtimeHeroDatas)
             {
-                if (hero != null)
+                var heroRef = heroDB.GetHeroRef(hero.Hero_Id);
+                if (heroRef != null && heroRef.RuntimeKeyIsValid())
                 {
-                    var heroRef = heroDB.GetHeroRef(hero.Hero_Id);
-                    if (heroRef != null && heroRef.IsValid())
-                    {
-                        heroRef.ReleaseAsset(); // 어드레서블 메모리 해제!
-                    }
+                    heroRef.ReleaseAsset();
                 }
             }
+            sessionData.runtimeHeroDatas.Clear();
         }
 
-        // 2. 유닛 에셋 메모리 해제
-        if (sessionData.UnitDatas != null)
+        // 2. 유닛 어드레서블 에셋 언로드
+        if (sessionData.runtimeUnits != null && unitDB != null)
         {
-            foreach (var unit in sessionData.UnitDatas)
+            foreach (var unit in sessionData.runtimeUnits)
             {
-                if (unit != null)
+                var unitRef = unitDB.GetUnitRef(unit.Unit_Id);
+                if (unitRef != null && unitRef.RuntimeKeyIsValid())
                 {
-                    var unitRef = unitDB.GetUnitRef(unit.Unit_Id);
-                    if (unitRef != null && unitRef.IsValid())
-                    {
-                        unitRef.ReleaseAsset();
-                    }
+                    unitRef.ReleaseAsset();
                 }
             }
+            sessionData.runtimeUnits.Clear();
         }
 
-        // 3. 아이템 에셋 메모리 해제
-        if (sessionData.ItemDatas != null)
+        // 3. 아이템 어드레서블 에셋 언로드
+        if (sessionData.runtimeItemDatas != null && itemDB != null)
         {
-            foreach (var item in sessionData.ItemDatas)
+            foreach (var item in sessionData.runtimeItemDatas)
             {
-                if (item != null)
+                var itemRef = itemDB.GetItemRef(item.item_Id);
+                if (itemRef != null && itemRef.RuntimeKeyIsValid())
                 {
-                    var itemRef = itemDB.GetItemRef(item.item_Id);
-                    if (itemRef != null && itemRef.IsValid())
-                    {
-                        itemRef.ReleaseAsset();
-                    }
+                    itemRef.ReleaseAsset();
                 }
             }
+            sessionData.runtimeItemDatas.Clear();
         }
 
-        // 세션 데이터 초기화
+        // 세션 데이터 자체 초기화
         sessionData = null;
-        Debug.Log("[DataManager] 세션 및 어드레서블 에셋 메모리가 정상적으로 해제되었습니다.");
+        Debug.Log("[DataManager] 세션 데이터가 초기화되고 어드레서블 메모리가 완벽히 언로드되었습니다.");
     }
-
 }

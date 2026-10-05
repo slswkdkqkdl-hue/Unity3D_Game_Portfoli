@@ -18,14 +18,10 @@ public class UnitDB : ScriptableObject
     private List<UnitEntry> units = new List<UnitEntry>();
 
 
-    public AssetReferenceT<RuntimeUnitData> GetUnitRef(int id)
+    public AssetReferenceT<RuntimeUnitData> GetUnitRef(int UnitId_)
     {
-        UnitEntry unit = units.Find(x=> x.UnitId == id);
-        if (unit.UnitRef !=null)
-        {
-            return unit.UnitRef;
-        }
-        return null;
+        var entry = units.Find(x => x.UnitId == UnitId_);
+        return entry.UnitRef; // 레퍼런스 주소만 반환
     }
 
 
