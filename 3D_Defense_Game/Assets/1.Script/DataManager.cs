@@ -58,9 +58,9 @@ public partial class DataManager : MonoBehaviour
 
     // 게임 저장
     public void SaveGame(int slot)
-    {
+    {   
         string path = GetSavePath(slot);
-
+        SyncSessionToSaveData(); // 현재 세션데이터를 세이브데이터로 변환
         string json = JsonUtility.ToJson(saveData, true);
 
         File.WriteAllText(path, json);
