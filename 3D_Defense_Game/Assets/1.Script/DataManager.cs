@@ -117,15 +117,21 @@ public class DataManager : MonoBehaviour
         }
     }
 
-
+    
 
     // 세이브 데이터를 런타임 데이터로 변환
     public async Task BuildSessionFromSaveDataAsync()
     {   
-        Debug.Log("실행중2");
+
         if (sessionData == null) return;
         if (saveData == null) return;
-           Debug.Log("실행중3");
+        if (sessionData != null && (sessionData.HeroDatas.Count > 0 || sessionData.UnitDatas.Count > 0 || sessionData.ItemDatas.Count > 0))
+        {
+            Debug.Log("[DataManager] 이미 세션 데이터가 메모리에 로드되어 있어 복원을 스킵합니다.");
+            return;
+        }
+
+
         // ----------------------------------------------------
         // ① 영웅 복원 (HeroSaveData -> RuntimeHeroData)
         // ----------------------------------------------------
@@ -195,7 +201,9 @@ public class DataManager : MonoBehaviour
         {
             saveData.heorDatas.Add(new HeroSaveData
             {
-                HeroId = hero.Hero_Id
+                HeroId = hero.Hero_Id,
+                Level = hero.Current_Level,
+
                 // 필요한 추가 가변 정보(레벨 등)가 있다면 여기에 대입
             });
         }
@@ -222,6 +230,7 @@ public class DataManager : MonoBehaviour
     }
 
     // 세션 해제 및 어드레서블 에셋 메모리 언로드
+    // 얘는 게임종료하거나 시작씬 으로갔을때 세션데이터 초기화 
     public void ClearSessionAndReleaseAssets()
     {
         if (sessionData == null) return;
