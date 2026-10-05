@@ -72,13 +72,13 @@ public class InfoPopup : MonoBehaviour
         // 제네릭 T 타입에 따라 분기 처리
         switch (data)
         {
-            case HeroDescData hero:
+            case RuntimeHeroData hero:
                 UpdateAllUI(hero.type, hero.hp, hero.mp, hero.attack, hero.defense, hero.attackSpeed, hero.moveSpeed,
                     heroMaxHp, heroMaxMp, heroMaxAtk, heroMaxDef, heroMaxAtkSpeed, heroMaxMoveSpeed); // [cite: 3]
                 break;
 
             // [cite: 3, 5] 유닛 데이터일 때 유닛용 최대 수치 전달
-            case UnitDescData unit:
+            case RuntimeUnitData unit:
                 UpdateAllUI(unit.type, unit.hp, unit.mp, unit.attack, unit.defense, unit.attackSpeed, unit.moveSpeed,
                     unitMaxHp, unitMaxMp, unitMaxAtk, unitMaxDef, unitMaxAtkSpeed, unitMaxMoveSpeed); // [cite: 3]
                 break;
@@ -126,7 +126,7 @@ public class InfoPopup : MonoBehaviour
             typeIconImage.gameObject.SetActive(false);
 
         // [cite: 3] UpdateAllUI 매개변수 구조에 맞춰서 유닛 최대 스탯 값을 전달해 줘야 함
-        UpdateAllUI(CharacterType.Melee, 0, 0, 0, 0, 0, 0,
+        UpdateAllUI(CharacterType.Warrior, 0, 0, 0, 0, 0, 0,
             unitMaxHp, unitMaxMp, unitMaxAtk, unitMaxDef, unitMaxAtkSpeed, unitMaxMoveSpeed); // [cite: 3]
     }
     private void FollowMousePosition()

@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c6cc7a31ac63e4ca4a6b702578b0be, type: 3}
-  m_Name: UI_Unit 1
-  m_EditorClassIdentifier: Assembly-CSharp::UnitDescData
+  m_Script: {fileID: 11500000, guid: 082232964268e674788d451ae8aacbea, type: 3}
+  m_Name: Scout
+  m_EditorClassIdentifier: Assembly-CSharp::RuntimeUnitData
+  prefab_Play: {fileID: 0}
+  prefab_UI: {fileID: 0}
   Unit_Id: 11
   Unit_Name: "\uC815\uCC30\uBCD1"
   portrait: {fileID: 21300000, guid: 144f466b22aef414aa888ffbdcf12313, type: 3}

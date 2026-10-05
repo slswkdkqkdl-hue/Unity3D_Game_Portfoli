@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eecc120cab29684c9d8bf6a3591c09f, type: 3}
+  m_Name: Arden
+  m_EditorClassIdentifier: Assembly-CSharp::RuntimeHeroData
+  prefab_Play: {fileID: 0}
+  prefab_UI: {fileID: 4338169078215872334, guid: 1d18b1bda8451444f9145b5cd215c02c, type: 3}
+  Hero_Id: 1
+  Current_Level: 0
+  hero_PullName: "[\uC5EC\uBA85\uC758\uAE30\uC0AC] \uC544\uB974\uB374"
+  hero_name: "\uC544\uB974\uB374 "
+  portrait: {fileID: 21300000, guid: 02ddcd0c99d2d874880e7f8c4cbed749, type: 3}
+  type: 0
+  description: "\uBE44\uC625\uD558\uACE0 \uD3C9\uD654\uB85C\uC6B4 \uADF8\uB9B0\uD5E4\uC774\uBE10\uC758
+    \uCD5C\uC804\uC120\uC744 \uC9C0\uD0A4\uBA70, \uB2E4\uAC00\uC624\uB294 \uC704\uD611\uC73C\uB85C\uBD80\uD130
+    \uC601\uC9C0\uB97C \uC218\uD638\uD558\uB294 \uBA85\uC608\uB85C\uC6B4 \uAE30\uC0AC\uC785\uB2C8\uB2E4."
+  hp: 2500
+  mp: 40
+  attack: 25
+  defense: 10
+  attackSpeed: 3
+  moveSpeed: 2
+  hpPerLevel: 0
+  mpPerLevel: 0
+  attackPerLevel: 0
+  defensePerLevel: 0
+  attackSpeedPerLevel: 0
+  moveSpeedPerLevel: 0
+  Equippedweapon_Id: -1
+  EquippedArmor_Id: -1
+  SelectPassiveSkill: 
+  SelectActiveSkill: 

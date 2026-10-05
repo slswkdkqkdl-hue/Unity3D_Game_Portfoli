@@ -60,7 +60,7 @@ public class UIManager_Select : MonoBehaviour
             domainSlots.Add(slot);
 
             // 영웅 모델 미리 생성
-            GameObject createdHero = hero_viewer.SpawnHero(territory.heroDescDatas.prefab);
+            GameObject createdHero = hero_viewer.SpawnHero(territory.heroDescDatas.prefab_UI);
             heroModelCache.Add(territory, createdHero);
         }
 

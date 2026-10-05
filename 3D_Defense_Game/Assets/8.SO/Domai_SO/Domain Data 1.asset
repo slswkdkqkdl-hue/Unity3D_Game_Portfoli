@@ -22,7 +22,20 @@ MonoBehaviour:
     \uC8FC\uC220\uC744 \uC0AC\uC6A9\uD558\uBA70 \uBC31\uC131\uB4E4\uC744 \uC9C0\uCF1C\uB0C5\uB2C8\uB2E4."
   passiveDescription: "[\uBC31\uC6D4\uC758 \uACB0\uACC4] \uB9E4 \uC804\uD22C \uC2DC\uC791
     \uC2DC \uACB0\uACC4 \uC0DD\uC131"
-  heroDescDatas: {fileID: 11400000, guid: 1800d395b1407654e9682cca6b402670, type: 2}
-  unitDescDatas:
-  - {fileID: 11400000, guid: 21db53b9509dfd3459664f82ce2ce7d8, type: 2}
-  - {fileID: 11400000, guid: 08b670ad7584f0644b8dd04d808adb81, type: 2}
+  heroRef:
+    m_AssetGUID: ee5de30f897bd6b4fa8eef33dd7ec1fc
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  unitRefs:
+  - m_AssetGUID: 977c4b12af1617c4db0c8af78834c84b
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 8489cadf1279d30428882eb1cd70cbee
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0

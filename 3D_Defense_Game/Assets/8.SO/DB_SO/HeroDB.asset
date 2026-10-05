@@ -15,7 +15,14 @@ MonoBehaviour:
   heroList:
   - heroId: 1
     heroRef:
-      m_AssetGUID: 0a4f3c3c622264e44b1c33f0ddb8d3dd
+      m_AssetGUID: abeb5f267e47e524fb24c83cd1d14d79
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - heroId: 2
+    heroRef:
+      m_AssetGUID: ee5de30f897bd6b4fa8eef33dd7ec1fc
       m_SubObjectName: 
       m_SubObjectType: 
       m_SubObjectGUID: 

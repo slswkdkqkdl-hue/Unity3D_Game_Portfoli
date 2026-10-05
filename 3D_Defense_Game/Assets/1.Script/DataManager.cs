@@ -98,14 +98,37 @@ public partial class DataManager : MonoBehaviour
     // 새로운 게임 시작 (선택씬에서 쓸거)
     public void NewGame(TerritoryData data)
     {
-        // 새로운 세이브데이터 생성
+        if (data == null) return;
+
+        // 1. 새로운 세이브데이터 및 세션데이터 생성
         saveData = new SaveData();
         sessionData = new PlayerSessionData();
 
+        // 2. 영지 타입 및 영지 기본 정보 세팅
+        saveData.domainType = data.domainType;
 
-        
+        // 3. 영웅 ID 저장 (data.heroDescDatas에서 ID 추출)
+        if (data.heroDescDatas != null)
+        {
+            saveData.heorDatas.Add(new HeroSaveData
+            {
+                HeroId = data.heroDescDatas.Hero_Id, // 인스펙터/SO 상의 Hero_Id 필드명 확인
+                Level = 1
+            });
+        }
+        // 4. 유닛 ID들 저장 (data.unitDescDatas에서 ID 추출)
+        if (data.unitDescDatas != null)
+        {
+            foreach (var unit in data.unitDescDatas)
+            {
+                if (unit == null) continue;
 
-
+                saveData.unitDatas.Add(new UnitSaveData
+                {
+                    UnitId = unit.Unit_Id 
+                });
+            }
+        }
     }
 
     // 저장 데이터 삭제

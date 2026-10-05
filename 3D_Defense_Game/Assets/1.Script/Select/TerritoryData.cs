@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 [CreateAssetMenu(fileName = "Domain Data", menuName = "Scriptable Objects/Domain Data")]
 public class TerritoryData : ScriptableObject
@@ -11,9 +12,13 @@ public class TerritoryData : ScriptableObject
     [TextArea] public string DomainDescription; // 영지 설명
     [TextArea] public string passiveDescription; // 영지 패시브 설명
 
-    [Header("Hero Info")]
-    public HeroDescData heroDescDatas; // 영웅 정보
+    [Header("Hero Addressable Reference")]
+    public AssetReferenceT<RuntimeHeroData> heroRef; 
 
-    [Header("Exclusive Units")]
-    public List<UnitDescData> unitDescDatas = new List<UnitDescData>(); // 유닛 정보 
+    [Header("Unit Addressable References")]
+    public List<AssetReferenceT<RuntimeUnitData>> unitRefs = new List<AssetReferenceT<RuntimeUnitData>>();
+
+    // 얘는 게임실행중에 런타임용을 잔깐 사용할것 담아두기 데이터  에셋파일 저장하면안댐 
+    [System.NonSerialized] public RuntimeHeroData heroDescDatas;
+    [System.NonSerialized] public List<RuntimeUnitData> unitDescDatas = new List<RuntimeUnitData>();
 }

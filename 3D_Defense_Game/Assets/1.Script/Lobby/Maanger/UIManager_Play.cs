@@ -57,7 +57,8 @@ public class UIManager_Play : MonoBehaviour
 
     // Exit_button 버튼 이벤트
     public void backButton()
-    {
+    {   
+        DataManager.I.ClearSessionAndReleaseAssets();
         LoadingManager.LoadScene(StartButton, false);
     }
 }

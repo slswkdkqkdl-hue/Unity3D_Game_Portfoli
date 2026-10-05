@@ -22,7 +22,20 @@ MonoBehaviour:
     \uC788\uC2B5\uB2C8\uB2E4. "
   passiveDescription: "[\uBCC0\uBC29\uC758 \uBCF4\uAE09\uAE08] \uB9E4 \uC804\uD22C
     \uC2DC\uC791 \uC2DC +500G"
-  heroDescDatas: {fileID: 11400000, guid: 8cd41b6281151804d9bd7060107409bf, type: 2}
-  unitDescDatas:
-  - {fileID: 11400000, guid: a074720beb6c57f4bb224997bbd86332, type: 2}
-  - {fileID: 11400000, guid: 4d597d375996c80409f1f13efbde0929, type: 2}
+  heroRef:
+    m_AssetGUID: abeb5f267e47e524fb24c83cd1d14d79
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  unitRefs:
+  - m_AssetGUID: 609d0543d933e984dbbc6e6d8b4de2eb
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 4ae1063d82dea554ea6bcff9168278dc
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0

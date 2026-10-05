@@ -4,14 +4,14 @@ using UnityEngine;
 public partial class DataManager : MonoBehaviour
 {
     [Header("DB")]
-    [SerializeField] private HeroDB heroDB;
-    [SerializeField] private UnitDB unitDB;
-    [SerializeField] private ItemDB itemDB;
+    public HeroDB heroDB;
+    public UnitDB unitDB;
+    public ItemDB itemDB;
 
 
 
 
-        
+
 
 
 

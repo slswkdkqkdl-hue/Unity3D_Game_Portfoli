@@ -9,16 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c6cc7a31ac63e4ca4a6b702578b0be, type: 3}
-  m_Name: UI_Unit 2
-  m_EditorClassIdentifier: Assembly-CSharp::UnitDescData
+  m_Script: {fileID: 11500000, guid: 082232964268e674788d451ae8aacbea, type: 3}
+  m_Name: Taoist
+  m_EditorClassIdentifier: Assembly-CSharp::RuntimeUnitData
+  prefab_Play: {fileID: 0}
+  prefab_UI: {fileID: 0}
   Unit_Id: 12
   Unit_Name: "\uB3C4\uC0AC"
   portrait: {fileID: 21300000, guid: cabb289ff12c7af44beb6ff8a2eed2aa, type: 3}
   type: 2
   description: "\uCC9C\uC9C0\uC758 \uC774\uCE58\uB97C \uAE68\uB2EB\uACE0 \uC2E0\uC120\uACFC\uB3C4
     \uAC19\uC740 \uB3C4\uC220\uB85C \uC804\uC7A5\uC758 \uBB34\uB9AC\uB97C \uC4F8\uC5B4\uBC84\uB9AC\uB294
-    \uB3C4\uAC00 \uCD9C\uC2E0\uC758 \uACE0\uC218\uC785\uB2C8\uB2E4"
+    \uB3C4\uAE30 \uCD9C\uC2E0\uC758 \uACE0\uC218\uC785\uB2C8\uB2E4."
   hp: 60
   mp: 20
   attack: 15

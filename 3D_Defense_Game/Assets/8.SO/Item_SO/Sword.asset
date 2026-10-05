@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35bb4cf8a0b25554f8c64bfc590ab1aa, type: 3}
-  m_Name: RunItem
+  m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::RuntimeItemData
   item_Id: 1
-  itemName: 
-  itemDescription: "\uB4E4\uC5B4\uAC14\uB098\uC694 ? "
+  itemName: "\uB871\uC18C\uB4DC"
+  itemDescription: "\uD3C9\uBC94\uD55C\uAC80\uC785\uB2C8\uB2E4."
   icon: {fileID: 0}
   itemType: 0
   itemPrefab: {fileID: 0}

@@ -1,12 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CharacterType
+{
+    Warrior,
+    Archer ,
+    Mage 
+}
+
 
 [CreateAssetMenu(fileName = "RunHeroData", menuName = "Scriptable Objects/RunHeroData")]
 public class RuntimeHeroData : ScriptableObject
 {
-    [Header("영웅 프리팹")]
-    public GameObject prefab;
+    [Header("영웅 프리팹 (전투)")]
+    public GameObject prefab_Play;
+
+    [Header("영웅 프리팹 (UI)")]
+    public GameObject prefab_UI;
+
     [Header("표시용 값들")]
     public int Hero_Id;
     public int Current_Level;
@@ -15,7 +26,9 @@ public class RuntimeHeroData : ScriptableObject
     public Sprite portrait;
     public CharacterType type;
 
-    
+    [Header("캐릭터 설명용")]
+    [TextArea(3, 5)]
+    public string description;
 
     [Header("기본스탯")]
     public int hp;

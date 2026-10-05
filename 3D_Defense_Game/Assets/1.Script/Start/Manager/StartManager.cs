@@ -4,8 +4,14 @@ public class StartManager : MonoBehaviour
 {
     public UIManager_Start uiManager; // UI를 제어하기 위해 연결
 
+    void Awake()
+    {   
+        // 메모리청소
+        PurgeUnusedMemory();
+    }
+
     void Start()
-    {
+    {   
         if (uiManager != null)
         {
             uiManager.InitEvents();
@@ -22,5 +28,12 @@ public class StartManager : MonoBehaviour
 
         // 결과에 따라 UI 활성/비활성 처리
         uiManager.SetContinueButtonActive(hasSaveData);
+    }
+
+    private void PurgeUnusedMemory()
+    {
+        Resources.UnloadUnusedAssets();
+        System.GC.Collect();
+        Debug.Log("메모리청소완료");
     }
 }
