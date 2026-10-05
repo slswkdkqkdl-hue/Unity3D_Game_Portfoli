@@ -2,8 +2,21 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public partial class DataManager : MonoBehaviour
-{
-    [Header("DB")]
+{   
+    // TODO: 추후 HeroDB, UnitDB, ItemDB도 Addressables로 관리
+    //      DataManager에서는 AssetReferenceT<T>로 DB 참조를 보유하고,
+    //      게임 시작 시 DB를 비동기로 로드한 뒤 세이브 데이터의 ID를 기준으로
+    //      각 Runtime 데이터(SO)를 Addressables에서 필요한 만큼 로드하는 구조로 변경 예정.
+    //      즉 HeroDB에 새로운 영웅넣을거면 새로운 RuntimeHeroData So 만들고 그걸 히어로 db에 넣고 어드레서블 업데이트하면 재 배포없이가능
+    //      최종 구조:
+    //      SaveData(ID)
+    //          ↓
+    //      DB(Addressables)
+    //          ↓
+    //      AssetReference
+    //          ↓
+    //      RuntimeHeroData / RuntimeUnitData / RuntimeItemData
+    [Header("DB")] 
     public HeroDB heroDB;
     public UnitDB unitDB;
     public ItemDB itemDB;

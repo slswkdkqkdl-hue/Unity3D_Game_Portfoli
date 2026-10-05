@@ -47,11 +47,11 @@ public class RuntimeHeroData : ScriptableObject
     public float moveSpeedPerLevel;  // 레벨당 추가 이동속도 
 
 
-    [Header("장착중인 무기/방어구")]
-    public int Equippedweapon_Id = -1; // 장착중인 무기 Id
-    public int EquippedArmor_Id = -1; // 장착중인 방어구 Id
+    // [Header("장착중인 무기/방어구")]
+    // public int Equippedweapon_Id = -1; // 장착중인 무기 Id
+    // public int EquippedArmor_Id = -1; // 장착중인 방어구 Id
 
-    [Header("선택한 패시브스킬,액티브스킬")]
-    public List<int> SelectPassiveSkill = new List<int>(); // 선택한 패시브스킬
-    public List<int> SelectActiveSkill = new List<int>(); // 선택한 액티브스킬
+    // [Header("선택한 패시브스킬,액티브스킬")]
+    // public List<int> SelectPassiveSkill = new List<int>(); // 선택한 패시브스킬
+    // public List<int> SelectActiveSkill = new List<int>(); // 선택한 액티브스킬
 }
