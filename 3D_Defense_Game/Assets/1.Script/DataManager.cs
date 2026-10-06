@@ -65,6 +65,7 @@ public partial class DataManager : MonoBehaviour
 
         File.WriteAllText(path, json);
     }
+    
     /// 현재 게임 데이터에 영향을 주지 않고 특정 슬롯의 데이터만 읽어서 반환합니다.
     public SaveData GetSaveData(int slot)
     {

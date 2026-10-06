@@ -14,10 +14,11 @@ public class SaveSlot : MonoBehaviour
 
     void Awake()
     {
-        if(button ==null) button = GetComponent<Button>();  
+        if(button == null) button = GetComponent<Button>();  
     }
 
-    public void Init()
+    // 모드를 전달받아 버튼 활성화 여부를 결정
+    public void Init(PopUpMode mode)
     {
         if (DataManager.I == null) return;
 
@@ -25,7 +26,7 @@ public class SaveSlot : MonoBehaviour
 
         if (data != null)
         {
-            // 데이터가 있는 경우
+            // 데이터가 있는 경우 (세이브/로드 공통)
             domainNameText.text = $"영지명 : {data.domainType}";
 
             TimeSpan time = TimeSpan.FromSeconds(data.playTime);
@@ -45,7 +46,12 @@ public class SaveSlot : MonoBehaviour
             playerTimeText.text = string.Empty;
             DefultText.text = "No Data";
             
-            if (button != null) button.interactable = false;
+            // ★ 핵심: 로드 모드일 때는 데이터가 없으면 누르면 안 되므로 false,
+            // 세이브 모드일 때는 빈 슬롯에도 저장할 수 있어야 하므로 true로 설정!
+            if (button != null)
+            {
+                button.interactable = (mode == PopUpMode.Save);
+            }
         }
     }
 }

@@ -2978,6 +2978,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Continue_PopUp
   closeButton: {fileID: 7774070479339280334}
+  currentMode: 1
   targetScene: 2
   saveSlots:
   - {fileID: 2046504008993228991}
