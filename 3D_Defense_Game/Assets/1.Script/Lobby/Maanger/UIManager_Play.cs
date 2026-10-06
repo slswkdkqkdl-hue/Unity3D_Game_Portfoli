@@ -29,6 +29,15 @@ public class UIManager_Play : MonoBehaviour
         if (Exit_Button != null) Exit_Button.onClick.AddListener(backButton);
     }
 
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            InitPanels();
+        }
+    }
+
     /// <summary>
     /// 모든 패널을 비활성화(초기화)하는 함수
     /// </summary>
