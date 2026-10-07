@@ -9,11 +9,8 @@ public partial class DataManager : MonoBehaviour
     [SerializeField] private int maxSlotCount = 3; //슬룻 수 
 
     [Header("현재 데이터")]
-    public SaveData saveData;
-    public PlayerSessionData sessionData;
-
-
-
+    private SaveData saveData;
+    public PlayerSessionData sessionData { get; private set; }
 
     private void Awake()
     {
@@ -145,5 +142,4 @@ public partial class DataManager : MonoBehaviour
 
 
 
-   
 }

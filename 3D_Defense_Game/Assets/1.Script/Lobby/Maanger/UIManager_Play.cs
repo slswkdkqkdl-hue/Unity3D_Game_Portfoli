@@ -19,7 +19,7 @@ public class UIManager_Play : MonoBehaviour
     public SceneType PlayButton = SceneType.PlayScreen;
     public SceneType StartButton = SceneType.StartScreen;
 
-    private void Start()
+    private void Awake()
     {
         // 2. C# 코드로 버튼 클릭 이벤트 자동 연결
         if (faction_Button != null) faction_Button.onClick.AddListener(() => OpenPanel(faction_Panl));
