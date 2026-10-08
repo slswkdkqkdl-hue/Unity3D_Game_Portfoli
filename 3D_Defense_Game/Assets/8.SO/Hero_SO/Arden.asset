@@ -35,7 +35,10 @@ MonoBehaviour:
   defensePerLevel: 0
   attackSpeedPerLevel: 0
   moveSpeedPerLevel: 0
-  Equippedweapon_Id: -1
-  EquippedArmor_Id: -1
-  SelectPassiveSkill: 
-  SelectActiveSkill: 
+  activeSkills:
+  - {fileID: 11400000, guid: 004fb27590a56d541be479e57e4e6558, type: 2}
+  - {fileID: 11400000, guid: 42e35cfa1e834ba4e80827b20b4ca9a4, type: 2}
+  passiveSkills:
+  - {fileID: 11400000, guid: c965c6386974f164d9e5c042d1eaf216, type: 2}
+  - {fileID: 11400000, guid: f3a85d024619c6b44b05ee6323e41d4e, type: 2}
+  - {fileID: 11400000, guid: 3801f48fc39072c4e8e157582f3f2282, type: 2}

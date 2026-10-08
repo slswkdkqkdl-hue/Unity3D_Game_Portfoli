@@ -46,14 +46,7 @@ public class HeroData : ScriptableObject
     public float attackSpeedPerLevel; // 레벨당 추가 공격속도 
     public float moveSpeedPerLevel;  // 레벨당 추가 이동속도 
 
+    public List<SkillData> activeSkills = new List<SkillData>(); // 모든 액티브 스킬
+    public List<SkillData> passiveSkills = new List<SkillData>();// 모든 패시브 스킬
 
-    // [Header("장착중인 무기/방어구")]
-    // public int Equippedweapon_Id = -1; // 장착중인 무기 Id
-    // public int EquippedArmor_Id = -1; // 장착중인 방어구 Id
-
-    // [Header("선택한 패시브스킬,액티브스킬")]
-    // public List<int> SelectPassiveSkill = new List<int>(); // 선택한 패시브스킬
-    // public List<int> SelectActiveSkill = new List<int>(); // 선택한 액티브스킬
-
-    //추가해야함 모든 스킬 담고있기
 }

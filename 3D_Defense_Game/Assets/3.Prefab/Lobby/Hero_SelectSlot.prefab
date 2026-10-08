@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HeroSelectSlot
   hero_name: {fileID: 7577544105641521356}
   hero_image: {fileID: 638643361143594666}
+  button: {fileID: 2021208791057916718}
   hero_data:
     heroData: {fileID: 0}
     level: 0

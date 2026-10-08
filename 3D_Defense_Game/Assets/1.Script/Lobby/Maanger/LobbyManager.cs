@@ -7,8 +7,10 @@ public class LobbyManager : MonoBehaviour
 
     public UIManager_Play uIManager_;
 
-    public PlayerSessionData sessionData;
-
+    private PlayerSessionData sessionData;
+    
+    [Header("맨처음초기화")]
+    [SerializeField]private HeroSelectController heroSelect;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class LobbyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        LoadPlayerData();
     }
     /// <summary>
     /// DataManager로부터 플레이어 세션 데이터를 받아옵니다.
@@ -34,7 +37,9 @@ public class LobbyManager : MonoBehaviour
         else
         {
             Debug.LogWarning("[LobbyManager] DataManager 싱글톤 인스턴스를 찾을 수 없습니다.");
+            return;
         }
+        heroSelect.Init(sessionData.heroes);
     }
     
 
@@ -43,9 +48,5 @@ public class LobbyManager : MonoBehaviour
         uIManager_.InitPanels();  
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

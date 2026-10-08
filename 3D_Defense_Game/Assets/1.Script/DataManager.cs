@@ -10,7 +10,7 @@ public partial class DataManager : MonoBehaviour
 
     [Header("현재 데이터")]
     private SaveData saveData;
-    public PlayerSessionData sessionData { get; private set; }
+    [field: SerializeField]public PlayerSessionData sessionData { get; private set; }
 
     private void Awake()
     {

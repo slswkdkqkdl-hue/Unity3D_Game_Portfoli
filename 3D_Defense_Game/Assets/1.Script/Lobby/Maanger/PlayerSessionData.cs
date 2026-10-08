@@ -11,9 +11,9 @@ public class PlayerSessionData
 
     public PlayerSessionData()
     {
-            heroes = new List<HeroRuntimeData>();
-            units = new List<UnitRuntimeData>();
-            items = new List<ItemRuntimeData>();
+        heroes = new List<HeroRuntimeData>();
+        units = new List<UnitRuntimeData>();
+        items = new List<ItemRuntimeData>();
     }
 
 
