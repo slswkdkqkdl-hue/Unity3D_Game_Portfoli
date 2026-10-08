@@ -12,6 +12,7 @@ public class LobbyManager : MonoBehaviour
     [Header("맨처음초기화")]
     [SerializeField]private HeroSelectController heroSelect;
 
+
     private void Awake()
     {
         if (I == null)
@@ -29,14 +30,14 @@ public class LobbyManager : MonoBehaviour
     /// </summary>
     private void LoadPlayerData()
     {
-        if (DataManager.I != null)
+        if (DataManager.I != null && DataManager.I.sessionData != null)
         {
-            sessionData = DataManager.I.sessionData; // DataManager의 실제 세션 데이터 반환 메서드명으로 맞춰주세요.
- 
+            sessionData = DataManager.I.sessionData;
+            Debug.Log($"[LobbyManager] 세션 데이터 로드 성공. 영웅 수: {sessionData.heroes?.Count ?? 0}");
         }
         else
         {
-            Debug.LogWarning("[LobbyManager] DataManager 싱글톤 인스턴스를 찾을 수 없습니다.");
+            Debug.LogWarning("[LobbyManager] DataManager 또는 sessionData가 아직 초기화되지 않았습니다.");
             return;
         }
         heroSelect.Init(sessionData.heroes);

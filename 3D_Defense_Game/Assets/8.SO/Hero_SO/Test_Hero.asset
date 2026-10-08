@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eecc120cab29684c9d8bf6a3591c09f, type: 3}
+  m_Name: Test_Hero
+  m_EditorClassIdentifier: Assembly-CSharp::HeroData
+  prefab_Play: {fileID: 0}
+  prefab_UI: {fileID: 0}
+  Hero_Id: 99
+  Current_Level: 0
+  hero_PullName: "\uD14C\uC2A4\uD2B8\uD788\uC5B4\uB85C"
+  hero_name: "\uD14C\uC2A4\uD2B8\uD788\uC5B4\uB85C"
+  portrait: {fileID: 21300000, guid: 8a5f9829a049c704fa992203bfc451f2, type: 3}
+  type: 2
+  description: "\uC6A9"
+  hp: 9999
+  mp: 99
+  attack: 99
+  defense: 99
+  attackSpeed: 99
+  moveSpeed: 99
+  hpPerLevel: 0
+  mpPerLevel: 0
+  attackPerLevel: 0
+  defensePerLevel: 0
+  attackSpeedPerLevel: 0
+  moveSpeedPerLevel: 0
+  activeSkills:
+  - {fileID: 11400000, guid: d8dda03b8bdcb974ca070a27734448f9, type: 2}
+  passiveSkills:
+  - {fileID: 11400000, guid: 0506b6f7f9a86f94f9e668c14cb795a1, type: 2}
+  - {fileID: 11400000, guid: 91cb2fc0fe2602e4499b8ab8ad1c594f, type: 2}
