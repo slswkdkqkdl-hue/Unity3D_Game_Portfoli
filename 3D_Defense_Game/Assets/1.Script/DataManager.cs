@@ -116,7 +116,7 @@ public partial class DataManager : MonoBehaviour
             });
             saveData.heroDates.Add(new HeroSaveData // 테스트 히어로
             {
-                HeroId = 3, 
+                HeroId = 99, 
                 Level = 1
             });
         }

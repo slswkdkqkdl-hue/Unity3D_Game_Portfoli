@@ -27,7 +27,7 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
-  - heroId: 3
+  - heroId: 99
     heroRef:
       m_AssetGUID: b15649ba4efbde146befe3e1dc99f40f
       m_SubObjectName: 
