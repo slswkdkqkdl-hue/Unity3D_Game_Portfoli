@@ -56,15 +56,9 @@ public class HeroDetailView : MonoBehaviour
                 activeSkillSlots[i].gameObject.SetActive(true);
                 activeSkillSlots[i].Init(activeDatas[i], HandleWhenSkillClicked);
 
-                // 이미 선택된 액티브 스킬인지 고유 ID로 비교 
-                if (hero.selectedActiveSkill.Contains(activeSkillSlots[i].boundSkill.skill_Id))
-                {
-                    activeSkillSlots[i].ToggleEquipState(true);
-                }
-                else
-                {
-                    activeSkillSlots[i].ToggleEquipState(false);
-                }
+                // 💡 변경점: boundSkill 대신 원본 데이터 activeDatas[i].skill_Id를 직접 비교
+                bool isEquipped = hero.selectedActiveSkill.Contains(activeDatas[i].skill_Id);
+                activeSkillSlots[i].ToggleEquipState(isEquipped);
             }
             else
             {
@@ -78,18 +72,11 @@ public class HeroDetailView : MonoBehaviour
             if (i < passiveDatas.Count)
             {
                 passiveSkillSlots[i].gameObject.SetActive(true);
-            
                 passiveSkillSlots[i].Init(passiveDatas[i], HandleWhenSkillClicked);
 
-                // 이미 선택된 패시브 스킬인지 고유 ID로 비교
-                if (hero.selectedPassiveSkill.Contains(passiveSkillSlots[i].boundSkill.skill_Id))
-                {
-                    passiveSkillSlots[i].ToggleEquipState(true);
-                }
-                else
-                {
-                    passiveSkillSlots[i].ToggleEquipState(false);
-                }
+                // 💡 변경점: boundSkill 대신 원본 데이터 passiveDatas[i].skill_Id를 직접 비교
+                bool isEquipped = hero.selectedPassiveSkill.Contains(passiveDatas[i].skill_Id);
+                passiveSkillSlots[i].ToggleEquipState(isEquipped);
             }
             else
             {
@@ -121,6 +108,8 @@ public class HeroDetailView : MonoBehaviour
         // B. 아직 장착되지 않은 경우 -> 장착
         else 
         {
+            if (data.skillType == SkillType.Active && hero.selectedActiveSkill.Count >= 2) return;
+
             if (hero.sp >= data.spCost)
             {
                 hero.sp -= data.spCost; // SP 차감

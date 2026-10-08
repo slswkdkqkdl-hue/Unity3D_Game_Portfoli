@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1939ab23ed5754478226b9c003e34e8, type: 3}
+  m_Name: Active_3
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skill_Id: 3
+  skill_name: "\uD68C\uC804\uBCA0\uAE30"
+  description: "\uC544\uB974\uB374 \uC8FC\uC704 \uAE30\uC900\uC73C\uB85C \uC6D0\uD615
+    \uBC94\uC704\uC758 \uC801\uC744 \uAC15\uD558\uAC8C \uBCA0\uC5B4\uB0C5\uB2C8\uB2E4 "
+  icon: {fileID: 0}
+  skillType: 0
+  spCost: 5
+  coolTime: 12
+  MpCost: 16
