@@ -34,7 +34,7 @@ public class HeroDetailView : MonoBehaviour
     public void Init(HeroRuntimeData data)
     {   
         hero = data;
-
+        heroEquipmen(data);
         DisplaySkills(data);
         Renewal(data);
     }   
@@ -60,6 +60,20 @@ public class HeroDetailView : MonoBehaviour
 
 
         RefreshInventorySlots();
+    }
+
+    private void heroEquipmen(HeroRuntimeData data)
+    {
+        Debug.Log(":실행댐?1");
+        var result = inventoryItems.Find(x => x.itemData.item_Id == data.equippedArmorId);
+        Debug.Log($"{result.itemData.itemName}");
+        if(result != null)
+        {
+            Weapon_Btn.Init(result);
+            inventoryItems.Remove(result);
+            RefreshInventorySlots();
+            Debug.Log(":실행댐?");
+        }
     }
 
     // 인벤토리 UI 갱신

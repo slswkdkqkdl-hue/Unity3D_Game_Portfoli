@@ -56,6 +56,7 @@ public class HeroSelectController : MonoBehaviour
 
         ClearSlots();
         OpenHeroPanel();
+        heroDetailView.CreateItemSlot(items);
         if (cachedHeroList == null || cachedHeroList.Count == 0)
             return;
 
@@ -70,7 +71,6 @@ public class HeroSelectController : MonoBehaviour
 
         // 초기 생성 시 0번째 영웅 선택
         SelectFirstHero();
-        heroDetailView.CreateItemSlot(items);
         Debug.Log(heroDataList.Count);
     }
 
