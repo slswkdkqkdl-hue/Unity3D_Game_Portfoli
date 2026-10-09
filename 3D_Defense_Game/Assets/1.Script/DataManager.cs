@@ -112,7 +112,8 @@ public partial class DataManager : MonoBehaviour
             {
                 HeroId = data.heroDescDatas.Hero_Id, // 인스펙터/SO 상의 Hero_Id 필드명 확인
                 Level = 1,
-                SP = 99
+                SP = 99,
+                Equippedweapon_Id = 1
             });
             saveData.heroDates.Add(new HeroSaveData // 테스트 히어로
             {

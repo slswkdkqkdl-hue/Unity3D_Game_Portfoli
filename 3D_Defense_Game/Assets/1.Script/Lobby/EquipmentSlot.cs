@@ -38,7 +38,7 @@ public class EquipmentSlot : MonoBehaviour
     {
         runtimeData = null;
         item_name.text = "";
-        button.interactable = false;
+        // button.interactable = false;
     }
 
     private void OnClickSlot()

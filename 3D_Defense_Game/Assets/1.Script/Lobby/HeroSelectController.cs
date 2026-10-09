@@ -71,7 +71,6 @@ public class HeroSelectController : MonoBehaviour
 
         // 초기 생성 시 0번째 영웅 선택
         SelectFirstHero();
-        Debug.Log(heroDataList.Count);
     }
 
     /// <summary>
