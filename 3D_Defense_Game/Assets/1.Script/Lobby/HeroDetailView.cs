@@ -19,9 +19,17 @@ public class HeroDetailView : MonoBehaviour
     public List<SkillSlot> passiveSkillSlots = new List<SkillSlot>();
 
     [SerializeField]private HeroRuntimeData hero;
-    
+
     public EquipmentSlot Weapon_Btn;
-    public EquipmentSlot Equipped_Armor_Btn;
+    public EquipmentSlot Armor_Btn;
+    public int item_size = 20;
+    public GameObject item_slot;
+    public Transform item_pos;
+
+    // 현재 인벤토리 데이터
+    private List<ItemRuntimeData> inventoryItems;
+    // 생성한 인벤토리 슬롯 목록
+    private List<itemSlot> inventorySlots = new List<itemSlot>();
 
     public void Init(HeroRuntimeData data)
     {   
@@ -30,6 +38,63 @@ public class HeroDetailView : MonoBehaviour
         DisplaySkills(data);
         Renewal(data);
     }   
+
+    public void CreateItemSlot(List<ItemRuntimeData> itemRuntimes)
+    {
+        inventoryItems = itemRuntimes;
+
+        // 인벤토리 슬롯은 item_size만큼만 생성
+        for (int i = 0; i < item_size; i++)
+        {
+            // 중복 생성 막기 혹시나
+            if (i >= inventorySlots.Count)
+            {
+                GameObject obj = Instantiate(item_slot, item_pos);
+
+                itemSlot slot = obj.GetComponent<itemSlot>();
+                slot.onSlotClicked = OnItemSlotClicked;
+
+                inventorySlots.Add(slot);
+            }
+        }
+
+
+        RefreshInventorySlots();
+    }
+
+    // 인벤토리 UI 갱신
+    private void RefreshInventorySlots()
+    {
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            if (i < inventoryItems.Count)
+            {
+                inventorySlots[i].Init(inventoryItems[i]);
+            }
+            else
+            {
+                inventorySlots[i].Init(null);
+            }
+        }
+    }
+    private void OnItemSlotClicked(ItemRuntimeData data) 
+    {
+        if(data.itemData.itemType == ItemType.Weapon)
+        {
+            Weapon_Btn.Init(data);
+        }
+        else
+        {
+            Armor_Btn.Init(data);
+        }
+    }
+    
+
+
+
+
+
+
 
     public void DisplaySkills(HeroRuntimeData data)
     {   

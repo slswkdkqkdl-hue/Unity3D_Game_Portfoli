@@ -4,6 +4,5 @@ using UnityEngine;
 public class ItemRuntimeData
 {
     public ItemData itemData;
-
     public int size;
 }

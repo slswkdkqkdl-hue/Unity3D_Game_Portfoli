@@ -40,7 +40,7 @@ public class LobbyManager : MonoBehaviour
             Debug.LogWarning("[LobbyManager] DataManager 또는 sessionData가 아직 초기화되지 않았습니다.");
             return;
         }
-        heroSelect.Init(sessionData.heroes);
+        heroSelect.Init(sessionData.heroes,sessionData.items);
     }
     
 

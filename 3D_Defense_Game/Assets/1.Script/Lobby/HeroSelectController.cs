@@ -49,7 +49,7 @@ public class HeroSelectController : MonoBehaviour
     /// <summary>
     /// 전달받은 영웅 데이터 리스트로 슬롯 목록을 초기화
     /// </summary>
-    public void Init(List<HeroRuntimeData> heroDataList)
+    public void Init(List<HeroRuntimeData> heroDataList ,List<ItemRuntimeData> items)
     {
         // 💡 전달받은 데이터를 캐싱해둡니다.
         cachedHeroList = heroDataList;
@@ -70,7 +70,7 @@ public class HeroSelectController : MonoBehaviour
 
         // 초기 생성 시 0번째 영웅 선택
         SelectFirstHero();
-
+        heroDetailView.CreateItemSlot(items);
         Debug.Log(heroDataList.Count);
     }
 
