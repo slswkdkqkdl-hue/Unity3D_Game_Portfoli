@@ -77,7 +77,7 @@ public class HeroDetailView : MonoBehaviour
         }
         else
         {   
-            Debug.Log(":삭제실행");
+            Debug.Log(":");
             Weapon_Btn.Clear();
         }
     }
