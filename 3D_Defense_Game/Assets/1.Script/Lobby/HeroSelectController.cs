@@ -7,8 +7,11 @@ public class HeroSelectController : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Transform slotParent;
     [SerializeField] private HeroSelectSlot slotPrefab;     
-    [SerializeField] private HeroDetailView heroDetailView;
+    [SerializeField] private HeroSkillView heroSkillView;
+    [SerializeField] private InventoryView inventoryView;
+    [SerializeField] private EquipmentView equipmentView;
     [SerializeField] private HeroRuntimeData currentHero;
+
 
     [Header("영웅 능력치 UI")]
     [SerializeField] private TextMeshProUGUI hp;
@@ -56,7 +59,9 @@ public class HeroSelectController : MonoBehaviour
 
         ClearSlots();
         OpenHeroPanel();
-        heroDetailView.CreateItemSlot(items);
+
+        inventoryView.Init(items);
+
         if (cachedHeroList == null || cachedHeroList.Count == 0)
             return;
 
@@ -91,9 +96,9 @@ public class HeroSelectController : MonoBehaviour
     {
         currentHero = clickedHeroData;
         
-        if (heroDetailView != null && currentHero != null)
+        if (heroSkillView != null && currentHero != null)
         {
-            heroDetailView.Init(currentHero);
+            heroSkillView.Init(currentHero);
         }
         InitHeroStats();
     }

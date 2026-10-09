@@ -272,10 +272,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1407175677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 115, y: -160}
-  m_SizeDelta: {x: 200, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18868230
 MonoBehaviour:
@@ -3429,10 +3429,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1407175677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 115, y: -100}
-  m_SizeDelta: {x: 200, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707491485
 MonoBehaviour:
@@ -5163,7 +5163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1095256633
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5238,7 +5238,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HeroSelectController
   slotParent: {fileID: 156545355}
   slotPrefab: {fileID: 1627499186282366685, guid: aee6d298d1eaa7e47ad82dfbadda5f2a, type: 3}
-  heroDetailView: {fileID: 1358220472}
+  heroSkillView: {fileID: 1358220472}
+  inventoryView: {fileID: 1358220473}
   currentHero:
     heroData: {fileID: 0}
     level: 0
@@ -5247,6 +5248,7 @@ MonoBehaviour:
     equippedArmorId: 0
     selectedPassiveSkill: 
     selectedActiveSkill: 
+  equipmentView: {fileID: 1358220474}
   hp: {fileID: 1183766484}
   mana: {fileID: 1283578275}
   attack: {fileID: 707491485}
@@ -5288,10 +5290,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1407175677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 315, y: -100}
-  m_SizeDelta: {x: 200, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1098345418
 MonoBehaviour:
@@ -5653,10 +5655,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1407175677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 315, y: -160}
-  m_SizeDelta: {x: 200, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1138781839
 MonoBehaviour:
@@ -5942,10 +5944,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1407175677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 115, y: -40}
-  m_SizeDelta: {x: 200, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1183766484
 MonoBehaviour:
@@ -6503,10 +6505,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1407175677}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 315, y: -40}
-  m_SizeDelta: {x: 200, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1283578275
 MonoBehaviour:
@@ -7064,6 +7066,8 @@ GameObject:
   - component: {fileID: 1358220471}
   - component: {fileID: 1358220470}
   - component: {fileID: 1358220472}
+  - component: {fileID: 1358220473}
+  - component: {fileID: 1358220474}
   m_Layer: 5
   m_Name: Hero_Info
   m_TagString: Untagged
@@ -7144,9 +7148,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1358220468}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48ac6979671377c40ace28699926f372, type: 3}
+  m_Script: {fileID: 11500000, guid: f4f156cc3015bfb4ab4c559faa9c5327, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HeroDetailView
+  m_EditorClassIdentifier: Assembly-CSharp::HeroSkillView
   skillPrefab: {fileID: 3100868701348520361, guid: e398833a3fd11324688ed26fb8180529, type: 3}
   heroImage: {fileID: 844740051}
   heroSpText: {fileID: 2080542174}
@@ -7162,11 +7166,33 @@ MonoBehaviour:
     equippedArmorId: 0
     selectedPassiveSkill: 
     selectedActiveSkill: 
-  Weapon_Btn: {fileID: 1211656193}
-  Armor_Btn: {fileID: 856525352}
-  item_size: 20
-  item_slot: {fileID: 3818524749949216964, guid: 7f8f0fbd11036514a9e5764444590c84, type: 3}
-  item_pos: {fileID: 856334714}
+--- !u!114 &1358220473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358220468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee03a3a07427a34d98171288e10a37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryView
+  itemSize: 20
+  itemSlotPrefab: {fileID: 3818524749949216964, guid: 7f8f0fbd11036514a9e5764444590c84, type: 3}
+  itemSlotParent: {fileID: 856334714}
+--- !u!114 &1358220474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1358220468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e488d42a1407f45b3a0dc7c3e2ef64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipmentView
 --- !u!1 &1384689258
 GameObject:
   m_ObjectHideFlags: 0
