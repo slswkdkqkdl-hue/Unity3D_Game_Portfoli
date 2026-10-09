@@ -19,12 +19,31 @@ public class HeroSelectController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI attackSpeed;
     [SerializeField] private TextMeshProUGUI level;
 
+    [SerializeField]private GameObject hero_panl;
+    [SerializeField]private GameObject item_panl;
+
+
     // 💡 창을 껐다 켰을 때 재사용할 영웅 데이터 리스트 캐싱 변수
     private List<HeroRuntimeData> cachedHeroList;
 
     void OnEnable()
     {
         SelectFirstHero();
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (hero_panl.activeSelf)
+            {
+                OpenInventoryPanel();
+            }
+            else
+            {
+                OpenHeroPanel();
+            }
+        }
     }
 
     /// <summary>
@@ -36,6 +55,7 @@ public class HeroSelectController : MonoBehaviour
         cachedHeroList = heroDataList;
 
         ClearSlots();
+        OpenHeroPanel();
         if (cachedHeroList == null || cachedHeroList.Count == 0)
             return;
 
@@ -66,7 +86,7 @@ public class HeroSelectController : MonoBehaviour
     }
 
     /// <summary>
-    /// 슬롯이 클릭되었을 때 호출되는 콜백 함수
+    /// 캐릭터 슬롯이 클릭되었을 때 호출되는 콜백 함수
     /// </summary>
     private void HandleSlotClicked(HeroRuntimeData clickedHeroData)
     {
@@ -116,6 +136,23 @@ public class HeroSelectController : MonoBehaviour
             attackSpeed.text = $"공격속도 : {currentHero.heroData.attackSpeed}";
         if(level != null)
             level.text = $"Level : {currentHero.level}";
-        
+    }
+
+    /// <summary>
+    /// 영웅 패널 열기
+    /// </summary>
+    public void OpenHeroPanel()
+    {
+        hero_panl.SetActive(true);
+        item_panl.SetActive(false);
+    }
+
+    /// <summary>
+    /// 인벤토리 패널 열기
+    /// </summary>
+    public void OpenInventoryPanel()
+    {
+        hero_panl.SetActive(false);
+        item_panl.SetActive(true);
     }
 }
