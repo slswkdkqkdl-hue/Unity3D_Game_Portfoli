@@ -64,12 +64,32 @@ public class HeroDetailView : MonoBehaviour
 
     private void heroEquipmen(HeroRuntimeData data)
     {
-        Debug.Log(":실행댐?1");
+
         var result = inventoryItems.Find(x => x.itemData.item_Id == data.equippedArmorId);
-        Debug.Log($"{result.itemData.itemName}");
+        // 1. 현재 인벤토리에 들어있는 아이템 ID 목록 전체 출력
+    if (inventoryItems != null && inventoryItems.Count > 0)
+    {
+        foreach (var item in inventoryItems)
+        {
+            if (item != null && item.itemData != null)
+            {
+                Debug.Log($"[인벤토리 아이템 확인] 이름: {item.itemData.itemName}, ID: {item.itemData.item_Id}");
+            }
+            else
+            {
+                Debug.LogWarning("[인벤토리 아이템 확인] item 또는 itemData가 null입니다!");
+            }
+        }
+    }
+    else
+    {
+        Debug.LogWarning("[인벤토리 확인] inventoryItems 리스트가 비어있거나 null입니다!");
+    }
+        Debug.Log($"저장된 장착 방어구 {data.equippedArmorId}");
+
         if(result != null)
         {
-            Weapon_Btn.Init(result);
+            Armor_Btn.Init(result);
             inventoryItems.Remove(result);
             RefreshInventorySlots();
             Debug.Log(":실행댐?");
