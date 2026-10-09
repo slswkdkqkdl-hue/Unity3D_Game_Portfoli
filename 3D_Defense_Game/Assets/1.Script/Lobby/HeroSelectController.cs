@@ -36,7 +36,7 @@ public class HeroSelectController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (hero_panl.activeSelf)
-            {
+            { 
                 OpenInventoryPanel();
             }
             else

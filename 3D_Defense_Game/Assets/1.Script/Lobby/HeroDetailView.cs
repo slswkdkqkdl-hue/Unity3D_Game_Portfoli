@@ -19,6 +19,9 @@ public class HeroDetailView : MonoBehaviour
     public List<SkillSlot> passiveSkillSlots = new List<SkillSlot>();
 
     [SerializeField]private HeroRuntimeData hero;
+    
+    public EquipmentSlot Weapon_Btn;
+    public EquipmentSlot Equipped_Armor_Btn;
 
     public void Init(HeroRuntimeData data)
     {   
