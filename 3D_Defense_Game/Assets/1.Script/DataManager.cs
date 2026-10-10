@@ -100,7 +100,6 @@ public partial class DataManager : MonoBehaviour
 
         // 1. 새로운 세이브데이터 및 세션데이터 생성
         saveData = new SaveData();
-        sessionData = new PlayerSessionData();
 
         // 2. 영지 타입 및 영지 기본 정보 세팅
         saveData.domainType = data.domainType;

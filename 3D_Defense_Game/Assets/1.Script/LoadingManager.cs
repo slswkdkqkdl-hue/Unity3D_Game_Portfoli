@@ -114,7 +114,6 @@ public class LoadingManager : MonoBehaviour
         if (nextScene == SceneType.LobbyScreen)
         {
             isDataLoadingComplete = false;
-            Debug.Log("실행중");
             if (DataManager.I != null)
             {
                 await DataManager.I.PrepareSessionForLobbyAsync();

@@ -50,6 +50,7 @@ public partial class DataManager : MonoBehaviour
         }
     }
     // 세이브 데이터를 현재 세션 데이터로 복원
+    // 얘 사용처는 시작씬에서 불러올떄 선택씬에서 로비씬 처음갈때
     public async Task BuildSessionFromSaveDataAsync()
     {
         // 세이브 데이터가 없으면 복원하지 않음
@@ -64,7 +65,7 @@ public partial class DataManager : MonoBehaviour
         {
             ClearExistingSessionAssets();
         }
-
+        sessionData = new PlayerSessionData();
         // =========================
         // ① 영웅 복원
         // =========================
