@@ -25,8 +25,6 @@ public class HeroSelectController : MonoBehaviour
     [SerializeField]private GameObject hero_panl;
     [SerializeField]private GameObject item_panl;
 
-
-    // 💡 창을 껐다 켰을 때 재사용할 영웅 데이터 리스트 캐싱 변수
     private List<HeroRuntimeData> cachedHeroList;
 
     void OnEnable()
@@ -48,10 +46,7 @@ public class HeroSelectController : MonoBehaviour
             }
         }
     }
-    void Start()
-    {
-        SelectFirstHero();
-    }
+
 
     /// <summary>
     /// 전달받은 영웅 데이터 리스트로 슬롯 목록을 초기화
@@ -113,9 +108,6 @@ public class HeroSelectController : MonoBehaviour
 
         if (heroSkillView != null && currentHero != null)
             heroSkillView.Init(currentHero);
-
-        if (equipmentView != null && currentHero != null)
-            equipmentView.ShowHero(currentHero);
 
         InitHeroStats();
     }
