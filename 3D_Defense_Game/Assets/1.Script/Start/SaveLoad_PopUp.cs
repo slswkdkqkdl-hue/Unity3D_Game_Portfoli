@@ -56,6 +56,7 @@ public class SaveLoad_PopUp : UIPopUp
         if (DataManager.I.LoadGame(slotIndex))
         {
             Debug.Log($"{slotIndex}번 슬롯 불러오기 성공");
+            DataManager.I.RequestSaveRestore();
             if (fadeOut != null)
             {
                 fadeOut.DoFadeOut(() =>

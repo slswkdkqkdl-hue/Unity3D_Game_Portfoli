@@ -123,6 +123,7 @@ public class UIManager_Select : MonoBehaviour
     public void NewGameStart()
     {
         DataManager.I.NewGame(selectedTerritory);
+        DataManager.I.RequestSaveRestore();
         LoadingManager.LoadScene(StartButton, true);
     }
 

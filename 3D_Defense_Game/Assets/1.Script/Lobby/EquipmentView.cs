@@ -11,7 +11,7 @@ public class EquipmentView : MonoBehaviour
 
     public void Init(List<HeroRuntimeData> herodatas , List<ItemRuntimeData> items)
     {   
-              Debug.Log("실행댐3");
+  
         foreach (HeroRuntimeData data in herodatas)
         {   
                   Debug.Log($"아이템 id {data.equippedWeaponId}");

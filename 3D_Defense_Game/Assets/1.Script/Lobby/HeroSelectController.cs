@@ -70,7 +70,7 @@ public class HeroSelectController : MonoBehaviour
         }
 
         // 1. 장착 아이템을 확인하고 인벤토리 목록에서 제외
-        equipmentView.Init(cachedHeroList, items);
+        // equipmentView.Init(cachedHeroList, items);
 
         // 2.인벤 슬룻 생성
         inventoryView.Init(items);

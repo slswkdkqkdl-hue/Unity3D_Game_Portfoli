@@ -14,20 +14,56 @@ public partial class DataManager : MonoBehaviour
     public UnitDB unitDB;
     public ItemDB itemDB;
 
+    // 다음 로비 진입 시 세이브 데이터를 복원할지 여부
+    private bool shouldRestoreSaveOnNextLobby = false;
 
- // 세이브 데이터를 현재 세션 데이터로 복원
+
+    /// <summary>
+    /// 다음 로비 진입 시 세이브 데이터를 복원하도록 요청
+    /// </summary>
+    public void RequestSaveRestore()
+    {
+        shouldRestoreSaveOnNextLobby = true;
+    }
+
+    /// <summary>
+    /// 로비 진입 전 세션 데이터 준비
+    /// </summary>
+    public async Task PrepareSessionForLobbyAsync()
+    {
+        if (shouldRestoreSaveOnNextLobby)
+        {
+            if (saveData == null)
+            {
+                Debug.LogWarning("[DataManager] SaveData가 없습니다.");
+                return;
+            }
+
+            // 요청한 경우에만 기존 세션 초기화 후 세이브 복원
+            await BuildSessionFromSaveDataAsync();
+
+            shouldRestoreSaveOnNextLobby = false;
+        }
+        else
+        {
+            Debug.Log("[DataManager] 기존 세션 데이터를 유지합니다.");
+        }
+    }
+    // 세이브 데이터를 현재 세션 데이터로 복원
     public async Task BuildSessionFromSaveDataAsync()
     {
-        if (sessionData == null || saveData == null)
+        // 세이브 데이터가 없으면 복원하지 않음
+        if (saveData == null)
+        {
+            Debug.LogWarning("[DataManager] SaveData가 없습니다.");
             return;
+        }
 
-        // if (sessionData.heroes.Count > 0 ||
-        //     sessionData.units.Count > 0 ||
-        //     sessionData.items.Count > 0)
-        // {
-        //     Debug.Log("[DataManager] 이미 세션 데이터가 메모리에 로드되어 있어 복원을 스킵합니다.");
-        //     return;
-        // }
+        // 기존 세션이 있다면 기존 에셋 정리
+        if (sessionData != null)
+        {
+            ClearExistingSessionAssets();
+        }
 
         // =========================
         // ① 영웅 복원
@@ -310,4 +346,42 @@ public partial class DataManager : MonoBehaviour
         Debug.Log("[DataManager] 세션 데이터 초기화 및 Addressables 에셋 해제 완료");
     }
 
+    // 💡 기존에 로드된 세션 에셋만 깔끔하게 해제하고 리스트를 비우는 전용 헬퍼 메서드
+    private void ClearExistingSessionAssets()
+    {
+        if (sessionData == null) return;
+
+        if (sessionData.heroes != null && heroDB != null)
+        {
+            foreach (var hero in sessionData.heroes)
+            {
+                if (hero?.heroData == null) continue;
+                var heroRef = heroDB.GetHeroRef(hero.heroData.Hero_Id);
+                if (heroRef != null && heroRef.IsValid()) heroRef.ReleaseAsset();
+            }
+            sessionData.heroes.Clear();
+        }
+
+        if (sessionData.units != null && unitDB != null)
+        {
+            foreach (var unit in sessionData.units)
+            {
+                if (unit?.unitData == null) continue;
+                var unitRef = unitDB.GetUnitRef(unit.unitData.Unit_Id);
+                if (unitRef != null && unitRef.IsValid()) unitRef.ReleaseAsset();
+            }
+            sessionData.units.Clear();
+        }
+
+        if (sessionData.items != null && itemDB != null)
+        {
+            foreach (var item in sessionData.items)
+            {
+                if (item?.itemData == null) continue;
+                var itemRef = itemDB.GetItemRef(item.itemData.item_Id);
+                if (itemRef != null && itemRef.IsValid()) itemRef.ReleaseAsset();
+            }
+            sessionData.items.Clear();
+        }
+    }
 }

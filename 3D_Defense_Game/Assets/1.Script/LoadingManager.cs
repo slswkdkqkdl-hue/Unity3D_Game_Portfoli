@@ -117,7 +117,7 @@ public class LoadingManager : MonoBehaviour
             Debug.Log("실행중");
             if (DataManager.I != null)
             {
-                await DataManager.I.BuildSessionFromSaveDataAsync();
+                await DataManager.I.PrepareSessionForLobbyAsync();
             }
             isDataLoadingComplete = true;
         }
