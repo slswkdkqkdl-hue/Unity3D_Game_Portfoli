@@ -118,7 +118,8 @@ public partial class DataManager : MonoBehaviour
             saveData.heroDates.Add(new HeroSaveData // 테스트 히어로
             {
                 HeroId = 99, 
-                Level = 1
+                Level = 1,
+                SP = 30
             });
         }
         // 4. 유닛 ID들 저장 (data.unitDescDatas에서 ID 추출)

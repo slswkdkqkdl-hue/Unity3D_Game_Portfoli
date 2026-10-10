@@ -267,19 +267,59 @@ public partial class DataManager : MonoBehaviour
         // =========================
         // ③ 아이템
         // =========================
+        // 1. 현재 인벤토리에 남아 있는 아이템 저장
         foreach (ItemRuntimeData item in sessionData.items)
         {
-            if (item == null || item.itemData == null)
+            if (item == null || item.itemData == null || item.size <= 0)
                 continue;
 
-            saveData.itemDatas.Add(new ItemSaveData
-            {
-                ItemId = item.itemData.item_Id,
-                Size = item.size
-            });
+            AddItemSaveData(
+                item.itemData.item_Id,
+                item.size
+            );
+        }
+
+        // 2. 장착 중인 무기도 아이템 목록에 추가
+        foreach (HeroRuntimeData hero in sessionData.heroes)
+        {
+            if (hero == null)
+                continue;
+
+            AddItemSaveData(hero.equippedWeaponId, 1);
+            AddItemSaveData(hero.equippedArmorId, 1);
         }
 
         Debug.Log("[DataManager] 세션 데이터 → 세이브 데이터 변환 완료");
+    }
+    /// <summary>
+    /// 세이브 아이템 목록에 수량 추가
+    /// </summary>
+    private void AddItemSaveData(int itemId, int amount)
+    {
+        // -1이나 0은 미장착 상태이므로 저장하지 않음
+        if (itemId <= 0 || amount <= 0)
+            return;
+
+        for (int i = 0; i < saveData.itemDatas.Count; i++)
+        {
+            ItemSaveData existing = saveData.itemDatas[i];
+
+            if (existing.ItemId == itemId)
+            {
+                existing.Size += amount;
+
+                // 클래스와 구조체 모두 대응
+                saveData.itemDatas[i] = existing;
+                return;
+            }
+        }
+
+        // 목록에 없는 아이템이라면 새로 추가
+        saveData.itemDatas.Add(new ItemSaveData
+        {
+            ItemId = itemId,
+            Size = amount
+        });
     }
 
 

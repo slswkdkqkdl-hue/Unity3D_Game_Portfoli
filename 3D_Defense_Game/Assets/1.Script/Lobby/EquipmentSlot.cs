@@ -9,37 +9,58 @@ public class EquipmentSlot : MonoBehaviour
     public TextMeshProUGUI item_name;
     public Button button;
 
-    [SerializeField]private ItemRuntimeData runtimeData;
+    // 현재 슬롯에 표시하는 아이템
+    [SerializeField] private ItemRuntimeData runtimeData;
 
-    // 버튼 클릭 시 호출할 함수
+    // EquipmentView에 슬롯 클릭을 전달
     private Action<EquipmentSlot> onSlotClicked;
+
+    public ItemRuntimeData RuntimeData => runtimeData;
+
 
     private void Awake()
     {
-
         if (button == null)
-        {
             button = GetComponent<Button>();
-        }
 
-        button.onClick.AddListener(OnClickSlot);
+        if (button != null)
+        {
+            button.onClick.RemoveListener(OnClickSlot);
+            button.onClick.AddListener(OnClickSlot);
+        }
     }
 
-    // 아이템 장착
+
+    // 클릭 이벤트 연결
+    public void SetClickHandler(Action<EquipmentSlot> callback)
+    {
+        onSlotClicked = callback;
+    }
+
+
+    // 아이템 표시
     public void Init(ItemRuntimeData data)
     {
         runtimeData = data;
-        item_name.text = runtimeData.itemData.itemName;
-        button.interactable = true;
+
+        bool hasItem = data != null && data.itemData != null;
+
+        if (item_name != null)
+        {
+            item_name.text = hasItem? data.itemData.itemName: "no item";
+        }
     }
 
-    // 아이템 장착 해제
+
+    // 슬롯 비우기
     public void Clear()
     {
         runtimeData = null;
-        item_name.text = "";
-        // button.interactable = false;
+
+        if (item_name != null)
+            item_name.text = "no item";
     }
+
 
     private void OnClickSlot()
     {
