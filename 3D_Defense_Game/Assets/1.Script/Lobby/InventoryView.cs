@@ -22,7 +22,7 @@ public class InventoryView : MonoBehaviour
     /// </summary>
     public void Init(List<ItemRuntimeData> items)
     {
-        inventoryItems = items ?? new List<ItemRuntimeData>();
+        inventoryItems = items;
 
         // 1. 슬롯 오브젝트가 부족한 경우 itemSize만큼 생성 (재사용 구조)
         while (inventorySlots.Count < itemSize)

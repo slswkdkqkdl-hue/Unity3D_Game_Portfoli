@@ -5240,6 +5240,7 @@ MonoBehaviour:
   slotPrefab: {fileID: 1627499186282366685, guid: aee6d298d1eaa7e47ad82dfbadda5f2a, type: 3}
   heroSkillView: {fileID: 1358220472}
   inventoryView: {fileID: 1358220473}
+  equipmentView: {fileID: 1358220474}
   currentHero:
     heroData: {fileID: 0}
     level: 0
@@ -5248,7 +5249,6 @@ MonoBehaviour:
     equippedArmorId: 0
     selectedPassiveSkill: 
     selectedActiveSkill: 
-  equipmentView: {fileID: 1358220474}
   hp: {fileID: 1183766484}
   mana: {fileID: 1283578275}
   attack: {fileID: 707491485}
@@ -7193,6 +7193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e488d42a1407f45b3a0dc7c3e2ef64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EquipmentView
+  weapon: {fileID: 1211656193}
+  amore: {fileID: 856525352}
 --- !u!1 &1384689258
 GameObject:
   m_ObjectHideFlags: 0

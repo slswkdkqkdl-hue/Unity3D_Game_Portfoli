@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::RuntimeItemData
   item_Id: 1
-  itemName: "\uB871\uC18C\uB4DC"
+  itemName: "\uAC15\uD55C\uAC15\uD55C\uC18C\uB4DC"
   itemDescription: "\uD3C9\uBC94\uD55C\uAC80\uC785\uB2C8\uB2E4."
   icon: {fileID: 21300000, guid: 9895f5f95566ceb47bb239149d90cb44, type: 3}
   itemType: 0

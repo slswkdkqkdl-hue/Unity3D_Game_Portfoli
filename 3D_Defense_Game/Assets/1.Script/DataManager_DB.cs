@@ -21,13 +21,13 @@ public partial class DataManager : MonoBehaviour
         if (sessionData == null || saveData == null)
             return;
 
-        if (sessionData.heroes.Count > 0 ||
-            sessionData.units.Count > 0 ||
-            sessionData.items.Count > 0)
-        {
-            Debug.Log("[DataManager] 이미 세션 데이터가 메모리에 로드되어 있어 복원을 스킵합니다.");
-            return;
-        }
+        // if (sessionData.heroes.Count > 0 ||
+        //     sessionData.units.Count > 0 ||
+        //     sessionData.items.Count > 0)
+        // {
+        //     Debug.Log("[DataManager] 이미 세션 데이터가 메모리에 로드되어 있어 복원을 스킵합니다.");
+        //     return;
+        // }
 
         // =========================
         // ① 영웅 복원

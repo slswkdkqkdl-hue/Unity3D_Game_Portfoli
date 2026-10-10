@@ -48,6 +48,10 @@ public class HeroSelectController : MonoBehaviour
             }
         }
     }
+    void Start()
+    {
+        SelectFirstHero();
+    }
 
     /// <summary>
     /// 전달받은 영웅 데이터 리스트로 슬롯 목록을 초기화
@@ -60,11 +64,25 @@ public class HeroSelectController : MonoBehaviour
         ClearSlots();
         OpenHeroPanel();
 
+        foreach (var data in items)
+        {
+            Debug.Log($"들어와있는 아이템 {data.itemData.item_Id} 크기 : {data.size}");
+        }
+
+        // 1. 장착 아이템을 확인하고 인벤토리 목록에서 제외
+        equipmentView.Init(cachedHeroList, items);
+
+        // 2.인벤 슬룻 생성
         inventoryView.Init(items);
 
-        if (cachedHeroList == null || cachedHeroList.Count == 0)
-            return;
+        // 3.영웅 슬룻 생성 
+        CreateHeroSlot();
 
+    }
+    private void CreateHeroSlot()
+    {   
+        if(cachedHeroList == null) return; 
+        // 영웅 슬룻 생성
         for (int i = 0; i < cachedHeroList.Count; i++)
         {
             HeroRuntimeData data = cachedHeroList[i];
@@ -73,9 +91,6 @@ public class HeroSelectController : MonoBehaviour
             slotInstance.Init(data);
             slotInstance.OnSlotClicked += HandleSlotClicked;
         }
-
-        // 초기 생성 시 0번째 영웅 선택
-        SelectFirstHero();
     }
 
     /// <summary>
@@ -95,11 +110,13 @@ public class HeroSelectController : MonoBehaviour
     private void HandleSlotClicked(HeroRuntimeData clickedHeroData)
     {
         currentHero = clickedHeroData;
-        
+
         if (heroSkillView != null && currentHero != null)
-        {
             heroSkillView.Init(currentHero);
-        }
+
+        if (equipmentView != null && currentHero != null)
+            equipmentView.ShowHero(currentHero);
+
         InitHeroStats();
     }
 
