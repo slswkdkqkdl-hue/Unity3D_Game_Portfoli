@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b15649ba4efbde146befe3e1dc99f40f
+    m_Address: Assets/8.SO/Hero_SO/Test_Hero.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ed2e0a8031a588e4e95a69a38bf50bfd
     m_Address: Assets/8.SO/Item_SO/Sword.asset
     m_ReadOnly: 0
