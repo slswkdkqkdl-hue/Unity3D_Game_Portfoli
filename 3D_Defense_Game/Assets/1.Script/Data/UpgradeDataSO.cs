@@ -33,4 +33,27 @@ public class UpgradeDataSO : ScriptableObject
     [Tooltip("레벨별 상승 스탯 수치 (인덱스 0 = 1레벨 달성 시 가산치)")]
     [SerializeField] private float[] statBonusPerLevel = { 5f, 10f, 15f, 25f, 40f };
 
+
+    public int GetSPlevel(int level)
+    {   
+        int result = level - 1;
+        result = costSPPerLevel[result];
+        return result;
+    }
+
+    /// <summary>
+    /// 지정한 레벨에 해당하는 스탯 상승치(단일 증가량) 반환
+    /// </summary>
+    public float GetStatBonus(int level)
+    {
+        if (level <= 0) return 0f;
+        int index = level - 1; // 레벨 1일 때 배열 인덱스는 0
+
+        if (index >= statBonusPerLevel.Length)
+        {
+            return statBonusPerLevel[statBonusPerLevel.Length - 1]; // 범위 초과 시 마지막 값 반환
+        }
+        return statBonusPerLevel[index];
+    }
+
 }
