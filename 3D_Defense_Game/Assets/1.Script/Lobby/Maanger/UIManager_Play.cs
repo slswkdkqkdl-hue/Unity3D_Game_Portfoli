@@ -18,12 +18,18 @@ public class UIManager_Play : MonoBehaviour
     [SerializeField] private Button Exit_Button;
 
     [Header("세력정보 표시")]
-    private Image Faction_emblem;
-    private TextMeshProUGUI Faction_name;
+    [SerializeField] Image Faction_emblem;
+    [SerializeField]private TextMeshProUGUI Faction_name;
 
     public SceneType PlayButton = SceneType.PlayScreen;
     public SceneType StartButton = SceneType.StartScreen;
 
+    public void Init(DomainData data)
+    {   
+        string result = FactionUtility.FactionName(data.domainType);
+        Faction_name.text = $"{result}";
+        Faction_emblem.sprite = data.domain_emblem;
+    }
 
 
     private void Awake()

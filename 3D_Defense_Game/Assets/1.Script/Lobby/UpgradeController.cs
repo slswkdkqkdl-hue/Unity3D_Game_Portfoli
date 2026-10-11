@@ -29,7 +29,7 @@ public class UpgradeController : MonoBehaviour
     {
         if (currentDomainData == null || upgradeButtons == null) return;
 
-        // Faction_Point.text= $"NP : {currentDomainData.Np}";
+        Faction_Point.text= $"NP : {currentDomainData.Np}";
 
         foreach (var btn in upgradeButtons)
         {

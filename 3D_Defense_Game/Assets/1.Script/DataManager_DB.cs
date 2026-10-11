@@ -161,6 +161,7 @@ public partial class DataManager : MonoBehaviour
             }
             sessionData.domainData = saveData.nation;
             sessionData.domainData.domainType =saveData.nation.domainType;
+            sessionData.domainData.domain_emblem = saveData.nation.domain_emblem;
         }
 
         // =========================
@@ -229,6 +230,7 @@ public partial class DataManager : MonoBehaviour
         
         saveData.nation = sessionData.domainData;
         saveData.nation.domainType = sessionData.domainData.domainType;
+        saveData.nation.domain_emblem = sessionData.domainData.domain_emblem;
 
         // =========================
         // ① 영웅

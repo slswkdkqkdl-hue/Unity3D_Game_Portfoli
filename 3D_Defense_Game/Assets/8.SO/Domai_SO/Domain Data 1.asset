@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Domain Data 1
   m_EditorClassIdentifier: Assembly-CSharp::TerritoryData
   territoryName: "\uBC31\uC6D4 \uAC00\uBB38"
-  territoryEmblem: {fileID: 0}
+  territoryEmblem: {fileID: 21300000, guid: 5657c3c96b57df34cb716da64add94b5, type: 3}
   territoryBackGround: {fileID: 21300000, guid: 0c6f8e12aa41fe048ba3f1592b7f3953, type: 3}
   domainType: 2
   DomainDescription: "\uB3D9\uBC29 \uB300\uB959\uC758 \uC9D9\uC740 \uC548\uAC1C\uC640

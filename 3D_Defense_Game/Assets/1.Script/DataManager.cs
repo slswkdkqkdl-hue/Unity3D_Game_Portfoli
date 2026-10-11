@@ -104,6 +104,7 @@ public partial class DataManager : MonoBehaviour
         // 2. 영지 타입 및 영지 기본 정보 세팅
         saveData.nation.Np = 99;
         saveData.nation.domainType = data.domainType;
+        saveData.nation.domain_emblem = data.territoryEmblem;
 
         // 3. 영웅 ID 저장 (data.heroDescDatas에서 ID 추출)
         if (data.heroDescDatas != null)

@@ -44,6 +44,7 @@ public class LobbyManager : MonoBehaviour
 
         heroSelect.Init(sessionData.heroes,sessionData.items);
         upgrade.Init(sessionData.domainData);
+        uIManager_.Init(sessionData.domainData);
     }
     
 
