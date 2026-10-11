@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Inspector
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 338}
   m_MaxSize: {x: 10000, y: 10000}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 17
+  controlID: 131
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -737,7 +737,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -747,18 +747,18 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets
   m_LastFoldersGridSize: 64
   m_LastProjectPath: C:\UnityProjects\unity_file1_2\Unity3D_Game_Portfoli\3D_Defense_Game
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 748}
+    scrollPos: {x: 0, y: 95}
     m_SelectedIDs:
-    - m_Data: 61242
+    - m_Data: 61030
     m_LastClickedID:
-      m_Data: 61242
+      m_Data: 61030
     m_ExpandedIDs:
     - m_Data: 0
     - m_Data: 61026
@@ -855,9 +855,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs:
-    - m_Data: 57884
-    m_LastClickedInstanceID: 57884
+    m_SelectedInstanceIDs: []
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 46610
@@ -1011,24 +1010,7 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -64158
-      - m_Data: -20648
-      - m_Data: -11118
-      - m_Data: -10450
       - m_Data: -1346
-      - m_Data: -12
-      - m_Data: 61686
-      - m_Data: 61732
-      - m_Data: 61874
-      - m_Data: 68128
-      - m_Data: 68200
-      - m_Data: 68340
-      - m_Data: 68360
-      - m_Data: 68414
-      - m_Data: 68454
-      - m_Data: 68500
-      - m_Data: 68642
-      - m_Data: 68776
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1761,9 +1743,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 748.0611, y: 550.05194, z: -1.1099813}
+    m_Target: {x: 945.28394, y: 569.57074, z: -3.8003175}
     speed: 2
-    m_Value: {x: 748.0611, y: 550.05194, z: -1.1099813}
+    m_Value: {x: 945.28394, y: 569.57074, z: -3.8003175}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1813,9 +1795,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 637.3713
+    m_Target: 906.4062
     speed: 2
-    m_Value: 637.3713
+    m_Value: 906.4062
   m_Ortho:
     m_Target: 1
     speed: 2

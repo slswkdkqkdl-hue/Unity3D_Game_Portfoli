@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b4d7b49ad3e9f41a9fb0c0c6c11985, type: 3}
+  m_Name: C 2
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeDataSO
+  category: 2
+  upgradeId: Magic_Mage_Power
+  upgradeName: "\uBE44\uC804 \uC99D\uD3ED \uC5F0\uAD6C"
+  description: "\uB9C8\uBC95\uC0AC \uD0C0\uC785 \uC720\uB2DB\uC758 \uB9C8\uBC95 \uC704\uB825\uC774
+    \n\uC0C1\uC2DC \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  maxLevel: 3
+  costSPPerLevel: 050000000500000005000000
+  statBonusPerLevel:
+  - 20
+  - 35
+  - 50

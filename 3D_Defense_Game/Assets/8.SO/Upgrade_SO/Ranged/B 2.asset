@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b4d7b49ad3e9f41a9fb0c0c6c11985, type: 3}
+  m_Name: B 2
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeDataSO
+  category: 1
+  upgradeId: Ranged_Bow_Move
+  upgradeName: "\uAE30\uB3D9 \uD6C8\uB828"
+  description: "\uD65C \uD0C0\uC785 \uC720\uB2DB\uC758 \uC774\uB3D9\uC18D\uB3C4\uAC00
+    \n\uC0C1\uC2DC \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+  maxLevel: 5
+  costSPPerLevel: 0100000002000000030000000400000005000000
+  statBonusPerLevel:
+  - 0.1
+  - 0.5
+  - 0.7
+  - 1
+  - 1.4
