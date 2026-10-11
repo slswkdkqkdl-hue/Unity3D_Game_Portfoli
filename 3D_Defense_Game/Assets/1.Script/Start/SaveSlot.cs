@@ -27,7 +27,8 @@ public class SaveSlot : MonoBehaviour
         if (data != null)
         {
             // 데이터가 있는 경우 (세이브/로드 공통)
-            domainNameText.text = $"영지명 : {data.nation.domainType}";
+            string result = FactionUtility.FactionName(data.nation.domainType);
+            domainNameText.text = $"영지명 : {result}";
 
             TimeSpan time = TimeSpan.FromSeconds(data.playTime);
             int hours = (int)time.TotalHours;
