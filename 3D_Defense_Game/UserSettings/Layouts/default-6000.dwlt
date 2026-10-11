@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Scene
   m_RootView: {fileID: 10}
   m_MinSize: {x: 875, y: 338}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 100
+  controlID: 52
   draggingID: 0
 --- !u!114 &4
 MonoBehaviour:
@@ -737,7 +737,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/1.Script/Lobby
+    - Assets/8.SO/Upgrade_SO/Ranged
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -747,24 +747,20 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/1.Script/Lobby
+  - Assets/8.SO/Upgrade_SO/Ranged
   m_LastFoldersGridSize: 64
   m_LastProjectPath: C:\UnityProjects\unity_file1_2\Unity3D_Game_Portfoli\3D_Defense_Game
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 44}
+    scrollPos: {x: 0, y: 432}
     m_SelectedIDs:
-    - m_Data: 61042
+    - m_Data: 71814
     m_LastClickedID:
-      m_Data: 61042
+      m_Data: 71814
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 58172
-    - m_Data: 58174
-    - m_Data: 58176
-    - m_Data: 58178
     - m_Data: 58180
     - m_Data: 58182
     - m_Data: 58184
@@ -778,6 +774,11 @@ MonoBehaviour:
     - m_Data: 58200
     - m_Data: 58202
     - m_Data: 58204
+    - m_Data: 58206
+    - m_Data: 58208
+    - m_Data: 58210
+    - m_Data: 58212
+    - m_Data: 58214
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -810,10 +811,6 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 58172
-    - m_Data: 58174
-    - m_Data: 58176
-    - m_Data: 58178
     - m_Data: 58180
     - m_Data: 58182
     - m_Data: 58184
@@ -827,6 +824,11 @@ MonoBehaviour:
     - m_Data: 58200
     - m_Data: 58202
     - m_Data: 58204
+    - m_Data: 58206
+    - m_Data: 58208
+    - m_Data: 58210
+    - m_Data: 58212
+    - m_Data: 58214
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -853,9 +855,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs:
-    - m_Data: 204284
-    m_LastClickedInstanceID: 204284
+    m_SelectedInstanceIDs: []
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 46610
@@ -1009,41 +1010,12 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -63900
-      - m_Data: -60196
-      - m_Data: -58030
-      - m_Data: -46974
-      - m_Data: -37788
-      - m_Data: -37646
-      - m_Data: -36974
-      - m_Data: -35876
-      - m_Data: -23306
-      - m_Data: -22820
-      - m_Data: -22642
-      - m_Data: -22268
-      - m_Data: -21846
-      - m_Data: -21472
-      - m_Data: -21208
-      - m_Data: -19904
-      - m_Data: -18052
       - m_Data: -1346
-      - m_Data: 66418
-      - m_Data: 66480
-      - m_Data: 66612
-      - m_Data: 66658
-      - m_Data: 66958
-      - m_Data: 67004
-      - m_Data: 203600
-      - m_Data: 203758
-      - m_Data: 203836
-      - m_Data: 203972
-      - m_Data: 204018
-      - m_Data: 204150
-      - m_Data: 204180
-      - m_Data: 204240
-      - m_Data: 204284
-      - m_Data: 204700
-      - m_Data: 204932
+      - m_Data: 53512
+      - m_Data: 53740
+      - m_Data: 53914
+      - m_Data: 54056
+      - m_Data: 54198
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1776,9 +1748,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 779.1607, y: 438.17502, z: -0.23903573}
+    m_Target: {x: 586.7981, y: 369.00925, z: 0.9190546}
     speed: 2
-    m_Value: {x: 779.1607, y: 438.17502, z: -0.23903573}
+    m_Value: {x: 586.7981, y: 369.00925, z: 0.9190546}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1828,9 +1800,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 550.2779
+    m_Target: 434.46817
     speed: 2
-    m_Value: 550.2779
+    m_Value: 434.46817
   m_Ortho:
     m_Target: 1
     speed: 2

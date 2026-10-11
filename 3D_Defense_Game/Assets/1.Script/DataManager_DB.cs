@@ -14,6 +14,9 @@ public partial class DataManager : MonoBehaviour
     public UnitDB unitDB;
     public ItemDB itemDB;
 
+    [Header("새 게임 초기 설정용 업그레이드 SO")]
+    public List<UpgradeDataSO> upgradeDB;
+
     // 다음 로비 진입 시 세이브 데이터를 복원할지 여부
     private bool shouldRestoreSaveOnNextLobby = false;
 
@@ -65,7 +68,11 @@ public partial class DataManager : MonoBehaviour
         {
             ClearExistingSessionAssets();
         }
-        sessionData = new PlayerSessionData();
+        sessionData = new PlayerSessionData
+        {
+            domainType = saveData.domainType,
+            domainData = saveData.nation
+        };
         // =========================
         // ① 영웅 복원
         // =========================
@@ -215,7 +222,15 @@ public partial class DataManager : MonoBehaviour
         saveData.heroDates.Clear();
         saveData.unitDatas.Clear();
         saveData.itemDatas.Clear();
+        saveData.domainType = DomainType.None;
+        saveData.nation = null;
 
+
+        // =========================
+        // 국가 정보 
+        // =========================
+        saveData.domainType =sessionData.domainType;
+        saveData.nation = sessionData.domainData;
 
         // =========================
         // ① 영웅

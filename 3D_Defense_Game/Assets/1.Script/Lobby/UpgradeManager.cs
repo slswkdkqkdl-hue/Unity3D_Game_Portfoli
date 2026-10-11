@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class FactionUpgradePanel : MonoBehaviour
+public class UpgradeManager : MonoBehaviour
 {
     [Header("=== 팝업 창 (Popup Panels) ===")]
     [SerializeField] private GameObject rangedMasteryPopup;   // 사격 숙련 팝업
@@ -8,6 +9,8 @@ public class FactionUpgradePanel : MonoBehaviour
     [SerializeField] private GameObject magicResearchPopup;   // 비전 연구 팝업
     [SerializeField] private GameObject economyResearchPopup; // 경제학 연구 팝업
     [SerializeField] private GameObject tacticalCommandPopup; // 전술 지휘 팝업
+
+
 
     /// <summary>
     /// 모든 팝업 창을 닫는 함수

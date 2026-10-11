@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 // 1. 영지/국가 성장 단계 (티어)
@@ -22,5 +23,6 @@ public enum DomainType
 public class DomainData
 {
     public DomainTier domainTier = DomainTier.Small;   // 현재 영지 티어 (소국 -> 강국 -> 대국)
+    public List<UpgradeSaveData> upgradedata = new List<UpgradeSaveData>();
     public float Np = 0f; // 소유한 국가 포인트
 }

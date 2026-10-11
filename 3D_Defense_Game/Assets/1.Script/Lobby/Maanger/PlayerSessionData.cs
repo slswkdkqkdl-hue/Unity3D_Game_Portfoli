@@ -42,4 +42,13 @@ public class PlayerSessionData
         if (existing != null) existing.size++;
         else items.Add(new ItemRuntimeData { itemData = item, size = 1 });
     }
+
+
+
+
+    public void Addupgradedata(string UpgradeId , int level)
+    {
+        UpgradeSaveData result = domainData.upgradedata.Find(x=>x.UpgradeId == UpgradeId);
+        result.Level = level;
+    }
 }

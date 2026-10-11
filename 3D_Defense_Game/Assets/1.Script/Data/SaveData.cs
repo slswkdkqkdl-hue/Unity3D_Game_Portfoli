@@ -23,5 +23,8 @@ public class SaveData
     {
         itemDatas.Add(new ItemSaveData { ItemId = 1, Size = 4 }); // 시작 무기
         itemDatas.Add(new ItemSaveData { ItemId = 2, Size = 1 }); // 시작 방어구
+
+
+        
     }
 }

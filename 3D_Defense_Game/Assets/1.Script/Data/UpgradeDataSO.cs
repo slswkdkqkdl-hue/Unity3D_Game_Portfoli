@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum UpgradeCategory
@@ -9,6 +10,13 @@ public enum UpgradeCategory
     Tactics     // 전술 지휘
 }
 
+
+[System.Serializable]
+public class UpgradeSaveData{
+    public UpgradeCategory upgradetype;
+    public string UpgradeId;
+    public int Level;
+}
 
 
 

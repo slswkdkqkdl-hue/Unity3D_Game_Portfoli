@@ -133,6 +133,18 @@ public partial class DataManager : MonoBehaviour
                 });
             }
         }
+        if (upgradeDB != null)
+        {
+            foreach (var so in upgradeDB)
+            {
+                saveData.nation.upgradedata.Add(new UpgradeSaveData
+                {
+                    upgradetype = so.category,
+                    UpgradeId = so.upgradeId,
+                    Level = 0
+                });
+            }
+        }
     }
 
     // 저장 데이터 삭제
