@@ -10,7 +10,8 @@ public class LobbyManager : MonoBehaviour
     private PlayerSessionData sessionData;
     
     [Header("맨처음초기화")]
-    [SerializeField]private HeroSelectController heroSelect;
+    [SerializeField]private HeroSelectController heroSelect; // 영웅창 관리
+    [SerializeField]private UpgradeController upgrade; // 업글레이드 관리
 
 
     private void Awake()
@@ -26,7 +27,7 @@ public class LobbyManager : MonoBehaviour
         LoadPlayerData();
     }
     /// <summary>
-    /// DataManager로부터 플레이어 세션 데이터를 받아옵니다.
+    /// 데이터매니저한테 데이터 받은후 각 UI 및 초기화
     /// </summary>
     private void LoadPlayerData()
     {
@@ -40,7 +41,9 @@ public class LobbyManager : MonoBehaviour
             Debug.LogWarning("[LobbyManager] DataManager 또는 sessionData가 아직 초기화되지 않았습니다.");
             return;
         }
+
         heroSelect.Init(sessionData.heroes,sessionData.items);
+        upgrade.Init(sessionData.domainData);
     }
     
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   upgradeId: Tactics_Rapid_Reinforcement
   upgradeName: "\uC99D\uC6D0"
   description: "\uC9C0\uC815\uD55C \uC804\uC7A5 \uC88C\uD45C\uC5D0 \uD2B9\uC218 \uBCD1\uC885\uC744
-    \n\uC989\uC2DC \uBC30\uCE58\uD558\uC5EC \uAE09\uD55C \uC804\uC5F4\uC744 \uC9C0\uC6D0\uD569\uB2C8\uB2E4.\n(\uCFE8\uD0C0\uC784
+    \uC989\uC2DC \uBC30\uCE58\uD558\uC5EC \uAE09\uD55C \uC804\uC5F4\uC744 \uC9C0\uC6D0\uD569\uB2C8\uB2E4.\n(\uCFE8\uD0C0\uC784
     : 1\uBD84)"
   maxLevel: 3
   costSPPerLevel: 0a0000000f00000014000000

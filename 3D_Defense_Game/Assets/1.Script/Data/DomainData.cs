@@ -21,7 +21,8 @@ public enum DomainType
 // 3. 영지 데이터 클래스
 [System.Serializable]
 public class DomainData
-{
+{   
+    public DomainType  domainType = DomainType.None;
     public DomainTier domainTier = DomainTier.Small;   // 현재 영지 티어 (소국 -> 강국 -> 대국)
     public List<UpgradeSaveData> upgradedata = new List<UpgradeSaveData>();
     public float Np = 0f; // 소유한 국가 포인트

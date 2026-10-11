@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,12 +17,17 @@ public class UIManager_Start : MonoBehaviour
 
     [SerializeField] private SceneType newGameTargetScene;
     [SerializeField] private SceneType continueTargetScene;
-
     [SerializeField] private FadeOut fadeOut;
+
+
+
+
     void Start()
     {
         CloseAllPopUps();
     }
+
+
 
     public void InitEvents()
     {

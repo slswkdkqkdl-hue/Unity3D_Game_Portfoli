@@ -11,7 +11,6 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] private GameObject tacticalCommandPopup; // 전술 지휘 팝업
 
 
-
     /// <summary>
     /// 모든 팝업 창을 닫는 함수
     /// </summary>

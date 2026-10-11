@@ -102,7 +102,8 @@ public partial class DataManager : MonoBehaviour
         saveData = new SaveData();
 
         // 2. 영지 타입 및 영지 기본 정보 세팅
-        saveData.domainType = data.domainType;
+        saveData.nation.Np = 99;
+        saveData.nation.domainType = data.domainType;
 
         // 3. 영웅 ID 저장 (data.heroDescDatas에서 ID 추출)
         if (data.heroDescDatas != null)
@@ -133,6 +134,7 @@ public partial class DataManager : MonoBehaviour
                 });
             }
         }
+        // 5. 업그레이드 SO 정보 세이브데이터에 할당
         if (upgradeDB != null)
         {
             foreach (var so in upgradeDB)
@@ -141,10 +143,23 @@ public partial class DataManager : MonoBehaviour
                 {
                     upgradetype = so.category,
                     UpgradeId = so.upgradeId,
-                    Level = 0
+                    Level = 1
                 });
             }
         }
+
+        // 6.시작 아이템 지급
+        saveData.itemDatas.Add(new ItemSaveData
+        {
+            ItemId = 1,
+            Size = 4
+        });
+
+        saveData.itemDatas.Add(new ItemSaveData
+        {
+            ItemId = 2,
+            Size = 1
+        });
     }
 
     // 저장 데이터 삭제

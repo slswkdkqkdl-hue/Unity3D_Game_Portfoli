@@ -8,7 +8,10 @@ public class PlayerSessionData
     [SerializeField] public List<HeroRuntimeData> heroes;
     [SerializeField] public List<UnitRuntimeData> units;
     [SerializeField] public List<ItemRuntimeData> items;
-
+    
+    [Header("세력정보")]
+    public DomainData domainData;
+    
     public PlayerSessionData()
     {
         heroes = new List<HeroRuntimeData>();
@@ -17,9 +20,6 @@ public class PlayerSessionData
     }
 
 
-    [Header("세력정보")]
-    public DomainType domainType; 
-    public DomainData domainData;
 
     public void AddHero(HeroData hero)
     {
@@ -45,10 +45,4 @@ public class PlayerSessionData
 
 
 
-
-    public void Addupgradedata(string UpgradeId , int level)
-    {
-        UpgradeSaveData result = domainData.upgradedata.Find(x=>x.UpgradeId == UpgradeId);
-        result.Level = level;
-    }
 }

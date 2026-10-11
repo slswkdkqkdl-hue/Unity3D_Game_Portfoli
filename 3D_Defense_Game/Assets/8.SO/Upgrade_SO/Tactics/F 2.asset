@@ -16,8 +16,8 @@ MonoBehaviour:
   upgradeId: Tactics_Recall_Order
   upgradeName: "\uC7AC\uAE30 \uBA85\uB839"
   description: "\uC804\uC7A5\uC744 \uC774\uD0C8\uD588\uB358 \uC601\uC6C5\uC744 \uC989\uC2DC
-    \uC804\uC120\uC73C\uB85C \n\uBCF5\uADC0\uC2DC\uCF1C \uB2E4\uC2DC \uC804\uD22C\uC5D0
+    \uC804\uC120\uC73C\uB85C \uBCF5\uADC0\uC2DC\uCF1C \uB2E4\uC2DC \uC804\uD22C\uC5D0
     \uD569\uB958\uC2DC\uD0B5\uB2C8\uB2E4.\n(\uCFE8\uD0C0\uC784 : 3\uBD84)"
-  maxLevel: 1
+  maxLevel: 2
   costSPPerLevel: 1e000000
   statBonusPerLevel: []

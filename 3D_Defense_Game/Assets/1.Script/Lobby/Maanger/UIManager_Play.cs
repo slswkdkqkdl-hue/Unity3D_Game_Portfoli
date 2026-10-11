@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,8 +17,14 @@ public class UIManager_Play : MonoBehaviour
     [SerializeField] private Button Setting_Button;
     [SerializeField] private Button Exit_Button;
 
+    [Header("세력정보 표시")]
+    private Image Faction_emblem;
+    private TextMeshProUGUI Faction_name;
+
     public SceneType PlayButton = SceneType.PlayScreen;
     public SceneType StartButton = SceneType.StartScreen;
+
+
 
     private void Awake()
     {

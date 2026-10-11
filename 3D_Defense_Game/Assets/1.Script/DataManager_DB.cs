@@ -70,8 +70,7 @@ public partial class DataManager : MonoBehaviour
         }
         sessionData = new PlayerSessionData
         {
-            domainType = saveData.domainType,
-            domainData = saveData.nation
+            domainData = saveData.nation,
         };
         // =========================
         // ① 영웅 복원
@@ -160,9 +159,8 @@ public partial class DataManager : MonoBehaviour
                 sessionData.units.Add(runtimeUnit);
                 Debug.Log($"[유닛 로드 완료] ID: {unitSave.UnitId}");
             }
-
-            sessionData.domainType = saveData.domainType;
             sessionData.domainData = saveData.nation;
+            sessionData.domainData.domainType =saveData.nation.domainType;
         }
 
         // =========================
@@ -222,15 +220,15 @@ public partial class DataManager : MonoBehaviour
         saveData.heroDates.Clear();
         saveData.unitDatas.Clear();
         saveData.itemDatas.Clear();
-        saveData.domainType = DomainType.None;
         saveData.nation = null;
 
 
         // =========================
         // 국가 정보 
         // =========================
-        saveData.domainType =sessionData.domainType;
+        
         saveData.nation = sessionData.domainData;
+        saveData.nation.domainType = sessionData.domainData.domainType;
 
         // =========================
         // ① 영웅

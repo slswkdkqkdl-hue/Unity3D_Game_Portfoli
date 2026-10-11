@@ -16,8 +16,8 @@ MonoBehaviour:
   upgradeId: Tactics_Tax_Collection
   upgradeName: "\uC138\uAE08 \uC9D5\uC218"
   description: "\uC8FC\uBBFC\uC9D1 \uC218\uC5D0 \uBE44\uB840\uD558\uC5EC \uC989\uC2DC
-    \uC138\uAE08\uC744 \n\uC9D5\uC218\uD558\uACE0 \uAE08\uD654\uB97C \uD655\uBCF4\uD569\uB2C8\uB2E4.\n(\uCFE8\uD0C0\uC784
+    \uC138\uAE08\uC744 \uC9D5\uC218\uD558\uACE0 \uAE08\uD654\uB97C \uD655\uBCF4\uD569\uB2C8\uB2E4.\n(\uCFE8\uD0C0\uC784
     : 30\uCD08)"
-  maxLevel: 1
+  maxLevel: 2
   costSPPerLevel: 14000000
   statBonusPerLevel: []

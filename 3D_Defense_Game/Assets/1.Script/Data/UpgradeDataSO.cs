@@ -44,22 +44,25 @@ public class UpgradeDataSO : ScriptableObject
 
     public int GetSPlevel(int level)
     {   
-        int result = level - 1;
-        result = costSPPerLevel[result];
-        return result;
+        if (costSPPerLevel == null || costSPPerLevel.Length == 0) return 0;
+
+        int index = level - 1;
+        if (index < 0) index = 0;
+        if (index >= costSPPerLevel.Length) index = costSPPerLevel.Length - 1;
+
+        return costSPPerLevel[index];
     }
 
-    /// <summary>
-    /// 지정한 레벨에 해당하는 스탯 상승치(단일 증가량) 반환
-    /// </summary>
     public float GetStatBonus(int level)
     {
-        if (level <= 0) return 0f;
-        int index = level - 1; // 레벨 1일 때 배열 인덱스는 0
+        if (statBonusPerLevel == null || statBonusPerLevel.Length == 0) return 0f;
+
+        int index = level - 1; 
+        if (index < 0) return 0f;
 
         if (index >= statBonusPerLevel.Length)
         {
-            return statBonusPerLevel[statBonusPerLevel.Length - 1]; // 범위 초과 시 마지막 값 반환
+            return statBonusPerLevel[statBonusPerLevel.Length - 1]; 
         }
         return statBonusPerLevel[index];
     }

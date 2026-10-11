@@ -16,7 +16,7 @@ MonoBehaviour:
   upgradeId: Magic_Mage_MaxMana
   upgradeName: "\uB9C8\uB825 \uC751\uCD95 \uC5F0\uAD6C"
   description: "\uB9C8\uBC95\uC0AC \uD0C0\uC785 \uC720\uB2DB\uC758 \uB9C8\uB098 \uCD5C\uB300\uCE58\uAC00
-    \n\uC0C1\uC2DC \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
+    \uC0C1\uC2DC \uC0C1\uC2B9\uD569\uB2C8\uB2E4."
   maxLevel: 3
   costSPPerLevel: 030000000500000007000000
   statBonusPerLevel:
