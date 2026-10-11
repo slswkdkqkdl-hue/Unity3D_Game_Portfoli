@@ -10040,6 +10040,7 @@ GameObject:
   - component: {fileID: 1121880617}
   - component: {fileID: 1121880616}
   - component: {fileID: 1121880615}
+  - component: {fileID: 1121880618}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -10150,6 +10151,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121880613}
   m_CullTransparentMesh: 1
+--- !u!114 &1121880618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121880613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283669a70b8808c40af6d97f5859ed1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeInfo
 --- !u!1 &1129442242
 GameObject:
   m_ObjectHideFlags: 0
