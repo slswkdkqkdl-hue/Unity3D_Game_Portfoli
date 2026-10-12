@@ -17,7 +17,8 @@ public class SkillSlot : MonoBehaviour
     public bool isEquipped { get; private set; } = false;
 
     // 기본 배경 색상 (#59B797)
-    private readonly Color defaultColor = new Color32(0x59, 0xB7, 0x97, 255);
+    [SerializeField] private Color defaultColor = new Color32(0x59, 0xB7, 0x97, 255);
+    [SerializeField] private Color SelectColor = new Color32(0x59, 0xB7, 0x97, 255);
 
     /// <summary>
     /// 스킬 데이터 및 클릭 이벤트 초기화
@@ -52,7 +53,7 @@ public class SkillSlot : MonoBehaviour
     {
         if (backgroundOrIconImage != null)
         {
-            backgroundOrIconImage.color = isSelected ? Color.red : defaultColor;
+            backgroundOrIconImage.color = isSelected ? SelectColor : defaultColor;
         }
     }
 
