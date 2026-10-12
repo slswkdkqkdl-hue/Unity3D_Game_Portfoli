@@ -2,7 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class EnemyInfoPopup : MonoBehaviour
+public class EnemyInfocontroller : MonoBehaviour
 {
     [SerializeField] private TMP_Text settlementNameText;
     [SerializeField] private TMP_Text factionRankText;

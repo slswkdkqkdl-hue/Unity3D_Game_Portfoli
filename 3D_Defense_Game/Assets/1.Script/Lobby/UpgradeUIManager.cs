@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeManager : MonoBehaviour
+public class UpgradeUIManager : MonoBehaviour
 {
     [Header("=== 팝업 창 (Popup Panels) ===")]
     [SerializeField] private GameObject rangedMasteryPopup;   // 사격 숙련 팝업
