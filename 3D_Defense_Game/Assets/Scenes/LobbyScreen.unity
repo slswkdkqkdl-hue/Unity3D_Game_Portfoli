@@ -2681,6 +2681,7 @@ GameObject:
   - component: {fileID: 181714544}
   - component: {fileID: 181714546}
   - component: {fileID: 181714545}
+  - component: {fileID: 181714547}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2705,7 +2706,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 110, y: 33.0186}
+  m_SizeDelta: {x: 0, y: 33.0186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &181714545
 MonoBehaviour:
@@ -2807,6 +2808,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181714543}
   m_CullTransparentMesh: 1
+--- !u!114 &181714547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181714543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &183478134
 GameObject:
   m_ObjectHideFlags: 0
@@ -10858,7 +10873,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10}
+  m_AnchoredPosition: {x: 0, y: -10}
   m_SizeDelta: {x: 110, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &757082667
@@ -10969,6 +10984,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeamSlot
   hero_name: {fileID: 1946249327}
   hero_image: {fileID: 757082667}
+  currentData:
+    heroData: {fileID: 0}
+    level: 0
+    sp: 0
+    equippedWeaponId: -1
+    equippedArmorId: -1
+    selectedPassiveSkill: 
+    selectedActiveSkill: 
 --- !u!1 &768905298
 GameObject:
   m_ObjectHideFlags: 0
@@ -14599,7 +14622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 108.53}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &987163115
@@ -23543,7 +23566,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 10}
+  m_AnchoredPosition: {x: 150, y: -10}
   m_SizeDelta: {x: 110, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1553075495
@@ -23560,6 +23583,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeamSlot
   hero_name: {fileID: 181714545}
   hero_image: {fileID: 1553075497}
+  currentData:
+    heroData: {fileID: 0}
+    level: 0
+    sp: 0
+    equippedWeaponId: -1
+    equippedArmorId: -1
+    selectedPassiveSkill: 
+    selectedActiveSkill: 
 --- !u!114 &1553075496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25042,7 +25073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: 10}
+  m_AnchoredPosition: {x: -150, y: -10}
   m_SizeDelta: {x: 110, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688235682
@@ -25059,6 +25090,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TeamSlot
   hero_name: {fileID: 2008162317}
   hero_image: {fileID: 1688235684}
+  currentData:
+    heroData: {fileID: 0}
+    level: 0
+    sp: 0
+    equippedWeaponId: -1
+    equippedArmorId: -1
+    selectedPassiveSkill: 
+    selectedActiveSkill: 
 --- !u!114 &1688235683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29025,6 +29064,7 @@ GameObject:
   - component: {fileID: 1946249326}
   - component: {fileID: 1946249328}
   - component: {fileID: 1946249327}
+  - component: {fileID: 1946249329}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -29049,7 +29089,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 110, y: 33.0186}
+  m_SizeDelta: {x: 0, y: 33.0186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1946249327
 MonoBehaviour:
@@ -29151,6 +29191,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946249325}
   m_CullTransparentMesh: 1
+--- !u!114 &1946249329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946249325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &1972528083
 GameObject:
   m_ObjectHideFlags: 0
@@ -29743,6 +29797,7 @@ GameObject:
   - component: {fileID: 2008162316}
   - component: {fileID: 2008162318}
   - component: {fileID: 2008162317}
+  - component: {fileID: 2008162319}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -29767,7 +29822,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -80}
-  m_SizeDelta: {x: 110, y: 33.0186}
+  m_SizeDelta: {x: 0, y: 33.0186}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2008162317
 MonoBehaviour:
@@ -29869,6 +29924,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008162315}
   m_CullTransparentMesh: 1
+--- !u!114 &2008162319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008162315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &2013329485
 GameObject:
   m_ObjectHideFlags: 0
@@ -32147,6 +32216,7 @@ MonoBehaviour:
   - {fileID: 757082670}
   - {fileID: 1553075495}
   - {fileID: 1688235682}
+  heroes: []
 --- !u!222 &258610520919394581
 CanvasRenderer:
   m_ObjectHideFlags: 0
