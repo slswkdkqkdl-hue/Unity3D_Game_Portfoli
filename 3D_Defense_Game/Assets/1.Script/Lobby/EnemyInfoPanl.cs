@@ -26,8 +26,8 @@ public class EnemyInfoPanl : MonoBehaviour
         currentSO = enemyInfo;
 
         string result = FactionUtility.EnemyStageTier(currentSO.factionRank);
-        factionRankText.text = result;
-        settlementNameText.text = currentSO.settlementName;
+        factionRankText.text = $"세력 등급 : {result}";
+        settlementNameText.text = $"거점 지역 : {currentSO.settlementName}";
         specialNoteText.text = currentSO.specialNote;
         enemyCountText.text = $"예상 적 병력 : {currentSO.minEnemyCount} ~ {currentSO.maxEnemyCount} Unit";
         image.sprite = currentSO.image;
