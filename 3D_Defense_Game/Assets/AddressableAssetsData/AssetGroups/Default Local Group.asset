@@ -14,22 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 5f0eeecdcc9eea54991482aa0bf4823c
-  m_SerializeEntries:
-  - m_GUID: 994a89d8796d16444b184ce425ae774c
-    m_Address: Assets/8.SO/Item_SO/Weapon/Sword 5.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9a60511da9956f647988ba4ad9984a2c
-    m_Address: Assets/8.SO/Item_SO/Amor/Amor 2.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9f08224f9147a354bbe72693327de9f5
-    m_Address: Assets/8.SO/Item_SO/Weapon/Sword 4.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8042e044e79ed3468ee5af579015cc1, type: 2}
   m_SchemaSet:
