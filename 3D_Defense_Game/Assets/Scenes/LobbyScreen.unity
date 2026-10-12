@@ -10942,7 +10942,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 757082667}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 757082670}
+        m_TargetAssemblyTypeName: TeamSlot, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &757082670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23591,7 +23603,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1553075497}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1553075495}
+        m_TargetAssemblyTypeName: TeamSlot, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1553075497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25078,7 +25102,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1688235684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1688235682}
+        m_TargetAssemblyTypeName: TeamSlot, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1688235684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32105,12 +32141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11956df86100aa74689bcb60a54bf3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeamCompositionController
+  slotpre: {fileID: 6491155696867931757, guid: 7ff91497301da7441884304b191077c7, type: 3}
+  pos: {fileID: 448334245}
   slot:
   - {fileID: 757082670}
   - {fileID: 1553075495}
   - {fileID: 1688235682}
-  slotpre: {fileID: 6491155696867931757, guid: 7ff91497301da7441884304b191077c7, type: 3}
-  pos: {fileID: 448334245}
 --- !u!222 &258610520919394581
 CanvasRenderer:
   m_ObjectHideFlags: 0

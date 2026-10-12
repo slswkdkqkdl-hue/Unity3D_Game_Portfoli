@@ -359,6 +359,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f2fd41786f9c2e40afd70c02be6f4e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HeroSelectSlot2
-  isClick: 0
+  isSelect: 0
   text: {fileID: 5696661173224530979}
   image: {fileID: 4778293615456015835}
+  btn: {fileID: 8969064862603031489}
+  currenthero:
+    heroData: {fileID: 0}
+    level: 0
+    sp: 0
+    equippedWeaponId: -1
+    equippedArmorId: -1
+    selectedPassiveSkill: 
+    selectedActiveSkill: 

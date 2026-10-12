@@ -36,7 +36,7 @@ public class EnemyInfoPanl : MonoBehaviour
         UpdateLootSlots();
         
         // 슬룻 초기화
-        Controller.TeamSlotInit();
+        Controller.TeamSlotset();
         gameObject.SetActive(true);
     }
 
