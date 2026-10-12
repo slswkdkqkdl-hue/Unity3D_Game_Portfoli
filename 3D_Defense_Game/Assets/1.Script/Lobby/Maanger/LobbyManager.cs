@@ -12,7 +12,8 @@ public class LobbyManager : MonoBehaviour
     [Header("맨처음초기화")]
     [SerializeField]private HeroSelectController heroSelect; // 영웅창 관리
     [SerializeField]private UpgradeController upgrade; // 업글레이드 관리
-    [SerializeField]private MapManager mapManager;
+    [SerializeField]private MapManager mapManager; // 각 스테이지 활성화
+    [SerializeField]private TeamCompositionController infocontroller; // 적 정보패널에 에서 캐릭터 슬룻 생성
 
 
     private void Awake()
@@ -47,7 +48,8 @@ public class LobbyManager : MonoBehaviour
 
         heroSelect.Init(sessionData.heroes,sessionData.items); // 영웅 데이터 받아서 각 슬룻생성 
         upgrade.Init(sessionData.domainData); // 업그레이드 데이터 받아서 각 업글 초기화
-        mapManager.Init(sessionData.clearid);
+        mapManager.Init(sessionData.clearid); // 클리어 id 값 주입 
+        infocontroller.Init(sessionData.heroes); // 영웅데이터 전달 후 슬룻 생성 
         uIManager_.Init(sessionData.domainData); // 세력 데이터를 받아서 각 UI에 초기화 
         uIManager_.InitPanels();  // 모든 패널 초기화 
     }

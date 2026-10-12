@@ -3,18 +3,19 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class EnemyInfocontroller : MonoBehaviour
-{
+public class EnemyInfoPanl : MonoBehaviour
+{   
+
     [SerializeField] private TMP_Text settlementNameText;
     [SerializeField] private TMP_Text factionRankText;
     [SerializeField] private TMP_Text specialNoteText;
     [SerializeField] private TMP_Text enemyCountText;
     [SerializeField] private Image image;
-
     [Header("아이템 슬롯 (최대 6개)")]
     public GameObject[] itemSlot_ = new GameObject[6];
 
-    public EnemyInfoSO currentSO;
+    public TeamCompositionController Controller;
+    private EnemyInfoSO currentSO;
 
     /// <summary>
     /// 적 정보 SO를 받아와 패널에 내용을 채우고 엽니다.
@@ -33,7 +34,9 @@ public class EnemyInfocontroller : MonoBehaviour
 
         // 전리품 슬롯 셋팅 실행
         UpdateLootSlots();
-
+        
+        // 슬룻 초기화
+        Controller.TeamSlotInit();
         gameObject.SetActive(true);
     }
 

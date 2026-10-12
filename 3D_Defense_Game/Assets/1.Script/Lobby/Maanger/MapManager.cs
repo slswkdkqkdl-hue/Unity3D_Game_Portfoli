@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {   
-    [SerializeField] private EnemyInfocontroller info_Panl;
+    [SerializeField] private EnemyInfoPanl info_Panl;
     [SerializeField] private List<SettlementNode> settlementNodes;
 
 
