@@ -16,9 +16,10 @@ public class ItemData : ScriptableObject
     public string itemName;
     [TextArea] public string itemDescription; // 아이템 설명
     public Sprite icon;                 
-    public ItemType itemType;
+    public ItemType itemType;    
     [Header("드랍/생성용 프리팹")]
     public GameObject itemPrefab; // 3D 필드에 떨어질 때 사용
-
-    
+    [Header("드랍 설정")]
+    [Range(0f, 100f)]
+    public float dropChance = 50f; // 드랍 확률 (%)
 }

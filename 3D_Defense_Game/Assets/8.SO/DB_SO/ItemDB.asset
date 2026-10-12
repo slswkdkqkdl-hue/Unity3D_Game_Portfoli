@@ -27,3 +27,31 @@ MonoBehaviour:
       m_SubObjectType: 
       m_SubObjectGUID: 
       m_EditorAssetChanged: 0
+  - itemId: 10
+    itemRef:
+      m_AssetGUID: 6f8fc3ede495926408e805fd20445986
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - itemId: 11
+    itemRef:
+      m_AssetGUID: 917253b9798822f49b5e514dc3b62aef
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - itemId: 12
+    itemRef:
+      m_AssetGUID: 6f8fc3ede495926408e805fd20445986
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+  - itemId: 20
+    itemRef:
+      m_AssetGUID: 54f7ca6ecf5b8dc4cac0af554deebb08
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

@@ -25,13 +25,28 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54f7ca6ecf5b8dc4cac0af554deebb08
+    m_Address: Assets/8.SO/Item_SO/Amor/Amor 1.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 609d0543d933e984dbbc6e6d8b4de2eb
     m_Address: Assets/8.SO/Unit_SO/Knight.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f8fc3ede495926408e805fd20445986
+    m_Address: Assets/8.SO/Item_SO/Weapon/Sword 3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8489cadf1279d30428882eb1cd70cbee
     m_Address: Assets/8.SO/Unit_SO/Taoist.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 917253b9798822f49b5e514dc3b62aef
+    m_Address: Assets/8.SO/Item_SO/Weapon/Sword 2.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -47,6 +62,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b15649ba4efbde146befe3e1dc99f40f
     m_Address: Assets/8.SO/Hero_SO/Test_Hero.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cfedc0ae866705f4e8e33fd6d6273243
+    m_Address: Assets/8.SO/Item_SO/Weapon/Sword 1.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

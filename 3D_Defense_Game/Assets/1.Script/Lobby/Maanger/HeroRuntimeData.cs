@@ -11,8 +11,8 @@ public class HeroRuntimeData
     public int level = 0;
     public int sp = 0;
 
-    public int equippedWeaponId;
-    public int equippedArmorId;
+    public int equippedWeaponId = -1;
+    public int equippedArmorId = -1;
 
     public List<int> selectedPassiveSkill = new List<int>();
     public List<int> selectedActiveSkill = new  List<int>();

@@ -68,10 +68,16 @@ public partial class DataManager : MonoBehaviour
         {
             ClearExistingSessionAssets();
         }
+
+        // =========================
+        // ① 세력 정보 초기화
+        // =========================
         sessionData = new PlayerSessionData
         {
             domainData = saveData.nation,
         };
+        sessionData.clearid = saveData.clearedStageIDs; // 클리어한 스테이지 복원
+
         // =========================
         // ① 영웅 복원
         // =========================
@@ -88,14 +94,12 @@ public partial class DataManager : MonoBehaviour
 
                 HeroData loadedHero = null;
 
-                // 💡 이미 메모리에 로드되어 있다면 기존 Asset 재사용, 없으면 Addressables로 로드
                 if (heroRef.IsValid())
                 {
                     loadedHero = heroRef.Asset as HeroData;
                 }
                 else
                 {
-                    // heroRef.LoadAssetAsync() 대신 Addressables.LoadAssetAsync 사용
                     var handle = Addressables.LoadAssetAsync<HeroData>(heroRef);
                     loadedHero = await handle.Task;
                 }
@@ -227,10 +231,10 @@ public partial class DataManager : MonoBehaviour
         // =========================
         // 국가 정보 
         // =========================
-        
-        saveData.nation = sessionData.domainData;
-        saveData.nation.domainType = sessionData.domainData.domainType;
-        saveData.nation.domain_emblem = sessionData.domainData.domain_emblem;
+        saveData.nation = sessionData.domainData; // 전체국가정보 저장
+        saveData.nation.domainType = sessionData.domainData.domainType; // 국가 타입 저장
+        saveData.nation.domain_emblem = sessionData.domainData.domain_emblem; // 국가 엠블럼저장
+        saveData.clearedStageIDs = sessionData.clearid; // 클리어한 스테이지 id 저장
 
         // =========================
         // ① 영웅
@@ -322,8 +326,6 @@ public partial class DataManager : MonoBehaviour
             if (existing.ItemId == itemId)
             {
                 existing.Size += amount;
-
-                // 클래스와 구조체 모두 대응
                 saveData.itemDatas[i] = existing;
                 return;
             }
