@@ -67,7 +67,6 @@ public class EnemyInfocontroller : MonoBehaviour
             {
                 itemSlot_[i].SetActive(true); // 슬롯 활성화
 
-                // 자식 오브젝트에서 TextMeshProUGUI 컴포넌트 가져와서 아이템 이름 셋팅
                 TextMeshProUGUI lootText = itemSlot_[i].GetComponentInChildren<TextMeshProUGUI>();
                 if (lootText != null)
                 {
