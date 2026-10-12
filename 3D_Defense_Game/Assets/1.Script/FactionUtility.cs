@@ -52,4 +52,16 @@ public static class FactionUtility
         };
     }
 
+    public static string EnemyStageTier(EnemyFactionRank rank)
+    {
+        return rank switch
+        {
+            EnemyFactionRank.Barony => "남작령",
+            EnemyFactionRank.Viscounty => "자작령",
+            EnemyFactionRank.County => "백작령",
+            EnemyFactionRank.Duchy => "공작령",
+            EnemyFactionRank.Kingdom => "왕국",
+            _ => "미지"
+        };
+    }
 }

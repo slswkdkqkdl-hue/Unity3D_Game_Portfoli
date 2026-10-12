@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class EnemyInfocontroller : MonoBehaviour
 {
@@ -9,7 +10,11 @@ public class EnemyInfocontroller : MonoBehaviour
     [SerializeField] private TMP_Text specialNoteText;
     [SerializeField] private TMP_Text enemyCountText;
     [SerializeField] private Image image;
-    // 전리품 UI 리스트 등 추가 가능
+
+    [Header("아이템 슬롯 (최대 6개)")]
+    public GameObject[] itemSlot_ = new GameObject[6];
+
+    public EnemyInfoSO currentSO;
 
     /// <summary>
     /// 적 정보 SO를 받아와 패널에 내용을 채우고 엽니다.
@@ -17,12 +22,18 @@ public class EnemyInfocontroller : MonoBehaviour
     public void Open(EnemyInfoSO enemyInfo)
     {
         if (enemyInfo == null) return;
+        currentSO = enemyInfo;
 
-        settlementNameText.text = enemyInfo.settlementName;
-        factionRankText.text = enemyInfo.factionRank.ToString();
-        specialNoteText.text = enemyInfo.specialNote;
-        enemyCountText.text = $"{enemyInfo.minEnemyCount} ~ {enemyInfo.maxEnemyCount}";
-        image.sprite = enemyInfo.image;
+        string result = FactionUtility.EnemyStageTier(currentSO.factionRank);
+        factionRankText.text = result;
+        settlementNameText.text = currentSO.settlementName;
+        specialNoteText.text = currentSO.specialNote;
+        enemyCountText.text = $"예상 적 병력 : {currentSO.minEnemyCount} ~ {currentSO.maxEnemyCount} Unit";
+        image.sprite = currentSO.image;
+
+        // 전리품 슬롯 셋팅 실행
+        UpdateLootSlots();
+
         gameObject.SetActive(true);
     }
 
@@ -30,9 +41,44 @@ public class EnemyInfocontroller : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
     public void Open()
     {
         gameObject.SetActive(true);
     }
+
     
+
+    /// <summary>
+    /// 전리품 정보를 슬롯에 셋팅하고, 남는 슬롯은 비활성화합니다.
+    /// </summary>
+    public void UpdateLootSlots()
+    {
+        if (currentSO == null || currentSO.mainLoot == null) return;
+
+        int lootCount = currentSO.mainLoot.Count;
+
+        for (int i = 0; i < itemSlot_.Length; i++)
+        {
+            if (itemSlot_[i] == null) continue;
+
+            // 1. 현재 슬롯에 표시할 전리품 데이터가 있는 경우
+            if (i < lootCount)
+            {
+                itemSlot_[i].SetActive(true); // 슬롯 활성화
+
+                // 자식 오브젝트에서 TextMeshProUGUI 컴포넌트 가져와서 아이템 이름 셋팅
+                TextMeshProUGUI lootText = itemSlot_[i].GetComponentInChildren<TextMeshProUGUI>();
+                if (lootText != null)
+                {
+                    lootText.text = currentSO.mainLoot[i].item_name;
+                }
+            }
+            // 2. 표시할 전리품 데이터가 부족한 경우 (남는 슬롯)
+            else
+            {
+                itemSlot_[i].SetActive(false); // 슬롯 비활성화
+            }
+        }
+    }
 }
