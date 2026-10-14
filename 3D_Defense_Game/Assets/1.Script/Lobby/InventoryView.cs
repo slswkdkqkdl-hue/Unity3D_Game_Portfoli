@@ -8,7 +8,7 @@ public class InventoryView : MonoBehaviour
     public int itemSize = 20;
     public GameObject itemSlotPrefab;
     public Transform itemSlotParent;
-
+    [SerializeField]private item_Popup item_Popup;
     private List<ItemRuntimeData> inventoryItems =new List<ItemRuntimeData>();
 
     private List<itemSlot> inventorySlots =new List<itemSlot>();
@@ -110,9 +110,9 @@ public class InventoryView : MonoBehaviour
         for (int i = 0; i < inventorySlots.Count; i++)
         {
             if (i < inventoryItems.Count)
-                inventorySlots[i].Init(inventoryItems[i]);
+                inventorySlots[i].Init(inventoryItems[i],item_Popup);
             else
-                inventorySlots[i].Init(null);
+                inventorySlots[i].Init(null,item_Popup);
         }
     }
 

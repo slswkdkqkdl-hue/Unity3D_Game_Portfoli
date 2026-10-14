@@ -1,21 +1,22 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class itemSlot : MonoBehaviour
+public class itemSlot : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     private ItemRuntimeData runtimeData;
 
     public Image item_;
     public Button button;
-
+    private item_Popup item_Popup;
     // 아이템 보유 개수 표시
     public TextMeshProUGUI item_count;
-
+    
     public Action<ItemRuntimeData> onSlotClicked;
 
-    public void Init(ItemRuntimeData data)
+    public void Init(ItemRuntimeData data,item_Popup pop)
     {
         // 아이템 데이터가 없으면 빈 슬롯
         if (data == null || data.itemData == null)
@@ -36,6 +37,7 @@ public class itemSlot : MonoBehaviour
 
         // 아이템 데이터 저장
         runtimeData = data;
+        item_Popup = pop;
 
         // 아이콘 표시
         item_.sprite = data.itemData.icon;
@@ -63,6 +65,27 @@ public class itemSlot : MonoBehaviour
 
     private void OnClickSlot()
     {
+        item_Popup.Close();  
         onSlotClicked?.Invoke(runtimeData);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (item_Popup == null || runtimeData == null)
+        {
+            return;
+        }
+        item_Popup.Init(runtimeData.itemData);
+        item_Popup.Open();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (item_Popup == null || runtimeData == null)
+        {
+            return;
+        }
+        item_Popup.Close();    
+    }
+
 }

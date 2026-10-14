@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum ItemType
@@ -33,7 +34,9 @@ public class ItemData : ScriptableObject
     public int attack;
     public int defense;
     public float attackSpeed;
-    public float moveSpeed;   
+    public float moveSpeed;
+    [Header("특수 옵션 (부가 효과)")]
+    public List<string> itemOptions = new List<string>(); 
     [Header("드랍/생성용 프리팹")]
     public GameObject itemPrefab; // 3D 필드에 떨어질 때 사용
     [Header("드랍 설정")]

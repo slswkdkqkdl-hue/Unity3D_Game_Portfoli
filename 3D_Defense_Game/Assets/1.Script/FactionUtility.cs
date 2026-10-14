@@ -2,7 +2,9 @@ using UnityEngine;
 
 public static class FactionUtility 
 {
-
+    /// <summary>
+    /// 플레이어 세력에 따른 한글 반환
+    /// </summary>
     public static string FactionName(DomainType type)
     {
         switch (type)
@@ -16,7 +18,9 @@ public static class FactionUtility
         }
         return "";
     }
-
+    /// <summary>
+    /// 플레이어 세력등급에 따른 한글 반환
+    /// </summary>
     public static string FactionTier(DomainTier type, int size)
     {
         if (size <= 5)
@@ -51,7 +55,9 @@ public static class FactionUtility
             _ => "미지"
         };
     }
-
+    /// <summary>
+    /// 적 세력 등급에 다른 한글 반환
+    /// </summary>
     public static string EnemyStageTier(EnemyFactionRank rank)
     {
         return rank switch
@@ -61,6 +67,22 @@ public static class FactionUtility
             EnemyFactionRank.County => "백작령",
             EnemyFactionRank.Duchy => "공작령",
             EnemyFactionRank.Kingdom => "왕국",
+            _ => "미지"
+        };
+    }
+    /// <summary>
+    /// 아이템 등급에 따른 한글 반환
+    /// </summary>
+    public static string ItemRarityName(ItemRarity rarity)
+    {
+        return rarity switch
+        {
+            ItemRarity.Common => "일반",
+            ItemRarity.Uncommon => "고급",
+            ItemRarity.Rare => "희귀",
+            ItemRarity.Epic => "서사",
+            ItemRarity.Mythic => "신화",
+            ItemRarity.Transcendent => "초월",
             _ => "미지"
         };
     }

@@ -2,6 +2,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EquipmentSlot : MonoBehaviour
@@ -66,4 +67,6 @@ public class EquipmentSlot : MonoBehaviour
     {
         onSlotClicked?.Invoke(this);
     }
+
+
 }
