@@ -26,7 +26,14 @@ public class ItemData : ScriptableObject
     [TextArea] public string itemDescription; // 아이템 설명
     public Sprite icon;                 
     public ItemType itemType;
-    public ItemRarity itemRank;    
+    public ItemRarity itemRank;
+    [Header("장비 스탯")]
+    public int hp;
+    public int mp;
+    public int attack;
+    public int defense;
+    public float attackSpeed;
+    public float moveSpeed;   
     [Header("드랍/생성용 프리팹")]
     public GameObject itemPrefab; // 3D 필드에 떨어질 때 사용
     [Header("드랍 설정")]
