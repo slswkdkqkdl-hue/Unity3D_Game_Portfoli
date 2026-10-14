@@ -29,12 +29,12 @@ MonoBehaviour:
   defense: 10
   attackSpeed: 3
   moveSpeed: 2
-  hpPerLevel: 0
-  mpPerLevel: 0
-  attackPerLevel: 0
-  defensePerLevel: 0
-  attackSpeedPerLevel: 0
-  moveSpeedPerLevel: 0
+  hpPerLevel: 100
+  mpPerLevel: 10
+  attackPerLevel: 5
+  defensePerLevel: 3
+  attackSpeedPerLevel: 0.1
+  moveSpeedPerLevel: 0.1
   activeSkills:
   - {fileID: 11400000, guid: 004fb27590a56d541be479e57e4e6558, type: 2}
   - {fileID: 11400000, guid: 42e35cfa1e834ba4e80827b20b4ca9a4, type: 2}

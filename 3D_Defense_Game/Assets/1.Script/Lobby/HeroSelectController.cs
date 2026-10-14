@@ -130,28 +130,68 @@ public class HeroSelectController : MonoBehaviour
     /// </summary>
     private void InitHeroStats()
     {
-        if (currentHero == null)
+        if (currentHero == null || currentHero.heroData == null)
             return;
 
         if (hp != null)
-            hp.text = $"체력 : {currentHero.heroData.hp}";
+            hp.text = $"체력 : {GetCalculatedHp(currentHero)}";
 
         if (mana != null)
-            mana.text = $"마나 : {currentHero.heroData.mp}";
+            mana.text = $"마나 : {GetCalculatedMp(currentHero)}";
 
         if (attack != null)
-            attack.text = $"공격력 : {currentHero.heroData.attack}";
+            attack.text = $"공격력 : {GetCalculatedAttack(currentHero)}";
 
         if (defense != null)
-            defense.text = $"방어력 : {currentHero.heroData.defense}";
+            defense.text = $"방어력 : {GetCalculatedDefense(currentHero)}";
 
         if (moveSpeed != null)
-            moveSpeed.text = $"이동속도 : {currentHero.heroData.moveSpeed}";
+            moveSpeed.text = $"이동속도 : {GetCalculatedMoveSpeed(currentHero):F1}";
 
         if (attackSpeed != null)
-            attackSpeed.text = $"공격속도 : {currentHero.heroData.attackSpeed}";
-        if(level != null)
+            attackSpeed.text = $"공격속도 : {GetCalculatedAttackSpeed(currentHero):F1}";
+
+        if (level != null)
             level.text = $"Level : {currentHero.level}";
+    }
+
+    /// <summary>
+    /// HeroRuntimeData와 HeroData를 조합하여 레벨이 반영된 최종 스탯을 계산
+    /// </summary>
+    private int GetCalculatedHp(HeroRuntimeData runtimeData)
+    {
+        if (runtimeData == null || runtimeData.heroData == null) return 0;
+        return runtimeData.heroData.hp + (runtimeData.heroData.hpPerLevel * runtimeData.level);
+    }
+
+    private int GetCalculatedMp(HeroRuntimeData runtimeData)
+    {
+        if (runtimeData == null || runtimeData.heroData == null) return 0;
+        return runtimeData.heroData.mp + (runtimeData.heroData.mpPerLevel * runtimeData.level);
+    }
+
+    private int GetCalculatedAttack(HeroRuntimeData runtimeData)
+    {
+        if (runtimeData == null || runtimeData.heroData == null) return 0;
+        return runtimeData.heroData.attack + (runtimeData.heroData.attackPerLevel * runtimeData.level);
+    }
+
+    private int GetCalculatedDefense(HeroRuntimeData runtimeData)
+    {
+        if (runtimeData == null || runtimeData.heroData == null) return 0;
+        return runtimeData.heroData.defense + (runtimeData.heroData.defensePerLevel * runtimeData.level);
+    }
+
+    private float GetCalculatedAttackSpeed(HeroRuntimeData runtimeData)
+    {
+        if (runtimeData == null || runtimeData.heroData == null) return 0f;
+        return runtimeData.heroData.attackSpeed + (runtimeData.heroData.attackSpeedPerLevel * runtimeData.level);
+    }
+
+    private float GetCalculatedMoveSpeed(HeroRuntimeData runtimeData)
+    {
+        if (runtimeData == null || runtimeData.heroData == null) return 0f;
+        return runtimeData.heroData.moveSpeed + (runtimeData.heroData.moveSpeedPerLevel * runtimeData.level);
     }
 
     /// <summary>
