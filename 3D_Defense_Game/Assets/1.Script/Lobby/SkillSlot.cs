@@ -2,8 +2,9 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class SkillSlot : MonoBehaviour
+public class SkillSlot : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     [Header("UI Components")]
     public TextMeshProUGUI Skill_Name;
@@ -13,7 +14,7 @@ public class SkillSlot : MonoBehaviour
 
     public SkillData boundSkill { get; private set; } 
     private Action<SkillData, SkillSlot> onClickCallback;
-
+    private SkillPopUp skillPopUp;
     public bool isEquipped { get; private set; } = false;
 
     // 기본 배경 색상 (#59B797)
@@ -23,7 +24,7 @@ public class SkillSlot : MonoBehaviour
     /// <summary>
     /// 스킬 데이터 및 클릭 이벤트 초기화
     /// </summary>
-    public void Init(SkillData data, Action<SkillData, SkillSlot> actionToPerform)
+    public void Init(SkillData data, Action<SkillData, SkillSlot> actionToPerform,SkillPopUp popUp)
     {
         boundSkill = data;
         onClickCallback = actionToPerform;
@@ -33,9 +34,11 @@ public class SkillSlot : MonoBehaviour
         Skill_SP.text = $"{data.spCost}";
 
         SetSelectedVisual(false);
+        SetSkillPopUp(popUp);
 
         slotButton.onClick.RemoveAllListeners();
         slotButton.onClick.AddListener(OnButtonClicked);
+        
     }
 
     /// <summary>
@@ -64,5 +67,27 @@ public class SkillSlot : MonoBehaviour
     {
         isEquipped = state;
         SetSelectedVisual(isEquipped);
+    }
+
+
+
+    public void SetSkillPopUp(SkillPopUp popUp)
+    {
+        skillPopUp = popUp;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (boundSkill == null || skillPopUp == null)
+            return;
+
+        skillPopUp.Init(boundSkill);
+        skillPopUp.Open();
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (skillPopUp != null)
+            skillPopUp.Close();
     }
 }

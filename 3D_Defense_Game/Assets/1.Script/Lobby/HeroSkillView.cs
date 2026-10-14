@@ -19,7 +19,7 @@ public class HeroSkillView : MonoBehaviour
     public List<SkillSlot> passiveSkillSlots = new List<SkillSlot>();
 
     [SerializeField]private HeroRuntimeData hero;
-
+    [SerializeField]private SkillPopUp skillPopUp;
 
     public void Init(HeroRuntimeData data)
     {   
@@ -29,13 +29,6 @@ public class HeroSkillView : MonoBehaviour
         Renewal(data);
 
     }  
-
-
-
-
-
-
-
     public void DisplaySkills(HeroRuntimeData data)
     {   
         
@@ -62,7 +55,7 @@ public class HeroSkillView : MonoBehaviour
             if (i < activeDatas.Count)
             {
                 activeSkillSlots[i].gameObject.SetActive(true);
-                activeSkillSlots[i].Init(activeDatas[i], HandleWhenSkillClicked);
+                activeSkillSlots[i].Init(activeDatas[i], HandleWhenSkillClicked,skillPopUp);
 
                 // 💡 변경점: boundSkill 대신 원본 데이터 activeDatas[i].skill_Id를 직접 비교
                 bool isEquipped = hero.selectedActiveSkill.Contains(activeDatas[i].skill_Id);
@@ -80,7 +73,7 @@ public class HeroSkillView : MonoBehaviour
             if (i < passiveDatas.Count)
             {
                 passiveSkillSlots[i].gameObject.SetActive(true);
-                passiveSkillSlots[i].Init(passiveDatas[i], HandleWhenSkillClicked);
+                passiveSkillSlots[i].Init(passiveDatas[i], HandleWhenSkillClicked,skillPopUp);
 
                 // 💡 변경점: boundSkill 대신 원본 데이터 passiveDatas[i].skill_Id를 직접 비교
                 bool isEquipped = hero.selectedPassiveSkill.Contains(passiveDatas[i].skill_Id);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skill_Id: 15
   skill_name: "\uAE68\uB2EC\uC74C"
-  description: "\uC804\uD22C \uC885\uB8CC \uC2DC 10% \uD655\uB960\uB85C SP \uD68D\uB4DD"
+  description: "\uC804\uD22C \uC885\uB8CC \uC2DC 10% \uD655\uB960\uB85C \nSP \uD68D\uB4DD"
   icon: {fileID: 0}
   skillType: 1
   spCost: 24
