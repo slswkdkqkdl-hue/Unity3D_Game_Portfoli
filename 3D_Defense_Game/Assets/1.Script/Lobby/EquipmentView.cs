@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,42 +9,22 @@ public class EquipmentView : MonoBehaviour
     public EquipmentSlot amore;
 
     private HeroRuntimeData currentHero;
+    private List<ItemRuntimeData> items;
+
     private InventoryView inventoryView;
     private HeroSelectController heroSelectController;
-
     private InventoryEquipmentService service;
 
-    // 아이템 ID로 ItemData 검색
-    private Dictionary<int, ItemData> itemDataById =
-        new Dictionary<int, ItemData>();
-
-    /// <summary>
-    /// 장비 UI 초기화
-    /// </summary>
+    // 초기화
     public void Init(
-    List<ItemRuntimeData> items,
-    InventoryView inventory,
-    HeroSelectController controller,
-    InventoryEquipmentService sharedService)
+        List<ItemRuntimeData> items,
+        InventoryView inventory,
+        HeroSelectController controller,
+        InventoryEquipmentService sharedService)
     {
+        this.items = items;
         inventoryView = inventory;
         heroSelectController = controller;
-
-        itemDataById.Clear();
-
-        if (items != null)
-        {
-            foreach (ItemRuntimeData item in items)
-            {
-                if (item == null || item.itemData == null)
-                    continue;
-
-                int itemId = item.itemData.item_Id;
-
-                if (!itemDataById.ContainsKey(itemId))
-                    itemDataById.Add(itemId, item.itemData);
-            }
-        }
         service = sharedService;
 
         if (service == null)
@@ -67,9 +46,7 @@ public class EquipmentView : MonoBehaviour
         amore?.Clear();
     }
 
-    /// <summary>
-    /// 선택한 영웅의 장비 표시
-    /// </summary>
+    // 선택한 영웅의 장비 표시
     public void ShowHero(HeroRuntimeData hero)
     {
         currentHero = hero;
@@ -81,86 +58,69 @@ public class EquipmentView : MonoBehaviour
             return;
         }
 
-        ItemData weaponData = GetItemData(currentHero.equippedWeaponId);
-        ItemData armorData = GetItemData(currentHero.equippedArmorId);
-
-        weapon?.Init(weaponData);
-        amore?.Init(armorData);
+        weapon?.Init(GetItemData(currentHero.equippedWeaponId));
+        amore?.Init(GetItemData(currentHero.equippedArmorId));
     }
 
-    /// <summary>
-    /// ID로 ItemData 검색
-    /// </summary>
+    // 아이템 ID로 데이터 찾기
     private ItemData GetItemData(int itemId)
     {
-        if (itemId <= 0)
+        if (items == null || itemId <= 0)
             return null;
 
-        if (itemDataById.TryGetValue(itemId, out ItemData data))
-            return data;
+        foreach (ItemRuntimeData item in items)
+        {
+            if (item == null || item.itemData == null)
+                continue;
+
+            if (item.itemData.item_Id == itemId)
+                return item.itemData;
+        }
 
         return null;
     }
 
-    /// <summary>
-    /// 인벤토리 아이템 클릭
-    /// </summary>
-    private void HandleInventoryItemClicked(ItemRuntimeData clickedItem)
+    // 인벤토리 아이템 클릭: 장착
+    private void HandleInventoryItemClicked(ItemRuntimeData item)
     {
         if (currentHero == null ||
-            clickedItem == null ||
-            clickedItem.itemData == null ||
+            item == null ||
+            item.itemData == null ||
             service == null)
             return;
 
-        ItemData data = clickedItem.itemData;
-
-        bool success = service.TryEquipItem(currentHero, data);
-
-        if (!success)
-            return;
-
-        itemDataById[data.item_Id] = data;
-
-        RefreshEquipmentAndInventory();
+        if (service.TryEquipItem(currentHero, item.itemData))
+            RefreshUI();
     }
 
-    /// <summary>
-    /// 장비 슬롯 클릭 시 장착 해제
-    /// </summary>
-    private void HandleEquipmentSlotClicked(EquipmentSlot clickedSlot)
+    // 장비 슬롯 클릭: 장착 해제
+    private void HandleEquipmentSlotClicked(EquipmentSlot slot)
     {
-        if (currentHero == null || clickedSlot == null || service == null)
+        if (currentHero == null || slot == null || service == null)
             return;
 
-        bool isWeapon = clickedSlot == weapon;
+        bool isWeapon = slot == weapon;
 
-        if (!isWeapon && clickedSlot != amore)
+        if (!isWeapon && slot != amore)
             return;
 
         int itemId = isWeapon
             ? currentHero.equippedWeaponId
             : currentHero.equippedArmorId;
 
-        // 빈 슬롯 클릭 시 인벤토리 패널 열기
+        // 빈 슬롯이면 인벤토리 패널 열기
         if (itemId <= 0)
         {
             heroSelectController?.OpenInventoryPanel();
             return;
         }
 
-        bool success = service.TryUnequipItem(currentHero, isWeapon);
-
-        if (!success)
-            return;
-
-        RefreshEquipmentAndInventory();
+        if (service.TryUnequipItem(currentHero, isWeapon))
+            RefreshUI();
     }
 
-    /// <summary>
-    /// 장비 및 인벤토리 UI 갱신
-    /// </summary>
-    private void RefreshEquipmentAndInventory()
+    // 장비와 인벤토리 UI 갱신
+    private void RefreshUI()
     {
         ShowHero(currentHero);
         inventoryView?.RefreshInventorySlots();
