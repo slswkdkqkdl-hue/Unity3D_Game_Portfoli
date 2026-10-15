@@ -72,7 +72,7 @@ public class HeroSelectController : MonoBehaviour
         inventoryEquipmentService = new InventoryEquipmentService();
         inventoryEquipmentService.Init(items,cachedHeroList,inventoryView.itemSize);
 
-        inventoryView.Init(items, inventoryEquipmentService);
+        inventoryView.Init(inventoryEquipmentService);
         equipmentView.Init(items,inventoryView,this,inventoryEquipmentService);
 
         CreateHeroSlots();

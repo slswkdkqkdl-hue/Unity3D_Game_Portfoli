@@ -19,9 +19,7 @@ public class InventoryView : MonoBehaviour
     /// <summary>
     /// 인벤토리 초기화
     /// </summary>
-    public void Init(
-        List<ItemRuntimeData> items,
-        InventoryEquipmentService sharedService)
+    public void Init(InventoryEquipmentService sharedService)
     {
         service = sharedService;
 

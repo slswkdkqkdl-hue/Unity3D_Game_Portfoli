@@ -16,11 +16,7 @@ public class EquipmentView : MonoBehaviour
     private InventoryEquipmentService service;
 
     // 초기화
-    public void Init(
-        List<ItemRuntimeData> items,
-        InventoryView inventory,
-        HeroSelectController controller,
-        InventoryEquipmentService sharedService)
+    public void Init(List<ItemRuntimeData> items,InventoryView inventory,HeroSelectController controller,InventoryEquipmentService sharedService)
     {
         this.items = items;
         inventoryView = inventory;
@@ -104,9 +100,7 @@ public class EquipmentView : MonoBehaviour
         if (!isWeapon && slot != amore)
             return;
 
-        int itemId = isWeapon
-            ? currentHero.equippedWeaponId
-            : currentHero.equippedArmorId;
+        int itemId = isWeapon? currentHero.equippedWeaponId: currentHero.equippedArmorId;
 
         // 빈 슬롯이면 인벤토리 패널 열기
         if (itemId <= 0)
