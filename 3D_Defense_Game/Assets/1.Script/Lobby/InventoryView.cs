@@ -11,18 +11,15 @@ public class InventoryView : MonoBehaviour
 
     [SerializeField] private item_Popup item_Popup;
 
-    // 전체 보유 아이템 데이터
-    // 장착해도 수량을 변경하지 않는다.
-    private List<ItemRuntimeData> inventoryItems =
-        new List<ItemRuntimeData>();
+    // 전체 보유 아이템 데이터 
+    // 원본가져옴 요거는 변하지않는다 
+    private List<ItemRuntimeData> inventoryItems = new List<ItemRuntimeData>();
 
     // 전체 영웅 목록
     // 장착 중인 아이템 수량을 계산할 때 사용한다.
-    private List<HeroRuntimeData> heroes =
-        new List<HeroRuntimeData>();
+    private List<HeroRuntimeData> heroes = new List<HeroRuntimeData>();
 
-    private List<itemSlot> inventorySlots =
-        new List<itemSlot>();
+    private List<itemSlot> inventorySlots = new List<itemSlot>();
 
     public Action<ItemRuntimeData> OnItemSlotClicked;
 
@@ -30,9 +27,7 @@ public class InventoryView : MonoBehaviour
     /// <summary>
     /// 인벤토리 초기화
     /// </summary>
-    public void Init(
-        List<ItemRuntimeData> items,
-        List<HeroRuntimeData> heroDataList)
+    public void Init(List<ItemRuntimeData> items,List<HeroRuntimeData> heroDataList)
     {
         inventoryItems = items ?? new List<ItemRuntimeData>();
         heroes = heroDataList ?? new List<HeroRuntimeData>();
@@ -252,8 +247,7 @@ public class InventoryView : MonoBehaviour
         if (inventoryItems == null)
             return;
 
-        List<ItemRuntimeData> displayItems =
-            new List<ItemRuntimeData>();
+        List<ItemRuntimeData> displayItems = new List<ItemRuntimeData>();
 
         for (int i = 0; i < inventoryItems.Count; i++)
         {
@@ -262,7 +256,7 @@ public class InventoryView : MonoBehaviour
             if (item == null || item.itemData == null)
                 continue;
 
-            int itemId = item.itemData.item_Id;
+            int itemId = item.itemData.item_Id; 
 
             // 같은 ID를 가진 아이템은 슬롯 하나에만 표시
             if (HasSameItemBeforeIndex(i, itemId))
