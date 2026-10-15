@@ -5,7 +5,6 @@ public class LobbyManager : MonoBehaviour
 
     public static LobbyManager I;
 
-    public UIManager_Play uIManager_;
 
     private PlayerSessionData sessionData;
     
@@ -14,7 +13,7 @@ public class LobbyManager : MonoBehaviour
     [SerializeField]private UpgradeController upgrade; // 업글레이드 관리
     [SerializeField]private MapManager mapManager; // 각 스테이지 활성화
     [SerializeField]private TeamCompositionController infocontroller; // 적 정보패널에 에서 캐릭터 슬룻 생성
-
+    [SerializeField]private UIManager_Lobsby uIManager_;
 
     private void Awake()
     {

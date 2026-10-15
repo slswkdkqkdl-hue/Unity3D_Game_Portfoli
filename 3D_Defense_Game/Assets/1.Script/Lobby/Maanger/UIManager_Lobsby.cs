@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager_Play : MonoBehaviour
+public class UIManager_Lobsby : MonoBehaviour
 {
     [Header("패널")]
     [SerializeField] private GameObject faction_Panl;
