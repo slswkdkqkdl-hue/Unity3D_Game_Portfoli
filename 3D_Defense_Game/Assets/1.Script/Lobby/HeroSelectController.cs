@@ -27,6 +27,7 @@ public class HeroSelectController : MonoBehaviour
     [SerializeField]private GameObject item_panl;
 
     private List<HeroRuntimeData> cachedHeroList;
+    private InventoryEquipmentService inventoryEquipmentService;
 
     void OnEnable()
     {
@@ -62,11 +63,27 @@ public class HeroSelectController : MonoBehaviour
         ClearSlots();
         OpenHeroPanel();
 
-        // 1. 인벤토리 초기화
-        inventoryView.Init(items, cachedHeroList);
+        // 1. 공용 서비스 생성 및 초기화
+        inventoryEquipmentService = new InventoryEquipmentService();
 
-        // 2. 장비 초기화
-        equipmentView.Init(cachedHeroList, items, inventoryView,this);
+        inventoryEquipmentService.Init(
+            items,
+            cachedHeroList,
+            inventoryView.itemSize);
+
+        // 2. 인벤토리 초기화
+        inventoryView.Init(
+            items,
+            cachedHeroList,
+            inventoryEquipmentService);
+
+        // 3. 장비 초기화
+        equipmentView.Init(
+            cachedHeroList,
+            items,
+            inventoryView,
+            this,
+            inventoryEquipmentService);
 
         // 3. 영웅 슬롯 생성
         CreateHeroSlot();

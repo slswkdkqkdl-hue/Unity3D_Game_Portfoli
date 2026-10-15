@@ -62,7 +62,7 @@ public class UpgradeInfo : MonoBehaviour
         int spcost = dataSO.GetSPlevel(targetLevel);
         float state = dataSO.GetStatBonus(targetLevel);
 
-        Upgrande_State.text = state == 0? $"소모 SP : {spcost}": $"상승치 : {state}         소모 SP : {spcost}";
+        Upgrande_State.text = state == 0? $"소모 NP : {spcost}": $"상승치 : {state}         소모 NP : {spcost}";
     
     }
 
