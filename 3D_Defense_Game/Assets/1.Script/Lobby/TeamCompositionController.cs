@@ -132,4 +132,18 @@ public class TeamCompositionController : MonoBehaviour
             }
         }
     }
+    public void SaveSelectedHeroes()
+    {
+        BattleEntryData.selectedHeroes.Clear();
+
+        foreach (var teamSlot in slot)
+        {
+            if (teamSlot.currentData == null)
+                continue;
+
+            BattleEntryData.selectedHeroes.Add(teamSlot.currentData);
+        }
+
+        Debug.Log($"출전 캐릭터 수: {BattleEntryData.selectedHeroes.Count}");
+    }
 }

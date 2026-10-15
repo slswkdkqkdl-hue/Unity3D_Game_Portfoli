@@ -13,7 +13,8 @@ public class EnemyInfoPanl : MonoBehaviour
     [SerializeField] private Image image;
     [Header("아이템 슬롯 (최대 6개)")]
     public GameObject[] itemSlot_ = new GameObject[6];
-
+    [Header("플레이 씬 이동 버튼")]
+    public SceneType sceneType = SceneType.PlayScreen;
     public TeamCompositionController Controller;
     private EnemyInfoSO currentSO;
 
@@ -82,5 +83,20 @@ public class EnemyInfoPanl : MonoBehaviour
                 itemSlot_[i].SetActive(false); // 슬롯 비활성화
             }
         }
+    }
+    public void OnClickBattleStart()
+    {
+        // 선택한 캐릭터 저장
+        Controller.SaveSelectedHeroes();
+
+        // 캐릭터가 한 명도 없으면 전투 시작 방지
+        if (BattleEntryData.selectedHeroes.Count == 0)
+        {
+            Debug.LogWarning("출전할 캐릭터를 선택해주세요.");
+            return;
+        }
+
+        // 전투 씬 이동
+        LoadingManager.LoadScene(sceneType,true);
     }
 }

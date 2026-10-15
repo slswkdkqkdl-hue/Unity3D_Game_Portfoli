@@ -9255,7 +9255,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2013329487}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager_Play, Assembly-CSharp
         m_MethodName: InitPanels
         m_Mode: 1
@@ -22994,7 +22994,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1303628118}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2144922258}
+        m_TargetAssemblyTypeName: EnemyInfoPanl, Assembly-CSharp
+        m_MethodName: OnClickBattleStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1303628118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30204,7 +30216,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2013329487}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager_Play, Assembly-CSharp
         m_MethodName: InitPanels
         m_Mode: 1
@@ -35826,11 +35838,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a85c799dec181694c9812837c1859b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayManager
-  uIManager_: {fileID: 2013329487}
   heroSelect: {fileID: 1095256636}
   upgrade: {fileID: 469981846}
   mapManager: {fileID: 1484491954}
   infocontroller: {fileID: 2144922259}
+  uIManager_: {fileID: 2013329487}
 --- !u!1 &1989732240
 GameObject:
   m_ObjectHideFlags: 0
@@ -36507,9 +36519,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2013329485}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3343902a737e2d47b5dad4d10c6656c, type: 3}
+  m_Script: {fileID: 11500000, guid: 93c24a293d3a54f4994ed549060da0e8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UIManager_Play
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager_Lobsby
   faction_Panl: {fileID: 469981841}
   Hero_Panl: {fileID: 1095256632}
   Save_Panl: {fileID: 4131288881240750033}
@@ -38496,6 +38508,7 @@ MonoBehaviour:
   - {fileID: 114261032}
   - {fileID: 1490935507}
   - {fileID: 1140467397}
+  sceneType: 3
   Controller: {fileID: 2144922259}
 --- !u!114 &2144922259
 MonoBehaviour:
