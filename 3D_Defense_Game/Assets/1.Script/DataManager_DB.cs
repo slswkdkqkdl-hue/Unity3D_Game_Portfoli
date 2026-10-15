@@ -298,15 +298,6 @@ public partial class DataManager : MonoBehaviour
             );
         }
 
-        // 2. 장착 중인 무기도 아이템 목록에 추가
-        foreach (HeroRuntimeData hero in sessionData.heroes)
-        {
-            if (hero == null)
-                continue;
-
-            AddItemSaveData(hero.equippedWeaponId, 1);
-            AddItemSaveData(hero.equippedArmorId, 1);
-        }
 
         Debug.Log("[DataManager] 세션 데이터 → 세이브 데이터 변환 완료");
     }

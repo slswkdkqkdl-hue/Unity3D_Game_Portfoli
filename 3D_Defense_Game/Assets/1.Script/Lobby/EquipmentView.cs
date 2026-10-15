@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,22 +13,27 @@ public class EquipmentView : MonoBehaviour
     private InventoryView inventoryView;
     private HeroSelectController heroSelectController;
 
-    // 인벤토리에서 제거된 장비의 ItemData도 기억
+    // 아이템 ID로 ItemData를 검색하기 위한 캐시
     private Dictionary<int, ItemData> itemDataById =
         new Dictionary<int, ItemData>();
 
 
     /// <summary>
-    /// 최초 초기화
+    /// 장비 UI 초기화
     /// </summary>
-    public void Init(List<HeroRuntimeData> heroDataList,List<ItemRuntimeData> items,InventoryView inventory,HeroSelectController controller)
+    public void Init(
+        List<HeroRuntimeData> heroDataList,
+        List<ItemRuntimeData> items,
+        InventoryView inventory,
+        HeroSelectController controller)
     {
         inventoryView = inventory;
         heroSelectController = controller;
+
         itemDataById.Clear();
 
-        // 1. 아이템 원본 데이터 캐싱
-        // 장착 아이템을 인벤토리에서 제거하기 전에 저장해야 함
+        // 전체 보유 아이템의 ItemData를 캐싱한다.
+        // 장착된 아이템도 보유 목록에 남아 있으므로 찾을 수 있다.
         if (items != null)
         {
             foreach (ItemRuntimeData item in items)
@@ -37,63 +41,29 @@ public class EquipmentView : MonoBehaviour
                 if (item == null || item.itemData == null)
                     continue;
 
-                itemDataById[item.itemData.item_Id] =
-                    item.itemData;
+                int itemId = item.itemData.item_Id;
+
+                if (!itemDataById.ContainsKey(itemId))
+                {
+                    itemDataById.Add(itemId, item.itemData);
+                }
             }
         }
 
-        // 2. 장비 슬롯 클릭 이벤트 연결
-        if (weapon != null)
-        {
-            weapon.SetClickHandler(HandleEquipmentSlotClicked);
-        }
+        // 장비 슬롯 이벤트 연결
+        weapon?.SetClickHandler(HandleEquipmentSlotClicked);
+        amore?.SetClickHandler(HandleEquipmentSlotClicked);
 
-        if (amore != null)
-        {
-            amore.SetClickHandler(HandleEquipmentSlotClicked);
-        }
-
-        // 3. 인벤토리 클릭 이벤트 연결
+        // 인벤토리 클릭 이벤트 연결
         if (inventoryView != null)
         {
             inventoryView.OnItemSlotClicked -= HandleInventoryItemClicked;
             inventoryView.OnItemSlotClicked += HandleInventoryItemClicked;
         }
 
-        // 4. 저장 데이터에는 장착 아이템도 포함되어 있으므로
-        // 장착 아이템을 인벤토리에서 한 번 차감
-        if (heroDataList != null && inventoryView != null)
-        {
-            foreach (HeroRuntimeData hero in heroDataList)
-            {
-                if (hero == null)
-                    continue;
-
-                RemoveEquippedItem(hero.equippedWeaponId);
-                RemoveEquippedItem(hero.equippedArmorId);
-            }
-        }
-
+        // 중요: 여기서 아이템 수량을 변경하지 않는다.
         weapon?.Clear();
         amore?.Clear();
-    }
-
-
-    /// <summary>
-    /// 장착 아이템을 인벤토리에서 한 개 제거
-    /// </summary>
-    private void RemoveEquippedItem(int itemId)
-    {
-        if (itemId <= 0)
-            return;
-
-        bool removed = inventoryView.TryRemoveOneItem(itemId);
-
-        if (!removed)
-        {
-            Debug.LogWarning(
-                $"[EquipmentView] 장착 아이템 ID {itemId}를 인벤토리에서 찾지 못했습니다.");
-        }
     }
 
 
@@ -117,13 +87,13 @@ public class EquipmentView : MonoBehaviour
         ItemData armorData =
             GetItemData(currentHero.equippedArmorId);
 
-        weapon?.Init(CreateRuntimeData(weaponData));
-        amore?.Init(CreateRuntimeData(armorData));
+        weapon?.Init(weaponData);
+        amore?.Init(armorData);
     }
 
 
     /// <summary>
-    /// 캐싱된 ItemData 검색
+    /// ID로 ItemData 검색
     /// </summary>
     private ItemData GetItemData(int itemId)
     {
@@ -137,20 +107,6 @@ public class EquipmentView : MonoBehaviour
     }
 
 
-    /// <summary>
-    /// 장비 슬롯 표시용 데이터 생성
-    /// </summary>
-    private ItemRuntimeData CreateRuntimeData(ItemData data)
-    {
-        if (data == null)
-            return null;
-
-        return new ItemRuntimeData
-        {
-            itemData = data,
-            size = 1
-        };
-    }
 
 
     /// <summary>
@@ -179,64 +135,53 @@ public class EquipmentView : MonoBehaviour
 
 
     /// <summary>
-    /// 무기 또는 방어구 장착
+    /// 무기 또는 방어구 장착 및 교체
+    /// 실제 보유 아이템 수량은 변경하지 않는다.
     /// </summary>
     private void EquipItem(ItemData newItem, bool isWeapon)
     {
-        if (newItem == null || inventoryView == null)
+        if (newItem == null || currentHero == null)
             return;
 
         int newItemId = newItem.item_Id;
 
+        // 같은 아이템을 이미 장착했다면 처리하지 않는다.
         int oldItemId = isWeapon
             ? currentHero.equippedWeaponId
             : currentHero.equippedArmorId;
 
-        // 이미 같은 아이템을 장착하고 있으면 무시
         if (oldItemId == newItemId)
             return;
 
-        // 기존 장비 데이터 검색
-        ItemData oldItemData = GetItemData(oldItemId);
-
-        if (oldItemId > 0 && oldItemData == null)
+        // 실제로 장착 가능한 수량이 있는지 확인한다.
+        if (inventoryView == null ||
+            inventoryView.GetAvailableItemCount(newItemId) <= 0)
         {
-            Debug.LogWarning("기존 장비 데이터를 찾을 수 없습니다.");
             return;
         }
 
-        // 새 아이템을 인벤토리에서 한 개 제거
-        if (!inventoryView.TryRemoveOneItem(newItemId))
-            return;
-
-        // 기존 장비를 인벤토리에 반환
-        if (oldItemData != null)
-        {
-            if (!inventoryView.TryAddItem(oldItemData))
-            {
-                // 교체에 실패하면 새 아이템을 원상복구
-                inventoryView.TryAddItem(newItem);
-                return;
-            }
-        }
-
-        // 새 아이템 데이터 기억
+        // UI에서도 해당 아이템을 검색할 수 있도록 캐싱한다.
         itemDataById[newItemId] = newItem;
 
-        // 영웅 장착 ID 변경
+        // 장착 상태만 변경한다.
         if (isWeapon)
+        {
             currentHero.equippedWeaponId = newItemId;
+        }
         else
+        {
             currentHero.equippedArmorId = newItemId;
+        }
 
+        // 장비 UI 및 인벤토리 표시 갱신
         ShowHero(currentHero);
+        inventoryView.RefreshInventorySlots();
     }
 
 
     /// <summary>
     /// 장비 슬롯 클릭 시 장착 해제
     /// </summary>
-
     private void HandleEquipmentSlotClicked(EquipmentSlot clickedSlot)
     {
         if (currentHero == null || clickedSlot == null)
@@ -254,38 +199,24 @@ public class EquipmentView : MonoBehaviour
         // 장비가 비어 있으면 인벤토리 패널 열기
         if (itemId <= 0)
         {
-            heroSelectController.OpenInventoryPanel();
+            heroSelectController?.OpenInventoryPanel();
             return;
         }
 
-        // 장착된 장비 데이터 가져오기
-        ItemData data = clickedSlot.RuntimeData?.itemData;
-
-        if (data == null)
-            data = GetItemData(itemId);
-
-        if (data == null)
-        {
-            Debug.LogWarning("해제할 장비 데이터를 찾을 수 없습니다.");
-            return;
-        }
-
-        // 인벤토리가 가득 차면 장착 해제하지 않음
-        if (!inventoryView.TryAddItem(data))
-        {
-            Debug.Log("인벤토리가 가득 차서 장비를 해제할 수 없습니다.");
-            return;
-        }
-
-        // 장착 ID 초기화
+        // 장착 ID만 초기화
         if (isWeapon)
+        {
             currentHero.equippedWeaponId = NoItemId;
+        }
         else
+        {
             currentHero.equippedArmorId = NoItemId;
+        }
 
+        // UI 갱신
         ShowHero(currentHero);
+        inventoryView?.RefreshInventorySlots();
     }
-
 
 
     private void OnDestroy()

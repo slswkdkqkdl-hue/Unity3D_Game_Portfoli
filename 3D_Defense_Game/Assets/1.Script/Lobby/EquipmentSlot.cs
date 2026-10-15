@@ -1,22 +1,16 @@
-
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class EquipmentSlot : MonoBehaviour
 {
+    [Header("UI")]
     public TextMeshProUGUI item_name;
     public Button button;
 
-    // 현재 슬롯에 표시하는 아이템
-    [SerializeField] private ItemRuntimeData runtimeData;
-
     // EquipmentView에 슬롯 클릭을 전달
     private Action<EquipmentSlot> onSlotClicked;
-
-    public ItemRuntimeData RuntimeData => runtimeData;
 
 
     private void Awake()
@@ -32,41 +26,56 @@ public class EquipmentSlot : MonoBehaviour
     }
 
 
-    // 클릭 이벤트 연결
+    /// <summary>
+    /// 클릭 이벤트 연결
+    /// </summary>
     public void SetClickHandler(Action<EquipmentSlot> callback)
     {
         onSlotClicked = callback;
     }
 
 
-    // 아이템 표시
-    public void Init(ItemRuntimeData data)
+    /// <summary>
+    /// 아이템 표시
+    /// 장착 상태는 저장하지 않고 이름만 표시한다.
+    /// </summary>
+    public void Init(ItemData itemData)
     {
-        runtimeData = data;
+        if (item_name == null)
+            return;
 
-        bool hasItem = data != null && data.itemData != null;
-
-        if (item_name != null)
+        if (itemData == null)
         {
-            item_name.text = hasItem? data.itemData.itemName: "no item";
+            item_name.text = "no item";
+            return;
         }
+
+        item_name.text = itemData.itemName;
     }
 
 
-    // 슬롯 비우기
+    /// <summary>
+    /// 슬롯 비우기
+    /// </summary>
     public void Clear()
     {
-        runtimeData = null;
-
         if (item_name != null)
             item_name.text = "no item";
     }
 
 
+    /// <summary>
+    /// 슬롯 클릭
+    /// </summary>
     private void OnClickSlot()
     {
         onSlotClicked?.Invoke(this);
     }
 
 
+    private void OnDestroy()
+    {
+        if (button != null)
+            button.onClick.RemoveListener(OnClickSlot);
+    }
 }

@@ -52,9 +52,7 @@ public class HeroSelectController : MonoBehaviour
     /// <summary>
     /// 전달받은 영웅 데이터 리스트로 슬롯 목록을 초기화  씬에 들어왔을대 맨처음 한번만실행
     /// </summary>
-    public void Init(
-        List<HeroRuntimeData> heroDataList,
-        List<ItemRuntimeData> items)
+    public void Init(List<HeroRuntimeData> heroDataList,List<ItemRuntimeData> items)
     {
         cachedHeroList = heroDataList;
 
@@ -65,7 +63,7 @@ public class HeroSelectController : MonoBehaviour
         OpenHeroPanel();
 
         // 1. 인벤토리 초기화
-        inventoryView.Init(items);
+        inventoryView.Init(items, cachedHeroList);
 
         // 2. 장비 초기화
         equipmentView.Init(cachedHeroList, items, inventoryView,this);
