@@ -18,5 +18,14 @@ MonoBehaviour:
     \uC120\uBD09\uC7A5\uC6A9 \uC911\uAC11\uC637"
   icon: {fileID: -4374215236208778123, guid: 8ad3eab565533da4e92cea82128d76e9, type: 3}
   itemType: 1
+  itemRank: 0
+  hp: 50
+  mp: 50
+  attack: 50
+  defense: 50
+  attackSpeed: 50
+  moveSpeed: 50
+  itemOptions:
+  - "[\uC120\uBD09\uC7A5] \uCC98\uC74C \uCD9C\uACA9\uC2DC \uBC29\uC5B4\uB825 10 \uC0C1\uC2B9"
   itemPrefab: {fileID: 0}
   dropChance: 50
