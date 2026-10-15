@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +12,7 @@ public class InventoryView : MonoBehaviour
     [SerializeField] private item_Popup item_Popup;
 
     private InventoryEquipmentService service;
-
-    private List<HeroRuntimeData> heroes = new List<HeroRuntimeData>();
-    private List<itemSlot> inventorySlots = new List<itemSlot>();
+    private readonly List<itemSlot> inventorySlots = new List<itemSlot>();
 
     public Action<ItemRuntimeData> OnItemSlotClicked;
 
@@ -24,7 +21,6 @@ public class InventoryView : MonoBehaviour
     /// </summary>
     public void Init(
         List<ItemRuntimeData> items,
-        List<HeroRuntimeData> heroDataList,
         InventoryEquipmentService sharedService)
     {
         service = sharedService;
@@ -51,7 +47,7 @@ public class InventoryView : MonoBehaviour
     }
 
     /// <summary>
-    /// 장착 가능한 아이템 수량 조회
+    /// 인벤토리에 표시 가능한 아이템 수량 조회
     /// </summary>
     public int GetAvailableItemCount(int itemId)
     {
@@ -62,7 +58,7 @@ public class InventoryView : MonoBehaviour
     }
 
     /// <summary>
-    /// 실제 보유 아이템 한 개 소비
+    /// 보유 아이템 한 개 소비
     /// </summary>
     public bool TryRemoveOneItem(int itemId)
     {
@@ -78,7 +74,7 @@ public class InventoryView : MonoBehaviour
     }
 
     /// <summary>
-    /// 실제 보유 아이템 한 개 추가
+    /// 보유 아이템 한 개 추가
     /// </summary>
     public bool TryAddItem(ItemData itemData)
     {
@@ -95,7 +91,6 @@ public class InventoryView : MonoBehaviour
 
     /// <summary>
     /// 인벤토리 UI 갱신
-    /// 표시용 목록 생성은 서비스에 맡긴다.
     /// </summary>
     public void RefreshInventorySlots()
     {
@@ -108,15 +103,11 @@ public class InventoryView : MonoBehaviour
         {
             if (i < displayItems.Count && i < itemSize)
             {
-                inventorySlots[i].Init(
-                    displayItems[i],
-                    item_Popup);
+                inventorySlots[i].Init(displayItems[i], item_Popup);
             }
             else
             {
-                inventorySlots[i].Init(
-                    null,
-                    item_Popup);
+                inventorySlots[i].Init(null, item_Popup);
             }
         }
     }

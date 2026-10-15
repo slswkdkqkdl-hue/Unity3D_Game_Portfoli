@@ -23,7 +23,6 @@ public class EquipmentView : MonoBehaviour
     /// 장비 UI 초기화
     /// </summary>
     public void Init(
-    List<HeroRuntimeData> heroDataList,
     List<ItemRuntimeData> items,
     InventoryView inventory,
     HeroSelectController controller,
