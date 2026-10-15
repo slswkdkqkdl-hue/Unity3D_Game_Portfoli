@@ -93,9 +93,7 @@ public class InventoryEquipmentService
         if (!isWeapon && !isArmor)
             return false;
 
-        int currentItemId = isWeapon
-            ? hero.equippedWeaponId
-            : hero.equippedArmorId;
+        int currentItemId = isWeapon? hero.equippedWeaponId: hero.equippedArmorId;
 
         if (currentItemId == itemId)
             return false;
