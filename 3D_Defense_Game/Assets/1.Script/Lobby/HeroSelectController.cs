@@ -20,6 +20,9 @@ public class HeroSelectController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI attackSpeed;
     [SerializeField] private TextMeshProUGUI level;
 
+    [Header("슬룻 텍스트")]
+    [SerializeField] private TextMeshProUGUI slot;
+
     [Header("패널")]
     [SerializeField] private GameObject hero_panl;
     [SerializeField] private GameObject item_panl;
@@ -190,7 +193,6 @@ public class HeroSelectController : MonoBehaviour
         if (level != null)
             level.text = $"Level : {heroLevel}";
     }
-
     /// <summary>
     /// 영웅 패널 열기
     /// </summary>
@@ -201,6 +203,7 @@ public class HeroSelectController : MonoBehaviour
 
         if (item_panl != null)
             item_panl.SetActive(false);
+        slot.text = "캐릭터 선택창";
     }
 
     /// <summary>
@@ -213,5 +216,18 @@ public class HeroSelectController : MonoBehaviour
 
         if (item_panl != null)
             item_panl.SetActive(true);
+        slot.text = "장비";
+    }
+    //슬릇 버튼 이벤트용
+    public void ChangeSlot()
+    {
+        if (hero_panl.activeSelf)
+        {
+            OpenInventoryPanel();
+        }
+        else
+        {
+            OpenHeroPanel();
+        }
     }
 }
