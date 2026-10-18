@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 338}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 132
+  controlID: 134
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -1298,15 +1298,15 @@ MonoBehaviour:
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 0
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: -51.39923, y: 604.79895, z: -24.002563}
+    m_Target: {x: 575.7521, y: 545.7261, z: 125.007416}
     speed: 2
-    m_Value: {x: -51.39923, y: 604.79895, z: -24.002563}
+    m_Value: {x: 575.7521, y: 545.7261, z: 125.007416}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1334,17 +1334,17 @@ MonoBehaviour:
       m_Size: {x: 0, y: 0}
     yGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -1352,20 +1352,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.015493719, y: 0.96616995, z: -0.0704432, w: -0.24762595}
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: -0.01549368, y: 0.9661674, z: -0.07044301, w: -0.24762529}
+    m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 617.28406
+    m_Target: 601.0269
     speed: 2
-    m_Value: 617.28406
+    m_Value: 601.0269
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_CameraSettings:
-    m_Speed: 1
-    m_SpeedNormalized: 0.5
+    m_Speed: 2
+    m_SpeedNormalized: 1
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -1376,7 +1376,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.11131963, y: 0.07512777, z: -0.0057445886, w: 0.99092716}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 15}
@@ -1631,78 +1631,47 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -181820
-      - m_Data: -181454
-      - m_Data: -180686
-      - m_Data: -180670
-      - m_Data: -180600
-      - m_Data: -180554
-      - m_Data: -175410
-      - m_Data: -167404
-      - m_Data: -154820
-      - m_Data: -154618
-      - m_Data: -153360
-      - m_Data: -153168
-      - m_Data: -151102
-      - m_Data: -140584
-      - m_Data: -136290
-      - m_Data: -129710
-      - m_Data: -129520
-      - m_Data: -110352
-      - m_Data: -108834
-      - m_Data: -106508
-      - m_Data: -81996
-      - m_Data: -81590
-      - m_Data: -69252
-      - m_Data: -60178
-      - m_Data: -58078
-      - m_Data: -57914
-      - m_Data: -52668
-      - m_Data: -49562
-      - m_Data: -49394
-      - m_Data: -45604
-      - m_Data: -40368
-      - m_Data: -34238
-      - m_Data: -28466
-      - m_Data: -1346
-      - m_Data: 76752
-      - m_Data: 76772
-      - m_Data: 79400
-      - m_Data: 79412
-      - m_Data: 79694
-      - m_Data: 79704
-      - m_Data: 79858
-      - m_Data: 80360
-      - m_Data: 81040
-      - m_Data: 89202
-      - m_Data: 89276
-      - m_Data: 89352
-      - m_Data: 89636
-      - m_Data: 124146
-      - m_Data: 169778
-      - m_Data: 169902
-      - m_Data: 170576
-      - m_Data: 170726
-      - m_Data: 171406
-      - m_Data: 171628
-      - m_Data: 172240
-      - m_Data: 172792
-      - m_Data: 172916
-      - m_Data: 173590
-      - m_Data: 173740
-      - m_Data: 174420
-      - m_Data: 174642
-      - m_Data: 175254
-      - m_Data: 209516
-      - m_Data: 209526
-      - m_Data: 209536
-      - m_Data: 224112
-      - m_Data: 261034
-      - m_Data: 261316
-      - m_Data: 261326
-      - m_Data: 261480
-      - m_Data: 261982
-      - m_Data: 262662
+      - m_Data: -106918
+      - m_Data: -105766
+      - m_Data: -97296
+      - m_Data: -97252
+      - m_Data: -97188
+      - m_Data: -97182
+      - m_Data: -95736
+      - m_Data: -95728
+      - m_Data: -95724
+      - m_Data: -92272
+      - m_Data: -90388
+      - m_Data: -78262
+      - m_Data: -67408
+      - m_Data: -66726
+      - m_Data: -64034
+      - m_Data: -38862
+      - m_Data: -38508
+      - m_Data: -22348
+      - m_Data: -17090
+      - m_Data: -17078
+      - m_Data: -15240
+      - m_Data: -9996
+      - m_Data: -1348
+      - m_Data: -12
+      - m_Data: 63220
+      - m_Data: 63230
+      - m_Data: 119092
+      - m_Data: 119104
+      - m_Data: 119386
+      - m_Data: 119396
+      - m_Data: 119550
+      - m_Data: 120052
+      - m_Data: 120732
+      - m_Data: 131964
+      - m_Data: 155766
+      - m_Data: 155778
+      - m_Data: 156060
+      - m_Data: 156070
+      - m_Data: 156224
+      - m_Data: 156726
+      - m_Data: 157406
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1777,7 +1746,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/1.Script/Lobby
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1787,37 +1756,37 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/1.Script/Lobby
+  - Assets/Scenes
   m_LastFoldersGridSize: 64
   m_LastProjectPath: C:\UnityProjects\unity_file1_2\Unity3D_Game_Portfoli\3D_Defense_Game
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 159}
+    scrollPos: {x: 0, y: 841}
     m_SelectedIDs:
-    - m_Data: 56652
+    - m_Data: 61166
     m_LastClickedID:
-      m_Data: 56652
+      m_Data: 61166
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 61152
-    - m_Data: 61154
-    - m_Data: 61156
-    - m_Data: 61158
-    - m_Data: 61160
-    - m_Data: 61162
-    - m_Data: 61164
-    - m_Data: 61166
-    - m_Data: 61168
-    - m_Data: 61170
-    - m_Data: 61172
-    - m_Data: 61174
     - m_Data: 61176
     - m_Data: 61178
     - m_Data: 61180
     - m_Data: 61182
     - m_Data: 61184
+    - m_Data: 61186
+    - m_Data: 61188
+    - m_Data: 61190
+    - m_Data: 61192
+    - m_Data: 61194
+    - m_Data: 61196
+    - m_Data: 61198
+    - m_Data: 61200
+    - m_Data: 61202
+    - m_Data: 61204
+    - m_Data: 61206
+    - m_Data: 61208
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1850,23 +1819,23 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 61152
-    - m_Data: 61154
-    - m_Data: 61156
-    - m_Data: 61158
-    - m_Data: 61160
-    - m_Data: 61162
-    - m_Data: 61164
-    - m_Data: 61166
-    - m_Data: 61168
-    - m_Data: 61170
-    - m_Data: 61172
-    - m_Data: 61174
     - m_Data: 61176
     - m_Data: 61178
     - m_Data: 61180
     - m_Data: 61182
     - m_Data: 61184
+    - m_Data: 61186
+    - m_Data: 61188
+    - m_Data: 61190
+    - m_Data: 61192
+    - m_Data: 61194
+    - m_Data: 61196
+    - m_Data: 61198
+    - m_Data: 61200
+    - m_Data: 61202
+    - m_Data: 61204
+    - m_Data: 61206
+    - m_Data: 61208
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
