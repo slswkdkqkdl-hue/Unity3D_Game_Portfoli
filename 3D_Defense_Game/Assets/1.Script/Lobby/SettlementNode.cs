@@ -9,7 +9,7 @@ public class SettlementNode : MonoBehaviour
     public EnemyInfoSO enemyInfo;
 
     [Header("이미지 설정")]
-    [SerializeField] private Sprite defaultImage; // 오타 수정 (defult -> default)
+    [SerializeField] private Sprite defaultImage; 
     [SerializeField] private Sprite clearImage;
     public Action<EnemyInfoSO> action;
 
