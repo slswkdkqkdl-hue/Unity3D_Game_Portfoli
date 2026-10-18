@@ -13,6 +13,8 @@ public class TeamCompositionController : MonoBehaviour
     [Header(" 캐릭터 선택 슬롯 (우측 리스트) ")]
     [SerializeField] private List<HeroSelectSlot2> heroes = new List<HeroSelectSlot2>();
 
+    private List<HeroRuntimeData> cachedSelectedList = new List<HeroRuntimeData>();
+
     private TeamSlot selectedTeamSlot = null;
 
     public void Init(List<HeroRuntimeData> datas)
@@ -134,15 +136,16 @@ public class TeamCompositionController : MonoBehaviour
     }
     public void SaveSelectedHeroes()
     {
-        BattleEntryData.selectedHeroes.Clear();
+        cachedSelectedList.Clear();
 
         foreach (var teamSlot in slot)
         {
-            if (teamSlot.currentData == null)
-                continue;
-
-            BattleEntryData.selectedHeroes.Add(teamSlot.currentData);
+            if (teamSlot.currentData != null)
+            {
+                cachedSelectedList.Add(teamSlot.currentData);
+            }
         }
+        BattleEntryData.PlayerHerosInit(cachedSelectedList);
 
         Debug.Log($"출전 캐릭터 수: {BattleEntryData.selectedHeroes.Count}");
     }

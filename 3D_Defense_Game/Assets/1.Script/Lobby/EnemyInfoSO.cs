@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 
 public enum EnemyFactionRank
@@ -27,6 +28,10 @@ public class EnemyInfoSO : ScriptableObject
     public string settlementName;       // 거점명
     public EnemyFactionRank factionRank;     // 세력 등급
     public Sprite image; // 적 영지 아이콘 
+
+    [Header("스테이지")]
+    public AssetReferenceT<StageData> stageRef;
+
     [TextArea]
     public string specialNote;          // 특이사항
 
@@ -36,4 +41,10 @@ public class EnemyInfoSO : ScriptableObject
 
     [Header("주요 전리품")]
     public List<EnemyLootInfo> mainLoot = new List<EnemyLootInfo>();
+
+    [Header("적 유닛")]
+    public List<int> Enemy_Unit = new List<int>();
+    
+    [Header("적 영웅")]
+    public List<int> Enemy_Hero = new List<int>();
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using UnityEngine.ResourceManagement.AsyncOperations;
 /// <summary>
 /// 게임 내 프로젝트의 모든 씬 종류를 정의하는 열거형
 /// </summary>
@@ -117,6 +117,28 @@ public class LoadingManager : MonoBehaviour
             if (DataManager.I != null)
             {
                 await DataManager.I.PrepareSessionForLobbyAsync();
+            }
+            isDataLoadingComplete = true;
+        }
+        else if(nextScene == SceneType.PlayScreen)
+        {   
+            isDataLoadingComplete = false;
+            // 기존에 로드된 게 있다면 안전하게 해제부터 하고 시작
+            BattleEntryData.ReleaseCurrentStage();
+
+            //  어드레서블을 통해 비동기로 StageData 로드
+            var handle = BattleEntryData.selectedEnemy.stageRef.LoadAssetAsync<StageData>();
+                
+            await handle.Task;
+
+            if (handle.Status == AsyncOperationStatus.Succeeded)
+            {
+                // BattleEntryData에 레퍼런스와 데이터 함께 등록
+                BattleEntryData.SetLoadedStage(BattleEntryData.selectedEnemy.stageRef, handle.Result);
+            }
+            else
+            {
+                Debug.LogError("StageData 어드레서블 로드 실패!");
             }
             isDataLoadingComplete = true;
         }

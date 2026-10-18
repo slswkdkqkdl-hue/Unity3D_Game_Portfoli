@@ -85,7 +85,8 @@ public class EnemyInfoPanl : MonoBehaviour
         }
     }
     public void OnClickBattleStart()
-    {
+    {   
+        if(currentSO == null) return;
         // 선택한 캐릭터 저장
         Controller.SaveSelectedHeroes();
 
@@ -95,6 +96,8 @@ public class EnemyInfoPanl : MonoBehaviour
             Debug.LogWarning("출전할 캐릭터를 선택해주세요.");
             return;
         }
+        // 적정보 전달 
+        BattleEntryData.EnemyInit(currentSO);
 
         // 전투 씬 이동
         LoadingManager.LoadScene(sceneType,true);

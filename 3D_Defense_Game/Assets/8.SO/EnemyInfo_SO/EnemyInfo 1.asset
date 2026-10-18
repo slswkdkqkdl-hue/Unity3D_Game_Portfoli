@@ -16,6 +16,12 @@ MonoBehaviour:
   settlementName: "\uCF04\uD130\uBCA0\uB9AC"
   factionRank: 1
   image: {fileID: 7714608630032443500, guid: 8ad3eab565533da4e92cea82128d76e9, type: 3}
+  stageRef:
+    m_AssetGUID: aedb0800105237a4db011c13e6a0e1db
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
   specialNote: "\uC801\uC774 \uC0AC\uC6A9\uD558\uB294 \uD2B9\uC218 \uC6D0\uAC70\uB9AC
     \uACF5\uACA9 \uC870\uC2EC!"
   minEnemyCount: 42
@@ -27,3 +33,5 @@ MonoBehaviour:
     item_name: "\uB2E8\uAC80"
   - item_id: 15
     item_name: "\uC0AC\uB0E5\uAFBC\uC758 \uD65C"
+  Enemy_Unit: 0a000000
+  Enemy_Hero: 14000000

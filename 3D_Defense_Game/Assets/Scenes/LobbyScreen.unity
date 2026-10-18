@@ -35766,9 +35766,9 @@ MonoBehaviour:
   slotpre: {fileID: 4755831198881446815, guid: 83ae7deb473d26141b4f978fc4640271, type: 3}
   pos: {fileID: 448334245}
   slot:
+  - {fileID: 1688235682}
   - {fileID: 757082670}
   - {fileID: 1553075495}
-  - {fileID: 1688235682}
   heroes: []
 --- !u!1 &79017773499611930
 GameObject:
