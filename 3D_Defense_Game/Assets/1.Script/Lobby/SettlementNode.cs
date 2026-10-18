@@ -13,19 +13,22 @@ public class SettlementNode : MonoBehaviour
     [SerializeField] private Sprite clearImage;
     public Action<EnemyInfoSO> action;
 
-    [SerializeField]private Button button;
-    [SerializeField]private Image nodeImage;
+    [SerializeField] private Button button;
+    [SerializeField] private Image nodeImage;
 
-
+    // 클리어 여부를 저장할 내부 변수 추가
+    private bool isCleared = false;
 
     /// <summary>
-    /// 초기화 클리어 id 에따른 이미지 변화
+    /// 초기화 클리어 id 에따른 이미지 변화 및 클리어 상태 저장
     /// </summary>
     public void Init(List<int> clearedStageIds)
     {
         if (enemyInfo == null) return;
+
         // 클리어한 리스트에 현재 거점의 ID가 포함되어 있는지 확인
-        bool isCleared = clearedStageIds != null && clearedStageIds.Contains(enemyInfo.Stage_id);
+        isCleared = clearedStageIds != null && clearedStageIds.Contains(enemyInfo.Stage_id);
+        
         UpdateNodeImage(isCleared);
     }
 
@@ -36,20 +39,15 @@ public class SettlementNode : MonoBehaviour
     {
         if (nodeImage == null) return;
 
-        if (isCleared)
-        {
-            nodeImage.sprite = clearImage;
-        }
-        else
-        {
-            nodeImage.sprite = defaultImage;
-        }
+        nodeImage.sprite = isCleared ? clearImage : defaultImage;
     }
 
     // 버튼 이벤트용
     public void EnemyinfoOpen()
     {
+
+        if (isCleared) return;
+
         action?.Invoke(enemyInfo);
     }
-    
 }
