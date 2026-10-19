@@ -14,7 +14,11 @@ public class Play_manager : MonoBehaviour
     [SerializeField] private Transform stageSpawnPoint;
 
     [Header("플레이어 현재 데이터")]
-    private PlayerSessionData sessionData; 
+    private PlayerSessionData sessionData;
+
+
+    [Header("초기화 할것들")]
+    [SerializeField] private BuildingPanelUI buildingSlotUI; 
 
     // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
     private GameObject spawnedStageInstance;
@@ -39,6 +43,9 @@ public class Play_manager : MonoBehaviour
 
         // 3. 플레이어 클리어 기록에 따른 건물 슬롯 레벨 해금
         SetupBuildingSlots();
+
+        // 4. 기본 건물 아이콘 초기화 + 특수건물 아직미완성
+        buildingSlotUI.Init();
     }
 
     /// <summary>

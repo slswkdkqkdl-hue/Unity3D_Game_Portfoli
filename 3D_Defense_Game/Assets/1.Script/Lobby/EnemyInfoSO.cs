@@ -39,6 +39,9 @@ public class EnemyInfoSO : ScriptableObject
     public int minEnemyCount;           // 최소 예상 병력
     public int maxEnemyCount;           // 최대 예상 병력
 
+    [Header("성벽체력")]
+    public float CastleHp;
+
     [Header("주요 전리품")]
     public List<EnemyLootInfo> mainLoot = new List<EnemyLootInfo>();
 

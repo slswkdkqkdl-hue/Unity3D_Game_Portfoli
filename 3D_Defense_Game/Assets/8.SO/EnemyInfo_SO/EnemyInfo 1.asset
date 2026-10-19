@@ -26,6 +26,7 @@ MonoBehaviour:
     \uACF5\uACA9 \uC870\uC2EC!"
   minEnemyCount: 42
   maxEnemyCount: 92
+  CastleHp: 12000
   mainLoot:
   - item_id: 1
     item_name: "\uD6CC\uB96D\uD55C \uC6CC\uB9AC\uC5B4\uC544\uBA38"

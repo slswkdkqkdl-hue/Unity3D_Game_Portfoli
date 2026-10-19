@@ -27,7 +27,7 @@ public class DomainData
 {   
     public DomainType  domainType = DomainType.None;
     public Sprite domain_emblem;
-    public DomainTier domainTier = DomainTier.EmergingPower;   // 현재 영지 티어 (소국 -> 강국 -> 대국)
+    public DomainTier domainTier = DomainTier.EmergingPower;
     public List<UpgradeSaveData> upgradedata = new List<UpgradeSaveData>();
     public float Np = 0f; // 소유한 국가 포인트
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BuildingDataManager : MonoBehaviour
 {
-    public static BuildingDataManager Instance { get; private set; }
+
 
     [Header("기본 건물 데이터 목록 (기본 4종 건물)")]
     [SerializeField] private List<BuildingDataSO> defaultBuildingList = new List<BuildingDataSO>();
@@ -16,7 +16,6 @@ public class BuildingDataManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
         InitDictionary();
     }
 
@@ -36,15 +35,22 @@ public class BuildingDataManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 현재 건설 창에 표시할 사용 가능한 건물 목록 반환
+    /// 현재 건설 창에 표시할 사용 가능한 기본 건물 목록 반환
     /// </summary>
     public List<BuildingDataSO> GetAvailableBuildings()
     {   
-
-
         // 기본 건물 + 현재 세션/영지에 맞춰 해금된 특수 건물을 합쳐서 전달
         return defaultBuildingList;
     }
+    /// <summary>
+    /// 현재 건설 창에 표시할 사용 가능한 특수 건물 목록 반환
+    /// </summary>
+    public List<BuildingDataSO> GetSpecialBuildings()
+    {   
+        // 기본 건물 + 현재 세션/영지에 맞춰 해금된 특수 건물을 합쳐서 전달
+        return specialBuildingList;
+    }
+
 
     public BuildingDataSO GetBuildingData(int buildingId)
     {
