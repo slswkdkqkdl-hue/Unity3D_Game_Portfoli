@@ -25,9 +25,9 @@ public enum DomainType
 [System.Serializable]
 public class DomainData
 {   
-    public DomainType  domainType = DomainType.None;
-    public Sprite domain_emblem;
-    public DomainTier domainTier = DomainTier.EmergingPower;
-    public List<UpgradeSaveData> upgradedata = new List<UpgradeSaveData>();
+    public DomainType  domainType = DomainType.None; // 선택한 세력
+    public Sprite domain_emblem; // 세력 엠블럼
+    public DomainTier domainTier = DomainTier.EmergingPower; // 세력 등급
+    public List<UpgradeSaveData> upgradedata = new List<UpgradeSaveData>(); // 업그레이드 데이터
     public float Np = 0f; // 소유한 국가 포인트
 }
