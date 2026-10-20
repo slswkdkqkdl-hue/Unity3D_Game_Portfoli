@@ -6117,7 +6117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   virtualCameraTransform: {fileID: 270117440}
   moveSpeed: 60
-  edgeSize: 20
+  edgeSize: 40
   minX: 50
   maxX: 140
   minZ: 23
