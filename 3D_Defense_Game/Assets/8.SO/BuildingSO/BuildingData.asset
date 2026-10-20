@@ -17,5 +17,5 @@ MonoBehaviour:
   buildingType: 1
   buildingIcon: {fileID: -384452486, guid: 603384fbc3f945e40a1b70f981f548cd, type: 3}
   buildCost: 400
-  buildingPrefab: {fileID: 0}
-  popupUIPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 1461329189250338992, guid: a584bebb73b38bf4d88114f96d5a77ca, type: 3}
+  popupUIPrefab: {fileID: 3430599765252754692, guid: e7bc8adb7272e8a49a4d6b6784fb762f, type: 3}

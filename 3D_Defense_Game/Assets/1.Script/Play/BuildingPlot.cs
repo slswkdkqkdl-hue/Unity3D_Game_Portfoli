@@ -17,8 +17,6 @@ public class BuildingPlot : MonoBehaviour
         if (isBuilding) return; // 이미 건물이 있다면 무시
 
         Debug.Log("건설 부지 선택됨!");
-
-        // BuildingManager에게 "내가 선택되었어!"라고 자신을 넘겨줌
         BuildingManager.I.SetSelectedPlot(this);
     }
 
@@ -30,14 +28,18 @@ public class BuildingPlot : MonoBehaviour
         isBuilding = true; // 이제 빈 땅이 아님
 
         // 1. 내 위치(transform.position)에 3D 건물 프리팹 생성
-        GameObject buildingObj = Instantiate(data.buildingPrefab, transform.position, transform.rotation);
+        Vector3 spawnPosition = transform.position + Vector3.up * 1f;
 
-        // 2. 생성된 건물에 데이터 주입 (나중에 팝업 띄울 때 필요하므로 주석 해제 권장!)
-        // Building building = buildingObj.GetComponent<Building>();
-        // if (building != null)
-        // {
-        //     building.Init(data);
-        // }
+        GameObject buildingObj = Instantiate(data.buildingPrefab, spawnPosition, transform.rotation);
+        buildingObj.transform.SetParent(transform);
+
+        // 2. 생성된 건물에 데이터 주입 
+        Building building = buildingObj.GetComponent<Building>();
+        if (building != null)
+        {
+            building.Init(data);
+        }
+
         if (plotCollider != null)
         {
             plotCollider.enabled = false;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1927563031041172637}
   - component: {fileID: 2979865960795390433}
   - component: {fileID: 4432751148732155406}
+  - component: {fileID: 9176466001218827917}
   m_Layer: 0
   m_Name: Building_Slot (1)
   m_TagString: Untagged
@@ -113,6 +114,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &9176466001218827917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178318335397390576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &409119842062108003
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +139,7 @@ GameObject:
   - component: {fileID: 4298014650381042055}
   - component: {fileID: 4795723222661808404}
   - component: {fileID: 2344101168122931513}
+  - component: {fileID: 4757690390028474013}
   m_Layer: 0
   m_Name: Building_Slot
   m_TagString: Untagged
@@ -226,6 +241,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4757690390028474013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409119842062108003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &522279993833681156
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +266,7 @@ GameObject:
   - component: {fileID: 3633320690301912434}
   - component: {fileID: 6455837757585019140}
   - component: {fileID: 4573662806050871006}
+  - component: {fileID: 2270291441528409077}
   m_Layer: 0
   m_Name: Building_Slot (11)
   m_TagString: Untagged
@@ -339,6 +368,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2270291441528409077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522279993833681156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &905318475254602580
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +393,7 @@ GameObject:
   - component: {fileID: 2115385409157013398}
   - component: {fileID: 6775225871016299164}
   - component: {fileID: 3869941022271886932}
+  - component: {fileID: 2365754180425070941}
   m_Layer: 0
   m_Name: Building_Slot (6)
   m_TagString: Untagged
@@ -452,6 +495,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2365754180425070941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905318475254602580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &1328748213619983165
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +739,7 @@ GameObject:
   - component: {fileID: 3614342953475541197}
   - component: {fileID: 1994683584785780773}
   - component: {fileID: 1829854215934054327}
+  - component: {fileID: 3159617006573210395}
   m_Layer: 0
   m_Name: Building_Slot (2)
   m_TagString: Untagged
@@ -784,6 +841,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3159617006573210395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822830547137749911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &1843715103235253209
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +866,7 @@ GameObject:
   - component: {fileID: 4523240920507050316}
   - component: {fileID: 5030486283574017059}
   - component: {fileID: 6561597383125722922}
+  - component: {fileID: 2055256108674259167}
   m_Layer: 0
   m_Name: Building_Slot (14)
   m_TagString: Untagged
@@ -897,6 +968,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2055256108674259167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843715103235253209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &2258963513093627696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1008,7 +1092,7 @@ GameObject:
   - component: {fileID: 7254440741174055845}
   - component: {fileID: 15102928601425672}
   - component: {fileID: 1544639031324364848}
-  - component: {fileID: 6109380945375052159}
+  - component: {fileID: 1920240839866703390}
   m_Layer: 0
   m_Name: Building_Slot (13)
   m_TagString: Untagged
@@ -1110,7 +1194,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &6109380945375052159
+--- !u!114 &1920240839866703390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1122,6 +1206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &2825625600144723076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,6 +1219,7 @@ GameObject:
   - component: {fileID: 3551889229669213870}
   - component: {fileID: 4576294341389601321}
   - component: {fileID: 7585858527765062899}
+  - component: {fileID: 8997882694720570376}
   m_Layer: 0
   m_Name: Building_Slot (9)
   m_TagString: Untagged
@@ -1235,6 +1321,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8997882694720570376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2825625600144723076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &3676721867399336706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1247,6 +1346,7 @@ GameObject:
   - component: {fileID: 6820306231535707956}
   - component: {fileID: 1039738922683759150}
   - component: {fileID: 8302839913386261949}
+  - component: {fileID: 6081741172414675965}
   m_Layer: 0
   m_Name: Building_Slot (3)
   m_TagString: Untagged
@@ -1348,6 +1448,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &6081741172414675965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3676721867399336706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &4345682226996736622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,6 +1611,7 @@ GameObject:
   - component: {fileID: 274651469614018575}
   - component: {fileID: 1667205149933127263}
   - component: {fileID: 6076814733041229248}
+  - component: {fileID: 3662300064792194119}
   m_Layer: 0
   m_Name: Building_Slot (12)
   m_TagString: Untagged
@@ -1599,6 +1713,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &3662300064792194119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5589620080015989764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &5905990463298157586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,6 +1738,7 @@ GameObject:
   - component: {fileID: 147899778510132719}
   - component: {fileID: 3851132182383817798}
   - component: {fileID: 4286162291988410504}
+  - component: {fileID: 4969695090310900036}
   m_Layer: 0
   m_Name: Building_Slot (5)
   m_TagString: Untagged
@@ -1712,6 +1840,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4969695090310900036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5905990463298157586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &6515810955422947804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1724,6 +1865,7 @@ GameObject:
   - component: {fileID: 6628284544692821174}
   - component: {fileID: 2037452143509922888}
   - component: {fileID: 4912775703238336102}
+  - component: {fileID: 5343363435180623213}
   m_Layer: 0
   m_Name: Building_Slot (4)
   m_TagString: Untagged
@@ -1825,6 +1967,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5343363435180623213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6515810955422947804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &6549152324088728067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +1992,7 @@ GameObject:
   - component: {fileID: 4786362658865177254}
   - component: {fileID: 1334789701050112644}
   - component: {fileID: 1882690613483354003}
+  - component: {fileID: 4750963273972446659}
   m_Layer: 0
   m_Name: Building_Slot (7)
   m_TagString: Untagged
@@ -1938,6 +2094,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4750963273972446659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549152324088728067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &6674872498156017112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,6 +2220,7 @@ GameObject:
   - component: {fileID: 7618343172323671063}
   - component: {fileID: 4729473111534934489}
   - component: {fileID: 1478634964586517353}
+  - component: {fileID: 250216771479118512}
   m_Layer: 0
   m_Name: Building_Slot (10)
   m_TagString: Untagged
@@ -2152,6 +2322,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &250216771479118512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6964756400544509751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &7062432894152012702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2347,6 +2530,7 @@ GameObject:
   - component: {fileID: 1599010287903588510}
   - component: {fileID: 751552015016426965}
   - component: {fileID: 8499165360859059021}
+  - component: {fileID: 7831082635791452727}
   m_Layer: 0
   m_Name: Building_Slot (8)
   m_TagString: Untagged
@@ -2448,6 +2632,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &7831082635791452727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8345701911121700135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
+  isBuilding: 0
 --- !u!1 &8432939753734062872
 GameObject:
   m_ObjectHideFlags: 0
