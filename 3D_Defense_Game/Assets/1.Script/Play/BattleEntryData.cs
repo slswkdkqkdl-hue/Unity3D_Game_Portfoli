@@ -1,44 +1,48 @@
 using System.Collections.Generic;
-using UnityEngine.AddressableAssets; // 어드레서블 네임스페이스 추가
+using UnityEngine;
+using UnityEngine.AddressableAssets;
 
+/// <summary>
+/// 로비 → 플레이씬으로 전투 진입 정보(적, 출전 영웅, 스테이지)를 넘기는 static 데이터 홀더.
+/// 씬 간 전달용이라 생명주기가 필요 없어서 static 클래스로 구현.
+/// </summary>
 public static class BattleEntryData
 {
-    // 선택한 적 거점
     public static EnemyInfoSO selectedEnemy;
-
-    // 전투에 플레이어 출전할 캐릭터
     public static List<HeroRuntimeData> selectedHeroes = new List<HeroRuntimeData>();
-
     public static StageData currentStage;
-
-    // 로드한 스테이지의 레퍼런스를 기억해 둠 (해제할 때 사용)
     private static AssetReference loadedStageRef;
 
+    /// <summary>
+    /// 선택한 적 정보를 저장한다.
+    /// </summary>
     public static void EnemyInit(EnemyInfoSO currentSO)
     {
-        // 데이터 완전히 초기화
         ReleaseCurrentStage();
-        // 선택 적정보 넣기 
         selectedEnemy = currentSO;
     }
 
+    /// <summary>
+    /// 출전 영웅 목록을 저장한다.
+    /// </summary>
     public static void PlayerHerosInit(List<HeroRuntimeData> currentHeroes)
     {
         selectedHeroes.Clear();
-        foreach (HeroRuntimeData result in currentHeroes)
-        {
-            selectedHeroes.Add(result);                
-        }
+        selectedHeroes.AddRange(currentHeroes);
     }
 
-    // 스테이지 레퍼런스를 세팅하는 함수 (로딩 매니저에서 호출)
+    /// <summary>
+    /// 로드가 끝난 스테이지의 어드레서블 참조와 데이터를 저장한다. (로딩 매니저에서 호출)
+    /// </summary>
     public static void SetLoadedStage(AssetReference stageRef, StageData stageData)
     {
         loadedStageRef = stageRef;
         currentStage = stageData;
     }
 
-    // 메모리 해제 + 데이터 초기화 
+    /// <summary>
+    /// 로드해둔 스테이지 어드레서블 에셋을 메모리에서 해제하고 스테이지 참조를 비운다.
+    /// </summary>
     public static void ReleaseCurrentStage()
     {
         if (loadedStageRef != null && loadedStageRef.IsValid())
@@ -47,5 +51,16 @@ public static class BattleEntryData
         }
         loadedStageRef = null;
         currentStage = null;
+    }
+
+    /// <summary>
+    /// 전투 종료 후 호출. 어드레서블 해제 + 전투 진입 데이터 전부 초기화.
+    /// 얘는 게임플레이 종료후 호출할것
+    /// </summary>
+    public static void Clear()
+    {
+        ReleaseCurrentStage();
+        selectedEnemy = null;
+        selectedHeroes.Clear();
     }
 }
