@@ -71,7 +71,10 @@ public class Play_manager : MonoBehaviour
         var result = BattleEntryData.selectedHeroes;
         herocontroller.Init(result);
 
-        // 8. 게임 시작과 함께 플레이 타이머 초기화 및 시작
+        // 9. 
+        InGameLog.I.AddLog("전투가 시작되었습니다.");
+        
+        // 10. 게임 시작과 함께 플레이 타이머 초기화 및 시작
         timerController.Init(true);
     }
 
