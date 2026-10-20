@@ -45,5 +45,7 @@ public class BuildingSlotUI : MonoBehaviour
 
         Debug.Log($"건물 선택됨: {currentBuildingData.buildingName}");
         // TODO: BuildingManager 등에 건설 설치 모드 진입 요청 이벤트 전달
+
+        BuildingManager.I.OnClickBuildingSlot(currentBuildingData);
     }
 }

@@ -1008,6 +1008,7 @@ GameObject:
   - component: {fileID: 7254440741174055845}
   - component: {fileID: 15102928601425672}
   - component: {fileID: 1544639031324364848}
+  - component: {fileID: 6109380945375052159}
   m_Layer: 0
   m_Name: Building_Slot (13)
   m_TagString: Untagged
@@ -1109,6 +1110,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &6109380945375052159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808407120825650351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f24dc20160ec241a95eb70080783e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingPlot
 --- !u!1 &2825625600144723076
 GameObject:
   m_ObjectHideFlags: 0
