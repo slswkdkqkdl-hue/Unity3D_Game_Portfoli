@@ -2203,6 +2203,7 @@ MonoBehaviour:
   currentEnemyInfo: {fileID: 0}
   stageSpawnPoint: {fileID: 458893526}
   buildingSlotUI: {fileID: 94519504}
+  castleController: {fileID: 1966085564}
 --- !u!1 &551579391
 GameObject:
   m_ObjectHideFlags: 0

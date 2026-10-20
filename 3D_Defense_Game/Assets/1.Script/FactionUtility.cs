@@ -86,4 +86,19 @@ public static class FactionUtility
             _ => "미지"
         };
     }
+    /// <summary>
+    /// 세력 등급에 따른 성벽 체력 반환
+    /// </summary>
+    public static int GetDomainTierRequirement(DomainTier tier)
+    {
+        return tier switch
+        {
+            DomainTier.EmergingPower => 8000,
+            DomainTier.InfluentialPower => 10000,
+            DomainTier.RisingPower => 12000,
+            DomainTier.Hegemony => 14000,
+            DomainTier.ContinentalSupremacy => 16000,
+            _ => 0
+        };
+    }
 }

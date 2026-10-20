@@ -19,6 +19,7 @@ public class Play_manager : MonoBehaviour
 
     [Header("초기화 할것들")]
     [SerializeField] private BuildingPanelUI buildingSlotUI; 
+    [SerializeField] private CastleController castleController;
 
     // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
     private GameObject spawnedStageInstance;
@@ -31,9 +32,15 @@ public class Play_manager : MonoBehaviour
 
     public void InitPlayScene()
     {   
-        // 1. 데이터 매니저에서 현재 플레이어 세션 데이터 가져오기
-        sessionData = DataManager.I.sessionData;        
-
+        // 1-1 데이터 매니저에서 현재 플레이어 세션 데이터 가져오기
+        sessionData = DataManager.I.sessionData;
+        // 1-2 배틀엔티티 매니저 한테서 현재 적 데이터 가져오기 
+        currentEnemyInfo = BattleEntryData.selectedEnemy;
+        if(sessionData == null ||currentEnemyInfo == null)
+        {   
+            Debug.Log("데이터 없음");
+            return;
+        }
         // 2. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
         if (BattleEntryData.currentStage != null && BattleEntryData.currentStage.StagePrefab != null)
         {
@@ -44,8 +51,11 @@ public class Play_manager : MonoBehaviour
         // 3. 플레이어 클리어 기록에 따른 건물 슬롯 레벨 해금
         SetupBuildingSlots();
 
-        // 4. 기본 건물 아이콘 초기화 + 특수건물 아직미완성
+        // 4. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
         buildingSlotUI.Init();
+
+        // 5. 각 성벽 체력 초기화
+        castleController.Init(sessionData.domainData,currentEnemyInfo);
     }
 
     /// <summary>
