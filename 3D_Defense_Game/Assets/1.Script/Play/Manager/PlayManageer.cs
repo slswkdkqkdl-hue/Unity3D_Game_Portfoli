@@ -21,6 +21,7 @@ public class Play_manager : MonoBehaviour
     [SerializeField] private BuildingPanelUI buildingSlotUI; 
     [SerializeField] private CastleController castleController;
     [SerializeField] private Herocontroller herocontroller;
+    [SerializeField] private TimerController timerController;
 
     // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
     private GameObject spawnedStageInstance;
@@ -28,7 +29,14 @@ public class Play_manager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
         InitPlayScene();
+    }
+    void OnDestroy()
+    {
+        Instance = null;
     }
 
     public void InitPlayScene()
@@ -62,6 +70,9 @@ public class Play_manager : MonoBehaviour
         // 6. 선택한 영웅들 초기화 + 팀슬룻 생성
         var result = BattleEntryData.selectedHeroes;
         herocontroller.Init(result);
+
+        // 8. 게임 시작과 함께 플레이 타이머 초기화 및 시작
+        timerController.Init(true);
     }
 
     /// <summary>
