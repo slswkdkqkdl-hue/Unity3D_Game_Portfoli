@@ -107,6 +107,7 @@ public static class FactionUtility
     public static int GetCastleLevelByClearCount(int clearCount)
     {
         // 0~7개: 1레벨 / 8~12개: 2레벨 / 13개 이상: 3레벨
+        // 추후에 하드코딩인거 개선해야함
         return (clearCount <= 7) ? 1 : (clearCount <= 12) ? 2 : 3;
     }
 }

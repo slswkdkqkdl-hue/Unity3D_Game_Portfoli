@@ -34,7 +34,6 @@ public class UIManager_Lobsby : MonoBehaviour
 
     private void Awake()
     {
-        // 2. C# 코드로 버튼 클릭 이벤트 자동 연결
         if (faction_Button != null) faction_Button.onClick.AddListener(() => OpenPanel(faction_Panl));
         if (Hero_Button != null) Hero_Button.onClick.AddListener(() => OpenPanel(Hero_Panl));
         if (Save_Button != null) Save_Button.onClick.AddListener(() => OpenPanel(Save_Panl));
@@ -67,17 +66,14 @@ public class UIManager_Lobsby : MonoBehaviour
     /// </summary>
     public void OpenPanel(GameObject targetPanel)
     {
-        // 먼저 모든 패널을 닫은 뒤
         InitPanels();
-
-        // 타겟 패널만 활성화
         if (targetPanel != null)
         {
             targetPanel.SetActive(true);
         }
     }
 
-    // Exit_button 버튼 이벤트
+    // Exit_button 버튼 이벤트용
     public void backButton()
     {   
         DataManager.I.ClearSessionAndReleaseAssets();
