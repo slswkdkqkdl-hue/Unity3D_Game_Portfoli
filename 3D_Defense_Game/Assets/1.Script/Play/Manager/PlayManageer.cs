@@ -20,6 +20,7 @@ public class Play_manager : MonoBehaviour
     [Header("초기화 할것들")]
     [SerializeField] private BuildingPanelUI buildingSlotUI; 
     [SerializeField] private CastleController castleController;
+    [SerializeField] private Herocontroller herocontroller;
 
     // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
     private GameObject spawnedStageInstance;
@@ -36,6 +37,7 @@ public class Play_manager : MonoBehaviour
         sessionData = DataManager.I.sessionData;
         // 1-2 배틀엔티티 매니저 한테서 현재 적 데이터 가져오기 
         currentEnemyInfo = BattleEntryData.selectedEnemy;
+
         if(sessionData == null ||currentEnemyInfo == null)
         {   
             Debug.Log("데이터 없음");
@@ -56,6 +58,10 @@ public class Play_manager : MonoBehaviour
 
         // 5. 각 성벽 체력 초기화
         castleController.Init(sessionData.domainData,currentEnemyInfo);
+
+        // 6. 선택한 영웅들 초기화 + 팀슬룻 생성
+        var result = BattleEntryData.selectedHeroes;
+        herocontroller.Init(result);
     }
 
     /// <summary>
@@ -66,10 +72,7 @@ public class Play_manager : MonoBehaviour
         if (spawnedStageInstance == null || sessionData?.clearid == null) return;
 
         int clearCount = sessionData.clearid.Count;
-
-        // 클리어 수에 따른 슬룻 개방  
-        // 0~7개: 1레벨 / 8~12개: 2레벨 / 13개 이상: 3레벨
-        int castleLevel = (clearCount <= 7) ? 1 : (clearCount <= 12) ? 2 : 3;
+        int castleLevel = FactionUtility.GetCastleLevelByClearCount(clearCount); 
 
         if (spawnedStageInstance.TryGetComponent<BuildingSlotManager>(out var buildingSlot) ||
             (buildingSlot = spawnedStageInstance.GetComponentInChildren<BuildingSlotManager>()) != null)

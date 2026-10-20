@@ -101,4 +101,12 @@ public static class FactionUtility
             _ => 0
         };
     }
+    /// <summary>
+    /// 클리어한 스테이지 수에 따른 건물/성곽 레벨 계산
+    /// </summary>
+    public static int GetCastleLevelByClearCount(int clearCount)
+    {
+        // 0~7개: 1레벨 / 8~12개: 2레벨 / 13개 이상: 3레벨
+        return (clearCount <= 7) ? 1 : (clearCount <= 12) ? 2 : 3;
+    }
 }
