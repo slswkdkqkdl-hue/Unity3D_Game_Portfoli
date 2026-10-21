@@ -5,7 +5,6 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class Play_manager : MonoBehaviour
 {
-    public static Play_manager Instance { get; private set; }
 
     [Header("현재 스테이지 적 정보 데이터")]
     [SerializeField] private EnemyInfoSO currentEnemyInfo;
@@ -26,17 +25,9 @@ public class Play_manager : MonoBehaviour
     // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
     private GameObject spawnedStageInstance;
 
-    private void Awake()
-    {
-        Instance = this;
-    }
     private void Start()
     {
         InitPlayScene();
-    }
-    void OnDestroy()
-    {
-        Instance = null;
     }
 
     public void InitPlayScene()
