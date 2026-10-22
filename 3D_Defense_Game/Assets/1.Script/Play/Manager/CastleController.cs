@@ -37,7 +37,7 @@ public class CastleController : MonoBehaviour
         if (enemyData == null || enemyCastleData == null) return;
 
         Sprite emblem = enemyData.image; // 적 영지 아이콘
-        float maxHp = FactionUtility.GetDomainTierRequirement(enemyData.Tier);
+        float maxHp = FactionUtility.GetEnemyCastleHp(enemyData.factionRank);
         float currentHp = maxHp;
 
         enemyCastleData.InitCastleUI(emblem, maxHp, currentHp);

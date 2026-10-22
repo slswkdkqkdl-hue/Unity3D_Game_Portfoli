@@ -87,7 +87,7 @@ public static class FactionUtility
         };
     }
     /// <summary>
-    /// 세력 등급에 따른 성벽 체력 반환
+    /// 플레이어 세력 등급에 따른 성벽 체력 반환
     /// </summary>
     public static int GetDomainTierRequirement(DomainTier tier)
     {
@@ -98,6 +98,21 @@ public static class FactionUtility
             DomainTier.RisingPower => 12000,
             DomainTier.Hegemony => 14000,
             DomainTier.ContinentalSupremacy => 16000,
+            _ => 0
+        };
+    }
+    /// <summary>
+    /// 적 세력 등급에 따른 성벽/보스 체력 반환 (추가)
+    /// </summary>
+    public static int GetEnemyCastleHp(EnemyFactionRank rank)
+    {
+        return rank switch
+        {
+            EnemyFactionRank.Barony => 8000,
+            EnemyFactionRank.Viscounty => 10000,
+            EnemyFactionRank.County => 12000,
+            EnemyFactionRank.Duchy => 14000,
+            EnemyFactionRank.Kingdom => 16000,
             _ => 0
         };
     }
