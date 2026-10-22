@@ -21,7 +21,6 @@ public class CastleUI : MonoBehaviour
         {
             emblemImage.sprite = emblem;
         }
-
         this.maxHp = maxHp;
         SetHPInternal(initialHp);
     }
