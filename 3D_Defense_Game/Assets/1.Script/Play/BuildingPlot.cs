@@ -33,11 +33,9 @@ public class BuildingPlot : MonoBehaviour
 
         // 2. 생성된 건물에 BuildingDataSO 데이터 주입 
         Building building = buildingObj.GetComponent<Building>();
-           Debug.Log("데이터주입완료0");
         if (building != null)
         {
             building.Init(data);
-               Debug.Log("데이터주입완료1");
         }
 
         if (plotCollider != null)
