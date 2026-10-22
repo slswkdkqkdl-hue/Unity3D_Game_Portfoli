@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class BuildingPanelUI : MonoBehaviour
     [SerializeField] private GameObject slotContentBase;
     [SerializeField] private GameObject slotContentSpecial;
     [SerializeField] private Button changeButton;
+    [SerializeField] private TextMeshProUGUI buttonText;
 
     [Header("데이터 매니저 참조")]
     [SerializeField] private BuildingDataManager dataManager;
@@ -40,6 +42,7 @@ public class BuildingPanelUI : MonoBehaviour
     {
         if (slotContentBase != null) slotContentBase.SetActive(!showSpecial);
         if (slotContentSpecial != null) slotContentSpecial.SetActive(showSpecial);
+        if (buttonText != null) buttonText.text = showSpecial ? "특수건물" : "일반건물";
     }
 
     /// <summary>
