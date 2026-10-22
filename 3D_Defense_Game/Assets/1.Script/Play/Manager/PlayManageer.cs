@@ -82,7 +82,7 @@ public class Play_manager : MonoBehaviour
 
         int clearCount = sessionData.clearid.Count;
         int castleLevel = FactionUtility.GetCastleLevelByClearCount(clearCount); 
-
+        castleLevel = 3;
         if (spawnedStageInstance.TryGetComponent<BuildingSlotManager>(out var buildingSlot) ||
             (buildingSlot = spawnedStageInstance.GetComponentInChildren<BuildingSlotManager>()) != null)
         {
