@@ -2031,7 +2031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7830189, g: 0.39520293, b: 0.39520293, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2296,6 +2296,7 @@ MonoBehaviour:
   castleController: {fileID: 1966085564}
   herocontroller: {fileID: 466746838}
   timerController: {fileID: 977286527}
+  resourceUI: {fileID: 1014518525}
 --- !u!1 &551579391
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,6 +4016,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerController
   Timer: {fileID: 316331216}
+--- !u!1 &986318430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 986318431}
+  - component: {fileID: 986318432}
+  m_Layer: 0
+  m_Name: ResourceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &986318431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986318430}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 240.03154, y: 877.4791, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &986318432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986318430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bdd33ecf49df2a4c8bbdd758e0a884c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceManager
+  money: 0
+  population: 0
+  maxPopulation: 0
 --- !u!1 &999596398
 GameObject:
   m_ObjectHideFlags: 0
@@ -4101,6 +4149,7 @@ GameObject:
   - component: {fileID: 1014518522}
   - component: {fileID: 1014518524}
   - component: {fileID: 1014518523}
+  - component: {fileID: 1014518525}
   m_Layer: 5
   m_Name: ResourceUI
   m_TagString: Untagged
@@ -4167,6 +4216,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1014518521}
   m_CullTransparentMesh: 1
+--- !u!114 &1014518525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014518521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de476234f2102244a8220b50939687bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceUI
+  goldValueText: {fileID: 1144268259}
+  Gold_sprite: {fileID: 1179467110, guid: 12c9d4e5fb0b8d44993aa58afed82aa9, type: 3}
+  Gold_Image: {fileID: 1831397412}
+  PopulationValueText: {fileID: 929902566}
+  Population_sprite: {fileID: 1680105671, guid: 45cba0836e3e2474c91f16f34e1c063b, type: 3}
+  Population_Image: {fileID: 476677836}
 --- !u!1 &1015881660
 GameObject:
   m_ObjectHideFlags: 0
@@ -6766,7 +6833,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.39017445, g: 0.6037736, b: 0.50408083, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7987,3 +8054,4 @@ SceneRoots:
   - {fileID: 1935326453}
   - {fileID: 482745511}
   - {fileID: 1637195038}
+  - {fileID: 986318431}

@@ -16,11 +16,12 @@ public class Play_manager : MonoBehaviour
     private PlayerSessionData sessionData;
 
 
-    [Header("초기화 할것들")]
+    [Header("초기화 할것들 (Canvas UI 오브젝트에 붙어있는 스크립트)")]
     [SerializeField] private BuildingPanelUI buildingSlotUI; 
     [SerializeField] private CastleController castleController;
     [SerializeField] private Herocontroller herocontroller;
     [SerializeField] private TimerController timerController;
+    [SerializeField] private ResourceUI resourceUI;
 
     // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
     private GameObject spawnedStageInstance;
@@ -61,6 +62,9 @@ public class Play_manager : MonoBehaviour
         // 6. 선택한 영웅들 초기화 + 팀슬룻 생성
         var result = BattleEntryData.selectedHeroes;
         herocontroller.Init(result);
+        
+        // 7. 플레이어 리소스(돈 , 인구수) 초기화
+        resourceUI.Init(0,0,0);
 
         // 9. 게임시작 로그 메시지 
         InGameLog.I.AddLog("전투가 시작되었습니다.");

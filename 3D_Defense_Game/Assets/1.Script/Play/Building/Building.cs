@@ -8,6 +8,7 @@ public class Building : MonoBehaviour
     public virtual void Init(BuildingDataSO data)
     {
         buildingData = data;
+        Debug.Log("데이터주입완료2");
     }
 
     // 공통 클릭 감지 (건물을 누르면 매니저에게 팝업 오픈 요청)

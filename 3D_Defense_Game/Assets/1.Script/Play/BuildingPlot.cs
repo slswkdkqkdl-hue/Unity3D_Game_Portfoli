@@ -27,17 +27,17 @@ public class BuildingPlot : MonoBehaviour
 
         isBuilding = true; // 이제 빈 땅이 아님
 
-        // 1. 내 위치(transform.position)에 3D 건물 프리팹 생성
-        Vector3 spawnPosition = transform.position + Vector3.up * 1f;
 
-        GameObject buildingObj = Instantiate(data.buildingPrefab, spawnPosition, transform.rotation);
+        GameObject buildingObj = Instantiate(data.buildingPrefab, transform.position, transform.rotation);
         buildingObj.transform.SetParent(transform);
 
-        // 2. 생성된 건물에 데이터 주입 
+        // 2. 생성된 건물에 BuildingDataSO 데이터 주입 
         Building building = buildingObj.GetComponent<Building>();
+           Debug.Log("데이터주입완료0");
         if (building != null)
         {
             building.Init(data);
+               Debug.Log("데이터주입완료1");
         }
 
         if (plotCollider != null)
