@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainCastle : Building
 {
@@ -8,6 +9,9 @@ public class MainCastle : Building
     [SerializeField] private float goldInterval = 20f;    // 골드 지급 주기 (초 단위)
     private float timer = 0f;    // 골드 생산 주기 체크용 타이머
 
+    [Header("쿨타임 UI")]
+    [SerializeField] private Image fillImage;
+    
     public override void Init(BuildingDataSO data, Team team = Team.Ally)
     {
         base.Init(data, team);
@@ -25,6 +29,13 @@ public class MainCastle : Building
         if (buildingData == null) return;
 
         timer += Time.deltaTime;
+
+        // 2. 0부터 1까지의 비율(현재 시간 / 전체 주기)을 계산해서 UI 게이지에 반영
+        if (fillImage != null)
+        {
+            fillImage.fillAmount = Mathf.Clamp01(timer / goldInterval);
+        }
+
         if (timer >= goldInterval)
         {
             timer = 0f;
