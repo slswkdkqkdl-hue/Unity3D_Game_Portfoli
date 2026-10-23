@@ -21,8 +21,6 @@ public class Infirmary : Building
     {
         base.Init(data, team);
         buildingActivationType = BuildingActivationType.Active;
-
-
     }
 
     private void Update()

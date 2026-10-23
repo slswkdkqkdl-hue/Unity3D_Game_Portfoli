@@ -23,11 +23,7 @@ public class InfirmaryPopup : BaseBuildingPopupUI
         if (building is Infirmary targetInfirmary)
         {
             infirmary = targetInfirmary;
-            
-            // 1. 상태 변경 이벤트에 UI 업데이트 함수 등록
             infirmary.OnStateChanged += UpdateUIState;
-            
-            // 2. 팝업이 처음 열렸을 때의 현재 치료소 상태를 즉시 반영
             UpdateUIState(infirmary.isReady);
         }
     }
