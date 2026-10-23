@@ -14,12 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
   m_GroupName: Default Local Group
   m_GUID: 5f0eeecdcc9eea54991482aa0bf4823c
-  m_SerializeEntries:
-  - m_GUID: aedb0800105237a4db011c13e6a0e1db
-    m_Address: Assets/8.SO/StageSO/StageData.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f8042e044e79ed3468ee5af579015cc1, type: 2}
   m_SchemaSet:
