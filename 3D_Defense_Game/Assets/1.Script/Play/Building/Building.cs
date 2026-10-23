@@ -18,6 +18,7 @@ public class Building : MonoBehaviour
     [SerializeField]protected BuildingDataSO buildingData;
     [SerializeField]protected Team currentTeam;
     [SerializeField]protected BuildingActivationType buildingActivationType;
+    
     // 공통 초기화 함수
     public virtual void Init(BuildingDataSO data, Team team = Team.Ally)
     {

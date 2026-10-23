@@ -237,8 +237,8 @@ MonoBehaviour:
   currentTeam: 0
   buildingActivationType: 0
   populationBonus: 6
-  goldPerInterval: 150
-  goldInterval: 10
+  goldPerInterval: 200
+  goldInterval: 30
   fillImage: {fileID: 4287331712778536780}
 --- !u!1 &7906842435846565949
 GameObject:
