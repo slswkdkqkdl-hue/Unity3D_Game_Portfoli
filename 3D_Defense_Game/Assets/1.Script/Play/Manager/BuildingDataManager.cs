@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BuildingDataManager : MonoBehaviour
 {
-
+    public static BuildingDataManager I;
 
     [Header("기본 건물 데이터 목록 (기본 4종 건물)")]
     [SerializeField] private List<BuildingDataSO> defaultBuildingList = new List<BuildingDataSO>();
@@ -15,7 +15,8 @@ public class BuildingDataManager : MonoBehaviour
     private Dictionary<int, BuildingDataSO> buildingDataDict = new Dictionary<int, BuildingDataSO>();
 
     private void Awake()
-    {
+    {   
+        I = this;
         InitDictionary();
     }
 

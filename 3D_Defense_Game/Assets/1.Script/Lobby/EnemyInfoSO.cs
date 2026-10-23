@@ -50,4 +50,7 @@ public class EnemyInfoSO : ScriptableObject
     
     [Header("적 영웅")]
     public List<int> Enemy_Hero = new List<int>();
+
+    [Header("적 성")]
+    public GameObject Enemy_castle;
 }

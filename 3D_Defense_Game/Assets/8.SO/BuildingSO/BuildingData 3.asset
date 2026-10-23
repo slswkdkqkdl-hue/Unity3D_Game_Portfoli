@@ -16,6 +16,6 @@ MonoBehaviour:
   buildingName: "\uC131"
   buildingType: 0
   buildingIcon: {fileID: 0}
-  buildCost: 400
+  buildCost: 0
   buildingPrefab: {fileID: 7148496853246313657, guid: 047c7ea321879a440b9d2b8a7e78df07, type: 3}
   popupUIPrefab: {fileID: 6260754064981024997, guid: 902799433dff9cc448132640ea438f5f, type: 3}

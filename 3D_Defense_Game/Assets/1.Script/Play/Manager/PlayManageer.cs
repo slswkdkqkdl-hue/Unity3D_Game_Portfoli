@@ -24,7 +24,10 @@ public class Play_manager : MonoBehaviour
     [SerializeField] private ResourceUI resourceUI;
 
     // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
-    private GameObject spawnedStageInstance;
+
+    // 생성된 스테이지의 컨트롤러
+    [Header("현재 스테이지 컨트롤러")]
+    private StageController stageController;
 
     private void Start()
     {
@@ -43,14 +46,11 @@ public class Play_manager : MonoBehaviour
             Debug.Log("데이터 없음");
             return;
         }
-        // 2. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
-        if (BattleEntryData.currentStage != null && BattleEntryData.currentStage.StagePrefab != null)
-        {
-            GameObject stagePrefab = BattleEntryData.currentStage.StagePrefab;
-            spawnedStageInstance = Instantiate(stagePrefab, stageSpawnPoint);
-        }
 
-        // 3. 플레이어 클리어 기록에 따른 건물 슬롯 레벨 해금
+        // 2. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
+        StageCreate();
+
+        // 3. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성
         SetupBuildingSlots();
 
         // 4. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
@@ -78,19 +78,34 @@ public class Play_manager : MonoBehaviour
     /// </summary>
     private void SetupBuildingSlots()
     {
-        if (spawnedStageInstance == null || sessionData?.clearid == null) return;
+        if (stageController == null || sessionData?.clearid == null)
+        {
+            Debug.LogWarning("[Play_manager] 건물 슬롯 초기화에 필요한 데이터가 없습니다.");
+            return;
+        }
 
         int clearCount = sessionData.clearid.Count;
-        int castleLevel = FactionUtility.GetCastleLevelByClearCount(clearCount); 
+        int castleLevel = FactionUtility.GetCastleLevelByClearCount(clearCount);
 
-        if (spawnedStageInstance.TryGetComponent<BuildingSlotManager>(out var buildingSlot) ||
-            (buildingSlot = spawnedStageInstance.GetComponentInChildren<BuildingSlotManager>()) != null)
+        stageController.Init(castleLevel,currentEnemyInfo);
+    }
+    private void StageCreate()
+    {
+        if (BattleEntryData.currentStage == null ||
+            BattleEntryData.currentStage.StagePrefab == null)
         {
-            buildingSlot.InitializeSlots(castleLevel);
+            Debug.LogError("[Play_manager] 스테이지 데이터가 없습니다.");
+            return;
         }
-        else
+
+        GameObject stagePrefab = BattleEntryData.currentStage.StagePrefab;
+        GameObject stageInstance = Instantiate(stagePrefab, stageSpawnPoint);
+
+        stageController = stageInstance.GetComponentInChildren<StageController>();
+
+        if (stageController == null)
         {
-            Debug.LogWarning("[Play_manager] 생성된 맵에서 BuildingSlotManager를 찾지 못했습니다.");
+            Debug.LogError("[Play_manager] StageController를 찾지 못했습니다.");
         }
     }
 

@@ -38,5 +38,6 @@ MonoBehaviour:
     item_name: "\uB808\uC774\uD53C\uC5B4"
   - item_id: 20
     item_name: "\uC120\uBD09\uC7A5\uAC11\uC637"
-  Enemy_Unit: 0100000001000000
-  Enemy_Hero: 0100000001000000
+  Enemy_Unit: 0100000002000000
+  Enemy_Hero: 6200000063000000
+  Enemy_castle: {fileID: 8841593778796490211, guid: d7a1e3cfef4b1be40b95949b7b2d6a9a, type: 3}

@@ -15,7 +15,7 @@ MonoBehaviour:
   stageNumber: 1
   stageName: "\uAE30\uBCF8\uC2A4\uD14C\uC774\uC9C0"
   stageDescription: 
-  StagePrefab: {fileID: 1328942788087566314, guid: 34e6aab22ba9f1341bb1ffc21846c842, type: 3}
+  StagePrefab: {fileID: 6703829475900203533, guid: 34e6aab22ba9f1341bb1ffc21846c842, type: 3}
   backgroundSprite: {fileID: 0}
   stageBGM: {fileID: 0}
   timeLimit: 0

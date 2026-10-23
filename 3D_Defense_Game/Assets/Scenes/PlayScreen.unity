@@ -425,7 +425,6 @@ MonoBehaviour:
   slotContentSpecial: {fileID: 1503885984}
   changeButton: {fileID: 656148372}
   buttonText: {fileID: 1327766476}
-  dataManager: {fileID: 482745512}
 --- !u!1 &114557429
 GameObject:
   m_ObjectHideFlags: 0

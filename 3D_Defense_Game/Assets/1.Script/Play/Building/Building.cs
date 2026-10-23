@@ -1,13 +1,20 @@
 using UnityEngine;
 
+public enum Team
+{
+    Ally,   // 아군
+    Enemy   // 적군
+}
+
 public class Building : MonoBehaviour
 {
     protected BuildingDataSO buildingData;
-
+    protected Team currentTeam;
     // 공통 초기화 함수
-    public virtual void Init(BuildingDataSO data)
+    public virtual void Init(BuildingDataSO data, Team team = Team.Ally)
     {
         buildingData = data;
+        currentTeam = team;
     }
 
     // 공통 클릭 감지 (건물을 누르면 매니저에게 팝업 오픈 요청)

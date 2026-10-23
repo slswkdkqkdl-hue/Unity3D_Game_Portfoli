@@ -11,8 +11,6 @@ public class BuildingPanelUI : MonoBehaviour
     [SerializeField] private Button changeButton;
     [SerializeField] private TextMeshProUGUI buttonText;
 
-    [Header("데이터 매니저 참조")]
-    [SerializeField] private BuildingDataManager dataManager;
 
     private bool isSpecialActive = false;
 
@@ -46,15 +44,14 @@ public class BuildingPanelUI : MonoBehaviour
     }
 
     /// <summary>
-    /// DataManager로부터 데이터를 받아와 각 슬롯 초기화
+    /// BuildingDataManager 데이터를 받아와 각 슬롯 초기화
     /// </summary>
     private void InitBuildingSlots()
     {
-        if (dataManager == null) return;
-
+        var data = BuildingDataManager.I;
         // 별도의 리스트 생성 없이 원본 리스트를 그대로 전달
-        SetupSlotsInGroup(slotContentBase, dataManager.GetAvailableBuildings());
-        SetupSlotsInGroup(slotContentSpecial, dataManager.GetSpecialBuildings());
+        SetupSlotsInGroup(slotContentBase, data.GetAvailableBuildings());
+        SetupSlotsInGroup(slotContentSpecial, data.GetSpecialBuildings());
     }
     /// <summary>
     /// 건물창 패널 슬룻들 초기화
