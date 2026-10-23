@@ -7,7 +7,7 @@ public class MainCastlePopup : BaseBuildingPopupUI
     [SerializeField] private TextMeshProUGUI CoolTimeText;
     [SerializeField] private TextMeshProUGUI populationText;
 
-        public override void Setup(Building building)
+    public override void Setup(Building building)
     {
         base.Setup(building); // 부모의 기본 정보(이름, 설명, 아이콘) 세팅
 

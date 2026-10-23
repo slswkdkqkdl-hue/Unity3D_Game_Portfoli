@@ -15,7 +15,10 @@ MonoBehaviour:
   buildingId: 2
   buildingName: "\uCE58\uB8CC\uC18C"
   buildingType: 3
-  buildingIcon: {fileID: -549175970, guid: 603384fbc3f945e40a1b70f981f548cd, type: 3}
+  buildingIcon: {fileID: 840639363, guid: ab98dd54ad02e3a4aacfbfca8e5321f9, type: 3}
+  buildingDescription: "\uC77C\uC815 \uC2DC\uAC04\uB9C8\uB2E4 \uC751\uAE09 \uCC98\uCE58\uB97C
+    \uC900\uBE44\uD569\uB2C8\uB2E4. \n\uC900\uBE44\uAC00 \uC644\uB8CC\uB418\uBA74
+    \uC544\uAD70\uC758 \uCCB4\uB825\uC744 \uC989\uC2DC \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
   buildCost: 600
   buildingPrefab: {fileID: 4089747740529004973, guid: 0f72a68caa8a1824899d95c7c243de90, type: 3}
   popupUIPrefab: {fileID: 3096418239948326717, guid: 2714bdab0cc5501479973083af6e184d, type: 3}
