@@ -44,8 +44,23 @@ public class BuildingManager : MonoBehaviour
             return;
         }
 
-        // TODO: 골드(돈) 부족한지 여기서 체크!
-        // if (PlayerGold.Instance.Gold < slotData.buildCost) { Debug.Log("골드가 부족합니다!"); return; }
+        // 3. [골드 체크 및 차감]
+        if (ResourceManager.I != null)
+        {
+            // 내 돈이 건설 비용보다 적다면?
+            if (ResourceManager.I.Money < slotData.buildCost)
+            {
+                InGameLog.I.AddLog($"골드가 부족합니다! [{slotData.buildingName}] 건설에 {slotData.buildCost}G가 필요합니다.");
+                return;
+            }
+            else
+            {
+                InGameLog.I.AddLog($"{slotData.buildingName} 건설 완료 ");
+            }
+
+            // 돈이 충분하므로 비용만큼 차감
+            ResourceManager.I.ModifyMoney(-slotData.buildCost);   
+        }
 
         // 3. 조건 만족! 기억하고 있던 그 땅(`selectedPlot`)에게 건물을 지으라고 명령함
         selectedPlot.SpawnBuilding(slotData);

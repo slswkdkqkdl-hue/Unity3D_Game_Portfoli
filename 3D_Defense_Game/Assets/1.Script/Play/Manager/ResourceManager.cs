@@ -10,6 +10,11 @@ public class ResourceManager : MonoBehaviour
     [SerializeField] private int population = 0;    
     [SerializeField] private int maxPopulation = 0; 
 
+    // 외부에서 필요할때 사용할 프로퍼티
+    public int Money => money;
+    public int Population => population;
+    public int MaxPopulation => maxPopulation;
+
     // 리소스 UI 가받을 이벤트 
     public event Action<int> OnMoneyChanged;
     public event Action<int, int> OnPopulationChanged; 
@@ -21,6 +26,10 @@ public class ResourceManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    public int moneyChak()
+    {
+        return money;
+    }
 
     // 현재 돈 증가/감소 함수
     public void ModifyMoney(int amount)
@@ -38,6 +47,7 @@ public class ResourceManager : MonoBehaviour
     public void ChangeMaxPopulation(int amount)
     {
         maxPopulation += amount;
+
         OnPopulationChanged?.Invoke(population, maxPopulation);
     }
     // 현재 인구수 증가 
