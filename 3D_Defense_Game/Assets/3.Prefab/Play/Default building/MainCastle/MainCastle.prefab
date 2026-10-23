@@ -99,8 +99,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 787383875105064960}
-  - component: {fileID: 6139623548689904836}
   - component: {fileID: 3816952914546965849}
+  - component: {fileID: 2148099820889668473}
   m_Layer: 0
   m_Name: MainCastle
   m_TagString: Untagged
@@ -124,18 +124,6 @@ Transform:
   - {fileID: 6712390616674001439}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6139623548689904836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7148496853246313657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c408b63b74eace46bc5c5a45f34b7e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Building
 --- !u!65 &3816952914546965849
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -157,3 +145,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 5, z: 5}
   m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!114 &2148099820889668473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148496853246313657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a049367937775645b5cc7db44b63149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MainCastle
+  buildingData: {fileID: 0}
+  currentTeam: 0
+  buildingActivationType: 0
+  populationBonus: 6
+  goldPerInterval: 150
+  goldInterval: 10

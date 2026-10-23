@@ -22,25 +22,17 @@ public class ResourceManager : MonoBehaviour
     }
 
 
-    // 현재 돈 증가 함수
+    // 현재 돈 증가/감소 함수
     public void ModifyMoney(int amount)
     {
         money += amount; // 양수면 증가, 음수면 감소
-        money = Mathf.Max(money, 999999); 
+        
+        // 최소 0원, 최대 999,999원으로 제한하고 싶을 때:
+        money = Mathf.Clamp(money, 0, 999999); 
 
         OnMoneyChanged?.Invoke(money); 
     }
-    // 현재 돈 감소 함수 
-    public bool UseMoney(int amount)
-    {
-        if (money >= amount)
-        {
-            money -= amount;
-            OnMoneyChanged?.Invoke(money); 
-            return true;
-        }
-        return false;
-    }
+
 
     // 최대 인구수 변경 
     public void ChangeMaxPopulation(int amount)

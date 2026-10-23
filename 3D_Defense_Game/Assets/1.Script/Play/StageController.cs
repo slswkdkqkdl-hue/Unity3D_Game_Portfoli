@@ -7,7 +7,7 @@ public class StageController : MonoBehaviour
 
 
 
-    public void Init(int castleLevel , EnemyInfoSO enemyInfoSO)
+    public void Init(int PlayerCastleLevel , EnemyInfoSO enemyInfoSO)
     {
         if (playerCastle == null)
         {
@@ -22,7 +22,7 @@ public class StageController : MonoBehaviour
         }
 
         // 플레이어 성의 건물 슬롯 초기화
-        playerCastle.buildingSlotManager.InitializeSlots(castleLevel);
+        playerCastle.buildingSlotManager.InitializeSlots(PlayerCastleLevel);
 
         // 적성 생성 및 초기화
         enemyCastle.Init(enemyInfoSO);

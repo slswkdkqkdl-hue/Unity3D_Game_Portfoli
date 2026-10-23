@@ -28,7 +28,7 @@ public class ResourceUI : MonoBehaviour
     }
     // 인구가 바뀔 때만 실행되는 함수
     private void UpdatePopulationUI(int currentPop, int maxPop)
-    {
+    {   
         PopulationValueText.text = $"{currentPop} / {maxPop}";
     }
 

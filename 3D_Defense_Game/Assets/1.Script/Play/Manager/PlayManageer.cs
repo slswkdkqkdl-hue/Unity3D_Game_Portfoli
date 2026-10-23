@@ -46,26 +46,25 @@ public class Play_manager : MonoBehaviour
             Debug.Log("데이터 없음");
             return;
         }
+        // 2. 플레이어 리소스(돈 , 인구수) 초기화
+        resourceUI.Init(0,0,0);
 
-        // 2. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
+        // 3. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
         StageCreate();
 
-        // 3. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성
+        // 4. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성 + 플레이어/적 메인성 생성 및 초기화
         SetupBuildingSlots();
 
-        // 4. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
+        // 5. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
         buildingSlotUI.Init();
 
-        // 5. 각 성벽 체력 초기화
+        // 6. 각 성벽 체력 초기화
         castleController.Init(sessionData.domainData,currentEnemyInfo);
 
-        // 6. 선택한 영웅들 초기화 + 팀슬룻 생성
+        // 7. 선택한 영웅들 초기화 + 팀슬룻 생성
         var result = BattleEntryData.selectedHeroes;
         herocontroller.Init(result);
         
-        // 7. 플레이어 리소스(돈 , 인구수) 초기화
-        resourceUI.Init(0,0,0);
-
         // 9. 게임시작 로그 메시지 
         InGameLog.I.AddLog("전투가 시작되었습니다.");
 

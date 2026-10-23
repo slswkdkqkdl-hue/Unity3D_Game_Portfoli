@@ -2723,7 +2723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4593036348078094140}
   m_Layer: 0
-  m_Name: Player_Catle
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

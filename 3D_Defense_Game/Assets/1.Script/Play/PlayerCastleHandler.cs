@@ -7,7 +7,7 @@ public class PlayerCastleHandler : MonoBehaviour
 
     [SerializeField] private Transform MainCastlePos;
     [SerializeField] private Team team = Team.Ally;
-
+    
     public void Init()
     {
         if (BuildingDataManager.I == null)
@@ -22,10 +22,18 @@ public class PlayerCastleHandler : MonoBehaviour
         {
             if (data.buildingType == BuildingType.MainCastle)
             {
-                GameObject caslte = Instantiate(data.buildingPrefab, MainCastlePos);
-                caslte.GetComponent<Building>().Init(data, team);
+                // 1. 성 프리팹 생성
+                GameObject castleObj = Instantiate(data.buildingPrefab, MainCastlePos);
+                
+                // 2. MainCastle 컴포넌트 가져오기
+                MainCastle castle = castleObj.GetComponent<MainCastle>();
+                
+                if (castle != null)
+                {
+                    // 3. 성 초기화 
+                    castle.Init(data, team);
+                }
             }
         }
     }
-
 }
