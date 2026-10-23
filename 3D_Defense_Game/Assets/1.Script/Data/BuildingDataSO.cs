@@ -18,6 +18,10 @@ public class BuildingDataSO : ScriptableObject
     public BuildingType buildingType;
     public Sprite buildingIcon;       // 건설 UI에 띄울 아이콘
 
+    [Header("건물 설명")]
+    [TextArea(3, 5)]                   
+    public string buildingDescription;
+
     [Header("비용 및 소환 유닛/영웅")]
     public int buildCost;
 

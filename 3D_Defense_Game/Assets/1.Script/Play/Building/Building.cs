@@ -18,7 +18,9 @@ public class Building : MonoBehaviour
     [SerializeField]protected BuildingDataSO buildingData;
     [SerializeField]protected Team currentTeam;
     [SerializeField]protected BuildingActivationType buildingActivationType;
-    
+
+    public BuildingDataSO Data => buildingData;
+
     // 공통 초기화 함수
     public virtual void Init(BuildingDataSO data, Team team = Team.Ally)
     {
@@ -32,6 +34,6 @@ public class Building : MonoBehaviour
         if (buildingData == null) return;
 
         Debug.Log($"공통 건물 클릭: {buildingData.buildingName}");
-        PopupManager.I.OpenBuildingPopup(buildingData);
+        PopupManager.I.OpenBuildingPopup(this);
     }
 }

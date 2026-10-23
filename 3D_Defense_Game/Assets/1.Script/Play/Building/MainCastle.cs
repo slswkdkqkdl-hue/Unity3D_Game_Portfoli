@@ -4,9 +4,15 @@ using UnityEngine.UI;
 public class MainCastle : Building
 {
     [Header("메인 성 보상 설정")]
-    [SerializeField] private int populationBonus = 6;      // 건물 생성 시 증가할 최대 인구수
-    [SerializeField] private int goldPerInterval = 300;   // 주기마다 지급할 골드 양
-    [SerializeField] private float goldInterval = 20f;    // 골드 지급 주기 (초 단위)
+    public string Castle_Name;
+    [SerializeField] private int populationBonus;      // 건물 생성 시 증가할 최대 인구수
+    [SerializeField] private int goldPerInterval;   // 주기마다 지급할 골드 양
+    [SerializeField] private float goldInterval;    // 골드 지급 주기 (초 단위)
+
+    public int PopulationBonus => populationBonus;
+    public int GoldPerInterval => goldPerInterval;
+    public float GoldInterval => goldInterval;
+
     private float timer = 0f;    // 골드 생산 주기 체크용 타이머
 
     [Header("쿨타임 UI")]

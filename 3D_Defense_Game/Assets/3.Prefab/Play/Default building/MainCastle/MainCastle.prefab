@@ -238,7 +238,7 @@ MonoBehaviour:
   buildingActivationType: 0
   populationBonus: 6
   goldPerInterval: 200
-  goldInterval: 30
+  goldInterval: 3
   fillImage: {fileID: 4287331712778536780}
 --- !u!1 &7906842435846565949
 GameObject:

@@ -49,17 +49,17 @@ public class PopupManager : MonoBehaviour
     /// <summary>
     /// [건물 클릭 시 호출] 건물 데이터를 받아 팝업을 띄움
     /// </summary>
-    public void OpenBuildingPopup(BuildingDataSO buildingData)
+    public void OpenBuildingPopup(Building targetBuilding)
     {
-        if (buildingData == null) return;
+        if (targetBuilding == null || targetBuilding.Data == null) return;
 
-        // 1. 먼저 열려있는 모든 팝업 닫기
+        BuildingDataSO buildingData = targetBuilding.Data;
+
         CloseAllPopups();
 
-        // 2. 딕셔너리에 이 건물의 ID에 해당하는 팝업이 있는지 확인
+        // 1. 팝업 프리팹 생성 또는 캐싱 확인
         if (!buildingPopupDict.TryGetValue(buildingData.buildingId, out GameObject popupObj))
         {
-            // 없으면 새로 생성 후 딕셔너리에 등록
             if (buildingData.popupUIPrefab != null)
             {
                 popupObj = Instantiate(buildingData.popupUIPrefab, popupParent);
@@ -72,13 +72,15 @@ public class PopupManager : MonoBehaviour
             }
         }
 
-        // 3. 팝업 활성화 및 데이터 주입
         popupObj.SetActive(true);
         currentBuildingPopup = popupObj;
 
-        // 예시: 팝업 내부 스크립트 가져와서 데이터 세팅
-        // var popupScript = popupObj.GetComponent<BaseBuildingPopupUI>();
-        // if (popupScript != null) popupScript.Setup(buildingData);
+
+        BaseBuildingPopupUI popupScript = popupObj.GetComponent<BaseBuildingPopupUI>();
+        if (popupScript != null)
+        {
+            popupScript.Setup(targetBuilding);
+        }
 
         Debug.Log($"[PopupManager] 건물 팝업 오픈: {buildingData.buildingName}");
     }
