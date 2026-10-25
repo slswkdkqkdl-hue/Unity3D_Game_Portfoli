@@ -146,6 +146,8 @@ MonoBehaviour:
   buildingData: {fileID: 0}
   currentTeam: 0
   buildingActivationType: 0
+  unitDatas: []
+  fillImage: {fileID: 5837384815278361947}
 --- !u!1 &2775689060708461065
 GameObject:
   m_ObjectHideFlags: 0

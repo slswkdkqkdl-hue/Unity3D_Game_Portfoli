@@ -148,7 +148,7 @@ Material:
     - _BackgroundGradientBlend: 0.5
     - _BackgroundNoiseSpeed: 1.25
     - _BackgroundOpacity: 1
-    - _BackgroundRotation: 223.6588
+    - _BackgroundRotation: 229.68707
     - _BackgroundRotationSpeed: 0
     - _BackgroundSpecularAngle: 1
     - _BackgroundSpecularIntensity: 0.6
@@ -253,7 +253,7 @@ Material:
     - _MidgroundGradientBlend: 0.98
     - _MidgroundNoiseSpeed: 1.25
     - _MidgroundOpacity: 1
-    - _MidgroundRotation: 52.537727
+    - _MidgroundRotation: 70.62332
     - _MidgroundRotationSpeed: 0
     - _MidgroundSpecularAngle: 1
     - _MidgroundSpecularIntensity: 0.6

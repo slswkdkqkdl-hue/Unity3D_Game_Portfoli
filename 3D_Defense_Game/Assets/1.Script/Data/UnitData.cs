@@ -23,8 +23,10 @@ public class UnitData : ScriptableObject
     public CharacterType type;
 
     [Space(10)]
-    [Header("유닛 생산 또는 소환에 소모되는 비용")]
-    public int Cost;
+    [Header("생산시간")]
+    public int CoolTime;
+    [Header("소모 인구수")]
+    public int population;
 
     [Space(10)]
     [Header("=== 캐릭터 설명 ===")]

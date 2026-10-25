@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,8 @@ public class MainCastle : Building
     public int GoldPerInterval => goldPerInterval;
     public float GoldInterval => goldInterval;
 
+    public List<Building> buildings = new List<Building>();
+
     private float timer = 0f;    // 골드 생산 주기 체크용 타이머
 
     [Header("쿨타임 UI")]
@@ -27,6 +30,18 @@ public class MainCastle : Building
         if (currentTeam == Team.Ally && ResourceManager.I != null)
         {   
             ResourceManager.I.ChangeMaxPopulation(populationBonus);
+        }
+    }
+    
+    /// <summary>
+    /// 다른 건물들이 생성될 때 자신을 이 리스트에 등록하는 함수
+    /// </summary>
+    public void RegisterBuilding(Building newBuilding)
+    {
+        if (newBuilding != null && !buildings.Contains(newBuilding))
+        {
+            buildings.Add(newBuilding);
+            Debug.Log($"[MainCastle] 새 건물 등록됨: {newBuilding.Data.buildingName} (총 건물 수: {buildings.Count})");
         }
     }
 

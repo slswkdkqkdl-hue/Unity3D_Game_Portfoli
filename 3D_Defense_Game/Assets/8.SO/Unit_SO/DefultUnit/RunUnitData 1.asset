@@ -16,9 +16,11 @@ MonoBehaviour:
   prefab_UI: {fileID: 0}
   Unit_Id: 222
   Unit_Name: "\uAD81\uBCD1"
-  portrait: {fileID: 0}
+  portrait: {fileID: 2045619393, guid: 777baf15fc3b3e441afed483a9c903c5, type: 3}
   type: 0
-  description: 
+  CoolTime: 8
+  population: 1
+  description: ddd
   hp: 40
   mp: 10
   attack: 15

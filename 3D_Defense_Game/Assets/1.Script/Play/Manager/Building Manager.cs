@@ -8,12 +8,17 @@ public class BuildingManager : MonoBehaviour
     
     // 현재 플레이어가 클릭해서 선택한 건설 부지 (핵심 데이터!)
     private BuildingPlot selectedPlot;
+    // 현재 플레이어 유닛 데이터
+    public List<UnitData> unitDatas = new List<UnitData>();
 
+    
     private void Awake()
     {
         if (I == null) I = this;
         else Destroy(gameObject);
     }
+
+    
 
     /// <summary>
     /// 플레인이 클릭되었을 때 매니저가 호출받아서 선택된 땅을 저장함
@@ -23,7 +28,24 @@ public class BuildingManager : MonoBehaviour
         selectedPlot = plot;
         Debug.Log("BuildingManager: 선택된 땅을 기억했습니다. 이제 하단 슬롯에서 건물을 고르세요!");
     }
-    
+    /// <summary>
+    /// 플레이어 세션 데이터로부터 유닛 리스트를 받아와 초기화하는 함수
+    /// </summary>
+    public void InitUnits(List<UnitRuntimeData> runtimeUnits)
+    {
+        unitDatas.Clear();
+
+        if (runtimeUnits == null) return;
+
+        foreach (var runtimeUnit in runtimeUnits)
+        {
+            if (runtimeUnit.unitData != null)
+            {
+                unitDatas.Add(runtimeUnit.unitData);
+            }
+        }
+
+    }
 
     /// <summary>
     /// 건물 슬롯창을 클릭했을 때 호출됨

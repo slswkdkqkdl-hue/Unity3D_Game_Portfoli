@@ -56,6 +56,9 @@ public class Play_manager : MonoBehaviour
         // 4. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성 + 플레이어/적 메인성 생성 및 초기화
         SetupBuildingSlots();
 
+        // 빌딩매니저한테 유닛 데이터 전달
+        BuildingManager.I.InitUnits(sessionData.units);
+
         // 5. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
         buildingSlotUI.Init();
 
