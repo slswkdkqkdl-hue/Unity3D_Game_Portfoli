@@ -122,7 +122,7 @@ public class LoadingManager : MonoBehaviour
             }
             isDataLoadingComplete = true;
         }
-else if(nextScene == SceneType.PlayScreen)
+    else if(nextScene == SceneType.PlayScreen)
     {    
         isDataLoadingComplete = false;
 

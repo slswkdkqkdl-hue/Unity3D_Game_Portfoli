@@ -106,7 +106,7 @@ public partial class DataManager : MonoBehaviour
         saveData.nation.domainType = data.domainType;
         saveData.nation.domain_emblem = data.territoryEmblem;
 
-        // 3. 영웅 ID 저장 (data.heroDescDatas에서 ID 추출)
+        // 3. 세력 영웅 Id 저장 
         if (data.heroDescDatas != null)
         {
             saveData.heroDates.Add(new HeroSaveData
@@ -122,7 +122,7 @@ public partial class DataManager : MonoBehaviour
                 SP = 30
             });
         }
-        // 4. 유닛 ID들 저장 (data.unitDescDatas에서 ID 추출)
+        // 4. 세력 특수유닛 ID들 저장 
         if (data.unitDescDatas != null)
         {
             foreach (var unit in data.unitDescDatas)
@@ -134,6 +134,17 @@ public partial class DataManager : MonoBehaviour
                     UnitId = unit.Unit_Id 
                 });
             }
+            
+            // 기본 유닛 추가 현재는 하드코딩 추후에 개선
+            saveData.unitDatas.Add(new UnitSaveData
+            {
+                UnitId = 111
+            });
+            saveData.unitDatas.Add(new UnitSaveData
+            {
+                UnitId = 222
+            });
+            
         }
         // 5. 업그레이드 SO 정보 세이브데이터에 할당
         if (upgradeDB != null)
