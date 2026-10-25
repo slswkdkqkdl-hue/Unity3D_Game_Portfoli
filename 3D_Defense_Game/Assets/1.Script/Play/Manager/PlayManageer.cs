@@ -46,6 +46,52 @@ public class Play_manager : MonoBehaviour
             Debug.Log("데이터 없음");
             return;
         }
+        Debug.Log($"--- [BattleEntryData] 적 유닛 및 영웅 데이터 확인 ---");
+        
+        // 1. 적 유닛 리스트 로그
+        if (BattleEntryData.EnemyUnit != null)
+        {
+            Debug.Log($"적 유닛 총 개수: {BattleEntryData.EnemyUnit.Count}개");
+            for (int i = 0; i < BattleEntryData.EnemyUnit.Count; i++)
+            {
+                var unit = BattleEntryData.EnemyUnit[i];
+                if (unit != null)
+                {
+                    Debug.Log($"  - [Unit {i}] 이름(병종): {unit.Unit_Name} (ID: {unit.Unit_Id})");
+                }
+                else
+                {
+                    Debug.LogWarning($"  - [Unit {i}] 데이터가 null입니다!");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("적 유닛 리스트(EnemyUnit) 자체가 null입니다.");
+        }
+
+        // 2. 적 영웅 리스트 로그
+        if (BattleEntryData.EnemyHero != null)
+        {
+            Debug.Log($"적 영웅 총 개수: {BattleEntryData.EnemyHero.Count}개");
+            for (int i = 0; i < BattleEntryData.EnemyHero.Count; i++)
+            {
+                var hero = BattleEntryData.EnemyHero[i];
+                if (hero != null)
+                {
+                    Debug.Log($"  - [Hero {i}] 이름: {hero.hero_name} (풀네임: {hero.hero_PullName}, ID: {hero.Hero_Id})");
+                }
+                else
+                {
+                    Debug.LogWarning($"  - [Hero {i}] 데이터가 null입니다!");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("적 영웅 리스트(EnemyHero) 자체가 null입니다.");
+        }
+        Debug.Log($"--------------------------------------------------");
         // 2. 플레이어 리소스(돈 , 인구수) 초기화
         resourceUI.Init(0,0,0);
 

@@ -1298,15 +1298,15 @@ MonoBehaviour:
   m_OverrideSceneCullingMask: 6917529027641081856
   m_SceneIsLit: 1
   m_SceneLighting: 1
-  m_2DMode: 0
+  m_2DMode: 1
   m_isRotationLocked: 0
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 181.98227, y: 5.621131, z: 120.50044}
+    m_Target: {x: 818.3809, y: 354.77393, z: -6.281146}
     speed: 2
-    m_Value: {x: 56.64, y: 0.5009999, z: 70.07}
+    m_Value: {x: 181.98227, y: 5.621131, z: 120.50044}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1352,15 +1352,15 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.043892104, y: -0.95366305, z: 0.17236261, w: -0.2427553}
+    m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: 0.023117749, y: 0.5963966, z: -0.017185977, w: 0.8021761}
+    m_Value: {x: 0.043892104, y: 0.953663, z: -0.17236261, w: 0.24275531}
   m_Size:
-    m_Target: 9.405119
+    m_Target: 910.4654
     speed: 2
-    m_Value: 14.177948
+    m_Value: 9.405119
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
     m_Value: 0
   m_CameraSettings:
@@ -1376,7 +1376,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: 0.42032874, y: 0.0030038522, z: -0.0013911928, w: 0.9073669}
+  m_LastSceneViewRotation: {x: -0.043892104, y: -0.95366305, z: 0.17236261, w: -0.2427553}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
     m_SceneView: {fileID: 15}
@@ -1745,23 +1745,23 @@ MonoBehaviour:
       m_Data: 62090
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 61938
-    - m_Data: 61940
-    - m_Data: 61942
-    - m_Data: 61944
-    - m_Data: 61946
-    - m_Data: 61948
-    - m_Data: 61950
-    - m_Data: 61952
-    - m_Data: 61954
-    - m_Data: 61956
-    - m_Data: 61958
-    - m_Data: 61960
-    - m_Data: 61962
-    - m_Data: 61964
-    - m_Data: 61966
-    - m_Data: 61968
-    - m_Data: 61970
+    - m_Data: 61974
+    - m_Data: 61976
+    - m_Data: 61978
+    - m_Data: 61980
+    - m_Data: 61982
+    - m_Data: 61984
+    - m_Data: 61986
+    - m_Data: 61988
+    - m_Data: 61990
+    - m_Data: 61992
+    - m_Data: 61994
+    - m_Data: 61996
+    - m_Data: 61998
+    - m_Data: 62000
+    - m_Data: 62002
+    - m_Data: 62004
+    - m_Data: 62006
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1794,23 +1794,23 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 61938
-    - m_Data: 61940
-    - m_Data: 61942
-    - m_Data: 61944
-    - m_Data: 61946
-    - m_Data: 61948
-    - m_Data: 61950
-    - m_Data: 61952
-    - m_Data: 61954
-    - m_Data: 61956
-    - m_Data: 61958
-    - m_Data: 61960
-    - m_Data: 61962
-    - m_Data: 61964
-    - m_Data: 61966
-    - m_Data: 61968
-    - m_Data: 61970
+    - m_Data: 61974
+    - m_Data: 61976
+    - m_Data: 61978
+    - m_Data: 61980
+    - m_Data: 61982
+    - m_Data: 61984
+    - m_Data: 61986
+    - m_Data: 61988
+    - m_Data: 61990
+    - m_Data: 61992
+    - m_Data: 61994
+    - m_Data: 61996
+    - m_Data: 61998
+    - m_Data: 62000
+    - m_Data: 62002
+    - m_Data: 62004
+    - m_Data: 62006
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

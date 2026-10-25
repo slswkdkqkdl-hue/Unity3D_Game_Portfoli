@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.AddressableAssets;
+using System.Collections.Generic;
 /// <summary>
 /// 게임 내 프로젝트의 모든 씬 종류를 정의하는 열거형
 /// </summary>
@@ -120,28 +122,107 @@ public class LoadingManager : MonoBehaviour
             }
             isDataLoadingComplete = true;
         }
-        else if(nextScene == SceneType.PlayScreen)
-        {   
-            isDataLoadingComplete = false;
-            // 기존에 로드된 게 있다면 안전하게 해제부터 하고 시작
-            BattleEntryData.ReleaseCurrentStage();
+else if(nextScene == SceneType.PlayScreen)
+    {    
+        isDataLoadingComplete = false;
 
-            //  어드레서블을 통해 비동기로 StageData 로드
-            var handle = BattleEntryData.selectedEnemy.stageRef.LoadAssetAsync<StageData>();
-                
-            await handle.Task;
-
-            if (handle.Status == AsyncOperationStatus.Succeeded)
-            {
-                // BattleEntryData에 레퍼런스와 데이터 함께 등록
-                BattleEntryData.SetLoadedStage(BattleEntryData.selectedEnemy.stageRef, handle.Result);
-            }
-            else
-            {
-                Debug.LogError("StageData 어드레서블 로드 실패!");
-            }
+        BattleEntryData.ReleaseCurrentStage();
+        BattleEntryData.ReleaseEnemyData();
+        
+        if (BattleEntryData.selectedEnemy == null)
+        {
+            Debug.LogError("selectedEnemy가 null입니다!");
             isDataLoadingComplete = true;
+            return;
         }
+
+        var Unit_list = BattleEntryData.selectedEnemy.Enemy_Unit;
+        var Hero_list = BattleEntryData.selectedEnemy.Enemy_Hero;
+
+        List<UnitData> unitDatas = new List<UnitData>();
+        List<HeroData> heroDatas = new List<HeroData>();            
+        
+        List<AsyncOperationHandle> assetHandles = new List<AsyncOperationHandle>();
+
+        // 1. 스테이지 로드 태스크 시작 (비동기 병렬 처리를 위해 미리 호출)
+        var stageHandle = BattleEntryData.selectedEnemy.stageRef.LoadAssetAsync<StageData>();
+
+        // 2. 적 유닛 로드 (리스트가 null이 아니고 데이터가 있을 때만 실행)
+        if (Unit_list != null && Unit_list.Count > 0)
+        {
+            foreach (var data in Unit_list)
+            {
+                AssetReferenceT<UnitData> unitRef = DataManager.I.unitDB.GetUnitRef(data);
+                if (unitRef != null && unitRef.RuntimeKeyIsValid())
+                {
+                    AsyncOperationHandle<UnitData> handle;
+
+                    if (unitRef.IsValid())
+                    {
+                        handle = unitRef.OperationHandle.Convert<UnitData>();
+                        unitDatas.Add(handle.Result);
+                    }
+                    else
+                    {
+                        handle = unitRef.LoadAssetAsync<UnitData>();
+                        await handle.Task;
+
+                        if (handle.Status == AsyncOperationStatus.Succeeded)
+                        {
+                            unitDatas.Add(handle.Result);
+                            assetHandles.Add(handle);
+                        }
+                    }
+                }
+            }
+        }
+
+        // 3. 적 영웅 로드 (리스트가 null이 아니고 데이터가 있을 때만 실행)
+        if (Hero_list != null && Hero_list.Count > 0)
+        {
+            foreach (var data in Hero_list)
+            {
+                AssetReferenceT<HeroData> heroRef = DataManager.I.heroDB.GetHeroRef(data);
+                if (heroRef != null && heroRef.RuntimeKeyIsValid())
+                {
+                    AsyncOperationHandle<HeroData> handle;
+
+                    if (heroRef.IsValid())
+                    {
+                        handle = heroRef.OperationHandle.Convert<HeroData>();
+                        heroDatas.Add(handle.Result);
+                    }
+                    else
+                    {
+                        handle = heroRef.LoadAssetAsync<HeroData>();
+                        await handle.Task;
+
+                        if (handle.Status == AsyncOperationStatus.Succeeded)
+                        {
+                            heroDatas.Add(handle.Result);
+                            assetHandles.Add(handle);
+                        }
+                    }
+                }
+            }
+        }
+
+        // 4. 스테이지 로드 완료 대기
+        await stageHandle.Task;
+
+        if (stageHandle.Status == AsyncOperationStatus.Succeeded)
+        {
+            // BattleEntryData에 스테이지와 유닛/영웅 데이터, 그리고 모아둔 핸들 목록을 전부 전달!
+            BattleEntryData.SetLoadedStage(BattleEntryData.selectedEnemy.stageRef, stageHandle.Result);
+            BattleEntryData.SetLoadedEnemyData(unitDatas, heroDatas, assetHandles); 
+        }
+        else
+        {
+            Debug.LogError("StageData 어드레서블 로드 실패!");
+        }
+
+        isDataLoadingComplete = true;
+    }
         else
         {
             isDataLoadingComplete = true;
