@@ -2036,10 +2036,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7643aa338d2034eb0e15a2f377010a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordsMan
-  currentTeam: 0
   currentHp: 0
   currentMp: 0
   currentAttack: 0
   currentDefense: 0
   currentAttackSpeed: 0
   currentMoveSpeed: 0
+  animator: {fileID: 5503042464900549359}
+  detectRange: 5
+  attackRange: 1
+  currentState: 0

@@ -32,7 +32,12 @@ public class UnitBase : MonoBehaviour
 
     [Header("FSM 현재 상태")]
     [SerializeField] protected UnitState currentState;
-    protected Transform targetTransform; // 현재 추적중인것
+    
+    [Header("타겟 및 이동 목표")]
+    protected Transform objectiveTransform; // 찾아가야 할 최종 목표
+
+    [Header("최종 이동 백터")]
+    [SerializeField]Vector3 finalDir;
 
     private bool isDead = false;
 
@@ -41,8 +46,8 @@ public class UnitBase : MonoBehaviour
         MyUnitData = data;
         isDead = false;
         currentTeam = team;
-        currentState = UnitState.Chase; // 생성 시 기본은 Idle로 시작
-        targetTransform = null;
+        currentState = UnitState.Chase; 
+        objectiveTransform = null;
 
         if (data != null)
         {
@@ -60,6 +65,33 @@ public class UnitBase : MonoBehaviour
         if (BattlefieldManager.I != null)
         {
             BattlefieldManager.I.RegisterUnit(this, currentTeam);
+        }
+        SetInitialObjective();
+    }
+
+    /// <summary>
+    /// 가장 가까운 성 공격 포인트를 찾아 백터 저장
+    /// </summary>
+    private void SetInitialObjective()
+    {
+        if (currentTeam == Team.Ally)
+        {
+            if (EnemyCastle.I != null)
+            {   
+                objectiveTransform = EnemyCastle.I.GetClosestAttackPoint(transform.position);
+            }
+        }
+        else
+        {
+            if (MainCastle.I != null)
+            {
+                objectiveTransform = MainCastle.I.GetClosestAttackPoint(transform.position);
+            }
+        }
+
+        if (objectiveTransform == null)
+        {
+            Debug.LogWarning($"[{MyUnitData.Unit_Name}] 목표 성의 공격 포인트를 찾지 못했습니다!");
         }
     }
 
@@ -80,58 +112,71 @@ public class UnitBase : MonoBehaviour
                 UpdateAttack();
                 break;
             case UnitState.Die:
-                // 사망 상태에서는 별도 처리 없음 (Die() 함수에서 풀 반환 등 처리)
                 break;
         }
     }
 
-    /// <summary>
-    /// [Idle 상태] 적을 탐색하거나 전진할 타겟을 찾는 상태
-    /// </summary>
     protected virtual void UpdateIdle()
     {
-        // TODO: 자식 클래스(SwordsMan 등)나 여기서 범위 내 적 탐지 로직 수행
-        // 적을 찾으면 targetTransform에 넣고 ChangeState(UnitState.Chase)로 전환
-
+       
+        if (objectiveTransform != null)
+        {
+            ChangeState(UnitState.Chase);
+        }
     }
 
     /// <summary>
-    /// [Chase 상태] 타겟을 향해 이동하는 상태 (물리 없이 position 이동)
+    /// [Chase 상태] 목표 지점을 향해 이동하는 상태 (물리 없이 position 이동 + 뭉침 방지)
     /// </summary>
     protected virtual void UpdateChase()
     {
-        // TODO: 타겟과의 거리를 계산하여 attackRange 이내면 Attack으로, 
-        // 타겟이 사라졌거나 멀어지면 Idle로 전환
+        if (objectiveTransform == null) return;
+
+        // 1. 목표 지점 방향 계산
+        Vector3 dir = objectiveTransform.position - transform.position;
+        dir.y = 0f;
+        Vector3 moveDir = dir.normalized;
+
+        finalDir = moveDir; 
+
+        if (finalDir != Vector3.zero)
+        {
+            // 부드러운 회전
+            Quaternion targetRot = Quaternion.LookRotation(finalDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 15f * Time.deltaTime);
+            
+            // 물리 없이 순수 위치 이동
+            transform.position += finalDir * currentMoveSpeed * Time.deltaTime;
+        }
     }
 
-    /// <summary>
-    /// [Attack 상태] 멈춰 서서 공격을 수행하는 상태
-    /// </summary>
     protected virtual void UpdateAttack()
     {
-        // TODO: 공격 쿨타임에 맞춰 데미지 주기
-        // 타겟이 범위 밖으로 도망치거나 죽으면 다시 Chase나 Idle로 전환
+        
     }
 
-    /// <summary>
-    /// 상태를 안전하게 전환하는 함수
-    /// </summary>
     protected void ChangeState(UnitState newState)
     {
         if (currentState == newState) return;
         currentState = newState;
-        
-        // 상태가 바뀔 때 필요한 초기화 작업이 있다면 여기서 수행 가능
-    }
 
-    /// <summary>
-    /// BattlefieldManager에게 요청하여 감지 범위 내 가장 가까운 적을 탐색
-    /// </summary>
-    // protected Transform FindClosestEnemy()
-    // {
-    //     if (BattlefieldManager.I == null) return null;
-    //     return BattlefieldManager.I.GetClosestUnitInRange(currentTeam, transform.position, detectRange);
-    // }
+
+            // 애니메이션연출
+        switch (currentState)
+        {
+            case UnitState.Idle:
+                
+                break;
+            case UnitState.Chase:
+               
+                break;
+            case UnitState.Attack:
+            
+                break;
+            case UnitState.Die:
+                break;
+        }
+    }
 
     public virtual void Die()
     {
@@ -162,7 +207,6 @@ public class UnitBase : MonoBehaviour
 
     protected virtual void OnDrawGizmosSelected()
     {
-        // 에디터에서 감지 범위(파란색)와 공격 범위(빨간색) 시각화
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, detectRange);
 

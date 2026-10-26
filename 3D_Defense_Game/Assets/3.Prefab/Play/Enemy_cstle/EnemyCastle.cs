@@ -36,6 +36,15 @@ public class EnemyCastle : MonoBehaviour, IDamageable
     [Header("공격 포인트")]
     [SerializeField] public Transform[] AttackPoint = new Transform[3];
 
+
+    [Header("테스트 소환 설정")]
+    [SerializeField] private int targetUnitId = 111; // 테스트할 유닛 ID
+    private float spawnTimer = 0f;                   // 2초 쿨타임 타이머
+    private float spawnInterval = 2f;                // 소환 간격 (2초)
+    private UnitData targetUnitData = null;          // 찾은 ID 111 유닛 데이터\
+    private bool isSpawning = false; // 소환여부
+    private int EnemyCount = 0;
+
     private void Awake()
     {
         if (I == null)
@@ -48,22 +57,35 @@ public class EnemyCastle : MonoBehaviour, IDamageable
         }
     }
 
-    void Update()
+    private void Update()
     {
+        if (!isSpawning || EnemyCount <= 0) return;
 
+        // 타이머 누적
+        spawnTimer += Time.deltaTime;
+
+        // 2초가 지났다면 소환 실행 후 타이머 초기화
+        if (spawnTimer >= spawnInterval)
+        {
+            spawnTimer = 0f;
+            TrySpawnUnit();
+        }
     }
 
     public void Init(EnemyInfoSO data)
     {
         enemyInfoSO = data;
         LoadDataFromEntry();
+
         if (enemyInfoSO != null)
         {
-            int EnemyCount = Random.Range(enemyInfoSO.minEnemyCount, enemyInfoSO.maxEnemyCount);
-            // 필요하다면 여기서 적 수에 따른 추가 초기화 진행
+            EnemyCount = Random.Range(enemyInfoSO.minEnemyCount, enemyInfoSO.maxEnemyCount);
+            spawnTimer = 0f;
+            targetUnitData = Units.Find(u => u.Unit_Id == targetUnitId);
+            isSpawning = true;
         }
     }
-
+    
     /// <summary>
     /// BattleEntryData로부터 적 유닛과 영웅 데이터를 가져오는 함수
     /// </summary>
@@ -90,6 +112,57 @@ public class EnemyCastle : MonoBehaviour, IDamageable
         {
             Debug.LogWarning("[EnemyCastle] BattleEntryData에 연동할 적 영웅 데이터가 없습니다!");
         }
+    }
+    /// <summary>
+    /// 제한 횟수 체크 후 UnitPoolManager를 통해 유닛을 소환하는 함수
+    /// </summary>
+    private void TrySpawnUnit()
+    {
+        // 출구 포인트 가져오기
+        Transform spawnPoint = RandomPoint();
+        if (spawnPoint == null)
+        {
+            Debug.LogWarning("[EnemyCastle] 유닛을 소환할 ExitPoint가 없습니다!");
+            return;
+        }
+
+        // UnitPoolManager를 통해 유닛 가져오기 (풀링 사용)
+        UnitBase spawnedUnit = UnitPoolManager.I.GetUnit(targetUnitData, spawnPoint.position, spawnPoint.rotation);
+
+        if (spawnedUnit != null)
+        {
+            // 적 팀(Team.Enemy)으로 초기화 (BattlefieldManager에 자동 등록됨)
+            spawnedUnit.Init(targetUnitData, enemyTeam);
+            EnemyCount--;
+            Debug.Log($"[EnemyCastle] 테스트 유닛 소환 완료: {targetUnitData.Unit_Name}");
+        }
+        else
+        {
+            Debug.LogWarning("[EnemyCastle] 유닛 풀에서 유닛을 가져오지 못했습니다!");
+        }
+    }
+    /// <summary>
+    /// 유닛의 현재 위치를 받아, 성의 AttackPoint 중 가장 가까운 포인트를 반환합니다.
+    /// </summary>
+    public Transform GetClosestAttackPoint(Vector3 currentPos)
+    {
+        if (AttackPoint == null || AttackPoint.Length == 0) return null;
+
+        Transform closestPoint = AttackPoint[0];
+        float minSqrDist = (closestPoint.position - currentPos).sqrMagnitude;
+
+        for (int i = 1; i < AttackPoint.Length; i++)
+        {
+            if (AttackPoint[i] == null) continue;
+            float sqrDist = (AttackPoint[i].position - currentPos).sqrMagnitude;
+            if (sqrDist < minSqrDist)
+            {
+                minSqrDist = sqrDist;
+                closestPoint = AttackPoint[i];
+            }
+        }
+
+        return closestPoint;
     }
 
     /// <summary>

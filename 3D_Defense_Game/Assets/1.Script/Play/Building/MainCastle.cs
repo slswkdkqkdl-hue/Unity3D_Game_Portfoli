@@ -67,6 +67,29 @@ public class MainCastle : Building, IDamageable
         int index = Random.Range(0, ExitPoint.Length);
         return ExitPoint[index];
     }
+    /// <summary>
+    /// 유닛의 현재 위치를 받아, 성의 AttackPoint 중 가장 가까운 포인트를 반환합니다.
+    /// </summary>
+    public Transform GetClosestAttackPoint(Vector3 currentPos)
+    {
+        if (AttackPoint == null || AttackPoint.Length == 0) return null;
+
+        Transform closestPoint = AttackPoint[0];
+        float minSqrDist = (closestPoint.position - currentPos).sqrMagnitude;
+
+        for (int i = 1; i < AttackPoint.Length; i++)
+        {
+            if (AttackPoint[i] == null) continue;
+            float sqrDist = (AttackPoint[i].position - currentPos).sqrMagnitude;
+            if (sqrDist < minSqrDist)
+            {
+                minSqrDist = sqrDist;
+                closestPoint = AttackPoint[i];
+            }
+        }
+
+        return closestPoint;
+    }
 
     private void Update()
     {
