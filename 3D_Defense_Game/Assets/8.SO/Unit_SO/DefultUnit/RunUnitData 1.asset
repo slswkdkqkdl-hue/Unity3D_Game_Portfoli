@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082232964268e674788d451ae8aacbea, type: 3}
   m_Name: RunUnitData 1
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  prefab_Play: {fileID: 0}
+  prefab_Play: {fileID: 2545166699278471777, guid: 037e40ecc150dbe4c8b95e2a8c1f2024, type: 3}
   prefab_UI: {fileID: 0}
   Unit_Id: 222
   Unit_Name: "\uAD81\uBCD1"
@@ -26,4 +26,4 @@ MonoBehaviour:
   attack: 15
   defense: 3
   attackSpeed: 2
-  moveSpeed: 1
+  moveSpeed: 1.2

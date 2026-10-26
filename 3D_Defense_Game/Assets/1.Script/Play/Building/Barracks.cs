@@ -53,8 +53,20 @@ public class Barracks : Building
         // 설정된 쿨타임에 도달하면 유닛 생성
         if (timer >= currentUnit.CoolTime)
         {
-            SpawnUnit(currentUnit);
-            timer = 0f; // 타이머 초기화
+            // [핵심] 인구수 체크 및 증가 시도
+            if (ResourceManager.I != null)
+            {
+                if (ResourceManager.I.TryAddPopulation(currentUnit.population))
+                {   
+                    // 인구수 확보 성공 -> 유닛 소환 및 타이머 초기화
+                    SpawnUnit(currentUnit);
+                    timer = 0f;
+                }
+            }
+            else
+            {
+                timer = currentUnit.CoolTime; 
+            }
         }
     }
 
@@ -71,7 +83,29 @@ public class Barracks : Building
 
     private void SpawnUnit(UnitData unitData)
     {
-        // TODO: 유닛 생성(Instantiate) 및 출구로 내보내는 로직 구현
+        if (castle != null)
+        {   
+            Transform point = castle.RandomPoint();
+            if (point == null)
+            {
+                Debug.LogWarning("[병영] 성의 출구(ExitPoint)가 없어 유닛 소환이 취소되었습니다.");
+                if (ResourceManager.I != null)
+                {
+                    ResourceManager.I.DecreasePopulation(unitData.population);
+                }
+                return; 
+            }
+            GameObject result = Instantiate(unitData.prefab_Play,point);
+            if (result.TryGetComponent<UnitBase>(out UnitBase unit))
+            {
+                unit.Init(unitData);
+            }
+            else
+            {
+                Debug.LogWarning($"[병영] 소환된 프리팹에 UnitBase 컴포넌트가 없습니다! -> {unitData.Unit_Name}");
+            }
+        }
+
         Debug.Log($"[병영] 유닛 생산 완료! -> {unitData.Unit_Name} 소환됨!");
     }
 }

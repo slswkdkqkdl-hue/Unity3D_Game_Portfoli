@@ -36,7 +36,7 @@ public class MainCastle : Building
             Destroy(gameObject);
         }
     }
-
+    
     public override void Init(BuildingDataSO data, Team team = Team.Ally)
     {
         base.Init(data, team);
@@ -49,7 +49,18 @@ public class MainCastle : Building
         }
     }
     
+    public Transform RandomPoint()
+    {
+        // 출구가 하나도 등록되어 있지 않은 경우
+        if (ExitPoint == null || ExitPoint.Length == 0)
+        {
+            Debug.LogError("[MainCastle] ExitPoint가 설정되지 않았습니다! 출구를 먼저 등록해주세요.");
+            return null; // null 반환하여 소환 차단
+        }
 
+        int index = Random.Range(0, ExitPoint.Length);
+        return ExitPoint[index];
+    }
 
     private void Update()
     {
