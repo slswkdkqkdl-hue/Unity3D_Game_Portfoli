@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UnitBase : MonoBehaviour
+public class UnitBase : MonoBehaviour, IDamageable
 {
     // 유닛의 FSM 상태 정의
     public enum UnitState
@@ -27,17 +27,23 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private Animator animator;
 
     [Header("거리 및 감지")]
-    [SerializeField] protected float detectRange = 5f;  // 적을 감지하는 시야 범위
-    [SerializeField] protected float attackRange = 1f;  // 공격을 시작할 수 있는 범위
+    [SerializeField] protected float detectRange = 3.5f;  // 적을 감지하는 시야 범위
+    [SerializeField] protected float attackRange = 2.5f;  // 공격을 시작할 수 있는 범위
 
     [Header("FSM 현재 상태")]
     [SerializeField] protected UnitState currentState;
     
     [Header("타겟 및 이동 목표")]
-    [SerializeField]protected Transform objectiveTransform; // 찾아가야 할 최종 목표
+    [SerializeField] protected Transform objectiveTransform; // 찾아가야 할 최종 목표 (성 공격 포인트)
+    protected Transform targetTransform;                    // 현재 추적/공격 중인 실제 타겟 (적 유닛 혹은 성)
 
     [Header("최종 이동 백터")]
-    [SerializeField]Vector3 finalDir;
+    [SerializeField] Vector3 finalDir;
+
+    [Header("최적화 및 쿨타임 타이머")]
+    private float searchTimer = 0f;
+    private float searchInterval = 0.3f; // 0.3초마다 적 탐색 (최적화)
+    private float attackTimer = 0f;
 
     private bool isDead = false;
 
@@ -47,6 +53,8 @@ public class UnitBase : MonoBehaviour
         isDead = false;
         currentTeam = team;
         objectiveTransform = null;
+        targetTransform = null;
+        attackTimer = 0f;
 
         if (data != null)
         {
@@ -60,25 +68,31 @@ public class UnitBase : MonoBehaviour
             Debug.Log($"[{data.Unit_Name}] 스탯 적용 완료! (HP: {currentHp}, 이속: {currentMoveSpeed})");
         }
 
+        // 100마리 이상일 때 탐색 연산 부하 분산을 위해 타이머에 랜덤 오차 부여
+        searchTimer = Random.Range(0f, searchInterval);
+
+        // 초기 성 공격 포인트 설정
+        SetInitialObjective();
+        targetTransform = objectiveTransform;
+
         // BattlefieldManager에 위치 등록
         if (BattlefieldManager.I != null)
         {
             BattlefieldManager.I.RegisterUnit(this, currentTeam);
         }
-        SetInitialObjective();
 
         ChangeState(UnitState.Chase);
     }
 
     /// <summary>
-    /// 가장 가까운 성 공격 포인트를 찾아 백터 저장
+    /// 가장 가까운 성 공격 포인트를 찾아 저장
     /// </summary>
     private void SetInitialObjective()
     {
         if (currentTeam == Team.Ally)
         {
             if (EnemyCastle.I != null)
-            {   
+            { 
                 objectiveTransform = EnemyCastle.I.GetClosestAttackPoint(transform.position);
             }
         }
@@ -119,23 +133,88 @@ public class UnitBase : MonoBehaviour
 
     protected virtual void UpdateIdle()
     {
-       
-
+        if (objectiveTransform != null)
+        {
+            ChangeState(UnitState.Chase);
+        }
     }
 
     /// <summary>
-    /// [Chase 상태] 목표 지점을 향해 이동하는 상태 (물리 없이 position 이동 + 뭉침 방지)
+    /// [Chase 상태] 적 탐색 + 성/적 유닛을 향해 이동
     /// </summary>
     protected virtual void UpdateChase()
     {
-        if (objectiveTransform == null) return;
+        // 1. 주기적인 적 탐색 (최적화: 0.3초마다 수행)
+        searchTimer += Time.deltaTime;
+        if (searchTimer >= searchInterval)
+        {
+            searchTimer = 0f;
+            CheckForNearbyEnemy();
+        }
 
-        // 1. 목표 지점 방향 계산
-        Vector3 dir = objectiveTransform.position - transform.position;
+        // 2. 타겟 유효성 검사
+        if (targetTransform == null || !targetTransform.gameObject.activeInHierarchy)
+        {
+            targetTransform = objectiveTransform;
+            if (targetTransform == null) return;
+        }
+
+        // 3. 공격 범위 내로 들어왔는지 체크
+        float sqrDist = (targetTransform.position - transform.position).sqrMagnitude;
+        float attackRangeSqr = attackRange * attackRange;
+
+        if (sqrDist <= attackRangeSqr)
+        {
+            ChangeState(UnitState.Attack);
+            return;
+        }
+
+        // 4. 타겟을 향한 이동 및 뭉침 방지(Separation) 적용
+        MoveTowardsTarget();
+    }
+
+    /// <summary>
+    /// 시야 범위(detectRange) 내에 가장 가까운 적 유닛 탐색
+    /// </summary>
+    private void CheckForNearbyEnemy()
+    {
+        if (BattlefieldManager.I == null) return;
+
+        Transform closestEnemy = BattlefieldManager.I.GetClosestUnitInRange(currentTeam, transform.position, detectRange);
+
+        if (closestEnemy != null)
+        {
+            // 적을 발견하면 타겟을 적 유닛으로 변경
+            targetTransform = closestEnemy;
+        }
+        else
+        {
+            // 감지된 적이 없으면 본래 목표인 성 공격 포인트로 복귀
+            if (targetTransform != objectiveTransform)
+            {
+                targetTransform = objectiveTransform;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 물리 없이 순수 위치 이동 + 유닛 간 겹침 방지 반영
+    /// </summary>
+    private void MoveTowardsTarget()
+    {
+        Vector3 dir = targetTransform.position - transform.position;
         dir.y = 0f;
         Vector3 moveDir = dir.normalized;
 
-        finalDir = moveDir; 
+        // BattlefieldManager의 분리(Push) 벡터 적용
+        Vector3 separation = Vector3.zero;
+        if (BattlefieldManager.I != null)
+        {
+            separation = BattlefieldManager.I.GetSeparationVector(gameObject, transform.position, 0.6f, 2f);
+            separation.y = 0f;
+        }
+
+        finalDir = (moveDir + separation).normalized;
 
         if (finalDir != Vector3.zero)
         {
@@ -148,9 +227,66 @@ public class UnitBase : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// [Attack 상태] 멈춰 서서 공격 쿨타임마다 공격 수행
+    /// </summary>
     protected virtual void UpdateAttack()
     {
-        
+        // 1. 타겟이 사라졌거나 죽었는지 확인
+        if (targetTransform == null || !targetTransform.gameObject.activeInHierarchy)
+        {
+            targetTransform = objectiveTransform;
+            ChangeState(UnitState.Chase);
+            return;
+        }
+
+        // 2. 타겟이 공격 범위를 벗어났는지 확인 (약간의 여유 Hysteresis 부여)
+        float sqrDist = (targetTransform.position - transform.position).sqrMagnitude;
+        float attackRangeSqr = attackRange * attackRange;
+        if (sqrDist > attackRangeSqr * 1.3f)
+        {
+            ChangeState(UnitState.Chase);
+            return;
+        }
+
+        // 3. 공격 속도(AttackSpeed)에 따른 쿨타임 계산
+        attackTimer += Time.deltaTime;
+        float attackInterval = (currentAttackSpeed > 0f) ? (1f / currentAttackSpeed) : 1f;
+
+        if (attackTimer >= attackInterval)
+        {
+            attackTimer = 0f;
+
+            // 애니메이션 Attack 트리거 작동
+            if (animator != null)
+            {
+                animator.SetTrigger("Attack");
+            }
+
+            IDamageable damageableTarget = targetTransform.GetComponent<IDamageable>();
+            if (damageableTarget != null)
+            {
+                damageableTarget.TakeDamage(currentAttack);
+            }
+        }
+    }
+
+    /// <summary>
+    /// IDamageable 구현: 공격받았을 때 호출
+    /// </summary>
+    public virtual void TakeDamage(int damage)
+    {
+        if (isDead) return;
+
+        currentHp -= damage;
+        currentHp = Mathf.Max(0, currentHp);
+
+        Debug.Log($"[{MyUnitData?.Unit_Name ?? "Unit"} 피격] 남은 체력: {currentHp}");
+
+        if (currentHp <= 0)
+        {
+            Die();
+        }
     }
 
     protected void ChangeState(UnitState newState)
@@ -158,20 +294,21 @@ public class UnitBase : MonoBehaviour
         if (currentState == newState) return;
         currentState = newState;
 
-
-            // 애니메이션연출
+        // 상태 전환 시 애니메이션 파라미터 제어
         switch (currentState)
         {
             case UnitState.Idle:
-                animator.SetFloat("Speed", 0f);
+                if (animator != null) animator.SetFloat("Speed", 0f);
                 break;
             case UnitState.Chase:
-                animator.SetFloat("Speed", 1f);
+                if (animator != null) animator.SetFloat("Speed", 1f);
                 break;
             case UnitState.Attack:
-            
+                if (animator != null) animator.SetFloat("Speed", 0f); // 멈춰서 공격
+                attackTimer = 0f; // 공격 상태 진입 시 즉시 첫 타격 가능하도록 초기화
                 break;
             case UnitState.Die:
+                if (animator != null) animator.SetFloat("Speed", 0f);
                 break;
         }
     }

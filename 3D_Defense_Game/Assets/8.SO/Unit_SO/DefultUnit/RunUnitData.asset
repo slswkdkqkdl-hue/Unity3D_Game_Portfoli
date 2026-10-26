@@ -23,7 +23,7 @@ MonoBehaviour:
   description: gd
   hp: 100
   mp: 10
-  attack: 10
+  attack: 20
   defense: 5
   attackSpeed: 2
-  moveSpeed: 3
+  moveSpeed: 1
