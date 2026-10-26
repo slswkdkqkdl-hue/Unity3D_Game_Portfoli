@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d33030116b9f7540ba34b48fcb57fb6
+    m_Address: Assets/8.SO/Unit_SO/DefultUnit/RunUnitData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 917253b9798822f49b5e514dc3b62aef
     m_Address: Assets/8.SO/Item_SO/Weapon/Sword 2.asset
     m_ReadOnly: 0
@@ -87,6 +92,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cfedc0ae866705f4e8e33fd6d6273243
     m_Address: Assets/8.SO/Item_SO/Weapon/Sword 1.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6614ab7067ca9a43af084c3005745db
+    m_Address: Assets/8.SO/Unit_SO/DefultUnit/RunUnitData 1.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
