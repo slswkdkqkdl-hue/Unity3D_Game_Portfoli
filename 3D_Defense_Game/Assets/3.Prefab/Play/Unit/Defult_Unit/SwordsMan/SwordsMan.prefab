@@ -2012,7 +2012,7 @@ Animator:
   m_GameObject: {fileID: 9117208638621588296}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2faa610713d3b3c439473daa55e8c60a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c2207b7981ac0148b25894a24054708, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -2036,3 +2036,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7643aa338d2034eb0e15a2f377010a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordsMan
+  currentTeam: 0
+  currentHp: 0
+  currentMp: 0
+  currentAttack: 0
+  currentDefense: 0
+  currentAttackSpeed: 0
+  currentMoveSpeed: 0

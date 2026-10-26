@@ -24,9 +24,15 @@ public class CastleController : MonoBehaviour
 
         Sprite emblem = playerData.domain_emblem;
         float maxHp = FactionUtility.GetDomainTierRequirement(playerData.domainTier);
-        float currentHp = maxHp; // 초기화 시점에는 풀피로 설정
+        float currentHp = maxHp; 
+
 
         playerCastleData.InitCastleUI(emblem, maxHp, currentHp);
+
+        if (MainCastle.I != null)
+        {
+            MainCastle.I.HPInit(maxHp, currentHp, playerCastleData);
+        }
     }
 
     /// <summary>
@@ -40,6 +46,12 @@ public class CastleController : MonoBehaviour
         float maxHp = FactionUtility.GetEnemyCastleHp(enemyData.factionRank);
         float currentHp = maxHp;
 
+
         enemyCastleData.InitCastleUI(emblem, maxHp, currentHp);
+
+        if (EnemyCastle.I != null)
+        {
+            EnemyCastle.I.HPInit(maxHp, currentHp, enemyCastleData);
+        }
     }
 }

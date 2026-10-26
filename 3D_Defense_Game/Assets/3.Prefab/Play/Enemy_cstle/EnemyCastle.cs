@@ -1,10 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCastle : MonoBehaviour
+public class EnemyCastle : MonoBehaviour, IDamageable 
 {
     // 싱글톤 구현
     public static EnemyCastle I { get; private set; }
+
+    [Header("적 성 체력")]
+    private float maxHp;
+    private float currentHp;
+    private CastleUI castleUI;
 
     [Header("적 성 데이터")]
     [SerializeField] private EnemyInfoSO enemyInfoSO;
@@ -19,6 +24,9 @@ public class EnemyCastle : MonoBehaviour
     [Header("적 유닛이 나올 출구 포인트들")]
     [SerializeField] private Transform[] exitPoints;
 
+    [Header("공격 포인트")]
+    [SerializeField] public Transform[] AttackPoint = new Transform[3];
+
     private void Awake()
     {
         if (I == null)
@@ -31,6 +39,10 @@ public class EnemyCastle : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+
+    }
 
     public void Init(EnemyInfoSO data)
     {
@@ -84,5 +96,45 @@ public class EnemyCastle : MonoBehaviour
 
         int randomIndex = Random.Range(0, exitPoints.Length);
         return exitPoints[randomIndex];
+    }
+
+    /// <summary>
+    /// 적 성 체력 초기화 및 UI 연결
+    /// </summary>
+    public void HPInit(float maxHp, float currentHp, CastleUI ui)
+    {
+        this.maxHp = maxHp;
+        this.currentHp = currentHp;
+        this.castleUI = ui; // UI 연결 완료!
+    }
+
+    /// <summary>
+    /// IDamageable 구현: 플레이어 유닛에게 공격받았을 때 호출
+    /// </summary>
+    public void TakeDamage(int damage)
+    {
+        if (currentHp <= 0) return;
+
+        currentHp -= damage;
+        currentHp = Mathf.Max(0f, currentHp);
+
+        // ⭐ 체력이 깎일 때 적 성 UI 동기화
+        if (castleUI != null)
+        {
+            castleUI.SetHP(currentHp, maxHp);
+        }
+
+        Debug.Log($"[EnemyCastle] 적 성 피격! 남은 체력: {currentHp} / {maxHp}");
+
+        if (currentHp <= 0)
+        {
+            OnCastleDestroyed();
+        }
+    }
+
+    private void OnCastleDestroyed()
+    {
+        Debug.Log("[EnemyCastle] 적 성 파괴 완료! 스테이지 클리어 처리 필요");
+        // TODO: 스테이지 클리어 연출 및 매니저 호출
     }
 }
