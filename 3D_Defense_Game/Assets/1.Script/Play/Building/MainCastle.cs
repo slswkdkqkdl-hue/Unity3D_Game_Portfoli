@@ -19,7 +19,9 @@ public class MainCastle : Building
 
     private float timer = 0f;    // 골드 생산 주기 체크용 타이머
 
+
     public Transform[] ExitPoint = new Transform[3];
+    public Team PlayerTeam = Team.Ally; 
 
     [Header("쿨타임 UI")]
     [SerializeField] private Image fillImage;
@@ -77,12 +79,13 @@ public class MainCastle : Building
         if (timer >= goldInterval)
         {
             timer = 0f;
-
+            
             // 주기적 골드 지급
             if (ResourceManager.I != null)
             {
                 ResourceManager.I.ModifyMoney(goldPerInterval);
-                Debug.Log($"[MainCastle] {goldInterval}초 경과: {goldPerInterval} 골드 획득!");
+                Logmsg = $"[MainCastle] {goldInterval}초 경과: +{goldPerInterval}G!";
+                InGameLog.I.AddLog(Logmsg);
             }
         }
     }

@@ -9,7 +9,7 @@ public class Barracks : Building
 
     private int currentSelectedSlot = 0; // 현재 선택된 슬롯 번호
     private float timer = 0f;            // 생산 쿨타임 타이머
-
+    private bool hasLoggedPopulationWarning = false;
     public int CurrentSelectedSlot => currentSelectedSlot;
     public List<UnitData> UnitDatas => unitDatas;
 
@@ -53,20 +53,29 @@ public class Barracks : Building
         // 설정된 쿨타임에 도달하면 유닛 생성
         if (timer >= currentUnit.CoolTime)
         {
-            // [핵심] 인구수 체크 및 증가 시도
-            if (ResourceManager.I != null)
-            {
                 if (ResourceManager.I.TryAddPopulation(currentUnit.population))
-                {   
+                { 
                     // 인구수 확보 성공 -> 유닛 소환 및 타이머 초기화
                     SpawnUnit(currentUnit);
                     timer = 0f;
+                    
+                    // 인구수가 해결되었으니 경고 플래그도 초기화
+                    hasLoggedPopulationWarning = false;
                 }
-            }
-            else
-            {
-                timer = currentUnit.CoolTime; 
-            }
+                else
+                {
+                    // 인구수 부족 실패 처리 (딱 한 번만 로그 출력)
+                    if (!hasLoggedPopulationWarning)
+                    {
+                        hasLoggedPopulationWarning = true;
+                        string warningMsg = $"인구수가 부족하여 [{currentUnit.Unit_Name}]을(를) 생산할 수 없습니다!";
+                        if (InGameLog.I != null)
+                        {
+                            InGameLog.I.AddLog(warningMsg);
+                        }
+                    }
+                    timer = currentUnit.CoolTime; 
+                }
         }
     }
 
@@ -86,6 +95,7 @@ public class Barracks : Building
         if (castle != null)
         {   
             Transform point = castle.RandomPoint();
+            Team team = castle.PlayerTeam;
             if (point == null)
             {
                 Debug.LogWarning("[병영] 성의 출구(ExitPoint)가 없어 유닛 소환이 취소되었습니다.");
@@ -95,14 +105,15 @@ public class Barracks : Building
                 }
                 return; 
             }
-            GameObject result = Instantiate(unitData.prefab_Play,point);
-            if (result.TryGetComponent<UnitBase>(out UnitBase unit))
+            UnitBase unit = UnitPoolManager.I.GetUnit(unitData, point.position, point.rotation);
+
+            if (unit != null)
             {
-                unit.Init(unitData);
+                unit.Init(unitData,team);
             }
             else
             {
-                Debug.LogWarning($"[병영] 소환된 프리팹에 UnitBase 컴포넌트가 없습니다! -> {unitData.Unit_Name}");
+                Debug.LogWarning($"[병영] 유닛 소환 실패! -> {unitData.Unit_Name}");
             }
         }
 

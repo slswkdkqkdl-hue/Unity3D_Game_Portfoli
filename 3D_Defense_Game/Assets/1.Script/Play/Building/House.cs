@@ -8,7 +8,6 @@ public class House : Building
     [SerializeField] private int goldPerInterval = 40;   // 주기마다 지급할 골드 양
     [SerializeField] private float goldInterval = 10;    // 골드 지급 주기 (초 단위)
 
-
     public int PopulationBonus => populationBonus;
     public int GoldPerInterval => goldPerInterval;
     public float GoldInterval => goldInterval;
@@ -51,7 +50,8 @@ public class House : Building
             if (ResourceManager.I != null)
             {
                 ResourceManager.I.ModifyMoney(goldPerInterval);
-                Debug.Log($"[House] {goldInterval}초 경과: {goldPerInterval} 골드 획득!");
+                Logmsg = $"[House] {goldInterval}초 경과: +{goldPerInterval}G !";
+                InGameLog.I.AddLog(Logmsg);
             }
         }
     }

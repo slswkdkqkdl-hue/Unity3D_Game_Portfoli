@@ -18,6 +18,7 @@ public class Building : MonoBehaviour
     [SerializeField]protected BuildingDataSO buildingData;
     [SerializeField]protected Team currentTeam;
     [SerializeField]protected BuildingActivationType buildingActivationType;
+    protected string Logmsg = string.Empty; // 로그 메세지 전달용 
 
     public BuildingDataSO Data => buildingData;
 

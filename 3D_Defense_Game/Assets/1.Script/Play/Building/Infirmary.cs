@@ -50,7 +50,8 @@ public class Infirmary : Building
         if (!isReady) return; // 준비 안 됐으면 무시
 
         // TODO: 아군 체력 회복 로직 실행
-        Debug.Log("[치료소] 부상병 치료 발동!");
+        Logmsg = $"[{buildingData.buildingName}] 부상병 치료 발동!";
+        InGameLog.I.AddLog(Logmsg);
 
         // 사용 완료 후 초기화
         isReady = false;

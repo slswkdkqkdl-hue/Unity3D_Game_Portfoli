@@ -61,8 +61,6 @@ public class ResourceManager : MonoBehaviour
             Debug.Log("현재 인구수 증가");
             return true; 
         }
-        
-        Debug.Log("인구수가 부족합니다!");
         return false; 
     }
     // 현재 인구수 감소
