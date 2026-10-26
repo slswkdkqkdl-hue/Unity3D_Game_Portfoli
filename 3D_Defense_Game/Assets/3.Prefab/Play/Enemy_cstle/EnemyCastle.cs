@@ -67,7 +67,7 @@ public class EnemyCastle : MonoBehaviour, IDamageable
         // 2초가 지났다면 소환 실행 후 타이머 초기화
         if (spawnTimer >= spawnInterval)
         {
-            spawnTimer = 0f;
+            spawnTimer = 0f; 
             TrySpawnUnit();
         }
     }

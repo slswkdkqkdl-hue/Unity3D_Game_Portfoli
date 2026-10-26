@@ -11,7 +11,7 @@ public class BattlefieldManager : MonoBehaviour
 
     // 2. 분리(Push) 알고리즘용 통합 캐시 리스트 (매 프레임 갱신)
     private readonly List<UnitBase> allUnitsCache = new List<UnitBase>();
-    private int cachedFrame = -1;
+
 
     private void Awake()
     {

@@ -34,7 +34,7 @@ public class UnitBase : MonoBehaviour
     [SerializeField] protected UnitState currentState;
     
     [Header("타겟 및 이동 목표")]
-    protected Transform objectiveTransform; // 찾아가야 할 최종 목표
+    [SerializeField]protected Transform objectiveTransform; // 찾아가야 할 최종 목표
 
     [Header("최종 이동 백터")]
     [SerializeField]Vector3 finalDir;
@@ -46,7 +46,6 @@ public class UnitBase : MonoBehaviour
         MyUnitData = data;
         isDead = false;
         currentTeam = team;
-        currentState = UnitState.Chase; 
         objectiveTransform = null;
 
         if (data != null)
@@ -67,6 +66,8 @@ public class UnitBase : MonoBehaviour
             BattlefieldManager.I.RegisterUnit(this, currentTeam);
         }
         SetInitialObjective();
+
+        ChangeState(UnitState.Chase);
     }
 
     /// <summary>
@@ -119,10 +120,7 @@ public class UnitBase : MonoBehaviour
     protected virtual void UpdateIdle()
     {
        
-        if (objectiveTransform != null)
-        {
-            ChangeState(UnitState.Chase);
-        }
+
     }
 
     /// <summary>
@@ -165,10 +163,10 @@ public class UnitBase : MonoBehaviour
         switch (currentState)
         {
             case UnitState.Idle:
-                
+                animator.SetFloat("Speed", 0f);
                 break;
             case UnitState.Chase:
-               
+                animator.SetFloat("Speed", 1f);
                 break;
             case UnitState.Attack:
             

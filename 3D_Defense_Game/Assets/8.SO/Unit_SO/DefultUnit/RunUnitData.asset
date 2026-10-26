@@ -26,4 +26,4 @@ MonoBehaviour:
   attack: 10
   defense: 5
   attackSpeed: 2
-  moveSpeed: 1
+  moveSpeed: 3
