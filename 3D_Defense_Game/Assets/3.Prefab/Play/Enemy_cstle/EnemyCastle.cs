@@ -2,7 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCastle : MonoBehaviour, IDamageable 
-{
+{   
+    // 유닛의 FSM 상태 정의
+    public enum UnitState
+    {
+        Idle,
+        Chase,
+        Attack,
+        Die
+    }
+
     // 싱글톤 구현
     public static EnemyCastle I { get; private set; }
 

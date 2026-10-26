@@ -110,6 +110,7 @@ public class Barracks : Building
             if (unit != null)
             {
                 unit.Init(unitData,team);
+                BattlefieldManager.I.RegisterUnit(unit,team);
             }
             else
             {
