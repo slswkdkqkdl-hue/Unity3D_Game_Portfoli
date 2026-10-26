@@ -26,17 +26,6 @@ public class Building : MonoBehaviour
     {
         buildingData = data;
         currentTeam = team;
-        
-        // ⭐ 아군 건물이고, 메인 캐슬 자신이 아니라면?
-        if (currentTeam == Team.Ally && this is not MainCastle)
-        {
-            // 싱글톤 없이 씬에서 MainCastle을 찾아내어 직접 등록 요청!
-            MainCastle castle = FindAnyObjectByType<MainCastle>();
-            if (castle != null)
-            {
-                castle.RegisterBuilding(this);
-            }
-        }
     }
 
     // 공통 클릭 감지 (건물을 누르면 매니저에게 팝업 오픈 요청)

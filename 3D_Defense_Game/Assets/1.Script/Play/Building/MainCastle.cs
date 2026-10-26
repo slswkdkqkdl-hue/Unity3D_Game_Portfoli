@@ -3,7 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MainCastle : Building
-{
+{   
+    public static MainCastle I { get; private set; }
+
     [Header("메인 성 보상 설정")]
     public string Castle_Name;
     [SerializeField] private int populationBonus;      // 건물 생성 시 증가할 최대 인구수
@@ -14,13 +16,27 @@ public class MainCastle : Building
     public int GoldPerInterval => goldPerInterval;
     public float GoldInterval => goldInterval;
 
-    public List<Building> buildings = new List<Building>();
 
     private float timer = 0f;    // 골드 생산 주기 체크용 타이머
+
+    public Transform[] ExitPoint = new Transform[3];
 
     [Header("쿨타임 UI")]
     [SerializeField] private Image fillImage;
     
+    private void Awake()
+    {
+        // 싱글톤 세팅
+        if (I == null)
+        {
+            I = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public override void Init(BuildingDataSO data, Team team = Team.Ally)
     {
         base.Init(data, team);
@@ -33,17 +49,7 @@ public class MainCastle : Building
         }
     }
     
-    /// <summary>
-    /// 다른 건물들이 생성될 때 자신을 이 리스트에 등록하는 함수
-    /// </summary>
-    public void RegisterBuilding(Building newBuilding)
-    {
-        if (newBuilding != null && !buildings.Contains(newBuilding))
-        {
-            buildings.Add(newBuilding);
-            Debug.Log($"[MainCastle] 새 건물 등록됨: {newBuilding.Data.buildingName} (총 건물 수: {buildings.Count})");
-        }
-    }
+
 
     private void Update()
     {

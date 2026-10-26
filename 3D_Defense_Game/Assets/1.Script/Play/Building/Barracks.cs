@@ -13,6 +13,8 @@ public class Barracks : Building
     public int CurrentSelectedSlot => currentSelectedSlot;
     public List<UnitData> UnitDatas => unitDatas;
 
+    private MainCastle castle;
+
     [Header("쿨타임 UI")]
     [SerializeField] private Image fillImage;
 
@@ -22,6 +24,12 @@ public class Barracks : Building
         base.Init(data, team);
         buildingActivationType = BuildingActivationType.Passive;
         unitDatas = new List<UnitData>(BuildingManager.I.unitDatas);
+
+        if (MainCastle.I != null)
+        {
+            castle = MainCastle.I;
+        }
+
         // 게임 시작 시 기본 0번 슬롯 선택 상태로 시작
         if (unitDatas.Count > 0)
         {
