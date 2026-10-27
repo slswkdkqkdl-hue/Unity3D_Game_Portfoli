@@ -5,10 +5,9 @@ public class Herocontroller : MonoBehaviour
 {
     [SerializeField] private GameObject slotPrefab;
     
-    [Header("아군 성 참조 (MainCastle 싱글톤 혹은 연결)")]
-    [SerializeField] private MainCastle PlayerCastle; // 오타 수정 (PlayerCatle -> PlayerCastle)
+    [Header("아군 성)")]
+    [SerializeField] private MainCastle PlayerCastle; 
 
-    // 슬롯과 '미리 생성해 둔 영웅 오브젝트'를 1대1로 매핑하여 관리하는 딕셔너리
     private Dictionary<HeroSlot, GameObject> heroPool = new Dictionary<HeroSlot, GameObject>();
 
     public void Init(List<HeroRuntimeData> heroes)
@@ -72,8 +71,12 @@ public class Herocontroller : MonoBehaviour
                     heroObj.transform.position = spawnData.position;
                     heroObj.transform.rotation = spawnData.rotation;
                 }
-
                 heroObj.SetActive(true);
+                var heroBase = heroObj.GetComponent<HeroBase>();
+                if (heroBase != null)
+                {
+                    heroBase.InitHero(slot.HeroRuntimeData,PlayerCastle.PlayerTeam); // 슬롯의 런타임 데이터를 넘겨줌
+                }
                 
                 // TODO: 생성된 영웅의 초기화 (팀 설정 등) 필요시 여기서 수행
                 // var unitBase = heroObj.GetComponent<UnitBase>();
