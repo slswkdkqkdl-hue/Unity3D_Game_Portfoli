@@ -7,6 +7,7 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     protected IState currentState;
     public HeroIdleState IdleState { get; private set; }
     public HeroMoveState MoveState { get; private set; }
+    public HeroAttackState AttackState { get; private set; }
 
     [Header("영웅 런타임 데이터")]
     [SerializeField] private HeroRuntimeData runtimeData;
@@ -28,11 +29,14 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     public int CurrentDefense { get; protected set; }
     public float CurrentAttackSpeed { get; protected set; }
     public float CurrentMoveSpeed { get; protected set; }
+    public float detectionRange { get; protected set; }
+    public float attackRange { get; protected set; }
 
     protected virtual void Awake()
     {
         IdleState = new HeroIdleState(this);
         MoveState = new HeroMoveState(this);
+        AttackState = new HeroAttackState(this);
     }
 
     protected virtual void OnEnable()
@@ -87,6 +91,8 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         CurrentDefense = baseData.defense + (baseData.defensePerLevel * lvl);
         CurrentAttackSpeed = baseData.attackSpeed + (baseData.attackSpeedPerLevel * lvl);
         CurrentMoveSpeed = baseData.moveSpeed + (baseData.moveSpeedPerLevel * lvl);
+        detectionRange = baseData.detectionRange;
+        attackRange = baseData.attackRange;
     }
 
     public void ChangeState(IState newState)
@@ -97,11 +103,19 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         currentState?.Enter();
     }
 
-    // ⭐ 목적지 좌표만 틱 던져주고 상태 전환!
+    // 이동명령시
     public void MoveTo(Vector3 destination)
     {
         MoveState.SetTargetPosition(destination);
         ChangeState(MoveState);
+    }
+
+    // 적 타겟팅
+    public void AttackTo(ICombatEntity target)
+    {
+        if (target == null) return;
+        AttackState.SetTarget(target);
+        ChangeState(AttackState);
     }
 
     public void StopMovement() { }

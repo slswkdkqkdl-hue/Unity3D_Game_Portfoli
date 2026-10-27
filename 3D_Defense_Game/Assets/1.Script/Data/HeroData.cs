@@ -46,6 +46,10 @@ public class HeroData : ScriptableObject
     public float attackSpeedPerLevel; // 레벨당 추가 공격속도 
     public float moveSpeedPerLevel;  // 레벨당 추가 이동속도 
 
+    [Header("사거리 및 탐색 설정")]
+    public float detectionRange; 
+    public float attackRange;  
+
     public List<SkillData> activeSkills = new List<SkillData>(); // 모든 액티브 스킬
     public List<SkillData> passiveSkills = new List<SkillData>();// 모든 패시브 스킬
 
