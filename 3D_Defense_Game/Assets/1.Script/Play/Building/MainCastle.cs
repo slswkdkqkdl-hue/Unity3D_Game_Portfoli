@@ -28,7 +28,7 @@ public class MainCastle : Building, IDamageable
     [Header("공격 포인트")]
     public Transform[] AttackPoint = new Transform[3];
     [Header("유닛스폰 오프셋 설정")]
-    [SerializeField] private float spawnZSpread = 3.0f; // 인스펙터에서 2.5로 설정
+    [SerializeField] private float spawnZSpread = 3.0f; 
 
     public Team PlayerTeam = Team.Ally; 
 
