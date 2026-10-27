@@ -13,6 +13,14 @@ public class UnitBase : MonoBehaviour, IDamageable
 
     [Header("유닛 데이터")]
     public UnitData MyUnitData { get; private set; }
+
+    [Header("팀 구분용 머테리얼")]
+    [SerializeField] private Material PlayerMat;
+    [SerializeField] private Material EnemyMat;
+
+    [Header("본체 메시 렌더러")]
+    public SkinnedMeshRenderer bodyRenderer;
+
     private Team currentTeam;
 
     [Header("런타임 스탯 (적용된 값)")]
@@ -96,6 +104,7 @@ public class UnitBase : MonoBehaviour, IDamageable
             if (EnemyCastle.I != null)
             { 
                 objectiveTransform = EnemyCastle.I.GetClosestAttackPoint(transform.position);
+                bodyRenderer.material = PlayerMat;
             }
         }
         else
@@ -103,6 +112,7 @@ public class UnitBase : MonoBehaviour, IDamageable
             if (MainCastle.I != null)
             {
                 objectiveTransform = MainCastle.I.GetClosestAttackPoint(transform.position);
+                bodyRenderer.material = EnemyMat;
             }
         }
 
@@ -146,7 +156,7 @@ public class UnitBase : MonoBehaviour, IDamageable
     /// </summary>
     protected virtual void UpdateChase()
     {
-        // 1. 주기적인 적 탐색 (최적화: 0.3초마다 수행)
+        // 1. 주기적인 적 탐색
         searchTimer += Time.deltaTime;
         if (searchTimer >= searchInterval)
         {

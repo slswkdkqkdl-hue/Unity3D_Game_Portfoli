@@ -7485,6 +7485,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattlefieldManager
   playerUnits: []
   enemyUnits: []
+  separationRadius: 1
+  separationStrength: 2.3
 --- !u!1 &2020214997
 GameObject:
   m_ObjectHideFlags: 0
