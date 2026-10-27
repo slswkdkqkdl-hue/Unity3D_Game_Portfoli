@@ -183,6 +183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2429484050247619953}
+  - component: {fileID: 7816103737680749664}
   m_Layer: 0
   m_Name: AttackPoint_Top
   m_TagString: Untagged
@@ -205,6 +206,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3271567341532891444}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &7816103737680749664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274443061151023356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f508ca6561de3459d065da7eb2834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CastleAttackPoint
+  pointTeam: 1
+  ownerCastle: {fileID: 3552587953029620722}
 --- !u!1 &6551605471660402272
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8489425937532214043}
+  - component: {fileID: 6338725930458035027}
   m_Layer: 0
   m_Name: AttackPoint _Mid
   m_TagString: Untagged
@@ -267,6 +283,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3271567341532891444}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &6338725930458035027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7484136792013968851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f508ca6561de3459d065da7eb2834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CastleAttackPoint
+  pointTeam: 1
+  ownerCastle: {fileID: 3552587953029620722}
 --- !u!1 &8620915036458574628
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +306,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5284378347798540634}
+  - component: {fileID: 8529924182354218477}
   m_Layer: 0
   m_Name: AttackPoint _Bottom
   m_TagString: Untagged
@@ -298,6 +329,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3271567341532891444}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &8529924182354218477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8620915036458574628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f508ca6561de3459d065da7eb2834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CastleAttackPoint
+  pointTeam: 1
+  ownerCastle: {fileID: 3552587953029620722}
 --- !u!1 &8841593778796490211
 GameObject:
   m_ObjectHideFlags: 0

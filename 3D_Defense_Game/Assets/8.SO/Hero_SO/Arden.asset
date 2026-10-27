@@ -27,7 +27,7 @@ MonoBehaviour:
   mp: 40
   attack: 25
   defense: 10
-  attackSpeed: 3
+  attackSpeed: 1.7
   moveSpeed: 4.5
   hpPerLevel: 100
   mpPerLevel: 10
@@ -35,6 +35,8 @@ MonoBehaviour:
   defensePerLevel: 3
   attackSpeedPerLevel: 0.1
   moveSpeedPerLevel: 0.1
+  detectionRange: 8
+  attackRange: 3
   activeSkills:
   - {fileID: 11400000, guid: 004fb27590a56d541be479e57e4e6558, type: 2}
   - {fileID: 11400000, guid: 42e35cfa1e834ba4e80827b20b4ca9a4, type: 2}

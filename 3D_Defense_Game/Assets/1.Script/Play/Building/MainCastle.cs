@@ -21,6 +21,8 @@ public class MainCastle : Building, IDamageable
     public int GoldPerInterval => goldPerInterval;
     public float GoldInterval => goldInterval;
 
+
+
     private float timer = 0f;    
 
     [Header("유닛 생성 포인트")]

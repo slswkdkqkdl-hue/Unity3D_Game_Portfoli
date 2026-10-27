@@ -23,7 +23,7 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
 
     private Team currentTeam;
     public Team team => currentTeam;
-    
+
     [Header("런타임 스탯 (적용된 값)")]
     [SerializeField] protected int currentHp;
     [SerializeField] protected int currentMp;
@@ -105,13 +105,13 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
         if (target == null || !target.gameObject.activeInHierarchy)
             return false;
 
-        // 유닛이면 사망 여부까지 검사
+
         UnitBase unit = target.GetComponentInParent<UnitBase>();
 
         if (unit != null && unit.IsDead)
             return false;
 
-        // 성 등 IDamageable을 구현한 대상도 허용
+
         IDamageable damageable = target.GetComponent<IDamageable>();
 
         if (damageable == null)

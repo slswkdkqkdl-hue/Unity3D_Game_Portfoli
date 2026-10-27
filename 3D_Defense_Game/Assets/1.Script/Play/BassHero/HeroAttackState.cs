@@ -18,12 +18,18 @@ public class HeroAttackState : IState
 
     public void Enter()
     {
-        attackCooldown = 0f; // 진입하자마자 첫 타 공격 가능하도록 세팅
+        attackCooldown = 0f; 
+
+        // 공격 상태 진입 시 이동 정지 애니메이션 (Speed = 0)
+        if (hero.Animator != null) 
+        {
+            hero.Animator.SetFloat("Speed", 0f);
+        }
     }
 
     public void Update()
     {
-        // 1. 타겟이 죽거나 사라졌다면 다시 Idle(스캔 대기) 상태로 복귀
+        // 1. 타겟이 죽거나 사라졌다면 Idle로 복귀
         if (targetUnit == null || (targetUnit is MonoBehaviour mono && !mono.gameObject.activeInHierarchy))
         {
             hero.ChangeState(hero.IdleState);
@@ -37,54 +43,28 @@ public class HeroAttackState : IState
         float sqrDist = (targetPos - hero.transform.position).sqrMagnitude;
         float sqrAttackRange = hero.attackRange * hero.attackRange;
 
-        // 2. 사거리(attackRange)보다 멀리 있다면 적을 향해 이동 (추격)
+        // 2. 만약 적이 도망쳐서 사거리를 벗어났다면 -> 다시 MoveState의 추격 모드로 전환!
         if (sqrDist > sqrAttackRange)
         {
-            // 이동 중이므로 Run 애니메이션 (Speed = 1)
-            if (hero.Animator != null) 
-            {
-                hero.Animator.SetFloat("Speed", 1f);
-            }
-
-            hero.transform.position = Vector3.MoveTowards(
-                hero.transform.position, 
-                targetPos, 
-                hero.CurrentMoveSpeed * Time.deltaTime
-            );
-
-            // 적을 바라보며 이동
-            Vector3 dir = (targetPos - hero.transform.position).normalized;
-            if (dir != Vector3.zero)
-            {
-                Quaternion lookRot = Quaternion.LookRotation(dir);
-                hero.transform.rotation = Quaternion.Slerp(hero.transform.rotation, lookRot, Time.deltaTime * 15f);
-            }
+            hero.MoveState.SetTargetUnit(targetUnit);
+            hero.ChangeState(hero.MoveState);
+            return;
         }
-        // 3. 사거리 안에 들어왔다면 멈춰서 공격!
-        else
+
+        // 3. 사거리 내에 있으므로 적을 바라보며 공격에만 집중
+        Vector3 dir = (targetPos - hero.transform.position).normalized;
+        if (dir != Vector3.zero)
         {
-            if (hero.Animator != null) 
-            {
-                hero.Animator.SetFloat("Speed", 0f);
-            }
+            Quaternion lookRot = Quaternion.LookRotation(dir);
+            hero.transform.rotation = Quaternion.Slerp(hero.transform.rotation, lookRot, Time.deltaTime * 15f);
+        }
 
-            // 적을 바라보기
-            Vector3 dir = (targetPos - hero.transform.position).normalized;
-            if (dir != Vector3.zero)
-            {
-                Quaternion lookRot = Quaternion.LookRotation(dir);
-                hero.transform.rotation = Quaternion.Slerp(hero.transform.rotation, lookRot, Time.deltaTime * 15f);
-            }
-
-            // 공격 쿨타임 계산
-            attackCooldown -= Time.deltaTime;
-            if (attackCooldown <= 0f)
-            {
-                PerformAttack();
-                
-                // 공속(CurrentAttackSpeed)에 맞춰 쿨타임 재설정
-                attackCooldown = hero.CurrentAttackSpeed > 0f ? (1f / hero.CurrentAttackSpeed) : 1f;
-            }
+        // 공격 쿨타임 계산
+        attackCooldown -= Time.deltaTime;
+        if (attackCooldown <= 0f)
+        {
+            PerformAttack();
+            attackCooldown = hero.CurrentAttackSpeed > 0f ? (1f / hero.CurrentAttackSpeed) : 1f;
         }
     }
 
@@ -95,7 +75,6 @@ public class HeroAttackState : IState
             hero.Animator.SetTrigger("Attack");
         }
 
-        // 실제 데미지 적용
         if (targetUnit is IDamageable damageable)
         {
             damageable.TakeDamage(hero.CurrentAttack);

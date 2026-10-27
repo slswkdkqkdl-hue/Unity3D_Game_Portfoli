@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCastle : MonoBehaviour, IDamageable 
+public class EnemyCastle : MonoBehaviour, IDamageable
 {   
     // 유닛의 FSM 상태 정의
     public enum UnitState

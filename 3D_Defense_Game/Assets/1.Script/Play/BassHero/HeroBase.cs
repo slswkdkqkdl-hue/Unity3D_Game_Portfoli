@@ -23,14 +23,15 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
 
     private HeroSlot assignedSlot;
 
-    public int CurrentHp { get; protected set; }
-    public int CurrentMp { get; protected set; }
-    public int CurrentAttack { get; protected set; }
-    public int CurrentDefense { get; protected set; }
-    public float CurrentAttackSpeed { get; protected set; }
-    public float CurrentMoveSpeed { get; protected set; }
-    public float detectionRange { get; protected set; }
-    public float attackRange { get; protected set; }
+    [Header("영웅 런타임 스탯 (확인용)")]
+    [field: SerializeField] public int CurrentHp { get; protected set; }
+    [field: SerializeField] public int CurrentMp { get; protected set; }
+    [field: SerializeField] public int CurrentAttack { get; protected set; }
+    [field: SerializeField] public int CurrentDefense { get; protected set; }
+    [field: SerializeField] public float CurrentAttackSpeed { get; protected set; }
+    [field: SerializeField] public float CurrentMoveSpeed { get; protected set; }
+    [field: SerializeField] public float detectionRange { get; protected set; }
+    [field: SerializeField] public float attackRange { get; protected set; }
 
     protected virtual void Awake()
     {
@@ -78,21 +79,42 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         }
     }
 
-    protected void CalculateStats()
+    protected virtual void CalculateStats()
     {
         if (runtimeData == null || runtimeData.heroData == null) return;
 
         HeroData baseData = runtimeData.heroData;
-        int lvl = runtimeData.level;
+        int levelFactor = Mathf.Max(0, runtimeData.level - 1);
 
-        CurrentHp = baseData.hp + (baseData.hpPerLevel * lvl);
-        CurrentMp = baseData.mp + (baseData.mpPerLevel * lvl);
-        CurrentAttack = baseData.attack + (baseData.attackPerLevel * lvl);
-        CurrentDefense = baseData.defense + (baseData.defensePerLevel * lvl);
-        CurrentAttackSpeed = baseData.attackSpeed + (baseData.attackSpeedPerLevel * lvl);
-        CurrentMoveSpeed = baseData.moveSpeed + (baseData.moveSpeedPerLevel * lvl);
+        CurrentHp = baseData.hp + (baseData.hpPerLevel * levelFactor);
+        CurrentMp = baseData.mp + (baseData.mpPerLevel * levelFactor);
+        CurrentAttack = baseData.attack + (baseData.attackPerLevel * levelFactor);
+        CurrentDefense = baseData.defense + (baseData.defensePerLevel * levelFactor);
+        CurrentAttackSpeed = baseData.attackSpeed + (baseData.attackSpeedPerLevel * levelFactor);
+        CurrentMoveSpeed = baseData.moveSpeed + (baseData.moveSpeedPerLevel * levelFactor);
+        
         detectionRange = baseData.detectionRange;
         attackRange = baseData.attackRange;
+    }
+
+    public Transform GetClosestEnemyCastlePoint(Vector3 pos, float range, Team team)
+    {
+        Transform point = null;
+        if (team == Team.Ally && EnemyCastle.I != null)
+        {
+            point = EnemyCastle.I.GetClosestAttackPoint(pos);
+        }
+        else if (team == Team.Enemy && MainCastle.I != null)
+        {
+            point = MainCastle.I.GetClosestAttackPoint(pos);
+        }
+
+        if (point != null)
+        {
+            float distSqr = (point.position - pos).sqrMagnitude;
+            if (distSqr <= range * range) return point;
+        }
+        return null;
     }
 
     public void ChangeState(IState newState)
@@ -110,15 +132,6 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         ChangeState(MoveState);
     }
 
-    // 적 타겟팅
-    public void AttackTo(ICombatEntity target)
-    {
-        if (target == null) return;
-        AttackState.SetTarget(target);
-        ChangeState(AttackState);
-    }
-
-    public void StopMovement() { }
 
     public virtual void TakeDamage(int damage)
     {
