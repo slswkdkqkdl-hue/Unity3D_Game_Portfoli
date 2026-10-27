@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eecc120cab29684c9d8bf6a3591c09f, type: 3}
   m_Name: Arden
   m_EditorClassIdentifier: Assembly-CSharp::RuntimeHeroData
-  prefab_Play: {fileID: 0}
+  prefab_Play: {fileID: 4338169078215872334, guid: d8181db153406454888bac7e15d2fa93, type: 3}
   prefab_UI: {fileID: 4338169078215872334, guid: 1d18b1bda8451444f9145b5cd215c02c, type: 3}
   Hero_Id: 1
   Current_Level: 0
