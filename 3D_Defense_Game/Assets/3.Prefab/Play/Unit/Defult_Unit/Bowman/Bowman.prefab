@@ -321,7 +321,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3073416426704914167}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.13367079, y: 78.46112, z: -0.59863865}
 --- !u!114 &1052041819380341087
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,12 +645,12 @@ GameObject:
   - component: {fileID: 1911270796063158950}
   - component: {fileID: 8995047519267134004}
   m_Layer: 0
-  m_Name: HumanArcher_ArrowInHand
+  m_Name: ArrowI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8463849909817556846
 Transform:
   m_ObjectHideFlags: 0
@@ -964,6 +964,9 @@ MonoBehaviour:
   currentState: 0
   objectiveTransform: {fileID: 0}
   finalDir: {x: 0, y: 0, z: 0}
+  arrowInHand: {fileID: 2453995244726552344}
+  arrowToShoot: {fileID: 0}
+  bowstringAnchorPoint: {fileID: 0}
 --- !u!1 &3464781672634457396
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,7 +1378,7 @@ Transform:
   m_Children:
   - {fileID: 289811102930447792}
   m_Father: {fileID: 5954828433025273876}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -2.1264515, y: -0.000051048122, z: -85.09478}
 --- !u!1 &6005488082486839629
 GameObject:
   m_ObjectHideFlags: 0
@@ -1567,7 +1570,7 @@ Transform:
   m_Children:
   - {fileID: 8463849909817556846}
   m_Father: {fileID: 4465193243774361862}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.034740344, y: -0.9894015, z: 4.3088384}
 --- !u!1 &7436821730434084591
 GameObject:
   m_ObjectHideFlags: 0
