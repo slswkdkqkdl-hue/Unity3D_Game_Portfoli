@@ -4,31 +4,34 @@ public class HeroMoveState : IState
 {
     private HeroBase hero;
     private Vector3 targetPosition;
-    private float moveSpeed; 
 
-    public HeroMoveState(HeroBase hero, Vector3 targetPosition, float moveSpeed)
+    public HeroMoveState(HeroBase hero)
     {
         this.hero = hero;
-        this.targetPosition = targetPosition;
-        this.moveSpeed = moveSpeed;
+    }
+
+    // 2. 우클릭 시 목적지만 가볍게 갱신하는 전용 함수
+    public void SetTargetPosition(Vector3 destination)
+    {
+        this.targetPosition = destination;
+        this.targetPosition.y = hero.transform.position.y; 
     }
 
     public void Enter()
     {
-        // Y축 높이 차이 무시 (지면을 평평하게 이동하기 위함)
-        targetPosition.y = hero.transform.position.y;
+        // 뛰는 애니메이션 실행
+        if (hero.Animator != null)
+        {
+            hero.Animator.SetFloat("Speed", 1f);
+        }
     }
 
     public void Update()
     {
-        // 목표 지점으로 직접 이동 (받아온 moveSpeed 적용)
-        hero.transform.position = Vector3.MoveTowards(
-            hero.transform.position, 
-            targetPosition, 
-            moveSpeed * Time.deltaTime
-        );
 
-        // 바라보는 방향 회전
+        hero.transform.position = Vector3.MoveTowards(hero.transform.position, targetPosition, hero.CurrentMoveSpeed * Time.deltaTime);
+
+        // 회전 처리
         Vector3 dir = (targetPosition - hero.transform.position).normalized;
         if (dir != Vector3.zero)
         {
@@ -36,12 +39,18 @@ public class HeroMoveState : IState
             hero.transform.rotation = Quaternion.Slerp(hero.transform.rotation, lookRot, Time.deltaTime * 10f);
         }
 
-        // 목적지에 거의 도달했으면 대기 상태로 전환
+        // 목적지 도착 시 Idle로 전환
         if (Vector3.Distance(hero.transform.position, targetPosition) <= 0.1f)
         {
             hero.ChangeState(hero.IdleState);
         }
     }
 
-    public void Exit() { }
+    public void Exit() 
+    {
+        if (hero.Animator != null)
+        {
+            hero.Animator.SetFloat("Speed", 0f);
+        }
+    }
 }

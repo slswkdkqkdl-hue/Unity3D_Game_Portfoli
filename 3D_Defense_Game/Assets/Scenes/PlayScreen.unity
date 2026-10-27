@@ -7499,8 +7499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb0ccac78bfa292429a9e31514a034ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattlefieldManager
-  playerUnits: []
-  enemyUnits: []
   separationRadius: 0.8
   separationStrength: 2
 --- !u!1 &2020214997

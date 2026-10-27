@@ -7233,7 +7233,7 @@ Animator:
   m_GameObject: {fileID: 4338169078215872334}
   m_Enabled: 1
   m_Avatar: {fileID: -7015762578403652589, guid: ee6b896384cf40c4a8422516c7d39466, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 01785182e8b33b943b64291ea54c3b05, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8039,6 +8039,8 @@ MonoBehaviour:
     equippedArmorId: -1
     selectedPassiveSkill: 
     selectedActiveSkill: 
+  currentTeam: 0
+  animator: {fileID: 1591839181465750662}
 --- !u!1 &4362563511939760258
 GameObject:
   m_ObjectHideFlags: 0

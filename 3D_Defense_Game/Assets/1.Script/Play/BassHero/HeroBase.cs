@@ -5,7 +5,7 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     public static HeroBase ActiveHero { get; private set; }
 
     protected IState currentState;
-    public IState IdleState { get; private set; }
+    public HeroIdleState IdleState { get; private set; }
     public HeroMoveState MoveState { get; private set; }
 
     [Header("영웅 런타임 데이터")]
@@ -13,8 +13,12 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     public HeroRuntimeData RuntimeData => runtimeData;
 
     [Header("영웅 팀")]
-    [SerializeField] private Team currentTeam; // ICombatEntity용 팀 변수
-    public Team team => currentTeam;         // 인터페이스 구현
+    [SerializeField] private Team currentTeam; 
+    public Team team => currentTeam;         
+
+    [Header("애니메이션")]
+    [SerializeField] private Animator animator;
+    public Animator Animator => animator;
 
     private HeroSlot assignedSlot;
 
@@ -28,28 +32,22 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     protected virtual void Awake()
     {
         IdleState = new HeroIdleState(this);
+        MoveState = new HeroMoveState(this);
     }
 
     protected virtual void OnEnable()
     {
         ActiveHero = this;
-
-        // ⭐ BattlefieldManager에 영웅 등록! (이제 적들이 영웅을 인식하고 밀어내기도 함)
         if (BattlefieldManager.I != null)
         {
             BattlefieldManager.I.RegisterUnit(this, currentTeam);
         }
-
         ChangeState(IdleState);
     }
 
     protected virtual void OnDisable()
     {
-        if (ActiveHero == this)
-        {
-            ActiveHero = null;
-        }
-
+        if (ActiveHero == this) ActiveHero = null;
         if (BattlefieldManager.I != null)
         {
             BattlefieldManager.I.UnregisterUnit(this, currentTeam);
@@ -99,21 +97,20 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         currentState?.Enter();
     }
 
+    // ⭐ 목적지 좌표만 틱 던져주고 상태 전환!
     public void MoveTo(Vector3 destination)
     {
-        MoveState = new HeroMoveState(this, destination, CurrentMoveSpeed);
+        MoveState.SetTargetPosition(destination);
         ChangeState(MoveState);
     }
 
     public void StopMovement() { }
-
 
     public virtual void TakeDamage(int damage)
     {
         CurrentHp -= damage;
         CurrentHp = Mathf.Max(0, CurrentHp);
 
-        // ⭐ 방금 만든 UpdatHP 함수에 현재 체력 숫자만 툭 던지기!
         if (assignedSlot != null)
         {
             assignedSlot.UpdatHP(CurrentHp);
