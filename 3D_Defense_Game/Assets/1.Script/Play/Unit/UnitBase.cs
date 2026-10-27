@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UnitBase : MonoBehaviour, IDamageable
+public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
 {
     // 유닛의 FSM 상태 정의
     public enum UnitState
@@ -22,7 +22,8 @@ public class UnitBase : MonoBehaviour, IDamageable
     public SkinnedMeshRenderer bodyRenderer;
 
     private Team currentTeam;
-
+    public Team team => currentTeam;
+    
     [Header("런타임 스탯 (적용된 값)")]
     [SerializeField] protected int currentHp;
     [SerializeField] protected int currentMp;

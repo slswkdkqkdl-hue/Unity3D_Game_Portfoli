@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class HeroBase : MonoBehaviour
+public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
 {
+    public static HeroBase ActiveHero { get; private set; }
+
     protected IState currentState;
     public IState IdleState { get; private set; }
     public HeroMoveState MoveState { get; private set; }
@@ -11,7 +13,11 @@ public class HeroBase : MonoBehaviour
     public HeroRuntimeData RuntimeData => runtimeData;
 
     [Header("영웅 팀")]
-    public Team team { get; protected set; }
+    [SerializeField] private Team currentTeam; // ICombatEntity용 팀 변수
+    public Team team => currentTeam;         // 인터페이스 구현
+
+    private HeroSlot assignedSlot;
+
     public int CurrentHp { get; protected set; }
     public int CurrentMp { get; protected set; }
     public int CurrentAttack { get; protected set; }
@@ -26,7 +32,28 @@ public class HeroBase : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        ActiveHero = this;
+
+        // ⭐ BattlefieldManager에 영웅 등록! (이제 적들이 영웅을 인식하고 밀어내기도 함)
+        if (BattlefieldManager.I != null)
+        {
+            BattlefieldManager.I.RegisterUnit(this, currentTeam);
+        }
+
         ChangeState(IdleState);
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (ActiveHero == this)
+        {
+            ActiveHero = null;
+        }
+
+        if (BattlefieldManager.I != null)
+        {
+            BattlefieldManager.I.UnregisterUnit(this, currentTeam);
+        }
     }
 
     protected virtual void Update()
@@ -34,39 +61,34 @@ public class HeroBase : MonoBehaviour
         currentState?.Update();
     }
 
-    /// <summary>
-    /// 외부(Herocontroller 등)에서 영웅을 소환·초기화할 때 호출해 주는 메서드
-    /// </summary>
-    public virtual void InitHero(HeroRuntimeData data ,Team team)
+    public virtual void InitHero(HeroRuntimeData data, Team team, HeroSlot slot)
     {
         runtimeData = data;
-        this.team = team;
-        CalculateStats(); // 레벨 반영 스탯 계산
+        currentTeam = team; 
+        assignedSlot = slot;
+
+        CalculateStats();
+
+        if (assignedSlot != null)
+        {
+            assignedSlot.SetUpHp(CurrentHp, CurrentHp); 
+            assignedSlot.SetUpMp(CurrentMp, CurrentMp);
+        }
     }
 
-    /// <summary>
-    /// 레벨당 증가량을 반영하여 최종 스탯을 계산하는 핵심 함수
-    /// </summary>
     protected void CalculateStats()
     {
-        if (runtimeData == null || runtimeData.heroData == null)
-        {
-            Debug.LogWarning($"[{gameObject.name}] 런타임 데이터나 HeroData가 비어있습니다!");
-            return;
-        }
+        if (runtimeData == null || runtimeData.heroData == null) return;
 
         HeroData baseData = runtimeData.heroData;
-        int lvl = runtimeData.level; // 0레벨 혹은 1레벨 기준 보정 필요시 확인
+        int lvl = runtimeData.level;
 
-        // 기본 스탯 + (레벨당 증가 스탯 * 현재 레벨)
         CurrentHp = baseData.hp + (baseData.hpPerLevel * lvl);
         CurrentMp = baseData.mp + (baseData.mpPerLevel * lvl);
         CurrentAttack = baseData.attack + (baseData.attackPerLevel * lvl);
         CurrentDefense = baseData.defense + (baseData.defensePerLevel * lvl);
         CurrentAttackSpeed = baseData.attackSpeed + (baseData.attackSpeedPerLevel * lvl);
         CurrentMoveSpeed = baseData.moveSpeed + (baseData.moveSpeedPerLevel * lvl);
-
-        Debug.Log($"[{baseData.hero_name}] 스탯 초기화 완료 (레벨: {lvl}) / 체력: {CurrentHp}, 공격력: {CurrentAttack}, 이속: {CurrentMoveSpeed}");
     }
 
     public void ChangeState(IState newState)
@@ -79,9 +101,27 @@ public class HeroBase : MonoBehaviour
 
     public void MoveTo(Vector3 destination)
     {
-        MoveState = new HeroMoveState(this, destination, CurrentMoveSpeed); // 계산된 이동속도 전달 가능!
+        MoveState = new HeroMoveState(this, destination, CurrentMoveSpeed);
         ChangeState(MoveState);
     }
 
     public void StopMovement() { }
+
+
+    public virtual void TakeDamage(int damage)
+    {
+        CurrentHp -= damage;
+        CurrentHp = Mathf.Max(0, CurrentHp);
+
+        // ⭐ 방금 만든 UpdatHP 함수에 현재 체력 숫자만 툭 던지기!
+        if (assignedSlot != null)
+        {
+            assignedSlot.UpdatHP(CurrentHp);
+        }
+
+        if (CurrentHp <= 0)
+        {
+            Debug.Log("죽음");
+        }
+    }
 }

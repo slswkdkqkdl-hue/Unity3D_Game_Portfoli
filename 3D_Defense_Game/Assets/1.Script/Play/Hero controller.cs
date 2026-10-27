@@ -4,9 +4,10 @@ using UnityEngine;
 public class Herocontroller : MonoBehaviour
 {
     [SerializeField] private GameObject slotPrefab;
+    [Header("아군 성")]
+    private MainCastle PlayerCastle; 
+
     
-    [Header("아군 성)")]
-    [SerializeField] private MainCastle PlayerCastle; 
 
     private Dictionary<HeroSlot, GameObject> heroPool = new Dictionary<HeroSlot, GameObject>();
 
@@ -37,7 +38,14 @@ public class Herocontroller : MonoBehaviour
         {
             // 미리 생성
             heroInstance = Instantiate(data.heroData.prefab_Play);
-        
+            if (heroInstance != null)
+            {
+                var heroBase = heroInstance.GetComponent<HeroBase>();
+                if (heroBase != null)
+                {
+                    heroBase.InitHero(data, PlayerCastle.PlayerTeam, heroSlot);
+                }
+            }
             // 생성하자마자 꺼두기 (비활성화)
             heroInstance.SetActive(false);
         }
@@ -59,32 +67,24 @@ public class Herocontroller : MonoBehaviour
     /// </summary>
     private void HandleDeployStateChanged(HeroSlot slot, bool isDeployed)
     {
-        // 딕셔너리에서 해당 슬롯에 매핑된 영웅 오브젝트 안전하게 가져오기
         if (heroPool.TryGetValue(slot, out GameObject heroObj) && heroObj != null)
         {
             if (isDeployed)
             {
-                // ⭐ 출격할 때도 성의 랜덤 출구 위치와 회전값을 다시 갱신해서 배치
+                // 성 위치 재배치
                 if (PlayerCastle != null)
                 {
                     var spawnData = PlayerCastle.GetRandomSpawnData();
                     heroObj.transform.position = spawnData.position;
                     heroObj.transform.rotation = spawnData.rotation;
                 }
-                heroObj.SetActive(true);
-                var heroBase = heroObj.GetComponent<HeroBase>();
-                if (heroBase != null)
-                {
-                    heroBase.InitHero(slot.HeroRuntimeData,PlayerCastle.PlayerTeam); // 슬롯의 런타임 데이터를 넘겨줌
-                }
                 
-                // TODO: 생성된 영웅의 초기화 (팀 설정 등) 필요시 여기서 수행
-                // var unitBase = heroObj.GetComponent<UnitBase>();
-                // if(unitBase != null) unitBase.Init(slot.HeroRuntimeData.heroData, Team.Ally);
+                // ⭐ 여기서는 InitHero를 지우고 그냥 켜기만 함! (체력 유지됨)
+                heroObj.SetActive(true);
             }
             else
             {
-                // 후퇴: 파괴하지 않고 비활성화만 수행
+                // 후퇴: 비활성화만 (피 깎인 상태 그대로 유지됨)
                 heroObj.SetActive(false);
             }
         }

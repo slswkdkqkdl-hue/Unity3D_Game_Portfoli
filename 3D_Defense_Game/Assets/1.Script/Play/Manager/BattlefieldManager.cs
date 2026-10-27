@@ -5,9 +5,10 @@ public class BattlefieldManager : MonoBehaviour
 {
     public static BattlefieldManager I { get; private set; }
 
-    public List<UnitBase> playerUnits = new List<UnitBase>();
-    public List<UnitBase> enemyUnits = new List<UnitBase>();
-    private readonly List<UnitBase> allUnitsCache = new List<UnitBase>();
+    // UnitBase 대신 ICombatEntity 인터페이스를 관리합니다.
+    public List<ICombatEntity> playerUnits = new List<ICombatEntity>();
+    public List<ICombatEntity> enemyUnits = new List<ICombatEntity>();
+    private readonly List<ICombatEntity> allUnitsCache = new List<ICombatEntity>();
 
     [Header("유닛 뭉침 방지 (Separation) 공통 설정")]
     public float separationRadius = 1f;   
@@ -19,51 +20,51 @@ public class BattlefieldManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void RegisterUnit(UnitBase unit, Team team)
+    public void RegisterUnit(ICombatEntity entity, Team team)
     {
         if (team == Team.Ally)
         {
-            if (!playerUnits.Contains(unit)) playerUnits.Add(unit);
+            if (!playerUnits.Contains(entity)) playerUnits.Add(entity);
         }
         else
         {
-            if (!enemyUnits.Contains(unit)) enemyUnits.Add(unit);
+            if (!enemyUnits.Contains(entity)) enemyUnits.Add(entity);
         }
 
-        if (!allUnitsCache.Contains(unit)) allUnitsCache.Add(unit);
+        if (!allUnitsCache.Contains(entity)) allUnitsCache.Add(entity);
     }
 
-    public void UnregisterUnit(UnitBase unit, Team team)
+    public void UnregisterUnit(ICombatEntity entity, Team team)
     {
         if (team == Team.Ally)
         {
-            playerUnits.Remove(unit);
+            playerUnits.Remove(entity);
         }
         else
         {
-            enemyUnits.Remove(unit);
+            enemyUnits.Remove(entity);
         }
 
-        allUnitsCache.Remove(unit);
+        allUnitsCache.Remove(entity);
     }
 
     public Transform GetClosestUnitInRange(Team currentTeam, Vector3 position, float range)
     {   
-        List<UnitBase> targetList = (currentTeam == Team.Ally) ? enemyUnits : playerUnits;
+        List<ICombatEntity> targetList = (currentTeam == Team.Ally) ? enemyUnits : playerUnits;
 
         Transform closestTransform = null;
         float minSqrDist = range * range;
 
         for (int i = 0; i < targetList.Count; i++)
         {
-            UnitBase unit = targetList[i];
-            if (unit == null || !unit.gameObject.activeInHierarchy) continue;
+            ICombatEntity entity = targetList[i];
+            if (entity == null || !entity.gameObject.activeInHierarchy) continue;
 
-            float sqrDist = (unit.transform.position - position).sqrMagnitude;
+            float sqrDist = (entity.transform.position - position).sqrMagnitude;
             if (sqrDist <= minSqrDist)
             {
                 minSqrDist = sqrDist;
-                closestTransform = unit.transform;
+                closestTransform = entity.transform;
             }
         }
 
@@ -81,7 +82,7 @@ public class BattlefieldManager : MonoBehaviour
 
         for (int i = 0; i < allUnitsCache.Count; i++)
         {
-            UnitBase other = allUnitsCache[i];
+            ICombatEntity other = allUnitsCache[i];
             if (other == null || other.gameObject == self || !other.gameObject.activeInHierarchy) continue;
 
             Vector3 toOther = other.transform.position - myPos;

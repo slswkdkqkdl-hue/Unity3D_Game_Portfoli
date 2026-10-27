@@ -28,7 +28,7 @@ MonoBehaviour:
   attack: 25
   defense: 10
   attackSpeed: 3
-  moveSpeed: 2
+  moveSpeed: 4.5
   hpPerLevel: 100
   mpPerLevel: 10
   attackPerLevel: 5

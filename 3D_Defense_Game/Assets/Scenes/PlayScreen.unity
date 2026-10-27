@@ -1705,6 +1705,7 @@ GameObject:
   - component: {fileID: 466746836}
   - component: {fileID: 466746837}
   - component: {fileID: 466746838}
+  - component: {fileID: 466746839}
   m_Layer: 5
   m_Name: HeroTeam_UI
   m_TagString: Untagged
@@ -1770,6 +1771,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Herocontroller
   slotPrefab: {fileID: 2288873217974308942, guid: 9245f01802c168d41b771ac436a164b2, type: 3}
+--- !u!114 &466746839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466746835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43f0a7ecc950ce48985f4282991cf8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SimpleHeroCommander
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &467256586
 GameObject:
   m_ObjectHideFlags: 0
