@@ -4,8 +4,6 @@ public class Bowman : UnitBase
 {
     [Header("아처 전용 설정")]
     [SerializeField] private GameObject arrowInHand;     // 손에 쥐고 있는 화살 오브젝트
-    [SerializeField] private GameObject arrowToShoot;    // 날아가는 화살 프리팹
-    [SerializeField] private Transform bowstringAnchorPoint; // 활시위 당겨지는 위치
 
     public override void Init(UnitData data, Team team)
     {
