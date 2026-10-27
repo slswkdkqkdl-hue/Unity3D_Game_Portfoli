@@ -34,10 +34,12 @@ public class UnitData : ScriptableObject
     public string description; 
 
     [Header("=== 전투 기본 스탯 ===")]
-    public int hp;
-    public int mp;
-    public int attack;
-    public int defense;
-    public float attackSpeed;
-    public float moveSpeed;
+    public int hp; // 체력
+    public int mp; // 마나
+    public int attack; // 공격력
+    public int defense; // 방어력
+    public float attackSpeed; // 공격속도
+    public float moveSpeed; // 이동속도
+    public float detectRange; // 감지범위
+    public float attackRange; // 공격범위
 }

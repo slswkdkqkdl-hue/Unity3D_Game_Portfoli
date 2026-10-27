@@ -56,16 +56,27 @@ public class MainCastle : Building, IDamageable
         }
     }
     
-    public Transform RandomPoint()
+
+    /// <summary>
+    /// 랜덤 출구 위치(Z축 오프셋 포함)와 해당 출구의 회전값을 세트로 반환합니다.
+    /// </summary>
+    public (Vector3 position, Quaternion rotation) GetRandomSpawnData()
     {
         if (ExitPoint == null || ExitPoint.Length == 0)
         {
-            Debug.LogError("[MainCastle] ExitPoint가 설정되지 않았습니다!");
-            return null;
+            Debug.LogError("[Castle] ExitPoint가 설정되지 않았습니다!");
+            return (transform.position, transform.rotation);
         }
 
         int index = Random.Range(0, ExitPoint.Length);
-        return ExitPoint[index];
+        Transform point = ExitPoint[index];
+
+        // Z축 랜덤 오프셋 적용
+        float randomZ = Random.Range(-1.5f, 1.5f);
+        Vector3 spawnPos = point.position + new Vector3(0f, 0f, randomZ);
+
+        // 위치와 출구의 원래 회전값을 세트로 반환
+        return (spawnPos, point.rotation);
     }
     /// <summary>
     /// 유닛의 현재 위치를 받아, 성의 AttackPoint 중 가장 가까운 포인트를 반환합니다.
@@ -152,7 +163,10 @@ public class MainCastle : Building, IDamageable
 
     private void OnCastleDestroyed()
     {
-        Debug.Log("[MainCastle] 플레이어 성이 파괴되었습니다! 게임 오버 처리 필요");
+        Debug.Log("########################우리성파괴##########################");
+        Debug.Log("########################우리성파괴##########################");
+        Debug.Log("########################우리성파괴##########################");
+        Debug.Log("########################우리성파괴##########################");
         // TODO: 게임 오버 연출 및 매니저 호출
     }
 }

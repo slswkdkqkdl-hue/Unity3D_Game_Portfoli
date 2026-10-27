@@ -94,27 +94,29 @@ public class Barracks : Building
     {
         if (castle != null)
         {   
-            Transform point = castle.RandomPoint();
             Team team = castle.PlayerTeam;
-            if (point == null)
-            {
-                Debug.LogWarning("[병영] 성의 출구(ExitPoint)가 없어 유닛 소환이 취소되었습니다.");
-                if (ResourceManager.I != null)
-                {
-                    ResourceManager.I.DecreasePopulation(unitData.population);
-                }
-                return; 
-            }
-            UnitBase unit = UnitPoolManager.I.GetUnit(unitData, point.position, point.rotation);
+
+            // 1. 성에게 위치와 회전 데이터를 한 번에 받아옵니다. (중복 호출 없음!)
+            var spawnData = castle.GetRandomSpawnData();
+
+            // 2. 성에서 계산된 위치와 회전값으로 유닛 소환
+            UnitBase unit = UnitPoolManager.I.GetUnit(unitData, spawnData.position, spawnData.rotation);
 
             if (unit != null)
             {
-                unit.Init(unitData,team);
-                BattlefieldManager.I.RegisterUnit(unit,team);
+                unit.Init(unitData, team);
+                BattlefieldManager.I.RegisterUnit(unit, team);
             }
             else
             {
                 Debug.LogWarning($"[병영] 유닛 소환 실패! -> {unitData.Unit_Name}");
+                
+                // 소환 실패 시 인구수 반환
+                if (ResourceManager.I != null)
+                {
+                    ResourceManager.I.DecreasePopulation(unitData.population);
+                }
+                return;
             }
         }
 

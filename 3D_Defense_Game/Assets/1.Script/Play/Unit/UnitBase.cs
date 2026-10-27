@@ -27,8 +27,8 @@ public class UnitBase : MonoBehaviour, IDamageable
     [SerializeField] private Animator animator;
 
     [Header("거리 및 감지")]
-    [SerializeField] protected float detectRange = 3.5f;  // 적을 감지하는 시야 범위
-    [SerializeField] protected float attackRange = 2.5f;  // 공격을 시작할 수 있는 범위
+    [SerializeField] protected float detectRange;  // 적을 감지하는 시야 범위
+    [SerializeField] protected float attackRange;  // 공격을 시작할 수 있는 범위
 
     [Header("FSM 현재 상태")]
     [SerializeField] protected UnitState currentState;
@@ -43,7 +43,7 @@ public class UnitBase : MonoBehaviour, IDamageable
     [Header("최적화 및 쿨타임 타이머")]
     private float searchTimer = 0f;
     private float searchInterval = 0.3f; // 0.3초마다 적 탐색 (최적화)
-    private float attackTimer = 0f;
+    private float attackTimer = 0f; 
 
     private bool isDead = false;
 
@@ -64,6 +64,8 @@ public class UnitBase : MonoBehaviour, IDamageable
             currentDefense = data.defense;
             currentAttackSpeed = data.attackSpeed;
             currentMoveSpeed = data.moveSpeed;
+            this.detectRange = data.detectRange;
+            this.attackRange = data.attackRange;
 
             Debug.Log($"[{data.Unit_Name}] 스탯 적용 완료! (HP: {currentHp}, 이속: {currentMoveSpeed})");
         }
@@ -206,11 +208,10 @@ public class UnitBase : MonoBehaviour, IDamageable
         dir.y = 0f;
         Vector3 moveDir = dir.normalized;
 
-        // BattlefieldManager의 분리(Push) 벡터 적용
         Vector3 separation = Vector3.zero;
         if (BattlefieldManager.I != null)
         {
-            separation = BattlefieldManager.I.GetSeparationVector(gameObject, transform.position, 0.6f, 2f);
+            separation = BattlefieldManager.I.GetSeparationVector(gameObject, transform.position);
             separation.y = 0f;
         }
 
@@ -218,11 +219,9 @@ public class UnitBase : MonoBehaviour, IDamageable
 
         if (finalDir != Vector3.zero)
         {
-            // 부드러운 회전
             Quaternion targetRot = Quaternion.LookRotation(finalDir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 15f * Time.deltaTime);
             
-            // 물리 없이 순수 위치 이동
             transform.position += finalDir * currentMoveSpeed * Time.deltaTime;
         }
     }
@@ -264,9 +263,20 @@ public class UnitBase : MonoBehaviour, IDamageable
             }
 
             IDamageable damageableTarget = targetTransform.GetComponent<IDamageable>();
+            
+            if (damageableTarget == null)
+            {
+                damageableTarget = targetTransform.GetComponentInParent<IDamageable>();
+            }
+
             if (damageableTarget != null)
             {
                 damageableTarget.TakeDamage(currentAttack);
+                Debug.Log($"[{MyUnitData.Unit_Name}] 성 공격 성공! 데미지: {currentAttack}");
+            }
+            else
+            {
+                Debug.LogWarning($"[{MyUnitData.Unit_Name}] 타겟({targetTransform.name})에서 IDamageable을 찾을 수 없습니다!");
             }
         }
     }

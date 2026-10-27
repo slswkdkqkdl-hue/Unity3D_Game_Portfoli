@@ -113,28 +113,26 @@ public class EnemyCastle : MonoBehaviour, IDamageable
             Debug.LogWarning("[EnemyCastle] BattleEntryData에 연동할 적 영웅 데이터가 없습니다!");
         }
     }
+
     /// <summary>
     /// 제한 횟수 체크 후 UnitPoolManager를 통해 유닛을 소환하는 함수
     /// </summary>
     private void TrySpawnUnit()
     {
-        // 출구 포인트 가져오기
-        Transform spawnPoint = RandomPoint();
-        if (spawnPoint == null)
-        {
-            Debug.LogWarning("[EnemyCastle] 유닛을 소환할 ExitPoint가 없습니다!");
-            return;
-        }
+        if (targetUnitData == null) return;
 
-        // UnitPoolManager를 통해 유닛 가져오기 (풀링 사용)
-        UnitBase spawnedUnit = UnitPoolManager.I.GetUnit(targetUnitData, spawnPoint.position, spawnPoint.rotation);
+        // 1. 성에서 오프셋이 적용된 스폰 위치와 회전 데이터를 한 번에 받아옴
+        var spawnData = GetRandomSpawnData();
+
+        // 2. UnitPoolManager를 통해 유닛 가져오기 (풀링 사용)
+        UnitBase spawnedUnit = UnitPoolManager.I.GetUnit(targetUnitData, spawnData.position, spawnData.rotation);
 
         if (spawnedUnit != null)
         {
             // 적 팀(Team.Enemy)으로 초기화 (BattlefieldManager에 자동 등록됨)
             spawnedUnit.Init(targetUnitData, enemyTeam);
             EnemyCount--;
-            Debug.Log($"[EnemyCastle] 테스트 유닛 소환 완료: {targetUnitData.Unit_Name}");
+            Debug.Log($"[EnemyCastle] 테스트 유닛 소환 완료: {targetUnitData.Unit_Name} (남은 횟수: {EnemyCount})");
         }
         else
         {
@@ -164,20 +162,25 @@ public class EnemyCastle : MonoBehaviour, IDamageable
 
         return closestPoint;
     }
-
     /// <summary>
-    /// 적 유닛이 소환될 때 랜덤한 출구(Transform)를 반환하는 함수
+    /// 랜덤 출구 위치(Z축 오프셋 포함)와 해당 출구의 회전값을 세트로 반환합니다.
     /// </summary>
-    public Transform RandomPoint()
+    public (Vector3 position, Quaternion rotation) GetRandomSpawnData()
     {
         if (exitPoints == null || exitPoints.Length == 0)
         {
-            Debug.LogWarning("[EnemyCastle] 등록된 출구(ExitPoint)가 없습니다!");
-            return null;
+            Debug.LogWarning("[EnemyCastle] 등록된 출구(exitPoints)가 없습니다!");
+            return (transform.position, transform.rotation);
         }
 
         int randomIndex = Random.Range(0, exitPoints.Length);
-        return exitPoints[randomIndex];
+        Transform point = exitPoints[randomIndex];
+
+        // Z축에 +- 1.5 범위의 랜덤 값 부여하여 겹침 방지
+        float randomZ = Random.Range(-1.5f, 1.5f);
+        Vector3 spawnPos = point.position + new Vector3(0f, 0f, randomZ);
+
+        return (spawnPos, point.rotation);
     }
 
     /// <summary>
@@ -216,7 +219,9 @@ public class EnemyCastle : MonoBehaviour, IDamageable
 
     private void OnCastleDestroyed()
     {
-        Debug.Log("[EnemyCastle] 적 성 파괴 완료! 스테이지 클리어 처리 필요");
+        Debug.Log("적성 파괴");
         // TODO: 스테이지 클리어 연출 및 매니저 호출
+
+
     }
 }
