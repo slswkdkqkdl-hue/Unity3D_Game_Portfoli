@@ -366,7 +366,7 @@ MonoBehaviour:
   buildingData: {fileID: 0}
   currentTeam: 0
   buildingActivationType: 0
-  Castle_Name: 
+  Castle_Name: "\uBBF8"
   populationBonus: 6
   goldPerInterval: 200
   goldInterval: 3
@@ -378,6 +378,7 @@ MonoBehaviour:
   - {fileID: 5289421254030580862}
   - {fileID: 2589193686808958687}
   - {fileID: 4276781530104336382}
+  spawnZSpread: 3
   PlayerTeam: 0
   fillImage: {fileID: 4287331712778536780}
 --- !u!1 &7306450867599357180

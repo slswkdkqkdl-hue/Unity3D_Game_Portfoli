@@ -9,7 +9,7 @@ public class MainCastle : Building, IDamageable
     [Header("메인 성 체력")]
     private float maxHp;
     private float currentHp;
-    private CastleUI castleUI; // ⭐ 성 UI 참조 저장 변수
+    private CastleUI castleUI; 
 
     [Header("메인 성 보상 설정")]
     public string Castle_Name;
@@ -27,6 +27,8 @@ public class MainCastle : Building, IDamageable
     public Transform[] ExitPoint = new Transform[3];
     [Header("공격 포인트")]
     public Transform[] AttackPoint = new Transform[3];
+    [Header("유닛스폰 오프셋 설정")]
+    [SerializeField] private float spawnZSpread = 3.0f; // 인스펙터에서 2.5로 설정
 
     public Team PlayerTeam = Team.Ally; 
 
@@ -72,7 +74,7 @@ public class MainCastle : Building, IDamageable
         Transform point = ExitPoint[index];
 
         // Z축 랜덤 오프셋 적용
-        float randomZ = Random.Range(-2.5f, 2.5f);
+        float randomZ = Random.Range(-spawnZSpread, spawnZSpread);
         Vector3 spawnPos = point.position + new Vector3(0f, 0f, randomZ);
 
         // 위치와 출구의 원래 회전값을 세트로 반환
@@ -147,7 +149,6 @@ public class MainCastle : Building, IDamageable
         currentHp -= damage;
         currentHp = Mathf.Max(0f, currentHp);
 
-        // ⭐ 체력이 깎일 때 UI 동기화 함수 호출
         if (castleUI != null)
         {
             castleUI.SetHP(currentHp, maxHp);

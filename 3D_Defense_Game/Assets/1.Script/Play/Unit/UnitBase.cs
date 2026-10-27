@@ -57,13 +57,15 @@ public class UnitBase : MonoBehaviour, IDamageable
     public bool IsDead => isDead;
 
     public virtual void Init(UnitData data, Team team)
-    {
+    {   
+
+        // 데이터 초기화 
         MyUnitData = data;
         isDead = false;
         currentTeam = team;
         objectiveTransform = null;
         targetTransform = null;
-        attackTimer = 0f;
+        attackTimer = 999f;
 
         if (data != null)
         {
@@ -92,7 +94,7 @@ public class UnitBase : MonoBehaviour, IDamageable
             BattlefieldManager.I.RegisterUnit(this, currentTeam);
         }
 
-        ChangeState(UnitState.Chase);
+        ChangeState(UnitState.Chase); // 추격으로 시작 
     }
     /// <summary>
     /// 현재 타겟이 실제로 공격 가능한 대상인지 검사
@@ -313,7 +315,16 @@ public class UnitBase : MonoBehaviour, IDamageable
         // 4. 공격 쿨타임
         attackTimer += Time.deltaTime;
 
-        float attackInterval =currentAttackSpeed > 0f? 1f / currentAttackSpeed: 1f;
+        float attackInterval;
+
+        if (currentAttackSpeed > 0f)
+        {
+            attackInterval = 1f / currentAttackSpeed;
+        }
+        else
+        {
+            attackInterval = 0.2f; // 유닛 최소 공격속도 
+        }
         if (attackTimer < attackInterval)
             return;
 
@@ -344,7 +355,7 @@ public class UnitBase : MonoBehaviour, IDamageable
     }
 
     /// <summary>
-    /// IDamageable 구현: 공격받았을 때 호출
+    /// 공격 받았을시 호출
     /// </summary>
     public virtual void TakeDamage(int damage)
     {
