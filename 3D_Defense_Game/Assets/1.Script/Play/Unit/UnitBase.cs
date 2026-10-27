@@ -54,6 +54,7 @@ public class UnitBase : MonoBehaviour, IDamageable
     private float attackTimer = 0f; 
 
     private bool isDead = false;
+    public bool IsDead => isDead;
 
     public virtual void Init(UnitData data, Team team)
     {
@@ -93,7 +94,28 @@ public class UnitBase : MonoBehaviour, IDamageable
 
         ChangeState(UnitState.Chase);
     }
+    /// <summary>
+    /// 현재 타겟이 실제로 공격 가능한 대상인지 검사
+    /// </summary>
+    private bool IsValidTarget(Transform target)
+    {
+        if (target == null || !target.gameObject.activeInHierarchy)
+            return false;
 
+        // 유닛이면 사망 여부까지 검사
+        UnitBase unit = target.GetComponentInParent<UnitBase>();
+
+        if (unit != null && unit.IsDead)
+            return false;
+
+        // 성 등 IDamageable을 구현한 대상도 허용
+        IDamageable damageable = target.GetComponent<IDamageable>();
+
+        if (damageable == null)
+            damageable = target.GetComponentInParent<IDamageable>();
+
+        return damageable != null;
+    }
     /// <summary>
     /// 가장 가까운 성 공격 포인트를 찾아 저장
     /// </summary>
@@ -156,56 +178,67 @@ public class UnitBase : MonoBehaviour, IDamageable
     /// </summary>
     protected virtual void UpdateChase()
     {
-        // 1. 주기적인 적 탐색
+        // 1. 주기적으로 적 탐색
         searchTimer += Time.deltaTime;
+
         if (searchTimer >= searchInterval)
         {
             searchTimer = 0f;
             CheckForNearbyEnemy();
         }
 
-        // 2. 타겟 유효성 검사
-        if (targetTransform == null || !targetTransform.gameObject.activeInHierarchy)
+        // 2. 현재 타겟이 유효하지 않으면 재설정
+        if (!IsValidTarget(targetTransform))
         {
-            targetTransform = objectiveTransform;
-            if (targetTransform == null) return;
+            targetTransform = null;
+
+            // 기존 성 목표도 유효한지 확인
+            if (IsValidTarget(objectiveTransform))
+            {
+                targetTransform = objectiveTransform;
+            }
+            else
+            {
+                // 목표가 없다면 다음 탐색까지 대기
+                return;
+            }
         }
 
-        // 3. 공격 범위 내로 들어왔는지 체크
-        float sqrDist = (targetTransform.position - transform.position).sqrMagnitude;
-        float attackRangeSqr = attackRange * attackRange;
+        // 3. 공격 범위 판정 (수평 거리)
+        Vector3 offset = targetTransform.position - transform.position;
+        offset.y = 0f;
 
-        if (sqrDist <= attackRangeSqr)
+        if (offset.sqrMagnitude <= attackRange * attackRange)
         {
             ChangeState(UnitState.Attack);
             return;
         }
 
-        // 4. 타겟을 향한 이동 및 뭉침 방지(Separation) 적용
+        // 4. 추적 이동
         MoveTowardsTarget();
     }
-
+    
     /// <summary>
     /// 시야 범위(detectRange) 내에 가장 가까운 적 유닛 탐색
     /// </summary>
     private void CheckForNearbyEnemy()
     {
-        if (BattlefieldManager.I == null) return;
+        if (BattlefieldManager.I == null)
+            return;
 
-        Transform closestEnemy = BattlefieldManager.I.GetClosestUnitInRange(currentTeam, transform.position, detectRange);
+        Transform closestEnemy =BattlefieldManager.I.GetClosestUnitInRange(currentTeam,transform.position,detectRange);
 
-        if (closestEnemy != null)
+        // 죽은 적이나 비활성 타겟은 선택하지 않음
+        if (IsValidTarget(closestEnemy))
         {
-            // 적을 발견하면 타겟을 적 유닛으로 변경
             targetTransform = closestEnemy;
         }
         else
         {
-            // 감지된 적이 없으면 본래 목표인 성 공격 포인트로 복귀
-            if (targetTransform != objectiveTransform)
-            {
-                targetTransform = objectiveTransform;
-            }
+            // 적이 없다면 성으로 복귀
+            targetTransform = IsValidTarget(objectiveTransform)
+                ? objectiveTransform
+                : null;
         }
     }
 
@@ -241,53 +274,72 @@ public class UnitBase : MonoBehaviour, IDamageable
     /// </summary>
     protected virtual void UpdateAttack()
     {
-        // 1. 타겟이 사라졌거나 죽었는지 확인
-        if (targetTransform == null || !targetTransform.gameObject.activeInHierarchy)
+        // 1. 타겟이 죽었거나 공격할 수 없으면 즉시 추적 상태로 전환
+        if (!IsValidTarget(targetTransform))
         {
-            targetTransform = objectiveTransform;
+            targetTransform = null;
+
             ChangeState(UnitState.Chase);
             return;
         }
 
-        // 2. 타겟이 공격 범위를 벗어났는지 확인 (약간의 여유 Hysteresis 부여)
-        float sqrDist = (targetTransform.position - transform.position).sqrMagnitude;
-        float attackRangeSqr = attackRange * attackRange;
-        if (sqrDist > attackRangeSqr * 1.3f)
+        // 2. 타겟까지의 수평 거리 계산
+        Vector3 offset = targetTransform.position - transform.position;
+        offset.y = 0f;
+
+        float sqrDist = offset.sqrMagnitude;
+
+        // 공격 범위를 벗어나면 추적 상태로 복귀
+        float exitRange = attackRange * 1.1f;
+
+        if (sqrDist > exitRange * exitRange)
         {
             ChangeState(UnitState.Chase);
             return;
         }
 
-        // 3. 공격 속도(AttackSpeed)에 따른 쿨타임 계산
+        // 3. 타겟을 바라보도록 회전
+        if (offset.sqrMagnitude > 0.001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(offset.normalized);
+
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                15f * Time.deltaTime
+            );
+        }
+
+        // 4. 공격 쿨타임
         attackTimer += Time.deltaTime;
-        float attackInterval = (currentAttackSpeed > 0f) ? (1f / currentAttackSpeed) : 1f;
 
-        if (attackTimer >= attackInterval)
+        float attackInterval =currentAttackSpeed > 0f? 1f / currentAttackSpeed: 1f;
+        if (attackTimer < attackInterval)
+            return;
+
+        attackTimer = 0f;
+
+        // 공격 직전에 타겟을 한 번 더 검사
+        if (!IsValidTarget(targetTransform))
         {
-            attackTimer = 0f;
+            ChangeState(UnitState.Chase);
+            return;
+        }
 
-            // 애니메이션 Attack 트리거 작동
-            if (animator != null)
-            {
-                animator.SetTrigger("Attack");
-            }
+        if (animator != null)
+            animator.SetTrigger("Attack");
 
-            IDamageable damageableTarget = targetTransform.GetComponent<IDamageable>();
-            
-            if (damageableTarget == null)
-            {
-                damageableTarget = targetTransform.GetComponentInParent<IDamageable>();
-            }
+        IDamageable damageableTarget = targetTransform.GetComponent<IDamageable>();
 
-            if (damageableTarget != null)
-            {
-                damageableTarget.TakeDamage(currentAttack);
-                Debug.Log($"[{MyUnitData.Unit_Name}] 성 공격 성공! 데미지: {currentAttack}");
-            }
-            else
-            {
-                Debug.LogWarning($"[{MyUnitData.Unit_Name}] 타겟({targetTransform.name})에서 IDamageable을 찾을 수 없습니다!");
-            }
+        if (damageableTarget == null)
+        {
+            damageableTarget =
+                targetTransform.GetComponentInParent<IDamageable>();
+        }
+
+        if (damageableTarget != null)
+        {
+            damageableTarget.TakeDamage(currentAttack);
         }
     }
 
@@ -300,8 +352,6 @@ public class UnitBase : MonoBehaviour, IDamageable
 
         currentHp -= damage;
         currentHp = Mathf.Max(0, currentHp);
-
-        Debug.Log($"[{MyUnitData?.Unit_Name ?? "Unit"} 피격] 남은 체력: {currentHp}");
 
         if (currentHp <= 0)
         {

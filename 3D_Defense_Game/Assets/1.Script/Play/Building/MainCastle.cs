@@ -72,7 +72,7 @@ public class MainCastle : Building, IDamageable
         Transform point = ExitPoint[index];
 
         // Z축 랜덤 오프셋 적용
-        float randomZ = Random.Range(-1.5f, 1.5f);
+        float randomZ = Random.Range(-2.5f, 2.5f);
         Vector3 spawnPos = point.position + new Vector3(0f, 0f, randomZ);
 
         // 위치와 출구의 원래 회전값을 세트로 반환

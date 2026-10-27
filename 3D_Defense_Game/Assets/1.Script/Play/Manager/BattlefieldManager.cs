@@ -10,8 +10,8 @@ public class BattlefieldManager : MonoBehaviour
     private readonly List<UnitBase> allUnitsCache = new List<UnitBase>();
 
     [Header("유닛 뭉침 방지 (Separation) 공통 설정")]
-    public float separationRadius = 1f;    // 감지 반경을 조금 키워 겹침 방지 (기존 0.6)
-    public float separationStrength = 2.3f;  // 밀어내는 힘을 키워 확실하게 떨어지도록 (기존 2.0)
+    public float separationRadius = 1f;   
+    public float separationStrength = 2.3f; 
 
     private void Awake()
     {
@@ -48,7 +48,7 @@ public class BattlefieldManager : MonoBehaviour
     }
 
     public Transform GetClosestUnitInRange(Team currentTeam, Vector3 position, float range)
-    {
+    {   
         List<UnitBase> targetList = (currentTeam == Team.Ally) ? enemyUnits : playerUnits;
 
         Transform closestTransform = null;
