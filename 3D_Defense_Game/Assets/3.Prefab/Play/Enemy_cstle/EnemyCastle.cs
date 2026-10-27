@@ -39,11 +39,11 @@ public class EnemyCastle : MonoBehaviour, IDamageable
 
     [Header("테스트 소환 설정")]
     [SerializeField] private int targetUnitId = 111; // 테스트할 유닛 ID
-    private float spawnTimer = 0f;                   // 2초 쿨타임 타이머
-    private float spawnInterval = 2f;                // 소환 간격 (2초)
-    private UnitData targetUnitData = null;          // 찾은 ID 111 유닛 데이터\
-    private bool isSpawning = false; // 소환여부
-    private int EnemyCount = 0;
+    [SerializeField]private float spawnTimer = 0f;                   // 2초 쿨타임 타이머
+    [SerializeField]private float spawnInterval = 2f;                // 소환 간격 (2초)
+    [SerializeField]private UnitData targetUnitData = null;          // 찾은 ID 111 유닛 데이터\
+    [SerializeField]private bool isSpawning = false; // 소환여부
+    [SerializeField]private int EnemyCount = 0;
 
     private void Awake()
     {

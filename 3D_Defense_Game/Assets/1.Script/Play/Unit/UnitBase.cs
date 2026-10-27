@@ -271,16 +271,12 @@ public class UnitBase : MonoBehaviour, IDamageable
         }
     }
 
-    /// <summary>
-    /// [Attack 상태] 멈춰 서서 공격 쿨타임마다 공격 수행
-    /// </summary>
     protected virtual void UpdateAttack()
     {
-        // 1. 타겟이 죽었거나 공격할 수 없으면 즉시 추적 상태로 전환
+        // 1. 타겟이 죽었거나 없으면 즉시 추적 상태로 전환
         if (!IsValidTarget(targetTransform))
         {
             targetTransform = null;
-
             ChangeState(UnitState.Chase);
             return;
         }
@@ -290,17 +286,30 @@ public class UnitBase : MonoBehaviour, IDamageable
         offset.y = 0f;
 
         float sqrDist = offset.sqrMagnitude;
-
-        // 공격 범위를 벗어나면 추적 상태로 복귀
-        float exitRange = attackRange * 1.1f;
-
-        if (sqrDist > exitRange * exitRange)
+        
+        // 공격 쿨타임 계산
+        float attackInterval;
+        if (currentAttackSpeed > 0f)
         {
-            ChangeState(UnitState.Chase);
-            return;
+            attackInterval = 1f / currentAttackSpeed;
+        }
+        else
+        {
+            attackInterval = 0.2f; 
         }
 
-        // 3. 타겟을 바라보도록 회전
+        // 만약 아직 공격 쿨타임이 차는 중(대기 중)이라면, 거리가 멀어졌을 때 추적으로 복귀 가능
+        if (attackTimer < attackInterval)
+        {
+            float exitRange = attackRange * 1.5f; // 여유 범위를 좀 더 넉넉히(1.3~1.5배) 줍니다.
+            if (sqrDist > exitRange * exitRange)
+            {
+                ChangeState(UnitState.Chase);
+                return;
+            }
+        }
+
+        // 4. 타겟을 바라보도록 회전
         if (offset.sqrMagnitude > 0.001f)
         {
             Quaternion targetRot = Quaternion.LookRotation(offset.normalized);
@@ -312,30 +321,14 @@ public class UnitBase : MonoBehaviour, IDamageable
             );
         }
 
-        // 4. 공격 쿨타임
+        // 5. 공격 쿨타임 누적
         attackTimer += Time.deltaTime;
 
-        float attackInterval;
-
-        if (currentAttackSpeed > 0f)
-        {
-            attackInterval = 1f / currentAttackSpeed;
-        }
-        else
-        {
-            attackInterval = 0.2f; // 유닛 최소 공격속도 
-        }
         if (attackTimer < attackInterval)
             return;
 
+        // --- 공격 실행 구간 (이 순간부터는 데미지가 확정적으로 들어감) ---
         attackTimer = 0f;
-
-        // 공격 직전에 타겟을 한 번 더 검사
-        if (!IsValidTarget(targetTransform))
-        {
-            ChangeState(UnitState.Chase);
-            return;
-        }
 
         if (animator != null)
             animator.SetTrigger("Attack");
@@ -344,8 +337,7 @@ public class UnitBase : MonoBehaviour, IDamageable
 
         if (damageableTarget == null)
         {
-            damageableTarget =
-                targetTransform.GetComponentInParent<IDamageable>();
+            damageableTarget = targetTransform.GetComponentInParent<IDamageable>();
         }
 
         if (damageableTarget != null)

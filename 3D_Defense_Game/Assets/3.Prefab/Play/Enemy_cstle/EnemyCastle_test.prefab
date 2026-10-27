@@ -360,3 +360,8 @@ MonoBehaviour:
   - {fileID: 2429484050247619953}
   - {fileID: 5284378347798540634}
   targetUnitId: 111
+  spawnTimer: 0
+  spawnInterval: 5
+  targetUnitData: {fileID: 0}
+  isSpawning: 0
+  EnemyCount: 0

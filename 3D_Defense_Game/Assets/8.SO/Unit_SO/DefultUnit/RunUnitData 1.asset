@@ -12,18 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082232964268e674788d451ae8aacbea, type: 3}
   m_Name: RunUnitData 1
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  prefab_Play: {fileID: 2545166699278471777, guid: 037e40ecc150dbe4c8b95e2a8c1f2024, type: 3}
+  prefab_Play: {fileID: 3348912624422607663, guid: a0d17221961aa654782d0095f3a56cd7, type: 3}
   prefab_UI: {fileID: 0}
   Unit_Id: 222
   Unit_Name: "\uAD81\uBCD1"
   portrait: {fileID: 2045619393, guid: 777baf15fc3b3e441afed483a9c903c5, type: 3}
-  type: 0
+  type: 1
   CoolTime: 8
   population: 1
   description: ddd
-  hp: 40
+  hp: 50
   mp: 10
   attack: 15
   defense: 3
-  attackSpeed: 2
-  moveSpeed: 1.2
+  attackSpeed: 1
+  moveSpeed: 2
+  detectRange: 10
+  attackRange: 8
