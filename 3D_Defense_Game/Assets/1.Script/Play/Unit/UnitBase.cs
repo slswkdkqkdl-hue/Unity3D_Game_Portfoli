@@ -352,10 +352,20 @@ public class UnitBase : MonoBehaviour, IDamageable
 
     protected virtual void OnDrawGizmosSelected()
     {
+        // 1. 파란색: 적 탐지 범위 (detectRange)
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, detectRange);
 
+        // 2. 빨간색: 공격 범위 (attackRange)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        // 3. ⭐ 노란색: 유닛 뭉침 방지 반경 (BattlefieldManager의 값 실시간 참조)
+        if (BattlefieldManager.I != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, BattlefieldManager.I.separationRadius);
+            Gizmos.DrawWireSphere(transform.position, BattlefieldManager.I.separationStrength);
+        }
     }
 }
