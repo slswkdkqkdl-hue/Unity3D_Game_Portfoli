@@ -26,7 +26,6 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
 
     [Header("런타임 스탯 (적용된 값)")]
     [SerializeField] protected int currentHp;
-    [SerializeField] protected int MaxHp;
     [SerializeField] protected int currentMp;
     [SerializeField] protected int currentAttack;
     [SerializeField] protected int currentDefense;
@@ -72,7 +71,6 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
         if (data != null)
         {
             currentHp = data.hp;
-            MaxHp = currentHp;
             currentMp = data.mp;
             currentAttack = data.attack;
             currentDefense = data.defense;
@@ -444,7 +442,6 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
         {
             entityName = MyUnitData != null ? MyUnitData.Unit_Name : "Unknown",
             currentHp = this.currentHp,
-            maxHp = this.currentHp,
             currentMp = this.currentMp,
             currentAttack = this.currentAttack,
             currentDefense = this.currentDefense,

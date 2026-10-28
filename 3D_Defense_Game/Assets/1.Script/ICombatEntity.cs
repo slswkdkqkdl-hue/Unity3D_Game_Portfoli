@@ -6,7 +6,6 @@ public struct CombatEntityData
 {
     public string entityName;
     public int currentHp;
-    public int maxHp;
     public int currentMp;
     public int currentAttack;
     public int currentDefense;

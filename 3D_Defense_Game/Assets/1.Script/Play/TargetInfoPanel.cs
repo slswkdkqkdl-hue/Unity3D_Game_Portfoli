@@ -5,7 +5,7 @@ using TMPro;
 public class TargetInfoPanel : MonoBehaviour
 {
     [Header("UI 컴포넌트 연결")]
-    [SerializeField] private Image portraitImage;          // 캐릭터 이미지 
+    [SerializeField] private Image portraitImage;            // 캐릭터 이미지 
     [SerializeField] private TextMeshProUGUI nameText;     // 이름 
     [SerializeField] private TextMeshProUGUI hpText;       // 체력 
     [SerializeField] private TextMeshProUGUI attackText;   // 공격력
@@ -15,25 +15,50 @@ public class TargetInfoPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moveSpeedText;   // 이동속도
     [SerializeField] private TextMeshProUGUI attackRangeText; // 공격범위
 
+    // 실시간 갱신용 추후에 개선해야함
+    private ICombatEntity targetEntity; 
+
     /// <summary>
-    /// ICombatEntity를 전달받아 패널의 UI를 초기화하고 갱신합니다.
+    /// ICombatEntity를 전달받아 패널의 UI를 초기화하고 갱신
     /// </summary>
-    public void Init(ICombatEntity targetEntity)
+    public void Init(ICombatEntity target)
+    {
+        if (target == null) return;
+        targetEntity = target;
+        RefreshUI();
+    }
+
+    private void Update()
+    {
+        if (targetEntity != null)
+        {
+            if (targetEntity is MonoBehaviour mono && !mono.gameObject.activeInHierarchy)
+            {
+                gameObject.SetActive(false);
+                targetEntity = null;
+                return;
+            }
+            RefreshUI();
+        }
+    }
+
+    /// <summary>
+    /// 데이터를 가져와서 UI 텍스트와 이미지를 갱신하는 내부 메서드
+    /// </summary>
+    private void RefreshUI()
     {
         if (targetEntity == null) return;
 
-        // ⭐ 핵심: 인터페이스에서 데이터 묶음(Struct)을 통째로 가져옴!
         CombatEntityData data = targetEntity.GetEntityData();
 
-        // 1. 이름 설정
         if (nameText != null)
             nameText.text = data.entityName;
 
-        // 2. 체력 설정 (현재 체력 / 최대 체력 형식)
-        if (hpText != null)
-            hpText.text = $"{data.currentHp} / {data.maxHp}";
 
-        // 3. 스탯 정보 설정
+        if (hpText != null)
+            hpText.text = $"체력 : {data.currentHp}";
+
+
         if (attackText != null) attackText.text = $"공격력 : {data.currentAttack}";
         if (defenseText != null) defenseText.text = $"방어력 : {data.currentDefense}";
         if (mpText != null) mpText.text = $"마나 : {data.currentMp}";
@@ -41,7 +66,7 @@ public class TargetInfoPanel : MonoBehaviour
         if (moveSpeedText != null) moveSpeedText.text = $"이동속도 : {data.currentMoveSpeed}";
         if (attackRangeText != null) attackRangeText.text = $"공격범위 : {data.attackRange}";
 
-        // 4. 초상화 이미지 설정 (데이터에 스프라이트가 존재할 경우)
+
         if (portraitImage != null)
         {
             if (data.image != null)
@@ -57,5 +82,9 @@ public class TargetInfoPanel : MonoBehaviour
         }
     }
 
-
+    private void OnDisable()
+    {
+        // 팝업이 닫힐 때 참조 정리
+        targetEntity = null;
+    }
 }

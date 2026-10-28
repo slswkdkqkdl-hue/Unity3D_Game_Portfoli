@@ -25,7 +25,6 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
 
     [Header("영웅 런타임 스탯 (확인용)")]
     [field: SerializeField] public int CurrentHp { get; protected set; }
-    [field: SerializeField] public int maxHp { get; protected set; }
     [field: SerializeField] public int CurrentMp { get; protected set; }
     [field: SerializeField] public int CurrentAttack { get; protected set; }
     [field: SerializeField] public int CurrentDefense { get; protected set; }
@@ -43,7 +42,6 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         {
             entityName = runtimeData.heroData != null ? runtimeData.heroData.hero_name : "Unknown",
             currentHp = this.CurrentHp,
-            maxHp = this.CurrentHp,
             currentMp = this.CurrentMp,
             currentAttack = this.CurrentAttack,
             currentDefense = this.CurrentDefense,
@@ -108,7 +106,6 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         int levelFactor = Mathf.Max(0, runtimeData.level - 1);
 
         CurrentHp = baseData.hp + (baseData.hpPerLevel * levelFactor);
-        maxHp = CurrentHp;
         CurrentMp = baseData.mp + (baseData.mpPerLevel * levelFactor);
         CurrentAttack = baseData.attack + (baseData.attackPerLevel * levelFactor);
         CurrentDefense = baseData.defense + (baseData.defensePerLevel * levelFactor);
