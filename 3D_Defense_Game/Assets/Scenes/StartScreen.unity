@@ -1077,7 +1077,6 @@ MonoBehaviour:
   heroDB: {fileID: 11400000, guid: a29695ab347c78542aef0ebcc5fba264, type: 2}
   unitDB: {fileID: 11400000, guid: 169c12d2abd019f4faf1c458251e978a, type: 2}
   itemDB: {fileID: 11400000, guid: b5ecb6e542d0c4341a02bd530f3cd2c9, type: 2}
-  stageDB: {fileID: 11400000, guid: 994b0c06184bd7c4e82648b5556f9019, type: 2}
   upgradeDB:
   - {fileID: 11400000, guid: 2f85b64a72b9e154eaf9330ecc04253b, type: 2}
   - {fileID: 11400000, guid: 6eed2e07ad5cd6d40a0f8f9dbd24a558, type: 2}
@@ -5746,7 +5745,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 7}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1001 &986310647546905956
@@ -12990,7 +12989,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 7}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1001 &3878576747021973736
@@ -13498,7 +13497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &4022262700433169179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14112,7 +14111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &4257420657745940857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16887,7 +16886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1001 &5264217039091047313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18257,7 +18256,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 7}
+  m_AnchoredPosition: {x: 30, y: 0}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1001 &5711617432914513964
