@@ -29,7 +29,7 @@ public class HeroAttackState : IState
 
     public void Update()
     {
-        // 1. 타겟이 죽거나 사라졌다면 Idle로 복귀
+        // 1. 타겟 체크 및 사거리 체크는 기존과 동일
         if (targetUnit == null || (targetUnit is MonoBehaviour mono && !mono.gameObject.activeInHierarchy))
         {
             hero.ChangeState(hero.IdleState);
@@ -43,7 +43,6 @@ public class HeroAttackState : IState
         float sqrDist = (targetPos - hero.transform.position).sqrMagnitude;
         float sqrAttackRange = hero.attackRange * hero.attackRange;
 
-        // 2. 만약 적이 도망쳐서 사거리를 벗어났다면 -> 다시 MoveState의 추격 모드로 전환!
         if (sqrDist > sqrAttackRange)
         {
             hero.MoveState.SetTargetUnit(targetUnit);
@@ -51,7 +50,7 @@ public class HeroAttackState : IState
             return;
         }
 
-        // 3. 사거리 내에 있으므로 적을 바라보며 공격에만 집중
+        // 적 바라보기
         Vector3 dir = (targetPos - hero.transform.position).normalized;
         if (dir != Vector3.zero)
         {
@@ -59,22 +58,25 @@ public class HeroAttackState : IState
             hero.transform.rotation = Quaternion.Slerp(hero.transform.rotation, lookRot, Time.deltaTime * 15f);
         }
 
-        // 공격 쿨타임 계산
+        // 2. 쿨타임 감소
         attackCooldown -= Time.deltaTime;
         if (attackCooldown <= 0f)
         {
-            PerformAttack();
+            // 쿨타임이 찼다면 공격 애니메이션 재생!
+            // (애니메이션 안의 특정 프레임에 도달하면 애니메이션 이벤트가 PerformAttack()을 호출함)
+            if (hero.Animator != null)
+            {
+                hero.Animator.SetTrigger("Attack");
+            }
+
+            // 다음 공격까지의 쿨타임 재설정 (공속에 따라)
             attackCooldown = hero.CurrentAttackSpeed > 0f ? (1f / hero.CurrentAttackSpeed) : 1f;
         }
     }
 
-    private void PerformAttack()
+    // 애니멤이션 이벤트함수
+    public void PerformAttack()
     {
-        if (hero.Animator != null)
-        {
-            hero.Animator.SetTrigger("Attack");
-        }
-
         if (targetUnit is IDamageable damageable)
         {
             damageable.TakeDamage(hero.CurrentAttack);

@@ -152,6 +152,16 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         MoveState.SetTargetPosition(destination);
         ChangeState(MoveState);
     }
+    /// <summary>
+    /// 애니메이션 이벤트에서 호출하는 공격 타격 함수 추후에 늘어나지만일딴 먼저
+    /// </summary>
+    public virtual void PerformAttack()
+    {
+        if (currentState is HeroAttackState attackState)
+        {
+            attackState.PerformAttack();
+        }
+    }
 
 
     public virtual void TakeDamage(int damage)
