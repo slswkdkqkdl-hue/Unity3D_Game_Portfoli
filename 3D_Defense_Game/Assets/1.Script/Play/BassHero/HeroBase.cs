@@ -25,6 +25,7 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
 
     [Header("영웅 런타임 스탯 (확인용)")]
     [field: SerializeField] public int CurrentHp { get; protected set; }
+    [field: SerializeField] public int maxHp { get; protected set; }
     [field: SerializeField] public int CurrentMp { get; protected set; }
     [field: SerializeField] public int CurrentAttack { get; protected set; }
     [field: SerializeField] public int CurrentDefense { get; protected set; }
@@ -33,6 +34,26 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     [field: SerializeField] public float detectionRange { get; protected set; }
     [field: SerializeField] public float attackRange { get; protected set; }
 
+    /// <summary>
+    /// 유닛의 모든 스탯과 정보를 구조체 묶음으로 통째로 반환합니다.
+    /// </summary>
+    public CombatEntityData GetEntityData()
+    {
+        return new CombatEntityData
+        {
+            entityName = runtimeData.heroData != null ? runtimeData.heroData.hero_name : "Unknown",
+            currentHp = this.CurrentHp,
+            maxHp = this.CurrentHp,
+            currentMp = this.CurrentMp,
+            currentAttack = this.CurrentAttack,
+            currentDefense = this.CurrentDefense,
+            currentAttackSpeed = this.CurrentAttackSpeed,
+            currentMoveSpeed = this.CurrentMoveSpeed,
+            detectRange = this.detectionRange,
+            attackRange = this.attackRange,
+            image = this.runtimeData.heroData.portrait
+        };
+    }
     protected virtual void Awake()
     {
         IdleState = new HeroIdleState(this);
@@ -87,12 +108,12 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         int levelFactor = Mathf.Max(0, runtimeData.level - 1);
 
         CurrentHp = baseData.hp + (baseData.hpPerLevel * levelFactor);
+        maxHp = CurrentHp;
         CurrentMp = baseData.mp + (baseData.mpPerLevel * levelFactor);
         CurrentAttack = baseData.attack + (baseData.attackPerLevel * levelFactor);
         CurrentDefense = baseData.defense + (baseData.defensePerLevel * levelFactor);
         CurrentAttackSpeed = baseData.attackSpeed + (baseData.attackSpeedPerLevel * levelFactor);
         CurrentMoveSpeed = baseData.moveSpeed + (baseData.moveSpeedPerLevel * levelFactor);
-        
         detectionRange = baseData.detectionRange;
         attackRange = baseData.attackRange;
     }

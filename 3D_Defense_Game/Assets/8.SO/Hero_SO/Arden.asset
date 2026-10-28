@@ -25,9 +25,9 @@ MonoBehaviour:
     \uC601\uC9C0\uB97C \uC218\uD638\uD558\uB294 \uBA85\uC608\uB85C\uC6B4 \uAE30\uC0AC\uC785\uB2C8\uB2E4."
   hp: 2500
   mp: 40
-  attack: 999999
+  attack: 999
   defense: 10
-  attackSpeed: 1.7
+  attackSpeed: 1.2
   moveSpeed: 4.5
   hpPerLevel: 100
   mpPerLevel: 10

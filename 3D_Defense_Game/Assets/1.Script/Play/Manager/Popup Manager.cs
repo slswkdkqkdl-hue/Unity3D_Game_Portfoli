@@ -87,9 +87,8 @@ public class PopupManager : MonoBehaviour
 
     /// <summary>
     /// [적/영웅 클릭 시 호출] 적 데이터를 받아 TargetInfoPanel을 켜고 데이터 주입
-    /// (추후 EnemyDataSO 등 원하는 데이터 타입으로 매개변수 변경 가능)
     /// </summary>
-    public void OpenTargetInfoPopup(/* EnemyDataSO enemyData */)
+    public void OpenTargetInfoPopup(ICombatEntity targetEntity)
     {
         // 1. 먼저 열려있는 모든 팝업 닫기
         CloseAllPopups();
@@ -100,7 +99,7 @@ public class PopupManager : MonoBehaviour
             targetInfoPanel.gameObject.SetActive(true);
             
             // 데이터 주입 (나중에 적 데이터 스크립트 만들면 연동)
-            // targetInfoPanel.Init(enemyData);
+            targetInfoPanel.Init(targetEntity);
             
             Debug.Log("[PopupManager] TargetInfoPanel 오픈 완료!");
         }
