@@ -20,6 +20,7 @@ public static class BattleEntryData
     // 어드레서블로 로드한 적 유닛/영웅 에셋들의 핸들을 모아두는 리스트 (메모리 해제용)
     private static List<AsyncOperationHandle> loadedEnemyAssetHandles = new List<AsyncOperationHandle>();
 
+
     /// <summary>
     /// 선택한 적 정보를 저장한다.
     /// </summary>
@@ -103,4 +104,9 @@ public static class BattleEntryData
         selectedEnemy = null;
         selectedHeroes.Clear();
     }
+
+
+
+
+
 }

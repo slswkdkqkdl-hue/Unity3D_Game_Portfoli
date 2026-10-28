@@ -35,7 +35,9 @@ public class LoadingManager : MonoBehaviour
     /// 씬 전환 함수 (true: 로딩씬 거치는 비동기 이동 / false: 바로 이동하는 동기 이동)
     /// </summary>
     public static void LoadScene(SceneType sceneType, bool useLoadingScene = true)
-    {
+    {   
+        Time.timeScale = 1f;
+         
         if (useLoadingScene)
         {
             nextScene = sceneType;

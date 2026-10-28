@@ -220,8 +220,6 @@ public class EnemyCastle : MonoBehaviour, IDamageable
     private void OnCastleDestroyed()
     {
         Debug.Log("적성 파괴");
-        // TODO: 스테이지 클리어 연출 및 매니저 호출
-
-
+        BattleResultManager.I.Open();
     }
 }

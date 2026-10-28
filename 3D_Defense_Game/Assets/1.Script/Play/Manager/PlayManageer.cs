@@ -74,6 +74,9 @@ public class Play_manager : MonoBehaviour
 
         // 10. 게임 시작과 함께 플레이 타이머 초기화 및 시작
         timerController.Init(true);
+
+
+        BattleResultManager.I.LoadFixedRewardItems(sessionData.heroes);
     }
 
     /// <summary>
