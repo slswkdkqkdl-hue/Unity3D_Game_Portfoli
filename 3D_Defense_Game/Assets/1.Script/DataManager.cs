@@ -138,11 +138,11 @@ public partial class DataManager : MonoBehaviour
             // 기본 유닛 추가 현재는 하드코딩 추후에 개선
             saveData.unitDatas.Add(new UnitSaveData
             {
-                UnitId = 111
+                UnitId = 100        
             });
             saveData.unitDatas.Add(new UnitSaveData
             {
-                UnitId = 222
+                UnitId = 101
             });
             
         }

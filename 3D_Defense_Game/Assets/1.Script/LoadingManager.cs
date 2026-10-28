@@ -139,7 +139,7 @@ public class LoadingManager : MonoBehaviour
             return;
         }
 
-        var Unit_list = BattleEntryData.selectedEnemy.Enemy_Unit;
+        var Unit_list = BattleEntryData.selectedEnemy.unitSpawnSettings;
         var Hero_list = BattleEntryData.selectedEnemy.Enemy_Hero;
 
         List<UnitData> unitDatas = new List<UnitData>();
@@ -155,7 +155,7 @@ public class LoadingManager : MonoBehaviour
         {
             foreach (var data in Unit_list)
             {
-                AssetReferenceT<UnitData> unitRef = DataManager.I.unitDB.GetUnitRef(data);
+                AssetReferenceT<UnitData> unitRef = DataManager.I.unitDB.GetUnitRef(data.unitId);
                 if (unitRef != null && unitRef.RuntimeKeyIsValid())
                 {
                     AsyncOperationHandle<UnitData> handle;

@@ -16,6 +16,7 @@ MonoBehaviour:
   settlementName: "\uCF54\uD5E8"
   factionRank: 0
   image: {fileID: 7714608630032443500, guid: 8ad3eab565533da4e92cea82128d76e9, type: 3}
+  Enemy_castle: {fileID: 8841593778796490211, guid: d7a1e3cfef4b1be40b95949b7b2d6a9a, type: 3}
   stageRef:
     m_AssetGUID: aedb0800105237a4db011c13e6a0e1db
     m_SubObjectName: 
@@ -38,6 +39,12 @@ MonoBehaviour:
     item_name: "\uB808\uC774\uD53C\uC5B4"
   - item_id: 20
     item_name: "\uC120\uBD09\uC7A5\uAC11\uC637"
-  Enemy_Unit: 6f000000
+  unitSpawnSettings:
+  - unitId: 100
+    spawnWeight: 1
   Enemy_Hero: 63000000
-  Enemy_castle: {fileID: 8841593778796490211, guid: d7a1e3cfef4b1be40b95949b7b2d6a9a, type: 3}
+  initialSpawnDelay: 5
+  spawnInterval: 10
+  maxUnitsPerSpawn: 2
+  reinforcementHpPercent: 80
+  reinforcementCount: 10

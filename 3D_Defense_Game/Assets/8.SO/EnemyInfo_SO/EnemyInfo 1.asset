@@ -34,6 +34,16 @@ MonoBehaviour:
     item_name: "\uB2E8\uAC80"
   - item_id: 15
     item_name: "\uC0AC\uB0E5\uAFBC\uC758 \uD65C"
-  Enemy_Unit: 6f000000
+  unitSpawnSettings:
+  - unitId: 100
+    spawnWeight: 3
+  - unitId: 101
+    spawnWeight: 1
   Enemy_Hero: 
+  initialSpawnDelay: 0
+  spawnInterval: 2
+  maxUnitsPerSpawn: 2
+  maxAliveEnemyCount: 30
+  reinforcementHpPercent: 50
+  reinforcementCount: 5
   Enemy_castle: {fileID: 8841593778796490211, guid: d7a1e3cfef4b1be40b95949b7b2d6a9a, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   prefab_Play: {fileID: 6921180231602031038, guid: 5b8fd0d5dc60f254c9795172dbc525fa, type: 3}
   prefab_UI: {fileID: 0}
-  Unit_Id: 111
+  Unit_Id: 100
   Unit_Name: "\uAC80\uBCD1"
   portrait: {fileID: -299431382, guid: f6498a7751ed85544a92254ba234b5e6, type: 3}
   type: 0
