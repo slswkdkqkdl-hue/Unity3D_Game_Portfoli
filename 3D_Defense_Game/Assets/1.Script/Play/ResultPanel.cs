@@ -59,7 +59,8 @@ public class ResultPanel : MonoBehaviour
 
     public void BackButton()
     {   
-        Time.timeScale = 0f;
+        BattlefieldManager.I.PauseAllCombatEntities();
+        DataManager.I.sessionData.AddClearId(BattleEntryData.selectedEnemy.Stage_id);
         BattleEntryData.Clear();
         LoadingManager.LoadScene(SceneType.LobbyScreen);
     }

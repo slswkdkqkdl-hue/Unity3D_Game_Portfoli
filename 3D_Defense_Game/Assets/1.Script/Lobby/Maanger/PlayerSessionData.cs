@@ -17,6 +17,7 @@ public class PlayerSessionData
         heroes = new List<HeroRuntimeData>();
         units = new List<UnitRuntimeData>();
         items = new List<ItemRuntimeData>();
+        clearid = new List<int>();
     }
 
 
@@ -43,6 +44,11 @@ public class PlayerSessionData
         else items.Add(new ItemRuntimeData { itemData = item, size = 1 });
     }
 
-
+    public void AddClearId(int id)
+    {
+        if (clearid.Contains(id))
+            return;
+        clearid.Add(id);
+    }
 
 }

@@ -36,8 +36,9 @@ public class LoadingManager : MonoBehaviour
     /// </summary>
     public static void LoadScene(SceneType sceneType, bool useLoadingScene = true)
     {   
+        // 시간 정상화 
         Time.timeScale = 1f;
-         
+
         if (useLoadingScene)
         {
             nextScene = sceneType;

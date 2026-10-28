@@ -75,7 +75,8 @@ public class BattleResultManager : MonoBehaviour
     }
 
     public void Open()
-    {
+    {   
+        Time.timeScale = 0f;
         resultPanel.gameObject.SetActive(true);
         resultPanel.Init(itemDatas,heroes);
     }
