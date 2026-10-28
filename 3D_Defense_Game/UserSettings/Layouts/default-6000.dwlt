@@ -1304,9 +1304,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 594.13684, y: 637.2211, z: -4.2348776}
+    m_Target: {x: 818.7798, y: 544.9048, z: -0.34998113}
     speed: 2
-    m_Value: {x: 594.13684, y: 637.2211, z: -4.2348776}
+    m_Value: {x: 818.7798, y: 544.9048, z: -0.34998113}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1356,9 +1356,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 891.92194
+    m_Target: 503.4333
     speed: 2
-    m_Value: 891.92194
+    m_Value: 503.4333
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1750,9 +1750,7 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -10196
-      - m_Data: -9996
-      - m_Data: -1374
+      - m_Data: -1396
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1827,7 +1825,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/1.Script/Play/Manager
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1837,65 +1835,65 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/1.Script/Play/Manager
+  - Assets
   m_LastFoldersGridSize: 64
   m_LastProjectPath: C:\UnityProjects\unity_file1_2\Unity3D_Game_Portfoli\3D_Defense_Game
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 271}
+    scrollPos: {x: 0, y: 95}
     m_SelectedIDs:
-    - m_Data: 63822
+    - m_Data: 63636
     m_LastClickedID:
-      m_Data: 63822
+      m_Data: 63636
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 61170
-    - m_Data: 61172
-    - m_Data: 61174
-    - m_Data: 61176
-    - m_Data: 61178
-    - m_Data: 61180
-    - m_Data: 61182
-    - m_Data: 61184
-    - m_Data: 61186
-    - m_Data: 61188
-    - m_Data: 61190
-    - m_Data: 61192
-    - m_Data: 61194
-    - m_Data: 61196
-    - m_Data: 61198
-    - m_Data: 61200
-    - m_Data: 61202
-    - m_Data: 61204
-    - m_Data: 61206
-    - m_Data: 61208
-    - m_Data: 61210
-    - m_Data: 61212
-    - m_Data: 61214
-    - m_Data: 61216
-    - m_Data: 61218
-    - m_Data: 61220
-    - m_Data: 61222
-    - m_Data: 61224
-    - m_Data: 61226
-    - m_Data: 61228
-    - m_Data: 61230
-    - m_Data: 61232
-    - m_Data: 61234
-    - m_Data: 61236
-    - m_Data: 61238
-    - m_Data: 61240
-    - m_Data: 61242
-    - m_Data: 61244
-    - m_Data: 61246
-    - m_Data: 61248
-    - m_Data: 61250
-    - m_Data: 61252
-    - m_Data: 61254
-    - m_Data: 61256
-    - m_Data: 61258
+    - m_Data: 63630
+    - m_Data: 63632
+    - m_Data: 63634
+    - m_Data: 63636
+    - m_Data: 63638
+    - m_Data: 63640
+    - m_Data: 63642
+    - m_Data: 63644
+    - m_Data: 63646
+    - m_Data: 63648
+    - m_Data: 63650
+    - m_Data: 63652
+    - m_Data: 63654
+    - m_Data: 63656
+    - m_Data: 63658
+    - m_Data: 63660
+    - m_Data: 63662
+    - m_Data: 63664
+    - m_Data: 63666
+    - m_Data: 63668
+    - m_Data: 63670
+    - m_Data: 63672
+    - m_Data: 63674
+    - m_Data: 63676
+    - m_Data: 63678
+    - m_Data: 63680
+    - m_Data: 63682
+    - m_Data: 63684
+    - m_Data: 63686
+    - m_Data: 63688
+    - m_Data: 63690
+    - m_Data: 63692
+    - m_Data: 63694
+    - m_Data: 63696
+    - m_Data: 63698
+    - m_Data: 63700
+    - m_Data: 63702
+    - m_Data: 63704
+    - m_Data: 63706
+    - m_Data: 63708
+    - m_Data: 63710
+    - m_Data: 63712
+    - m_Data: 63714
+    - m_Data: 63716
+    - m_Data: 63718
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1928,51 +1926,51 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 61170
-    - m_Data: 61172
-    - m_Data: 61174
-    - m_Data: 61176
-    - m_Data: 61178
-    - m_Data: 61180
-    - m_Data: 61182
-    - m_Data: 61184
-    - m_Data: 61186
-    - m_Data: 61188
-    - m_Data: 61190
-    - m_Data: 61192
-    - m_Data: 61194
-    - m_Data: 61196
-    - m_Data: 61198
-    - m_Data: 61200
-    - m_Data: 61202
-    - m_Data: 61204
-    - m_Data: 61206
-    - m_Data: 61208
-    - m_Data: 61210
-    - m_Data: 61212
-    - m_Data: 61214
-    - m_Data: 61216
-    - m_Data: 61218
-    - m_Data: 61220
-    - m_Data: 61222
-    - m_Data: 61224
-    - m_Data: 61226
-    - m_Data: 61228
-    - m_Data: 61230
-    - m_Data: 61232
-    - m_Data: 61234
-    - m_Data: 61236
-    - m_Data: 61238
-    - m_Data: 61240
-    - m_Data: 61242
-    - m_Data: 61244
-    - m_Data: 61246
-    - m_Data: 61248
-    - m_Data: 61250
-    - m_Data: 61252
-    - m_Data: 61254
-    - m_Data: 61256
-    - m_Data: 61258
+    - m_Data: 63630
+    - m_Data: 63632
+    - m_Data: 63634
+    - m_Data: 63636
+    - m_Data: 63638
+    - m_Data: 63640
+    - m_Data: 63642
+    - m_Data: 63644
+    - m_Data: 63646
+    - m_Data: 63648
+    - m_Data: 63650
+    - m_Data: 63652
+    - m_Data: 63654
+    - m_Data: 63656
+    - m_Data: 63658
+    - m_Data: 63660
+    - m_Data: 63662
+    - m_Data: 63664
+    - m_Data: 63666
+    - m_Data: 63668
+    - m_Data: 63670
+    - m_Data: 63672
+    - m_Data: 63674
+    - m_Data: 63676
+    - m_Data: 63678
+    - m_Data: 63680
+    - m_Data: 63682
+    - m_Data: 63684
+    - m_Data: 63686
+    - m_Data: 63688
+    - m_Data: 63690
+    - m_Data: 63692
+    - m_Data: 63694
+    - m_Data: 63696
+    - m_Data: 63698
+    - m_Data: 63700
+    - m_Data: 63702
+    - m_Data: 63704
+    - m_Data: 63706
+    - m_Data: 63708
+    - m_Data: 63710
+    - m_Data: 63712
+    - m_Data: 63714
+    - m_Data: 63716
+    - m_Data: 63718
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2000,9 +1998,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_Data: 69466
-    m_LastClickedInstanceID: 69466
-    m_HadKeyboardFocusLastEvent: 1
+    - m_Data: 53594
+    m_LastClickedInstanceID: 53594
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs:
     - m_Data: 46610
     - m_Data: 56018
