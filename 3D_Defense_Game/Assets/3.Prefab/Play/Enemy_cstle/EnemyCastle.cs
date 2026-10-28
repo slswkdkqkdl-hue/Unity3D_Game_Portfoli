@@ -446,6 +446,6 @@ public class EnemyCastle : MonoBehaviour, IDamageable
         Debug.Log("[EnemyCastle] 적 성 파괴");
 
         if (BattleResultManager.I != null)
-            BattleResultManager.I.Open();
+            BattleResultManager.I.Open(false);
     }
 }

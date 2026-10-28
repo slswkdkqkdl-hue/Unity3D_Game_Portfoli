@@ -74,11 +74,11 @@ public class BattleResultManager : MonoBehaviour
         heroes.AddRange(datas);
     }
 
-    public void Open()
+    public void Open(bool result)
     {   
         Time.timeScale = 0f;
         resultPanel.gameObject.SetActive(true);
-        resultPanel.Init(itemDatas,heroes);
+        resultPanel.Init(itemDatas,heroes,result);
     }
 
 

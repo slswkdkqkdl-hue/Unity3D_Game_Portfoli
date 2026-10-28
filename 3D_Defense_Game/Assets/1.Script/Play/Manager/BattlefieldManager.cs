@@ -110,25 +110,5 @@ public class BattlefieldManager : MonoBehaviour
     }
 
 
-    // 게임종료후 모든 캐릭터 정지 
-    public void PauseAllCombatEntities()
-    {
-        for (int i = 0; i < allUnitsCache.Count; i++)
-        {
-            var entity = allUnitsCache[i];
-            if (entity != null && entity.gameObject != null)
-            {
-                var monoScript = entity.gameObject.GetComponent<MonoBehaviour>();
-                if (monoScript != null)
-                {
-                    monoScript.enabled = false;
-                }
-                var animator = entity.gameObject.GetComponent<Animator>();
-                if (animator != null)
-                {
-                    animator.speed = 0f;
-                }
-            }
-        }
-    }
+
 }

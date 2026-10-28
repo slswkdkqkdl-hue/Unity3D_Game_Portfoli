@@ -166,10 +166,7 @@ public class MainCastle : Building, IDamageable
 
     private void OnCastleDestroyed()
     {
-        Debug.Log("########################우리성파괴##########################");
-        Debug.Log("########################우리성파괴##########################");
-        Debug.Log("########################우리성파괴##########################");
-        Debug.Log("########################우리성파괴##########################");
-        // TODO: 게임 오버 연출 및 매니저 호출
+        if (BattleResultManager.I != null)
+            BattleResultManager.I.Open(true);
     }
 }
