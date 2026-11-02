@@ -4,8 +4,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager I { get; private set; }
 
-    [Header("Runtime Data")]
-    public PlayerSessionData currentSessionData; // 실시간 세션 데이터
+    [Header("실시간 플레이어 데이터")]
+    public PlayerSessionData currentSessionData; 
+
+    private bool istime;
 
     private void Awake()
     {
@@ -16,10 +18,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentSessionData != null)
+        if (currentSessionData != null & istime)
         {
-            // 플레이타임 누적 (PlayerSessionData 내부에 playTime 변수가 있다고 가정)
-            // currentSessionData.playTime += Time.unscaledDeltaTime; 
+            currentSessionData.PlayTime += Time.deltaTime; 
         }
     }
 
@@ -29,4 +30,8 @@ public class GameManager : MonoBehaviour
         return currentSessionData;
     }
 
+    public void TimeOn(bool result)
+    {
+        istime = result;
+    }
 }

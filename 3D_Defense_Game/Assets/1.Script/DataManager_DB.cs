@@ -70,8 +70,12 @@ public partial class DataManager : MonoBehaviour
         // ① 세력 정보 초기화
         // =========================
         sessionData.clearid = saveData.clearedStageIDs; // 클리어한 스테이지 복원
-        sessionData.domainData = saveData.nation;
+        sessionData.domainData = saveData.nation; // 세력 정보 복원
 
+        // =========================
+        // ① 플레이 타임 초기화
+        // =========================
+        sessionData.PlayTime = saveData.playTime;  // 플레이타임 복원
 
         // =========================
         // ① 영웅 복원
@@ -231,6 +235,10 @@ public partial class DataManager : MonoBehaviour
         saveData.nation.domain_emblem = sessionData.domainData.domain_emblem; // 국가 엠블럼저장
         saveData.clearedStageIDs = sessionData.clearid; // 클리어한 스테이지 id 저장
 
+        //=========================
+        //플레이타임
+        //=========================
+        saveData.playTime = sessionData.PlayTime;
         // =========================
         // ① 영웅
         // =========================

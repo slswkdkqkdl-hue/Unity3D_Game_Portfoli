@@ -4,14 +4,22 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerSessionData
 {   
-    [Header("현재 데이터")]
+    [Header("세력정보")]
+    public DomainData domainData;
+
+    [Header("클리어 스테이지")]
     [SerializeField] public List<int> clearid;
+
+    [Header("플레이타임")]
+    public float PlayTime;
+
+    [Header("영웅 / 유닛 / 아이템")]
     [SerializeField] public List<HeroRuntimeData> heroes;
     [SerializeField] public List<UnitRuntimeData> units;
     [SerializeField] public List<ItemRuntimeData> items;
-        
-    [Header("세력정보")]
-    public DomainData domainData;
+    
+
+
     
     public PlayerSessionData()
     {

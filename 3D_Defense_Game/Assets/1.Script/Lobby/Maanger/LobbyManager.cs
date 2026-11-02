@@ -31,6 +31,7 @@ public class LobbyManager : MonoBehaviour
     void Start()
     {   
         var data = GameManager.I.currentSessionData;
+        GameManager.I.TimeOn(true);
         LoadPlayerData(data);
     }
 
