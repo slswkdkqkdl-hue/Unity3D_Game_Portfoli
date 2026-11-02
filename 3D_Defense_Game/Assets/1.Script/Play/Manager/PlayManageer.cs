@@ -23,21 +23,21 @@ public class Play_manager : MonoBehaviour
     [SerializeField] private TimerController timerController;
     [SerializeField] private ResourceUI resourceUI;
 
-    // 프로젝트 프리팹이 아닌, 씬에 실제 생성된 맵 게임오브젝트 저장
 
     // 생성된 스테이지의 컨트롤러
     [Header("현재 스테이지 컨트롤러")]
     private StageController stageController;
 
     private void Start()
-    {
-        InitPlayScene();
+    {   
+        var data = GameManager.I.currentSessionData;
+        InitPlayScene(data);
     }
 
-    public void InitPlayScene()
+    public void InitPlayScene(PlayerSessionData Data)
     {   
         // 1-1 데이터 매니저에서 현재 플레이어 세션 데이터 가져오기
-        sessionData = DataManager.I.sessionData;
+        sessionData = Data;
         // 1-2 배틀엔티티 매니저 한테서 현재 적 데이터 가져오기 
         currentEnemyInfo = BattleEntryData.selectedEnemy;
 

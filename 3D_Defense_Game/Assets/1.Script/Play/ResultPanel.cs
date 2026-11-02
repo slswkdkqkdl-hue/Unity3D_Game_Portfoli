@@ -15,6 +15,7 @@ public class ResultPanel : MonoBehaviour
 
     public void Init(List<ItemData> itemDatas,List<HeroRuntimeData> heroes , bool result)
     {
+        var PlayerData = GameManager.I.currentSessionData;
 
         if (result)
         {
@@ -58,7 +59,8 @@ public class ResultPanel : MonoBehaviour
 
                 // 아래 필드명은 실제 ItemData에 맞게 수정
                 slot.Init(itemData.icon,itemData.itemName,1);
-                DataManager.I.sessionData.AddItem(itemData);
+
+                PlayerData.AddItem(itemData);
 
             }
 
@@ -70,7 +72,7 @@ public class ResultPanel : MonoBehaviour
                     HeroSlot[0].Init(data.heroData.portrait,data.level);                
                 }
             }
-            DataManager.I.sessionData.AddClearId(BattleEntryData.selectedEnemy.Stage_id);
+            PlayerData.AddClearId(BattleEntryData.selectedEnemy.Stage_id);
         }
 
     }

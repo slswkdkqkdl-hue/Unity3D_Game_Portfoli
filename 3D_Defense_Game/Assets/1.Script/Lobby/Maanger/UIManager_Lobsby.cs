@@ -76,7 +76,7 @@ public class UIManager_Lobsby : MonoBehaviour
     // Exit_button 버튼 이벤트용
     public void backButton()
     {   
-        DataManager.I.ClearSessionAndReleaseAssets();
+        DataManager.I.ClearSessionAndReleaseAssets(GameManager.I.currentSessionData);
         LoadingManager.LoadScene(StartButton, false);
     }
 }

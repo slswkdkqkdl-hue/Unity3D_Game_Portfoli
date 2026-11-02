@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.AddressableAssets;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 /// <summary>
 /// 게임 내 프로젝트의 모든 씬 종류를 정의하는 열거형
 /// </summary>
@@ -115,27 +116,43 @@ public class LoadingManager : MonoBehaviour
     }
 
     private async void StartDataLoading()
-    {   
+    {
         if (nextScene == SceneType.LobbyScreen)
         {
             isDataLoadingComplete = false;
             if (DataManager.I != null)
-            {
+            {   
+                // 로비 진입전 세션 데이터 준비 
                 await DataManager.I.PrepareSessionForLobbyAsync();
             }
             isDataLoadingComplete = true;
         }
-    else if(nextScene == SceneType.PlayScreen)
-    {    
-        isDataLoadingComplete = false;
+        else if (nextScene == SceneType.PlayScreen)
+        {
+            isDataLoadingComplete = false;
+            
+            // 플레이씬 가기전 모든 데이터 어드레서블을 통해 가져오기 
+            await LoadBattleDataAsync();
 
+            isDataLoadingComplete = true;
+        }
+        else
+        {
+            isDataLoadingComplete = true;
+        }
+    }
+
+    /// <summary>
+    /// 씬 넘어가기 전 어드레서블(Addressables)을 통해 스테이지, 적 유닛 및 영웅 데이터를 비동기로 로드하는 함수
+    /// </summary>
+    private async Task LoadBattleDataAsync()
+    {
         BattleEntryData.ReleaseCurrentStage();
         BattleEntryData.ReleaseEnemyData();
         
         if (BattleEntryData.selectedEnemy == null)
         {
-            Debug.LogError("selectedEnemy가 null입니다!");
-            isDataLoadingComplete = true;
+            Debug.LogError("selectedEnemy yabuze (null)!");
             return;
         }
 
@@ -144,13 +161,12 @@ public class LoadingManager : MonoBehaviour
 
         List<UnitData> unitDatas = new List<UnitData>();
         List<HeroData> heroDatas = new List<HeroData>();            
-        
         List<AsyncOperationHandle> assetHandles = new List<AsyncOperationHandle>();
 
-        // 1. 스테이지 로드 태스크 시작 (비동기 병렬 처리를 위해 미리 호출)
+        // 1. Tangira kurura StageData mbere (Parallel loading)
         var stageHandle = BattleEntryData.selectedEnemy.stageRef.LoadAssetAsync<StageData>();
 
-        // 2. 적 유닛 로드 (리스트가 null이 아니고 데이터가 있을 때만 실행)
+        // 2. Kurura Amakuru y'Abanzi (Units)
         if (Unit_list != null && Unit_list.Count > 0)
         {
             foreach (var data in Unit_list)
@@ -159,7 +175,6 @@ public class LoadingManager : MonoBehaviour
                 if (unitRef != null && unitRef.RuntimeKeyIsValid())
                 {
                     AsyncOperationHandle<UnitData> handle;
-
                     if (unitRef.IsValid())
                     {
                         handle = unitRef.OperationHandle.Convert<UnitData>();
@@ -169,7 +184,6 @@ public class LoadingManager : MonoBehaviour
                     {
                         handle = unitRef.LoadAssetAsync<UnitData>();
                         await handle.Task;
-
                         if (handle.Status == AsyncOperationStatus.Succeeded)
                         {
                             unitDatas.Add(handle.Result);
@@ -180,7 +194,7 @@ public class LoadingManager : MonoBehaviour
             }
         }
 
-        // 3. 적 영웅 로드 (리스트가 null이 아니고 데이터가 있을 때만 실행)
+        // 3. Kurura Abayobozi b'Abanzi (Heroes)
         if (Hero_list != null && Hero_list.Count > 0)
         {
             foreach (var data in Hero_list)
@@ -189,7 +203,6 @@ public class LoadingManager : MonoBehaviour
                 if (heroRef != null && heroRef.RuntimeKeyIsValid())
                 {
                     AsyncOperationHandle<HeroData> handle;
-
                     if (heroRef.IsValid())
                     {
                         handle = heroRef.OperationHandle.Convert<HeroData>();
@@ -199,7 +212,6 @@ public class LoadingManager : MonoBehaviour
                     {
                         handle = heroRef.LoadAssetAsync<HeroData>();
                         await handle.Task;
-
                         if (handle.Status == AsyncOperationStatus.Succeeded)
                         {
                             heroDatas.Add(handle.Result);
@@ -210,25 +222,16 @@ public class LoadingManager : MonoBehaviour
             }
         }
 
-        // 4. 스테이지 로드 완료 대기
+        // 4. Tegereza ko StageData irangira kururwa burundu
         await stageHandle.Task;
-
         if (stageHandle.Status == AsyncOperationStatus.Succeeded)
         {
-            // BattleEntryData에 스테이지와 유닛/영웅 데이터, 그리고 모아둔 핸들 목록을 전부 전달!
             BattleEntryData.SetLoadedStage(BattleEntryData.selectedEnemy.stageRef, stageHandle.Result);
             BattleEntryData.SetLoadedEnemyData(unitDatas, heroDatas, assetHandles); 
         }
         else
         {
-            Debug.LogError("StageData 어드레서블 로드 실패!");
-        }
-
-        isDataLoadingComplete = true;
-    }
-        else
-        {
-            isDataLoadingComplete = true;
+            Debug.LogError("Kurura StageData (Addressables) Byanze!");
         }
     }
 }

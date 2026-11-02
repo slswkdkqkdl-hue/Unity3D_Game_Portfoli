@@ -33,25 +33,7 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     [field: SerializeField] public float detectionRange { get; protected set; }
     [field: SerializeField] public float attackRange { get; protected set; }
 
-    /// <summary>
-    /// 유닛의 모든 스탯과 정보를 구조체 묶음으로 통째로 반환합니다.
-    /// </summary>
-    public CombatEntityData GetEntityData()
-    {
-        return new CombatEntityData
-        {
-            entityName = runtimeData.heroData != null ? runtimeData.heroData.hero_name : "Unknown",
-            currentHp = this.CurrentHp,
-            currentMp = this.CurrentMp,
-            currentAttack = this.CurrentAttack,
-            currentDefense = this.CurrentDefense,
-            currentAttackSpeed = this.CurrentAttackSpeed,
-            currentMoveSpeed = this.CurrentMoveSpeed,
-            detectRange = this.detectionRange,
-            attackRange = this.attackRange,
-            image = this.runtimeData.heroData.portrait
-        };
-    }
+
     protected virtual void Awake()
     {
         IdleState = new HeroIdleState(this);
@@ -175,5 +157,24 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         {
             Debug.Log("죽음");
         }
+    }
+        /// <summary>
+    /// 유닛의 모든 스탯과 정보를 구조체 묶음으로 통째로 반환합니다.
+    /// </summary>
+    public CombatEntityData GetEntityData()
+    {
+        return new CombatEntityData
+        {
+            entityName = runtimeData.heroData != null ? runtimeData.heroData.hero_PullName : "Unknown",
+            currentHp = this.CurrentHp,
+            currentMp = this.CurrentMp,
+            currentAttack = this.CurrentAttack,
+            currentDefense = this.CurrentDefense,
+            currentAttackSpeed = this.CurrentAttackSpeed,
+            currentMoveSpeed = this.CurrentMoveSpeed,
+            detectRange = this.detectionRange,
+            attackRange = this.attackRange,
+            image = this.runtimeData.heroData.portrait
+        };
     }
 }

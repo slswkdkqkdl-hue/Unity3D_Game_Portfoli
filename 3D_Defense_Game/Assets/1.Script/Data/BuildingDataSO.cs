@@ -16,7 +16,7 @@ public class BuildingDataSO : ScriptableObject
     public int buildingId;
     public string buildingName;
     public BuildingType buildingType;
-    public Sprite buildingIcon;       // 건설 UI에 띄울 아이콘
+    public Sprite buildingIcon;       
 
     [Header("건물 설명")]
     [TextArea(3, 5)]                   

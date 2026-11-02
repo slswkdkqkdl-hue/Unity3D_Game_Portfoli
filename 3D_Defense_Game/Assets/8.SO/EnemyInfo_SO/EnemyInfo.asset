@@ -15,7 +15,7 @@ MonoBehaviour:
   Stage_id: 1
   settlementName: "\uCF54\uD5E8"
   factionRank: 0
-  image: {fileID: 7714608630032443500, guid: 8ad3eab565533da4e92cea82128d76e9, type: 3}
+  image: {fileID: -1969218444, guid: e7e7b1e05d13df14e9742cce5e7f6369, type: 3}
   Enemy_castle: {fileID: 8841593778796490211, guid: d7a1e3cfef4b1be40b95949b7b2d6a9a, type: 3}
   stageRef:
     m_AssetGUID: aedb0800105237a4db011c13e6a0e1db

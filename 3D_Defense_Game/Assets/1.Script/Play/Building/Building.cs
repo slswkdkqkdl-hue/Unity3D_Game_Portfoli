@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// 팀구분용 
 public enum Team
 {
     Ally,   // 아군

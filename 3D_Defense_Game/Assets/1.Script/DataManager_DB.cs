@@ -16,11 +16,8 @@ public partial class DataManager : MonoBehaviour
 
     [Header("새 게임 초기 설정용 업그레이드 SO")]
     public List<UpgradeDataSO> upgradeDB;
-
     // 다음 로비 진입 시 세이브 데이터를 복원할지 여부
     private bool shouldRestoreSaveOnNextLobby = false;
-
-
     /// <summary>
     /// 다음 로비 진입 시 세이브 데이터를 복원하도록 요청
     /// </summary>
@@ -41,9 +38,9 @@ public partial class DataManager : MonoBehaviour
                 Debug.LogWarning("[DataManager] SaveData가 없습니다.");
                 return;
             }
-
+            var data = GameManager.I.NewPlayerData(); // 플레이어 세션 데이터 생성
             // 요청한 경우에만 기존 세션 초기화 후 세이브 복원
-            await BuildSessionFromSaveDataAsync();
+            await BuildSessionFromSaveDataAsync(data);
 
             shouldRestoreSaveOnNextLobby = false;
         }
@@ -53,8 +50,8 @@ public partial class DataManager : MonoBehaviour
         }
     }
     // 세이브 데이터를 현재 세션 데이터로 복원
-    // 얘 사용처는 시작씬에서 불러올떄 선택씬에서 로비씬 처음갈때
-    public async Task BuildSessionFromSaveDataAsync()
+    // 예 사용처는 시작씬에서 불러올떄 선택씬에서 로비씬 처음갈때
+    public async Task BuildSessionFromSaveDataAsync(PlayerSessionData sessionData)
     {
         // 세이브 데이터가 없으면 복원하지 않음
         if (saveData == null)
@@ -66,17 +63,15 @@ public partial class DataManager : MonoBehaviour
         // 기존 세션이 있다면 기존 에셋 정리
         if (sessionData != null)
         {
-            ClearExistingSessionAssets();
+            ClearExistingSessionAssets(sessionData);
         }
 
         // =========================
         // ① 세력 정보 초기화
         // =========================
-        sessionData = new PlayerSessionData
-        {
-            domainData = saveData.nation,
-        };
         sessionData.clearid = saveData.clearedStageIDs; // 클리어한 스테이지 복원
+        sessionData.domainData = saveData.nation;
+
 
         // =========================
         // ① 영웅 복원
@@ -213,7 +208,7 @@ public partial class DataManager : MonoBehaviour
 
 
     // 현재 세션 데이터를 세이브 데이터로 변환
-    public void SyncSessionToSaveData()
+    public void SyncSessionToSaveData(PlayerSessionData sessionData)
     {
         if (saveData == null)
             saveData = new SaveData();
@@ -332,7 +327,7 @@ public partial class DataManager : MonoBehaviour
 
 
     // 세션 해제 및 Addressables 에셋 메모리 해제
-    public void ClearSessionAndReleaseAssets()
+    public void ClearSessionAndReleaseAssets(PlayerSessionData sessionData)
     {
         if (sessionData == null)
             return;
@@ -396,7 +391,7 @@ public partial class DataManager : MonoBehaviour
     }
 
     // 💡 기존에 로드된 세션 에셋만 깔끔하게 해제하고 리스트를 비우는 전용 헬퍼 메서드
-    private void ClearExistingSessionAssets()
+    private void ClearExistingSessionAssets(PlayerSessionData sessionData)
     {
         if (sessionData == null) return;
 

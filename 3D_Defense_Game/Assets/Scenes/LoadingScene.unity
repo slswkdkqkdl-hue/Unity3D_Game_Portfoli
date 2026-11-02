@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tip : \uC601\uC6C5\uB4E4 \uCC98\uC74C\uBD80\uD130 \uAC15\uD558\uC9C0\uB294
+  m_text: "Tip : \uC601\uC6C5\uB4E4\uB3C4 \uCC98\uC74C\uBD80\uD130 \uAC15\uD558\uC9C0\uB294
     \uC54A\uC558\uB2F5\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4f33a59f1380b034089ec269a0d14a83, type: 2}

@@ -36,15 +36,15 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
     [SerializeField] private Animator animator;
 
     [Header("거리 및 감지")]
-    [SerializeField] protected float detectRange;  // 적을 감지하는 시야 범위
-    [SerializeField] protected float attackRange;  // 공격을 시작할 수 있는 범위
+    [SerializeField] protected float detectRange;  
+    [SerializeField] protected float attackRange;  
 
     [Header("FSM 현재 상태")]
     [SerializeField] protected UnitState currentState;
     
     [Header("타겟 및 이동 목표")]
-    [SerializeField] protected Transform objectiveTransform; // 찾아가야 할 최종 목표 (성 공격 포인트)
-    protected Transform targetTransform;                    // 현재 추적/공격 중인 실제 타겟 (적 유닛 혹은 성)
+    [SerializeField] protected Transform objectiveTransform; 
+    protected Transform targetTransform;                   
 
     [Header("최종 이동 백터")]
     [SerializeField] Vector3 finalDir;

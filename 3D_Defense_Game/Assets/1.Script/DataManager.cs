@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.IO;
-using System.Threading.Tasks;
+
 
 public partial class DataManager : MonoBehaviour
 {
@@ -8,9 +8,8 @@ public partial class DataManager : MonoBehaviour
 
     [SerializeField] private int maxSlotCount = 3; //슬룻 수 
 
-    [Header("현재 데이터")]
+    [Header("현재 세이브데이터")]
     public SaveData saveData;
-    [field: SerializeField]public PlayerSessionData sessionData { get; private set; }
 
     private void Awake()
     {
@@ -57,7 +56,8 @@ public partial class DataManager : MonoBehaviour
     public void SaveGame(int slot)
     {   
         string path = GetSavePath(slot);
-        SyncSessionToSaveData(); // 현재 세션데이터를 세이브데이터로 변환
+        var SessionData = GameManager.I.currentSessionData;
+        SyncSessionToSaveData(SessionData); // 현재 세션데이터를 세이브데이터로 변환
         string json = JsonUtility.ToJson(saveData, true);
 
         File.WriteAllText(path, json);

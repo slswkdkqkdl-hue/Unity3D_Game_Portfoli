@@ -15,24 +15,26 @@ MonoBehaviour:
   prefab_Play: {fileID: 0}
   prefab_UI: {fileID: 0}
   Hero_Id: 99
-  Current_Level: 0
+  Current_Level: 9
   hero_PullName: "\uD14C\uC2A4\uD2B8\uD788\uC5B4\uB85C"
   hero_name: "\uD14C\uC2A4\uD2B8\uD788\uC5B4\uB85C"
   portrait: {fileID: 21300000, guid: 8a5f9829a049c704fa992203bfc451f2, type: 3}
   type: 2
   description: "\uC6A9"
-  hp: 9999
+  hp: 999
   mp: 99
   attack: 99
   defense: 99
   attackSpeed: 99
   moveSpeed: 99
-  hpPerLevel: 10
-  mpPerLevel: 10
-  attackPerLevel: 10
-  defensePerLevel: 10
-  attackSpeedPerLevel: 10
-  moveSpeedPerLevel: 10
+  hpPerLevel: 1
+  mpPerLevel: 1
+  attackPerLevel: 1
+  defensePerLevel: 1
+  attackSpeedPerLevel: 1
+  moveSpeedPerLevel: 1
+  detectionRange: 1
+  attackRange: 1
   activeSkills:
   - {fileID: 11400000, guid: d8dda03b8bdcb974ca070a27734448f9, type: 2}
   passiveSkills:

@@ -25,26 +25,26 @@ public class LobbyManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        LoadPlayerData();
+
     }
 
+    void Start()
+    {   
+        var data = GameManager.I.currentSessionData;
+        LoadPlayerData(data);
+    }
 
     /// <summary>
     /// 데이터매니저한테 데이터 받은후 각 UI 및 초기화
     /// </summary>
-    private void LoadPlayerData()
-    {
-        if (DataManager.I != null && DataManager.I.sessionData != null)
+    private void LoadPlayerData(PlayerSessionData sessionData)
+    {   
+        if (sessionData == null)
         {
-            sessionData = DataManager.I.sessionData;
-            Debug.Log($"[LobbyManager] 세션 데이터 로드 성공. 영웅 수: {sessionData.heroes?.Count ?? 0}");
-        }
-        else
-        {
-            Debug.LogWarning("[LobbyManager] DataManager 또는 sessionData가 아직 초기화되지 않았습니다.");
+            Debug.LogError("[LobbyManager] 전달받은 세션 데이터가 null입니다!");
             return;
         }
-
+        Debug.Log($"[LobbyManager] 세션 데이터 주입 성공. 영웅 수: {sessionData.heroes?.Count ?? 0}");
         heroSelect.Init(sessionData.heroes,sessionData.items); // 영웅 데이터 받아서 각 슬룻생성 
         upgrade.Init(sessionData.domainData); // 업그레이드 데이터 받아서 각 업글 초기화
         mapManager.Init(sessionData.clearid); // 클리어 id 값 주입 
