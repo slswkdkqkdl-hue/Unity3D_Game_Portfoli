@@ -8,7 +8,8 @@ public class PlayerSessionData
     [SerializeField] public List<int> clearid;
     [SerializeField] public List<HeroRuntimeData> heroes;
     [SerializeField] public List<UnitRuntimeData> units;
-    [SerializeField] public List<ItemRuntimeData> items;    
+    [SerializeField] public List<ItemRuntimeData> items;
+        
     [Header("세력정보")]
     public DomainData domainData;
     
