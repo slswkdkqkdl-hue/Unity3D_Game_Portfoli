@@ -5,16 +5,15 @@ public class PopupManager : MonoBehaviour
 {
     public static PopupManager I { get; private set; }
 
-    [Header("씬에 미리 배치되어 있는 고정 패널 (적/대상 정보용)")]
+    [Header("1. 고정 패널 (적/대상 정보용)")]
     [SerializeField] private TargetInfoPanel targetInfoPanel; 
 
-    [Header("건물 팝업이 생성될 부모 Transform")]
-    [SerializeField] private Transform popupParent;
+    [Header("2. 건물 툴팁 패널 (마우스 오버용)")]
+    [SerializeField] private BuildingTooltipUI buildingTooltipUI;
 
-    // 건물 ID를 키로 하는 팝업 딕셔너리 (캐싱용)
+    [Header("3. 동적 건물 팝업 설정 (클릭용)")]
+    [SerializeField] private Transform popupParent;
     private Dictionary<int, GameObject> buildingPopupDict = new Dictionary<int, GameObject>();
-    
-    // 현재 화면에 켜져 있는 동적 건물 팝업 추적용
     private GameObject currentBuildingPopup;
 
     private void Awake()
@@ -22,24 +21,32 @@ public class PopupManager : MonoBehaviour
         if (I == null) I = this;
         else Destroy(gameObject);
     }
-    void Start()
+
+    private void Start()
     {
-        CloseAllPopups();
+        CloseBuildingPopup();
+        CloseTargetInfoPopup();
+        CloseBuildingTooltip();
     }
 
+
     /// <summary>
-    /// 모든 팝업(건물 팝업 + 타겟 정보 패널)을 한 번에 싹 닫는 공통 함수
+    /// 현재 건물 상세정보 팝업창 닫기 
     /// </summary>
-    public void CloseAllPopups()
+    public void CloseBuildingPopup()
     {
-        // 1. 동적 건물 팝업 끄기 (파괴하지 않고 비활성화로 캐싱 유지)
         if (currentBuildingPopup != null)
         {
             currentBuildingPopup.SetActive(false);
             currentBuildingPopup = null;
         }
+    }
 
-        // 2. 고정 타겟 정보 패널 끄기
+    /// <summary>
+    /// (영웅 , 유닛) 팝업창 닫기 
+    /// </summary>
+    public void CloseTargetInfoPopup()
+    {
         if (targetInfoPanel != null)
         {
             targetInfoPanel.gameObject.SetActive(false);
@@ -47,7 +54,19 @@ public class PopupManager : MonoBehaviour
     }
 
     /// <summary>
-    /// [건물 클릭 시 호출] 건물 데이터를 받아 팝업을 띄움
+    /// 건물 툴팁창 닫기 
+    /// </summary>
+    public void CloseBuildingTooltip()
+    {
+        if (buildingTooltipUI != null)
+        {
+            buildingTooltipUI.ClearAndHide();
+        }
+    }
+
+
+    /// <summary>
+    /// [건물 클릭 시 실행] 건물 상세정보 팝업 열기 
     /// </summary>
     public void OpenBuildingPopup(Building targetBuilding)
     {
@@ -55,9 +74,10 @@ public class PopupManager : MonoBehaviour
 
         BuildingDataSO buildingData = targetBuilding.Data;
 
-        CloseAllPopups();
+        // 다른 메인 팝업들은 닫기
+        CloseBuildingPopup();
+        CloseTargetInfoPopup();
 
-        // 1. 팝업 프리팹 생성 또는 캐싱 확인
         if (!buildingPopupDict.TryGetValue(buildingData.buildingId, out GameObject popupObj))
         {
             if (buildingData.popupUIPrefab != null)
@@ -75,33 +95,41 @@ public class PopupManager : MonoBehaviour
         popupObj.SetActive(true);
         currentBuildingPopup = popupObj;
 
-
         BaseBuildingPopupUI popupScript = popupObj.GetComponent<BaseBuildingPopupUI>();
         if (popupScript != null)
         {
             popupScript.Setup(targetBuilding);
         }
 
-        Debug.Log($"[PopupManager] 건물 팝업 오픈: {buildingData.buildingName}");
+        Debug.Log($"[PopupManager] 건물 상세 팝업 오픈: {buildingData.buildingName}");
     }
-
     /// <summary>
-    /// [적/영웅 클릭 시 호출] 적 데이터를 받아 TargetInfoPanel을 켜고 데이터 주입
+    /// [건물 아이콘에 마우스를 올렸을 때 실행] 건물 툴팁 창 열기 
+    /// </summary>
+    public void OpenBuildingTooltip(BuildingDataSO data)
+    {
+        if (data == null) return;
+
+        if (buildingTooltipUI != null)
+        {
+            buildingTooltipUI.SetupTooltip(data.buildingName, data.buildCost);
+        }
+    }
+    /// <summary>
+    /// [적 또는 영웅 클릭 시 실행] 캐릭터 정보 팝업 열기 
     /// </summary>
     public void OpenTargetInfoPopup(ICombatEntity targetEntity)
     {
-        // 1. 먼저 열려있는 모든 팝업 닫기
-        CloseAllPopups();
+        CloseBuildingPopup();
+        CloseTargetInfoPopup();
 
-        // 2. 씬에 있는 TargetInfoPanel 켜기
         if (targetInfoPanel != null)
         {
             targetInfoPanel.gameObject.SetActive(true);
-            
-            // 데이터 주입 (나중에 적 데이터 스크립트 만들면 연동)
             targetInfoPanel.Init(targetEntity);
             
             Debug.Log("[PopupManager] TargetInfoPanel 오픈 완료!");
         }
     }
+
 }

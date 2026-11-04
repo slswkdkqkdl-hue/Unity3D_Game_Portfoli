@@ -498,7 +498,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 27, y: 25}
-  m_SizeDelta: {x: 35, y: 35}
+  m_SizeDelta: {x: 28, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &52301719
 MonoBehaviour:
@@ -513,14 +513,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5660378, g: 0.44588825, b: 0.44588825, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 695024986, guid: 788824e79a0bbe5469397674d393854c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 104745411}
   - component: {fileID: 104745413}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Building_Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -669,8 +669,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -20}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchoredPosition: {x: 12.5, y: -23}
+  m_SizeDelta: {x: 45.02, y: 20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &104745411
 MonoBehaviour:
@@ -701,8 +701,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -725,7 +725,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4406,13 +4406,14 @@ GameObject:
   - component: {fileID: 748623983}
   - component: {fileID: 748623985}
   - component: {fileID: 748623984}
+  - component: {fileID: 748623986}
   m_Layer: 5
   m_Name: BuildingTooltip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &748623983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4432,9 +4433,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -87, y: 178}
+  m_AnchoredPosition: {x: 312, y: 167}
   m_SizeDelta: {x: 145, y: 80}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: -0.3}
 --- !u!114 &748623984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4455,8 +4456,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 5abbefed178ecda4391a67bff0d80b8e, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4464,7 +4465,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 9
 --- !u!222 &748623985
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4473,6 +4474,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748623982}
   m_CullTransparentMesh: 1
+--- !u!114 &748623986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748623982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06860037d81fb55428cbe677b2b11ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingTooltipUI
+  titleText: {fileID: 104745411}
+  costText: {fileID: 1324209567}
+  resourceIconImage: {fileID: 52301719}
+  GoldImage: {fileID: 695024986, guid: 788824e79a0bbe5469397674d393854c, type: 3}
 --- !u!1 &767414683
 GameObject:
   m_ObjectHideFlags: 0
@@ -8054,7 +8071,7 @@ GameObject:
   - component: {fileID: 1324209567}
   - component: {fileID: 1324209569}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Building_Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8076,8 +8093,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: -15}
-  m_SizeDelta: {x: 0, y: 30}
+  m_AnchoredPosition: {x: -25, y: -15}
+  m_SizeDelta: {x: 59.88, y: 30}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1324209567
 MonoBehaviour:
@@ -8108,8 +8125,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9953,6 +9970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PopupManager
   targetInfoPanel: {fileID: 524045926}
+  buildingTooltipUI: {fileID: 748623986}
   popupParent: {fileID: 1278148458}
 --- !u!1 &1710421952
 GameObject:

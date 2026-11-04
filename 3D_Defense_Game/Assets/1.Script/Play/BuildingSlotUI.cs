@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BuildingSlotUI : MonoBehaviour
+public class BuildingSlotUI : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
     [Header("UI 요소")]
     [SerializeField] private Image iconImage;
@@ -39,11 +40,28 @@ public class BuildingSlotUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 건물 아이콘 클릭 시 실행 
+    /// </summary>
     private void OnSlotClicked()
     {
         if (currentBuildingData == null) return;
 
         Debug.Log($"건물 선택됨: {currentBuildingData.buildingName}");
         BuildingManager.I.OnClickBuildingSlot(currentBuildingData);
+    }
+    /// <summary>
+    /// 건물 아이콘 툴팁 데이터 주입 + 툴팁 열기 
+    /// </summary>
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        PopupManager.I.OpenBuildingTooltip(currentBuildingData);
+    }
+    /// <summary>
+    /// 건물 아이콘 툴팁 닫기 
+    /// </summary>
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        PopupManager.I.CloseBuildingTooltip();
     }
 }

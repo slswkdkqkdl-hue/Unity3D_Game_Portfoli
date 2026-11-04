@@ -10,7 +10,7 @@ public class CastleAttackPoint : MonoBehaviour, ICombatEntity, IDamageable
     [Header("실제 데미지를 받을 부모 성 연결")]
     [SerializeField] private MonoBehaviour ownerCastle; 
 
-    // ICombatEntity 필수 구현
+
     public CombatEntityData GetEntityData()
     {
         return new CombatEntityData

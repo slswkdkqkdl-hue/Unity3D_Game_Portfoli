@@ -9,6 +9,24 @@ public class BuildingTooltipUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costText;  // 건물 가격 (예: ": 300 G")
     [SerializeField] private Image resourceIconImage;  // 재화/자원 아이콘 이미지
 
+    [Header("골드 이미지")]
+    [SerializeField] Sprite GoldImage;
+    
+    RectTransform rectTransform;
+
+    void Awake()
+    {
+        rectTransform = GetComponent<RectTransform>();
+    }
+
+    void Update()
+    {
+        if (this.gameObject.activeSelf)
+        {
+            UpdateTooltipPosition();
+        }
+    }
+
     /// <summary>
     /// 툴팁 UI 정보를 설정하고 패널을 활성화합니다.
     /// </summary>
@@ -36,8 +54,7 @@ public class BuildingTooltipUI : MonoBehaviour
             }
             else
             {
-                // 지정된 스프라이트가 없을 경우 숨김 처리
-                resourceIconImage.gameObject.SetActive(false);
+                resourceIconImage.sprite = GoldImage;
             }
         }
 
@@ -57,4 +74,11 @@ public class BuildingTooltipUI : MonoBehaviour
         // 패널 비활성화
         gameObject.SetActive(false);
     }
+
+    public void UpdateTooltipPosition()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+        rectTransform.position = mousePosition;
+    }
+    
 }
