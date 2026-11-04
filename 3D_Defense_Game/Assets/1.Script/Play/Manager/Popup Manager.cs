@@ -5,13 +5,13 @@ public class PopupManager : MonoBehaviour
 {
     public static PopupManager I { get; private set; }
 
-    [Header("1. 고정 패널 (적/대상 정보용)")]
+    [Header("적/대상 정보용 팝업")]
     [SerializeField] private TargetInfoPanel targetInfoPanel; 
 
-    [Header("2. 건물 툴팁 패널 (마우스 오버용)")]
+    [Header("건물 툴팁 패널")]
     [SerializeField] private BuildingTooltipUI buildingTooltipUI;
 
-    [Header("3. 동적 건물 팝업 설정 (클릭용)")]
+    [Header("건물 상세내용 팝업창")]
     [SerializeField] private Transform popupParent;
     private Dictionary<int, GameObject> buildingPopupDict = new Dictionary<int, GameObject>();
     private GameObject currentBuildingPopup;
