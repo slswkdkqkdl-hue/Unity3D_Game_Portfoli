@@ -19,4 +19,4 @@ MonoBehaviour:
   buildingDescription: "\uC77C\uC815\uC2DC\uAC04\uB9C8\uB2E4 \uACE8\uB4DC\uB97C\n\uC0DD\uC0B0\uD569\uB2C8\uB2E4."
   buildCost: 100
   buildingPrefab: {fileID: 4561057002548750993, guid: c3b6f610fddfc9341bba84522b769c40, type: 3}
-  popupUIPrefab: {fileID: 25497862310915758, guid: 1223864527c00214fadc2964f86f57bc, type: 3}
+  popupUIPrefab: {fileID: 131178341341549895, guid: 082f8100f3b102e4b9c3eee85d682fb1, type: 3}
