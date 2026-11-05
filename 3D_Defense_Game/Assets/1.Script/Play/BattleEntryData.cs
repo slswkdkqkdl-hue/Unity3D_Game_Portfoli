@@ -11,9 +11,11 @@ public static class BattleEntryData
     public static EnemyInfoSO selectedEnemy;
     public static List<HeroRuntimeData> selectedHeroes = new List<HeroRuntimeData>();
     
-    // 새로 추가된 적 유닛 및 영웅 데이터 리스트
+    // 이번 스테이지 적 유닛 및 영웅 데이터 리스트
     public static List<UnitData> EnemyUnit = new List<UnitData>();
     public static List<HeroData> EnemyHero = new List<HeroData>();
+    // 이번 스테이지 보상 
+    public static List<ItemData> DropItems = new List<ItemData>();
 
     private static AssetReference loadedStageRef;
     

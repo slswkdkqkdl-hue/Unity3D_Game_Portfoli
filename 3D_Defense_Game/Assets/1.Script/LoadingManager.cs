@@ -252,4 +252,10 @@ public class LoadingManager : MonoBehaviour
             }
         }
     }
+
+    private async Task LoadItemAsunc(EnemyInfoSO enemyInfoSO)
+    {
+        List<EnemyLootInfo> DorpItem = enemyInfoSO.mainLoot;
+        int count = DorpItem.Count;
+    }
 }
