@@ -59,7 +59,6 @@ public class ResultPanel : MonoBehaviour
 
                 // 아래 필드명은 실제 ItemData에 맞게 수정
                 slot.Init(itemData.icon,itemData.itemName,1);
-
                 PlayerData.AddItem(itemData);
 
             }

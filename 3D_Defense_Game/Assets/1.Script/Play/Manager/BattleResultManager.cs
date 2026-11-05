@@ -40,7 +40,7 @@ public class BattleResultManager : MonoBehaviour
     /// <summary>
     /// 고정된 아이템 ID 2개를 어드레서블 비동기로 불러오는 함수
     /// </summary>
-    public async void LoadFixedRewardItems(List<HeroRuntimeData> datas)
+    public async void LoadFixedRewardItems()
     {
         itemDatas.Clear();
         ReleaseLoadedItems();
@@ -71,14 +71,13 @@ public class BattleResultManager : MonoBehaviour
                 }
             }
         }
-        heroes.AddRange(datas);
     }
 
     public void Open(bool result)
     {   
         Time.timeScale = 0f;
         resultPanel.gameObject.SetActive(true);
-        resultPanel.Init(itemDatas,heroes,result);
+        resultPanel.Init(itemDatas,heroes,result); 
     }
 
 

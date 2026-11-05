@@ -76,7 +76,7 @@ public class Play_manager : MonoBehaviour
         timerController.Init(true);
 
 
-        BattleResultManager.I.LoadFixedRewardItems(sessionData.heroes);
+        BattleResultManager.I.LoadFixedRewardItems();
     }
 
     /// <summary>
