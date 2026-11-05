@@ -56,27 +56,27 @@ public class Play_manager : MonoBehaviour
         // 4. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성 + 플레이어/적 메인성 생성 및 초기화
         SetupBuildingSlots();
 
-        // 빌딩매니저한테 유닛 데이터 전달
+        // 5. 빌딩매니저한테 유닛 데이터 전달
         BuildingManager.I.InitUnits(sessionData.units);
 
-        // 5. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
+        // 6. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
         buildingSlotUI.Init();
 
-        // 6. 각 성벽 체력 초기화
+        // 7. 각 성벽 체력 초기화
         castleController.Init(sessionData.domainData,currentEnemyInfo);
 
-        // 7. 선택한 영웅들 초기화 + 팀슬룻 생성
+        // 8. 선택한 영웅들 초기화 + 팀슬룻 생성
         var result = BattleEntryData.selectedHeroes;
         herocontroller.Init(result);
         
-        // 9. 게임시작 로그 메시지 
-        InGameLog.I.AddLog("전투가 시작되었습니다.");
-
-        // 10. 게임 시작과 함께 플레이 타이머 초기화 및 시작
+        // 9. 게임 시작과 함께 플레이 타이머 초기화 및 시작
         timerController.Init(true);
 
-
+        // 10.보상 아이템 설정
         BattleResultManager.I.LoadFixedRewardItems();
+
+        // 11. 게임시작 로그 메시지 
+        InGameLog.I.AddLog("전투가 시작되었습니다.");
     }
 
     /// <summary>

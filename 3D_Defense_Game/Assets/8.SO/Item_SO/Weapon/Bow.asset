@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35bb4cf8a0b25554f8c64bfc590ab1aa, type: 3}
-  m_Name: Sword 5
+  m_Name: Bow
   m_EditorClassIdentifier: Assembly-CSharp::RuntimeItemData
   item_Id: 15
   itemName: "\uC0AC\uB0E5\uAFBC\uC758\uD65C"

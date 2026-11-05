@@ -19,8 +19,6 @@ public class PlayerSessionData
     [SerializeField] public List<ItemRuntimeData> items;
     
 
-
-    
     public PlayerSessionData()
     {
         heroes = new List<HeroRuntimeData>();
@@ -43,14 +41,20 @@ public class PlayerSessionData
         units.Add(new UnitRuntimeData { unitData = unit, level = 1 });
     }
 
-    public void AddItem(ItemData item)
+    public void AddItem(ItemData item, int amount = 1)
     {
         if (item == null) return;
 
         var existing = items.Find(i => i.itemData?.item_Id == item.item_Id);
         
-        if (existing != null) existing.size++;
-        else items.Add(new ItemRuntimeData { itemData = item, size = 1 });
+        if (existing != null) 
+        {
+            existing.size += amount; 
+        }
+        else 
+        {
+            items.Add(new ItemRuntimeData { itemData = item, size = amount });
+        }
     }
 
     public void AddClearId(int id)

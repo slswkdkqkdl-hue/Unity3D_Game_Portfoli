@@ -27,3 +27,4 @@ MonoBehaviour:
   itemOptions: []
   itemPrefab: {fileID: 0}
   dropChance: 50
+  maxDropCount: 1

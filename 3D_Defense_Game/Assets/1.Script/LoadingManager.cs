@@ -126,7 +126,7 @@ public class LoadingManager : MonoBehaviour
     /// 목적지 씬에 따라 필요한 데이터를 비동기로 로드하는 총괄 함수
     /// </summary>
     private async Task StartDataLoadingAsync()
-    {
+    {   
         if (nextScene == SceneType.LobbyScreen)
         {
             if (DataManager.I != null)
@@ -146,7 +146,7 @@ public class LoadingManager : MonoBehaviour
     private async Task LoadBattleDataAsync()
     {
         BattleEntryData.ReleaseCurrentStage(); // 이전 스테이지 초기화 및 메모리 해제 
-        BattleEntryData.ReleaseEnemyData(); // 이전 적 유닛 초기화 및  메모리 해제 
+        BattleEntryData.ReleaseData(); // 아이템,적유닛,영웅 초기화 및 메모리 해제 
         
         if (BattleEntryData.selectedEnemy == null)
         {
@@ -155,7 +155,8 @@ public class LoadingManager : MonoBehaviour
         }
 
         List<UnitData> unitDatas = new List<UnitData>();
-        List<HeroData> heroDatas = new List<HeroData>();            
+        List<HeroData> heroDatas = new List<HeroData>();
+        List<ItemData> DropItems = new List<ItemData>();            
         List<AsyncOperationHandle> assetHandles = new List<AsyncOperationHandle>();
 
         // 비동기 작업들을 동시에 실행하기 위한 Task 리스트
@@ -171,8 +172,8 @@ public class LoadingManager : MonoBehaviour
         // 3. 적 영웅 데이터 비동기 로드 작업 추가
         loadingTasks.Add(LoadHeroesAsync(heroDatas, assetHandles));
 
-        // ★ [확장 포인트] 나중에 추가로 로드할 비동기 작업이 있다면 여기에 추가하세요!
-        // loadingTasks.Add(LoadExtraDataAsync(...));
+        // 4. 스테이지 전리품 아이템 추가 
+        loadingTasks.Add(LoadItemAsync(DropItems,assetHandles));
 
         // 모든 데이터 로딩이 완료될 때까지 대기 (병렬 처리)
         await Task.WhenAll(loadingTasks);
@@ -181,7 +182,7 @@ public class LoadingManager : MonoBehaviour
         if (stageHandle.Status == AsyncOperationStatus.Succeeded)
         {
             BattleEntryData.SetLoadedStage(BattleEntryData.selectedEnemy.stageRef, stageHandle.Result);
-            BattleEntryData.SetLoadedEnemyData(unitDatas, heroDatas, assetHandles); 
+            BattleEntryData.SetLoadedEnemyData(unitDatas, heroDatas,DropItems,assetHandles); 
         }
         else
         {
@@ -206,6 +207,7 @@ public class LoadingManager : MonoBehaviour
                 {
                     var handle = unitRef.OperationHandle.Convert<UnitData>();
                     unitDatas.Add(handle.Result);
+                    assetHandles.Add(handle);
                 }
                 else
                 {
@@ -238,6 +240,7 @@ public class LoadingManager : MonoBehaviour
                 {
                     var handle = heroRef.OperationHandle.Convert<HeroData>();
                     heroDatas.Add(handle.Result);
+                    assetHandles.Add(handle);
                 }
                 else
                 {
@@ -253,9 +256,50 @@ public class LoadingManager : MonoBehaviour
         }
     }
 
-    private async Task LoadItemAsunc(EnemyInfoSO enemyInfoSO)
+    private async Task LoadItemAsync(List<ItemData> Items, List<AsyncOperationHandle> assetHandles)
     {
-        List<EnemyLootInfo> DorpItem = enemyInfoSO.mainLoot;
-        int count = DorpItem.Count;
+        List<EnemyLootInfo> dropItems = BattleEntryData.selectedEnemy.mainLoot;
+
+        foreach (var itemInfo in dropItems)
+        {
+            int itemId = itemInfo.item_id;
+            AssetReferenceT<ItemData> itemRef = DataManager.I.itemDB.GetItemRef(itemId);
+
+            if (itemRef != null && itemRef.RuntimeKeyIsValid())
+            {
+                ItemData loadedItem = null;
+
+                if (itemRef.IsValid())
+                {
+                    var handle = itemRef.OperationHandle.Convert<ItemData>();
+                    loadedItem = handle.Result;
+                    assetHandles.Add(handle); 
+                }
+                else
+                {
+                    var handle = itemRef.LoadAssetAsync<ItemData>();
+                    await handle.Task;
+
+                    if (handle.Status == AsyncOperationStatus.Succeeded)
+                    {
+                        loadedItem = handle.Result;
+                        assetHandles.Add(handle); 
+                    }
+                }
+
+                if (loadedItem != null)
+                {
+                    for (int i =0; i < loadedItem.maxDropCount; i++)
+                    {
+                        float randomVal = Random.Range(0f, 101f);
+                        if (randomVal <= loadedItem.dropChance) 
+                        {
+                            Items.Add(loadedItem);
+                        } 
+                    }
+                }
+            }
+        }
+
     }
 }

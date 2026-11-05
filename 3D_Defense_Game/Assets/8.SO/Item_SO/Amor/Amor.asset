@@ -29,3 +29,4 @@ MonoBehaviour:
     \uAC10\uC18C"
   itemPrefab: {fileID: 0}
   dropChance: 50
+  maxDropCount: 1

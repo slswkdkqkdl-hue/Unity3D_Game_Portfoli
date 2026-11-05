@@ -55,13 +55,16 @@ public static class BattleEntryData
     /// <summary>
     /// 로드된 적 유닛 및 영웅 데이터와 핸들 목록을 등록한다.
     /// </summary>
-    public static void SetLoadedEnemyData(List<UnitData> units, List<HeroData> heroes, List<AsyncOperationHandle> handles)
+    public static void SetLoadedEnemyData(List<UnitData> units, List<HeroData> heroes,List<ItemData> items, List<AsyncOperationHandle> handles)
     {
         EnemyUnit.Clear();
         EnemyUnit.AddRange(units);
 
         EnemyHero.Clear();
         EnemyHero.AddRange(heroes);
+
+        DropItems.Clear();
+        DropItems.AddRange(items);
 
         loadedEnemyAssetHandles = handles;
     }
@@ -82,7 +85,7 @@ public static class BattleEntryData
     /// <summary>
     /// 로드된 적 유닛 및 영웅 에셋들을 메모리에서 해제한다.
     /// </summary>
-    public static void ReleaseEnemyData()
+    public static void ReleaseData()
     {
         foreach (var handle in loadedEnemyAssetHandles)
         {
@@ -94,6 +97,7 @@ public static class BattleEntryData
         loadedEnemyAssetHandles.Clear();
         EnemyUnit.Clear();
         EnemyHero.Clear();
+        DropItems.Clear();
     }
 
     /// <summary>
@@ -102,13 +106,10 @@ public static class BattleEntryData
     public static void Clear()
     {
         ReleaseCurrentStage();
-        ReleaseEnemyData();
+        ReleaseData();
         selectedEnemy = null;
         selectedHeroes.Clear();
     }
-
-
-
 
 
 }

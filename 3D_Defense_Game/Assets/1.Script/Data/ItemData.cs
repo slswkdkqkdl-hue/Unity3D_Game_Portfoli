@@ -28,6 +28,7 @@ public class ItemData : ScriptableObject
     public Sprite icon;                 
     public ItemType itemType;
     public ItemRarity itemRank;
+
     [Header("장비 스탯")]
     public int hp;
     public int mp;
@@ -35,11 +36,17 @@ public class ItemData : ScriptableObject
     public int defense;
     public float attackSpeed;
     public float moveSpeed;
+
     [Header("특수 옵션 (부가 효과)")]
     public List<string> itemOptions = new List<string>(); 
+
     [Header("드랍/생성용 프리팹")]
-    public GameObject itemPrefab; // 3D 필드에 떨어질 때 사용
+    public GameObject itemPrefab; // 아직은 사용안함
+
     [Header("드랍 설정")]
     [Range(0f, 100f)]
-    public float dropChance = 50f; // 드랍 확률 (%)
+    public float dropChance = 50f; 
+
+    [Header("최대 획득 가능 개수")]
+    public int maxDropCount = 1;
 }

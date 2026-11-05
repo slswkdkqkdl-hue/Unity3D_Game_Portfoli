@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         {
             currentSessionData.PlayTime += Time.deltaTime; 
         }
+        
     }
 
     public PlayerSessionData NewPlayerData()

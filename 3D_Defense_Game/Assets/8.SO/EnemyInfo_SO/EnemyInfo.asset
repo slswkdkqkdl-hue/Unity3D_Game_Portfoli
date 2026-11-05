@@ -29,8 +29,6 @@ MonoBehaviour:
   maxEnemyCount: 136
   Tier: 4
   mainLoot:
-  - item_id: 1
-    item_name: "\uAC15\uD55C\uAC15\uD55C\uC18C\uB4DC"
   - item_id: 10
     item_name: "\uB098\uC774\uD2B8\uC18C\uB4DC"
   - item_id: 11
