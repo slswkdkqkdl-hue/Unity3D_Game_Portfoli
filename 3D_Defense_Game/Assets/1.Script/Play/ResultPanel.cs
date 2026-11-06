@@ -9,6 +9,11 @@ public class ResultPanel : MonoBehaviour
 
     public TextMeshProUGUI result_; // 승리/패배 텍스트
 
+
+    [Header("영웅 슬릇프리팹들")]
+    public GameObject HeroLevelSlot;
+    
+
     public void Init(List<ItemData> itemDatas,List<HeroRuntimeData> heroes , Team team)
     {
         var PlayerData = GameManager.I.currentSessionData;
