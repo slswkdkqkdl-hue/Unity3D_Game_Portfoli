@@ -10,7 +10,10 @@ public class BattleResultManager : MonoBehaviour
     [SerializeField] private ResultPanel resultPanel;
 
     [Header("보상 아이템 리스트")]
-    public List<ItemData> itemDatas;
+    [SerializeField]private List<ItemData> itemDatas;
+
+    [Header("전투 결과 - 레벨업 영웅 목록")]
+    [SerializeField] private List<HeroRuntimeData> leveledUpHeroes = new List<HeroRuntimeData>(); 
 
 
     private void Awake()
@@ -31,14 +34,29 @@ public class BattleResultManager : MonoBehaviour
         }
 
     }
+
     /// <summary>
-    /// 보상설정 // 플레이 매니저에서실행
+    /// 영웅이 레벨업했을 때 호출하는 메서드
+    /// </summary>
+    public void AddLeveledUpHero(HeroRuntimeData heroData)
+    {
+        // 만약 이미 리스트에 들어있는 영웅이라면?
+        if (leveledUpHeroes.Contains(heroData))
+        {
+            leveledUpHeroes.Remove(heroData);
+        }
+        leveledUpHeroes.Add(heroData);
+    }
+
+    /// <summary>
+    /// 보상설정
     /// </summary>
     public void LoadFixedRewardItems()
     {
         itemDatas.Clear();
 
-        itemDatas = BattleEntryData.DropItems;
+        itemDatas.AddRange(BattleEntryData.DropItems);
+
         Debug.Log("==== 보상 아이템 ====");
         foreach (var items in itemDatas)
         {
@@ -47,11 +65,11 @@ public class BattleResultManager : MonoBehaviour
 
     }
 
-    public void Open(bool result)
+    public void Open(Team result)
     {   
         Time.timeScale = 0f;
         resultPanel.gameObject.SetActive(true);
-        // resultPanel.Init(itemDatas,heroes,result); 
+        resultPanel.Init(itemDatas,leveledUpHeroes,result); 
     }
 
 

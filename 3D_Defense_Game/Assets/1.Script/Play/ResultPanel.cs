@@ -4,60 +4,36 @@ using UnityEngine;
 
 public class ResultPanel : MonoBehaviour
 {
-    public Transform DropPos;
-    public GameObject DropSlot;
+    public Transform DropPos; // 보상 아이템 생성 위치
+    public GameObject DropSlot; // 보상 아이템 프리팹 
 
-    public HeroLevelSlot[] HeroSlot = new HeroLevelSlot[3];
+    public TextMeshProUGUI result_; // 승리/패배 텍스트
 
-    private readonly List<GameObject> createdSlots = new List<GameObject>();
-
-    public TextMeshProUGUI result_;
-
-    public void Init(List<ItemData> itemDatas,List<HeroRuntimeData> heroes , bool result)
+    public void Init(List<ItemData> itemDatas,List<HeroRuntimeData> heroes , Team team)
     {
         var PlayerData = GameManager.I.currentSessionData;
 
-        if (result)
+        if (Team.Ally == team)
         {
             result_.text = "패배";
-            foreach (var data in HeroSlot)
-            {
-                data.gameObject.SetActive(false);
-                return;
-            }
         }
         else
         {   
             result_.text = "승리";
-            // 기존 슬롯 정리 (패널 재초기화 대비)
-            foreach (GameObject slot in createdSlots)
-            {
-                if (slot != null)
-                    Destroy(slot);
-            }
-
-            createdSlots.Clear();
 
             if (itemDatas == null || DropPos == null || DropSlot == null)
                 return;
 
             foreach (ItemData itemData in itemDatas)
             {
-                if (itemData == null)
-                    continue;
-
                 GameObject slotObject = Instantiate(DropSlot, DropPos);
-                createdSlots.Add(slotObject);
-
                 DropitemSlot slot = slotObject.GetComponent<DropitemSlot>();
-
                 if (slot == null)
                 {
                     Debug.LogError("DropSlot 프리팹에 DropitemSlot 컴포넌트가 없습니다.");
                     continue;
                 }
 
-                // 아래 필드명은 실제 ItemData에 맞게 수정
                 slot.Init(itemData.icon,itemData.itemName,1);
                 PlayerData.AddItem(itemData);
 
@@ -67,8 +43,7 @@ public class ResultPanel : MonoBehaviour
             {
                 if ( data.heroData.Hero_Id == 1)
                 {   
-                    data.level++;
-                    HeroSlot[0].Init(data.heroData.portrait,data.level);                
+                    data.level++;       
                 }
             }
             PlayerData.AddClearId(BattleEntryData.selectedEnemy.Stage_id);

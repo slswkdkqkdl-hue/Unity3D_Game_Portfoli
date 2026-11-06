@@ -167,6 +167,6 @@ public class MainCastle : Building, IDamageable
     private void OnCastleDestroyed()
     {
         if (BattleResultManager.I != null)
-            BattleResultManager.I.Open(true);
+            BattleResultManager.I.Open(currentTeam);
     }
 }
