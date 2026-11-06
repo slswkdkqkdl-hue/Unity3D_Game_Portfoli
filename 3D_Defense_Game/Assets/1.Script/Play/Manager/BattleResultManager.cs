@@ -9,7 +9,7 @@ public class BattleResultManager : MonoBehaviour
 
     [SerializeField] private ResultPanel resultPanel;
 
-    [Header("불러온 전리품 아이템 데이터 리스트")]
+    [Header("보상 아이템 리스트")]
     public List<ItemData> itemDatas;
 
 
