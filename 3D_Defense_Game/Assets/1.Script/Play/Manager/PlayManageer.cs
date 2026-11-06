@@ -6,9 +6,6 @@ public class Play_manager : MonoBehaviour
     [Header("현재 스테이지 적 정보 데이터")]
     [SerializeField] private EnemyInfoSO currentEnemyInfo;
 
-    [Header("맵이 생성될 위치 (Transform)")]
-    [SerializeField] private Transform stageSpawnPoint;
-
     [Header("플레이어 현재 데이터")]
     private PlayerSessionData sessionData;
 
@@ -22,8 +19,8 @@ public class Play_manager : MonoBehaviour
 
 
     // 생성된 스테이지의 컨트롤러
-    [Header("현재 스테이지 컨트롤러")]
-    private StageController stageController;
+    [Header("스테이지 매니저")]
+    [SerializeField]private StageManager StageManager;
 
     private void Start()
     {   
@@ -48,10 +45,10 @@ public class Play_manager : MonoBehaviour
         resourceUI.Init(0,0,0);
 
         // 3. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
-        StageCreate();
+        StageManager.CreateStage();
 
         // 4. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성 + 플레이어/적 메인성 생성 및 초기화
-        SetupBuildingSlots();
+        StageManager.InitStage(sessionData,currentEnemyInfo);
 
         // 5. 빌딩매니저한테 유닛 데이터 전달
         BuildingManager.I.InitUnits(sessionData.units);
@@ -76,44 +73,4 @@ public class Play_manager : MonoBehaviour
         InGameLog.I.AddLog("전투가 시작되었습니다.");
     }
 
-    /// <summary>
-    /// 클리어한 스테이지 수에 맞춰 건물 슬롯 해금 레벨을 계산하고 활성화합니다.
-    /// </summary>
-    private void SetupBuildingSlots()
-    {
-        if (stageController == null || sessionData?.clearid == null)
-        {
-            Debug.LogWarning("[Play_manager] 건물 슬롯 초기화에 필요한 데이터가 없습니다.");
-            return;
-        }
-
-        int clearCount = sessionData.clearid.Count;
-        int castleLevel = FactionUtility.GetCastleLevelByClearCount(clearCount);
-
-        stageController.Init(castleLevel,currentEnemyInfo);
-    }
-    private void StageCreate()
-    {
-        if (BattleEntryData.currentStage == null ||
-            BattleEntryData.currentStage.StagePrefab == null)
-        {
-            Debug.LogError("[Play_manager] 스테이지 데이터가 없습니다.");
-            return;
-        }
-
-        GameObject stagePrefab = BattleEntryData.currentStage.StagePrefab;
-        GameObject stageInstance = Instantiate(stagePrefab, stageSpawnPoint);
-
-        stageController = stageInstance.GetComponentInChildren<StageController>();
-
-        if (stageController == null)
-        {
-            Debug.LogError("[Play_manager] StageController를 찾지 못했습니다.");
-        }
-    }
-
-    private void SetupGameElements()
-    {
-        // UI 및 적 AI 스폰 초기화
-    }
 }
