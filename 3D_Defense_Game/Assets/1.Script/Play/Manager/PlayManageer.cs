@@ -24,14 +24,13 @@ public class Play_manager : MonoBehaviour
 
     private void Start()
     {   
-        var data = GameManager.I.currentSessionData;
-        InitPlayScene(data);
+        InitPlayScene();
     }
 
-    public void InitPlayScene(PlayerSessionData Data)
+    public void InitPlayScene()
     {   
         // 1-1 데이터 매니저에서 현재 플레이어 세션 데이터 가져오기
-        sessionData = Data;
+        sessionData = GameManager.I.currentSessionData;
         // 1-2 배틀엔티티 매니저 한테서 현재 적 데이터 가져오기 
         currentEnemyInfo = BattleEntryData.selectedEnemy;
 
