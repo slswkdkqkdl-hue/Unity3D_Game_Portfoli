@@ -2622,7 +2622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &423059362
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2696,10 +2696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResultPanel
   DropPos: {fileID: 1773174414}
   DropSlot: {fileID: 5212443429360091067, guid: d41800cf0b2c09740b7546c88edb00f8, type: 3}
-  HeroSlot:
-  - {fileID: 2031902602}
-  - {fileID: 251349698}
-  - {fileID: 2147317936}
   result_: {fileID: 503606701}
 --- !u!1 &450328912
 GameObject:
@@ -4017,6 +4013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleResultManager
   resultPanel: {fileID: 423059365}
   itemDatas: []
+  leveledUpHeroes: []
 --- !u!1 &650272149
 GameObject:
   m_ObjectHideFlags: 0
@@ -11850,9 +11847,9 @@ RectTransform:
   - {fileID: 943281569}
   m_Father: {fileID: 2074450042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2031902600
