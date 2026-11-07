@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class BattleResultManager : MonoBehaviour
 {
@@ -10,11 +8,10 @@ public class BattleResultManager : MonoBehaviour
     [SerializeField] private ResultPanel resultPanel;
 
     [Header("보상 아이템 리스트")]
-    [SerializeField]private List<ItemData> itemDatas;
+    [SerializeField] private List<ItemData> itemDatas;
 
     [Header("전투 결과 - 레벨업 영웅 목록")]
     [SerializeField] private List<HeroRuntimeData> leveledUpHeroes = new List<HeroRuntimeData>(); 
-
 
     private void Awake()
     {
@@ -32,15 +29,10 @@ public class BattleResultManager : MonoBehaviour
         {
             I = null;
         }
-
     }
 
-    /// <summary>
-    /// 영웅이 레벨업했을 때 호출하는 메서드
-    /// </summary>
     public void AddLeveledUpHero(HeroRuntimeData heroData)
     {
-        // 만약 이미 리스트에 들어있는 영웅이라면?
         if (leveledUpHeroes.Contains(heroData))
         {
             leveledUpHeroes.Remove(heroData);
@@ -48,30 +40,62 @@ public class BattleResultManager : MonoBehaviour
         leveledUpHeroes.Add(heroData);
     }
 
-    /// <summary>
-    /// 보상설정
-    /// </summary>
     public void LoadFixedRewardItems()
     {
         itemDatas.Clear();
-
         itemDatas.AddRange(BattleEntryData.DropItems);
+    }
 
-        Debug.Log("==== 보상 아이템 ====");
-        foreach (var items in itemDatas)
+    /// <summary>
+    /// 전투 결과 오픈 및 데이터 처리 총괄
+    /// </summary>
+    public void Open(Team result)
+    {
+        Time.timeScale = 0f;
+
+        // 1. 전투 결과 데이터 처리
+        ProcessBattleResult(result);
+
+        // 2. 결과창 UI 표시
+        resultPanel.gameObject.SetActive(true);
+
+        resultPanel.Init(
+            itemDatas,
+            leveledUpHeroes,
+            result
+        );
+    }
+
+    /// <summary>
+    /// 전투 결과에 따른 데이터 처리
+    /// </summary>
+    private void ProcessBattleResult(Team result)
+    {
+        // 패배라면 보상 처리하지 않음
+        if (result == Team.Ally)
+            return;
+        
+        // 승리했을 때만 플레이어 데이터가 필요하므로 데이터 처리 시점에 GameManager에서 가져옴
+        var playerData = GameManager.I.currentSessionData;
+
+        // 보상 아이템 지급
+        foreach (ItemData itemData in itemDatas)
         {
-            Debug.Log($"아이템 이름 : {items.itemName}");
+            playerData.AddItem(itemData);
         }
 
+        // 레벨업 영웅 처리
+        foreach (HeroRuntimeData hero in leveledUpHeroes)
+        {
+            if (hero.heroData.Hero_Id == 1)
+            {
+                hero.level++;
+            }
+        }
+
+        // 스테이지 클리어 기록
+        playerData.AddClearId(
+            BattleEntryData.selectedEnemy.Stage_id
+        );
     }
-
-    public void Open(Team result)
-    {   
-        Time.timeScale = 0f;
-        resultPanel.gameObject.SetActive(true);
-        resultPanel.Init(itemDatas,leveledUpHeroes,result); 
-    }
-
-
-
 }
