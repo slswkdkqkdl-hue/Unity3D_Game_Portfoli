@@ -51,7 +51,6 @@ public class BattleResultManager : MonoBehaviour
         itemDatas.Clear();
         itemDatas.AddRange(BattleEntryData.DropItems);
 
-        AddLeveledUpHero(GameManager.I.currentSessionData.heroes[0]);
         resultPanel.gameObject.SetActive(false);
     }
 

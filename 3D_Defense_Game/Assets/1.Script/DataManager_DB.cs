@@ -111,6 +111,8 @@ public partial class DataManager : MonoBehaviour
                     heroData = loadedHero,
                     level = heroSave.Level,
                     sp = heroSave.SP,
+                    currentExp = heroSave.CurrentExp,
+                    maxExp = heroSave.MaxExp,
                     equippedWeaponId = heroSave.Equippedweapon_Id,
                     equippedArmorId = heroSave.EquippedArmor_Id,
                     selectedPassiveSkill = new List<int>(heroSave.SelectPassiveSkill),
@@ -251,9 +253,10 @@ public partial class DataManager : MonoBehaviour
             {
                 HeroId = hero.heroData.Hero_Id,
 
-                Level = hero.level,
-                SP = hero.sp,
-
+                Level = hero.level, 
+                SP = hero.sp, 
+                CurrentExp = hero.currentExp,
+                MaxExp = hero.maxExp,
                 Equippedweapon_Id = hero.equippedWeaponId,
                 EquippedArmor_Id = hero.equippedArmorId,
 

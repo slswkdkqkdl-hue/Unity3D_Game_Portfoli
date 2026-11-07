@@ -8,7 +8,9 @@ public class HeroRuntimeData
     public HeroData heroData;
 
     // 현재 플레이어 상태
-    public int level = 0;
+    public int level = 1;
+    public int currentExp = 0;
+    public int maxExp = 0;
     public int sp = 0;
 
     public int equippedWeaponId = -1;

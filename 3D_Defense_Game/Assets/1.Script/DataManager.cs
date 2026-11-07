@@ -114,12 +114,17 @@ public partial class DataManager : MonoBehaviour
                 HeroId = data.heroDescDatas.Hero_Id, // 인스펙터/SO 상의 Hero_Id 필드명 확인
                 Level = 1,
                 SP = 99,
+                CurrentExp = 0,
+                MaxExp = data.heroDescDatas.baseExp
+
             });
             saveData.heroDates.Add(new HeroSaveData // 테스트 히어로
             {
                 HeroId = 99, 
                 Level = 99,
-                SP = 30
+                SP = 30,
+                CurrentExp = 0,
+                MaxExp = data.heroDescDatas.baseExp
             });
         }
         // 4. 세력 특수유닛 ID들 저장 
