@@ -31,6 +31,9 @@ public class BattleResultManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 전투 중 레벨업한 영웅을 결과 목록에 등록 // 영웅들이 각자 호출할거임 레벨업하면
+    /// </summary>
     public void AddLeveledUpHero(HeroRuntimeData heroData)
     {
         if (leveledUpHeroes.Contains(heroData))
@@ -40,10 +43,15 @@ public class BattleResultManager : MonoBehaviour
         leveledUpHeroes.Add(heroData);
     }
 
+    /// <summary>
+    /// 보상아이템 초기화  // 플레이매니저에서 실행댈거임
+    /// </summary>
     public void LoadFixedRewardItems()
-    {
+    {   
         itemDatas.Clear();
         itemDatas.AddRange(BattleEntryData.DropItems);
+
+        resultPanel.gameObject.SetActive(false);
     }
 
     /// <summary>
