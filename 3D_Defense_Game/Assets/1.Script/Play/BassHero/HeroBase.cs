@@ -34,16 +34,6 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     [field: SerializeField] public float attackRange { get; protected set; }
 
 
-    [Header("경험치 테스트 모니터링")]
-
-    [Header("현재 경험치")]
-    [SerializeField] private float debugCurrentExp;
-    [Header("최대 경험치")]
-    [SerializeField] private float debugMaxExp;
-    [Header("현재 레벨")]
-    [SerializeField] private float debugLevel;
-    [Header("누적 경험치")]
-    [SerializeField] private float debugTotalExpGained;
 
     protected virtual void Awake()
     {
@@ -92,7 +82,7 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
             assignedSlot.SetUpHp(CurrentHp, CurrentHp); 
             assignedSlot.SetUpMp(CurrentMp, CurrentMp);
         }
-         UpdateExpDebug();
+
     }
 
     /// <summary>
@@ -200,7 +190,6 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         if (runtimeData == null) return;
 
         runtimeData.currentExp += amount;
-        debugTotalExpGained += amount;
         while (runtimeData.currentExp >= runtimeData.maxExp)
         {
             if (runtimeData.level >= runtimeData.heroData.maxLevel)
@@ -217,17 +206,9 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
 
             BattleResultManager.I.AddLeveledUpHero(runtimeData);
         }
-        UpdateExpDebug();
-    }
-    // 테스트용도
-    private void UpdateExpDebug()
-    {
-        if (runtimeData == null) return;
 
-        debugCurrentExp = runtimeData.currentExp;
-        debugMaxExp = runtimeData.maxExp;
-        debugLevel = runtimeData.level;
     }
+
 
     /// <summary>
     /// 영웅의 모든 스탯과 정보를 구조체 묶음으로 통째로 반환 .. 영웅정보 보기에사용댐
