@@ -11,6 +11,7 @@ public class BattleResultManager : MonoBehaviour
     [SerializeField] private List<ItemData> itemDatas;
 
     [Header("전투 결과 - 레벨업 영웅 목록")]
+    private Dictionary<int, int> heroStartLevels = new Dictionary<int, int>();
     [SerializeField] private List<HeroRuntimeData> leveledUpHeroes = new List<HeroRuntimeData>(); 
 
     private void Awake()
@@ -32,6 +33,21 @@ public class BattleResultManager : MonoBehaviour
     }
 
     /// <summary>
+    /// 전투 시작 시 영웅의 레벨을 저장
+    /// </summary>
+    private void RegisterHeroStartLevel(List<HeroRuntimeData> heroData)
+    {
+        foreach (var heros in heroData)
+        {
+            int heroid = heros.heroData.Hero_Id;
+
+            if (!heroStartLevels.ContainsKey(heroid))
+            {
+                heroStartLevels.Add(heroid,heros.level);
+            }
+        }
+    }
+    /// <summary>
     /// 전투 중 레벨업한 영웅을 결과 목록에 등록 // 영웅들이 각자 호출할거임 레벨업하면
     /// </summary>
     public void AddLeveledUpHero(HeroRuntimeData heroData)
@@ -46,11 +62,13 @@ public class BattleResultManager : MonoBehaviour
     /// <summary>
     /// 보상아이템 초기화  // 플레이매니저에서 실행댈거임
     /// </summary>
-    public void LoadFixedRewardItems()
+    public void LoadFixedRewardItems(List<HeroRuntimeData> heroData)
     {   
         itemDatas.Clear();
+        heroStartLevels.Clear();
+        leveledUpHeroes.Clear();
         itemDatas.AddRange(BattleEntryData.DropItems);
-
+        RegisterHeroStartLevel(heroData);
         resultPanel.gameObject.SetActive(false);
     }
 
@@ -92,14 +110,7 @@ public class BattleResultManager : MonoBehaviour
             playerData.AddItem(itemData);
         }
 
-        // 레벨업 영웅 처리
-        foreach (HeroRuntimeData hero in leveledUpHeroes)
-        {
-            if (hero.heroData.Hero_Id == 1)
-            {
-                hero.level++;
-            }
-        }
+
 
         // 스테이지 클리어 기록
         playerData.AddClearId(

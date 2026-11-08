@@ -79,7 +79,7 @@ public class HeroAttackState : IState
     {
         if (targetUnit is IDamageable damageable)
         {
-            damageable.TakeDamage(hero.CurrentAttack);
+            damageable.TakeDamage(hero.CurrentAttack,hero);
         }
     }
 

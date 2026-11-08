@@ -419,7 +419,7 @@ public class EnemyCastle : MonoBehaviour, IDamageable
     /// <summary>
     /// 성 피격
     /// </summary>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage , ICombatEntity attacker)
     {
         if (currentHp <= 0f || damage <= 0)
             return;

@@ -144,7 +144,7 @@ public class MainCastle : Building, IDamageable
     /// <summary>
     /// IDamageable 구현: 공격받았을 때 호출
     /// </summary>
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage , ICombatEntity attacker)
     {
         if (currentHp <= 0) return;
 

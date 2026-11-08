@@ -34,6 +34,17 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     [field: SerializeField] public float attackRange { get; protected set; }
 
 
+    [Header("경험치 테스트 모니터링")]
+
+    [Header("현재 경험치")]
+    [SerializeField] private float debugCurrentExp;
+    [Header("최대 경험치")]
+    [SerializeField] private float debugMaxExp;
+    [Header("현재 레벨")]
+    [SerializeField] private float debugLevel;
+    [Header("누적 경험치")]
+    [SerializeField] private float debugTotalExpGained;
+
     protected virtual void Awake()
     {
         IdleState = new HeroIdleState(this);
@@ -64,7 +75,9 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     {
         currentState?.Update();
     }
-
+    /// <summary>
+    /// 최초 한번 실행댈 초기화함수 
+    /// </summary>
     public virtual void InitHero(HeroRuntimeData data, Team team, HeroSlot slot)
     {
         runtimeData = data;
@@ -72,14 +85,19 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         assignedSlot = slot;
 
         CalculateStats();
+        CalculateMaxExp();
 
         if (assignedSlot != null)
         {
             assignedSlot.SetUpHp(CurrentHp, CurrentHp); 
             assignedSlot.SetUpMp(CurrentMp, CurrentMp);
         }
+         UpdateExpDebug();
     }
 
+    /// <summary>
+    /// 스테이스 갱신
+    /// </summary>
     protected virtual void CalculateStats()
     {
         if (runtimeData == null || runtimeData.heroData == null) return;
@@ -96,7 +114,21 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         detectionRange = baseData.detectionRange;
         attackRange = baseData.attackRange;
     }
+    /// <summary>
+    /// 현재 레벨에 필요한 최대 경험치를 계산합니다.
+    /// </summary>
+    private void CalculateMaxExp()
+    {
+        runtimeData.maxExp = runtimeData.heroData.baseExp;
 
+        for (int i = 1; i < runtimeData.level; i++)
+        {
+            runtimeData.maxExp *= runtimeData.heroData.expMultiplier;
+        }
+    }
+    /// <summary>
+    /// 캐릭터 생성시 팀에 따른 위치 선정
+    /// </summary>
     public Transform GetClosestEnemyCastlePoint(Vector3 pos, float range, Team team)
     {
         Transform point = null;
@@ -116,7 +148,7 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         }
         return null;
     }
-
+    // 상태전환 
     public void ChangeState(IState newState)
     {
         if (currentState == newState) return;
@@ -142,8 +174,10 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         }
     }
 
-
-    public virtual void TakeDamage(int damage)
+    /// <summary>
+    /// 피해를 받아 체력을 감소시키고 사망 여부를 처리합니다.
+    /// </summary>
+    public virtual void TakeDamage(int damage , ICombatEntity attacker)
     {
         CurrentHp -= damage;
         CurrentHp = Mathf.Max(0, CurrentHp);
@@ -158,8 +192,45 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
             Debug.Log("죽음");
         }
     }
-        /// <summary>
-    /// 유닛의 모든 스탯과 정보를 구조체 묶음으로 통째로 반환합니다.
+    /// <summary>
+    /// 경험치를 추가하고 레벨업을 처리합니다.
+    /// </summary>
+    public void GainExp(int amount)
+    {
+        if (runtimeData == null) return;
+
+        runtimeData.currentExp += amount;
+        debugTotalExpGained += amount;
+        while (runtimeData.currentExp >= runtimeData.maxExp)
+        {
+            if (runtimeData.level >= runtimeData.heroData.maxLevel)
+            {
+                runtimeData.currentExp = runtimeData.maxExp;
+                break;
+            }
+
+            runtimeData.currentExp -= runtimeData.maxExp;
+
+            runtimeData.level++;
+
+            runtimeData.maxExp *= runtimeData.heroData.expMultiplier;
+
+            BattleResultManager.I.AddLeveledUpHero(runtimeData);
+        }
+        UpdateExpDebug();
+    }
+    // 테스트용도
+    private void UpdateExpDebug()
+    {
+        if (runtimeData == null) return;
+
+        debugCurrentExp = runtimeData.currentExp;
+        debugMaxExp = runtimeData.maxExp;
+        debugLevel = runtimeData.level;
+    }
+
+    /// <summary>
+    /// 영웅의 모든 스탯과 정보를 구조체 묶음으로 통째로 반환 .. 영웅정보 보기에사용댐
     /// </summary>
     public CombatEntityData GetEntityData()
     {

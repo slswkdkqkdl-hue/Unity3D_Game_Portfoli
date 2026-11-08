@@ -8,8 +8,8 @@ public class HeroSaveData
     public int Level = 1; // 히어로 레벨 (보통 1레벨부터 시작하므로 기본값 1 추천)
     public int SP = 0; // 성장포인트
     
-    public int CurrentExp = 0; // 현재 쌓인 경험치
-    public int MaxExp = 0;   // 다음 레벨업까지 필요한 경험치
+    public float  CurrentExp = 0; // 현재 쌓인 경험치
+    public float  MaxExp = 0;   // 다음 레벨업까지 필요한 경험치
 
     public int Equippedweapon_Id = -1; // 장착중인 무기 Id
     public int EquippedArmor_Id = -1; // 장착중인 방어구 Id

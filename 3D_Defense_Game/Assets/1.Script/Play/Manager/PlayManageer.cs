@@ -65,8 +65,8 @@ public class Play_manager : MonoBehaviour
         // 9. 게임 시작과 함께 플레이 타이머 초기화 및 시작
         timerController.Init(true);
 
-        // 10.보상 아이템 설정
-        BattleResultManager.I.LoadFixedRewardItems();
+        // 10. 결과창 초기화
+        BattleResultManager.I.LoadFixedRewardItems(sessionData.heroes);
 
         // 11. 게임시작 로그 메시지 
         InGameLog.I.AddLog("전투가 시작되었습니다.");

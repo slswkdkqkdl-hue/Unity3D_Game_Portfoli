@@ -19,7 +19,7 @@ public class CastleAttackPoint : MonoBehaviour, ICombatEntity, IDamageable
         };
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage , ICombatEntity attacker)
     {
         if (ownerCastle is IDamageable damageable)
         {

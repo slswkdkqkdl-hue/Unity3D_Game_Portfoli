@@ -52,7 +52,7 @@ public class HeroData : ScriptableObject
 
     [Header("레벨업 설정")]
     public int maxLevel = 10;          // 최대 레벨
-    public int baseExp = 100;          // 1레벨에서 2레벨로 갈 때 필요한 기본 경험치
+    public float  baseExp = 100;          // 1레벨에서 2레벨로 갈 때 필요한 기본 경험치
     public float expMultiplier = 1.5f; // 레벨업할 때마다 필요 경험치 증가 배율  
 
     public List<SkillData> activeSkills = new List<SkillData>(); // 모든 액티브 스킬

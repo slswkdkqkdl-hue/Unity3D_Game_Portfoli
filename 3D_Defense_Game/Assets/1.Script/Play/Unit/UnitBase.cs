@@ -32,6 +32,9 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
     [SerializeField] protected float currentAttackSpeed;
     [SerializeField] protected float currentMoveSpeed;
 
+    [Header("경험치 현재는 다공통 추후개선")]
+    [SerializeField] private int exp = 25;
+
     [Header("애니메이션")]
     [SerializeField] private Animator animator;
 
@@ -350,7 +353,7 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
     /// <summary>
     /// 공격 받았을시 호출
     /// </summary>
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage , ICombatEntity attacker)
     {
         if (isDead) return;
 
@@ -359,10 +362,10 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
 
         if (currentHp <= 0)
         {
-            Die();
+            Die(attacker);
         }
     }
-
+    // 상태전환
     protected void ChangeState(UnitState newState)
     {
         if (currentState == newState) return;
@@ -387,23 +390,31 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
         }
     }
 
-    public virtual void Die()
+    public virtual void Die(ICombatEntity attacker)
     {
         if (isDead) return;
         isDead = true;
+
         ChangeState(UnitState.Die);
 
+        // 플레이어 영웅에게 경험치 추가
+        if (attacker is HeroBase hero && hero.team == Team.Ally)
+        {
+            hero.GainExp(exp);
+        }
+        // 배틀필드 관리 해제 
         if (BattlefieldManager.I != null)
         {
             BattlefieldManager.I.UnregisterUnit(this, currentTeam);
         }
 
+        // 인구수 감소 
         if (MyUnitData != null && currentTeam == Team.Ally && ResourceManager.I != null)
         {
             ResourceManager.I.DecreasePopulation(MyUnitData.population);
             Debug.Log($"[{MyUnitData.Unit_Name} 사망] 인구수 {MyUnitData.population} 반환 완료");
         }
-
+        // 풀로 돌아가기 
         if (UnitPoolManager.I != null)
         {
             UnitPoolManager.I.ReturnToPool(this);
@@ -424,7 +435,7 @@ public class UnitBase : MonoBehaviour, IDamageable,ICombatEntity
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
 
-        // 3. ⭐ 노란색: 유닛 뭉침 방지 반경 (BattlefieldManager의 값 실시간 참조)
+        // 3.  노란색: 유닛 뭉침 방지 반경 
         if (BattlefieldManager.I != null)
         {
             Gizmos.color = Color.yellow;
