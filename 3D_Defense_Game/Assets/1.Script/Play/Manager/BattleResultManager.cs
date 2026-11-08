@@ -36,7 +36,7 @@ public class BattleResultManager : MonoBehaviour
     /// </summary>
     public void AddLeveledUpHero(HeroRuntimeData heroData)
     {
-        if (leveledUpHeroes.Contains(heroData))
+        if (leveledUpHeroes.Contains(heroData)) 
         {
             leveledUpHeroes.Remove(heroData);
         }
