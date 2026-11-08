@@ -11,7 +11,7 @@ public class BattleResultManager : MonoBehaviour
     [SerializeField] private List<ItemData> itemDatas;
 
     [Header("전투 결과 - 레벨업 영웅 목록")]
-    private Dictionary<int, int> heroStartLevels = new Dictionary<int, int>();
+    private Dictionary<int, int> heroStartLevels = new Dictionary<int, int>(); // 영웅 id , 영웅레벨 
     [SerializeField] private List<HeroRuntimeData> leveledUpHeroes = new List<HeroRuntimeData>(); 
 
     private void Awake()
@@ -109,8 +109,6 @@ public class BattleResultManager : MonoBehaviour
         {
             playerData.AddItem(itemData);
         }
-
-
 
         // 스테이지 클리어 기록
         playerData.AddClearId(
