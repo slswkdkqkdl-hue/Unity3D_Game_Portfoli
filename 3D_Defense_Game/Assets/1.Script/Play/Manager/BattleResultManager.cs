@@ -62,7 +62,7 @@ public class BattleResultManager : MonoBehaviour
 
 
     /// <summary>
-    /// 보상 아이템 및 전투 결과 데이터를 초기화합니다.
+    /// 보상 아이템 및 전투 결과 데이터를 초기화
     /// PlayManager에서 전투 시작 시 호출
     /// </summary>
     public void LoadFixedRewardItems(List<HeroRuntimeData> heroData)

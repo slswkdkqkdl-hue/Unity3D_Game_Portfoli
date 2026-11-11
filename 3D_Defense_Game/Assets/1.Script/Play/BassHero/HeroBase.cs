@@ -41,7 +41,9 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         MoveState = new HeroMoveState(this);
         AttackState = new HeroAttackState(this);
     }
-
+    /// <summary>
+    /// 활성화 될때마다 배틀필드 등록 + 선택중인 영웅 등록 
+    /// </summary>
     protected virtual void OnEnable()
     {
         ActiveHero = this;
@@ -51,7 +53,9 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         }
         ChangeState(IdleState);
     }
-
+    /// <summary>
+    /// 비활성화 될때마다 배틀필드 해제 + 현재 선택중인 영웅 해제 
+    /// </summary>
     protected virtual void OnDisable()
     {
         if (ActiveHero == this) ActiveHero = null;
@@ -65,6 +69,7 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     {
         currentState?.Update();
     }
+    
     /// <summary>
     /// 최초 한번 실행댈 초기화함수 
     /// </summary>
