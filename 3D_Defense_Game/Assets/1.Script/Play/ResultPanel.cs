@@ -20,10 +20,54 @@ public class ResultPanel : MonoBehaviour
     /// </summary>
     public void Init(List<ItemData> itemDatas, List<HeroLevelUpResult> heroes, Team team)
     {
+        Debug.Log("===== ResultPanel.Init 시작 =====");
+
+        if (heroes == null)
+        {
+            Debug.LogError("heroes가 NULL입니다.");
+        }
+        else
+        {
+            Debug.Log($"heroes 개수: {heroes.Count}");
+
+            foreach (HeroLevelUpResult result in heroes)
+            {
+                if (result == null)
+                {
+                    Debug.LogWarning("HeroLevelUpResult가 NULL입니다.");
+                    continue;
+                }
+
+                if (result.heroData == null)
+                {
+                    Debug.LogWarning("heroData가 NULL입니다.");
+                    continue;
+                }
+
+                HeroRuntimeData runtimeData = result.heroData;
+
+                string heroName = runtimeData.heroData != null
+                    ? runtimeData.heroData.hero_name
+                    : "영웅 이름 없음";
+
+                Debug.Log(
+                    $"[레벨업 영웅]\n" +
+                    $"영웅 이름: {heroName}\n" +
+                    $"시작 레벨: {result.startLevel}\n" +
+                    $"종료 레벨: {result.endLevel}\n" +
+                    $"현재 레벨: {runtimeData.level}\n" +
+                    $"현재 경험치: {runtimeData.currentExp}\n" +
+                    $"최대 경험치: {runtimeData.maxExp}"
+                );
+            }
+        }
+
+        Debug.Log("===== ResultPanel.Init 종료 =====");
+
+
         if (Team.Ally == team)
         {
             result_.text = "패배";
-            // 패배 시 필요한 UI 처리 (예: 아이템 슬롯 숨기기 등) 여기서 수행 가능
         }
         else
         { 
@@ -32,9 +76,7 @@ public class ResultPanel : MonoBehaviour
             if (itemDatas == null || DropPos == null || DropSlot == null)
                 return;
 
-            // 여기서 아이템 관련 생성
             CreateRewardItemSlots(itemDatas);
-
 
             // 여기에 영웅관련생성
         }

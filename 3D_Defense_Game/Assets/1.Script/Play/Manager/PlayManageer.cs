@@ -39,34 +39,33 @@ public class Play_manager : MonoBehaviour
             Debug.Log("데이터 없음");
             return;
         }
-
-        // 2. 플레이어 리소스(돈 , 인구수) 초기화
-        resourceUI.Init(0,0,0);
-
-        // 3. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
-        StageManager.CreateStage();
-
-        // 4. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성 + 플레이어/적 메인성 생성 및 초기화
-        StageManager.InitStage(sessionData,currentEnemyInfo);
-
-        // 5. 빌딩매니저한테 유닛 데이터 전달
+        // 2. 빌딩매니저한테 유닛 데이터 전달
         BuildingManager.I.InitUnits(sessionData.units);
 
-        // 6. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
+        // 3. 결과창 초기화
+        BattleResultManager.I.LoadFixedRewardItems(sessionData.heroes); 
+
+        // 4. 플레이어 리소스(돈 , 인구수) 초기화
+        resourceUI.Init(0,0,0);
+
+        // 5. 선택한 스테이지 프리팹 생성 및 인스턴스 참조 저장
+        StageManager.CreateStage();
+
+        // 6. 플레이어 클리어스테이지 수에 따른 건물 슬룻 활성 + 플레이어/적 메인성 생성 및 초기화
+        StageManager.InitStage(sessionData,currentEnemyInfo);
+
+        // 7. 기본 건물 아이콘 초기화 + 특수건물은 아직미완성
         buildingSlotUI.Init();
 
-        // 7. 각 성벽 체력 초기화
+        // 8. 각 성벽 체력 초기화
         castleController.Init(sessionData.domainData,currentEnemyInfo);
 
-        // 8. 선택한 영웅들 초기화 + 팀슬룻 생성
+        // 9. 선택한 영웅들 초기화 + 팀슬룻 생성
         var result = BattleEntryData.selectedHeroes;
         herocontroller.Init(result);
         
-        // 9. 게임 시작과 함께 플레이 타이머 초기화 및 시작
+        // 10. 게임 시작과 함께 플레이 타이머 초기화 및 시작
         timerController.Init(true);
-
-        // 10. 결과창 초기화
-        BattleResultManager.I.LoadFixedRewardItems(sessionData.heroes);
 
         // 11. 게임시작 로그 메시지 
         InGameLog.I.AddLog("전투가 시작되었습니다.");
