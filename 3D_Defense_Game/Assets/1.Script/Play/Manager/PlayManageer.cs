@@ -26,9 +26,9 @@ public class Play_manager : MonoBehaviour
     {   
         InitPlayScene();
     }
-    
+
     /// <summary>
-    /// 전투 씬에 필요한 데이터를 불러오고 각 시스템을 초기화합니다.
+    /// 전투 씬에 필요한 데이터를 불러오고 각 시스템을 초기화
     /// </summary>
     public void InitPlayScene()
     {   
