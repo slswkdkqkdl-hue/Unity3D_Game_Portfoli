@@ -63,7 +63,7 @@ public class BattleResultManager : MonoBehaviour
 
     /// <summary>
     /// 보상 아이템 및 전투 결과 데이터를 초기화합니다.
-    /// PlayManager에서 전투 시작 시 호출합니다.
+    /// PlayManager에서 전투 시작 시 호출
     /// </summary>
     public void LoadFixedRewardItems(List<HeroRuntimeData> heroData)
     {
@@ -84,12 +84,13 @@ public class BattleResultManager : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        // 1. 전투 결과 데이터 처리
+        // 전투 결과 데이터 처리
         ProcessBattleResult(result);
 
-        // 2. 결과창 UI 표시
+        // 결과창 UI 표시
         resultPanel.gameObject.SetActive(true);
 
+        // 결과 데이터 주입
         resultPanel.Init(
             itemDatas,
             levelUpResults,
@@ -111,18 +112,18 @@ public class BattleResultManager : MonoBehaviour
         var playerData = GameManager.I.currentSessionData;
 
 
-        // 1. 보상 아이템 지급
+        // 보상 아이템 지급
         foreach (ItemData itemData in itemDatas)
         {
             playerData.AddItem(itemData);
         }
 
 
-        // 2. 모든 영웅 경험치 정산
+        // 모든 영웅 경험치 정산
         ProcessHeroExp();
 
 
-        // 3. 스테이지 클리어 기록
+        // 스테이지 클리어 기록
         playerData.AddClearId(
             BattleEntryData.selectedEnemy.Stage_id
         );
