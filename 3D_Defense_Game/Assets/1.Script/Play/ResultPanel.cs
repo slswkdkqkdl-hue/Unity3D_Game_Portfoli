@@ -18,10 +18,7 @@ public class ResultPanel : MonoBehaviour
     /// <summary>
     /// 결과 창 초기화 (승패 판정 및 보상/영웅 UI 생성)
     /// </summary>
-    public void Init(List<ItemData> itemDatas,
-    List<HeroRuntimeData> leveledUpHeroes,
-    Dictionary<HeroRuntimeData, int> heroStartLevels,
-    Team team)
+    public void Init(List<ItemData> itemDatas, List<HeroLevelUpResult> heroes, Team team)
     {
         if (Team.Ally == team)
         {

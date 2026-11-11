@@ -1,22 +1,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class HeroLevelUpResult
+{
+    public HeroRuntimeData heroData; // 레벨업한 영웅의 데이터
+    public int startLevel;           // 전투 시작 시 레벨
+    public int endLevel;             // 전투 종료 후 레벨
+}
+
 public class BattleResultManager : MonoBehaviour
 {
     public static BattleResultManager I { get; private set; }
 
     [SerializeField] private ResultPanel resultPanel;
 
-    [Header("보상 아이템 리스트")]
+    [Header("보상 아이템")]
     [SerializeField] private List<ItemData> itemDatas = new List<ItemData>();
 
-    [Header("전투 중 영웅")]
+    [Header("전투 참가 영웅")]
     private List<HeroBase> battleHeroes = new List<HeroBase>();
 
-    [Header("전투 결과 - 레벨업 영웅 목록")]
-    [SerializeField] private List<HeroRuntimeData> leveledUpHeroes = new List<HeroRuntimeData>();
-    private Dictionary<HeroRuntimeData, int> heroStartLevels= new Dictionary<HeroRuntimeData, int>();
-    
+    [Header("레벨업 결과")]
+    [SerializeField] private List<HeroLevelUpResult> levelUpResults= new List<HeroLevelUpResult>();
 
 
     private void Awake()
@@ -63,8 +69,7 @@ public class BattleResultManager : MonoBehaviour
     {
         itemDatas.Clear();
         battleHeroes.Clear();
-        leveledUpHeroes.Clear();
-        heroStartLevels.Clear();
+        levelUpResults.Clear();
 
         itemDatas.AddRange(BattleEntryData.DropItems);
 
@@ -87,8 +92,7 @@ public class BattleResultManager : MonoBehaviour
 
         resultPanel.Init(
             itemDatas,
-            leveledUpHeroes,
-            heroStartLevels,
+            levelUpResults,
             result
         );
     }
@@ -186,15 +190,20 @@ public class BattleResultManager : MonoBehaviour
             data.maxExp = maxExp;
 
 
-            // 레벨업한 영웅이라면 결과창에 등록
+            // ----------------------------------------
+            // 레벨업한 영웅이라면 결과창 데이터 생성
+            // ----------------------------------------
+
             if (level > startLevel)
             {
-                if (!leveledUpHeroes.Contains(data))
+                levelUpResults.Add(new HeroLevelUpResult
                 {
-                    leveledUpHeroes.Add(data);
-                    heroStartLevels[data] = startLevel;
-                }
+                    heroData = data,
+                    startLevel = startLevel,
+                    endLevel = level
+                });
             }
         }
     }
 }
+
