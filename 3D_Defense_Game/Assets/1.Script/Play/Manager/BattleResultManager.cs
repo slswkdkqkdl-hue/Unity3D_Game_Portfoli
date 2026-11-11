@@ -80,7 +80,7 @@ public class BattleResultManager : MonoBehaviour
     /// <summary>
     /// 전투 결과 오픈 및 데이터 처리 총괄
     /// </summary>
-    public void Open(Team result)
+    public void ShowBattleResult(Team result)
     {
         Time.timeScale = 0f;
 
