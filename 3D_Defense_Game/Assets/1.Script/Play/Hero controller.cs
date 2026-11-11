@@ -44,6 +44,7 @@ public class Herocontroller : MonoBehaviour
                 if (heroBase != null)
                 {
                     heroBase.InitHero(data, PlayerCastle.PlayerTeam, heroSlot);
+                    BattleResultManager.I.RegisterHero(heroBase);
                 }
             }
             // 생성하자마자 꺼두기 (비활성화)

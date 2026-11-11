@@ -32,8 +32,8 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
     [field: SerializeField] public float CurrentMoveSpeed { get; protected set; }
     [field: SerializeField] public float detectionRange { get; protected set; }
     [field: SerializeField] public float attackRange { get; protected set; }
-
-
+    [SerializeField] private float battleExp;
+    public float BattleExp => battleExp;
 
     protected virtual void Awake()
     {
@@ -73,9 +73,9 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         runtimeData = data;
         currentTeam = team; 
         assignedSlot = slot;
+        battleExp = 0f;
 
         CalculateStats();
-        CalculateMaxExp();
 
         if (assignedSlot != null)
         {
@@ -104,18 +104,8 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         detectionRange = baseData.detectionRange;
         attackRange = baseData.attackRange;
     }
-    /// <summary>
-    /// 현재 레벨에 필요한 최대 경험치를 계산합니다.
-    /// </summary>
-    private void CalculateMaxExp()
-    {
-        runtimeData.maxExp = runtimeData.heroData.baseExp;
 
-        for (int i = 1; i < runtimeData.level; i++)
-        {
-            runtimeData.maxExp *= runtimeData.heroData.expMultiplier;
-        }
-    }
+
     /// <summary>
     /// 캐릭터 생성시 팀에 따른 위치 선정
     /// </summary>
@@ -183,30 +173,11 @@ public class HeroBase : MonoBehaviour, ICombatEntity, IDamageable
         }
     }
     /// <summary>
-    /// 경험치를 추가하고 레벨업을 처리합니다.
+    /// 전투 중 획득한 경험치를 누적합니다.
     /// </summary>
     public void GainExp(int amount)
     {
-        if (runtimeData == null) return;
-
-        runtimeData.currentExp += amount;
-        while (runtimeData.currentExp >= runtimeData.maxExp)
-        {
-            if (runtimeData.level >= runtimeData.heroData.maxLevel)
-            {
-                runtimeData.currentExp = runtimeData.maxExp;
-                break;
-            }
-
-            runtimeData.currentExp -= runtimeData.maxExp;
-
-            runtimeData.level++;
-
-            runtimeData.maxExp *= runtimeData.heroData.expMultiplier;
-
-            BattleResultManager.I.AddLeveledUpHero(runtimeData);
-        }
-
+        battleExp += amount;
     }
 
 
