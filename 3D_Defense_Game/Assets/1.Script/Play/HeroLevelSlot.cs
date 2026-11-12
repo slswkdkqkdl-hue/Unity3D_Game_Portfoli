@@ -7,9 +7,14 @@ public class HeroLevelSlot : MonoBehaviour
     public Image image;
     public TextMeshProUGUI currentLevel;
 
-    public void Init(Sprite heroImage, int level)
-    {
+    public void Init(HeroLevelUpResult hero)
+    {   
+        Sprite heroImage = hero.RunData.heroData.portrait;
+        int startLevel = hero.startLevel;
+        int endLevel = hero.endLevel;
+
+
         image.sprite = heroImage;
-        currentLevel.text = $"(Lv. {level-1} → Lv. {level})";
+        currentLevel.text = $"Lv. {startLevel} → Lv. {endLevel}";
     }
 }

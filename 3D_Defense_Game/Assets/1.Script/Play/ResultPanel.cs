@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class ResultPanel : MonoBehaviour
 { 
-    public Transform heroPos; // 영웅 슬롯 생성 위치 
-    public Transform DropPos; // 보상 아이템 생성 위치
-    public TextMeshProUGUI result_; // 승리/패배 텍스트
+    [SerializeField]private Transform heroPos; // 영웅 슬롯 생성 위치 
+    [SerializeField]private Transform DropPos; // 보상 아이템 생성 위치
+    [SerializeField]private TextMeshProUGUI result_; // 승리/패배 텍스트
 
     [Header("영웅 슬롯 프리팹")]
-    public GameObject HeroLevelSlot;
+    [SerializeField]private GameObject heroLevelSlotPrefab;
 
     [Header("보상 아이템 프리팹")]
-    public GameObject DropSlot; 
+    [SerializeField]private GameObject dropSlotPrefab; 
     
+    [SerializeField]private SceneType LobbyBtn = SceneType.LobbyScreen;
 
     /// <summary>
     /// 결과 창 초기화 (승패 판정 및 보상/영웅 UI 생성)
@@ -29,14 +30,17 @@ public class ResultPanel : MonoBehaviour
         { 
             result_.text = "승리";
 
-            if (itemDatas == null || DropPos == null || DropSlot == null)
-                return;
+            // 보상 아이템 슬롯 생성
+            if (itemDatas != null && DropPos != null && dropSlotPrefab != null)
+            {
+                CreateRewardItemSlots(itemDatas);
+            }
 
-            // 여기서 아이템 관련 생성
-            CreateRewardItemSlots(itemDatas);
-
-
-            // 여기에 영웅관련생성
+            // 레벨업한 영웅 슬롯 생성 
+            if (heroes != null && heroPos != null && heroLevelSlotPrefab != null)
+            {
+                CreateHeroLevelSlots(heroes);
+            }
         }
     }
     
@@ -50,24 +54,21 @@ public class ResultPanel : MonoBehaviour
 
         foreach (ItemData itemData in itemDatas)
         {
-            // 이미 딕셔너리에 들어있는 아이템이라면 개수 1 증가
             if (itemCountMap.ContainsKey(itemData))
             {
                 itemCountMap[itemData]++;
             }
-            // 처음 나온 아이템이라면 딕셔너리에 새로 추가 (개수 1)
             else
             {
                 itemCountMap.Add(itemData, 1);
             }
         }
-        // 딕셔너리에서 값을꺼내서 슬릇에 데이터 할당 
         foreach (var itemData in itemCountMap)
         {   
             ItemData  item = itemData.Key;
             int count = itemData.Value;
 
-            GameObject slotObject = Instantiate(DropSlot, DropPos);
+            GameObject slotObject = Instantiate(dropSlotPrefab, DropPos);
             DropitemSlot slot = slotObject.GetComponent<DropitemSlot>();
             if (slot == null)
             {
@@ -78,11 +79,23 @@ public class ResultPanel : MonoBehaviour
             slot.Init(item.icon, item.itemName, count);
         }
     }
+    /// <summary>
+    /// 레벨업한 영웅들의 데이터를 받아 UI 슬롯을 생성합니다.
+    /// </summary>
+    private void CreateHeroLevelSlots(List<HeroLevelUpResult> heroes)
+    {
+        foreach (var data in heroes)
+        {
+            GameObject heroObj = Instantiate(heroLevelSlotPrefab, heroPos);
+            HeroLevelSlot heroSlot = heroObj.GetComponent<HeroLevelSlot>();
+            heroSlot.Init(data);
+        }
+    }
 
     // 로비로 돌아가기버튼
     public void BackButton()
     { 
         BattleEntryData.Clear();
-        LoadingManager.LoadScene(SceneType.LobbyScreen);
+        LoadingManager.LoadScene(LobbyBtn);
     }
 }

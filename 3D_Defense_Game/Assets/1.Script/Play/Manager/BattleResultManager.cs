@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class HeroLevelUpResult
 {
-    public HeroRuntimeData heroData; // 레벨업한 영웅의 데이터
+    public HeroRuntimeData RunData; // 레벨업한 영웅의 데이터
     public int startLevel;           // 전투 시작 시 레벨
     public int endLevel;             // 전투 종료 후 레벨
 }
@@ -22,7 +22,7 @@ public class BattleResultManager : MonoBehaviour
     private List<HeroBase> battleHeroes = new List<HeroBase>();
 
     [Header("레벨업 결과")]
-    [SerializeField] private List<HeroLevelUpResult> levelUpResults= new List<HeroLevelUpResult>();
+    private List<HeroLevelUpResult> levelUpResults= new List<HeroLevelUpResult>();
 
 
     private void Awake()
@@ -199,7 +199,7 @@ public class BattleResultManager : MonoBehaviour
             {
                 levelUpResults.Add(new HeroLevelUpResult
                 {
-                    heroData = data,
+                    RunData = data,
                     startLevel = startLevel,
                     endLevel = level
                 });

@@ -2877,8 +2877,9 @@ MonoBehaviour:
   heroPos: {fileID: 1215484758}
   DropPos: {fileID: 988439390}
   result_: {fileID: 503606701}
-  HeroLevelSlot: {fileID: 0}
-  DropSlot: {fileID: 842678430469708671, guid: f343190ffb625b64c8f3e23359688d22, type: 3}
+  heroLevelSlotPrefab: {fileID: 2343162078400406024, guid: 057d4fb6c93535341bdc6108939e6c2b, type: 3}
+  dropSlotPrefab: {fileID: 842678430469708671, guid: f343190ffb625b64c8f3e23359688d22, type: 3}
+  LobbyBtn: 2
 --- !u!1 &458893525
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,7 +4059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BattleResultManager
   resultPanel: {fileID: 423059365}
   itemDatas: []
-  leveledUpHeroes: []
+  levelUpResults: []
 --- !u!1 &650272149
 GameObject:
   m_ObjectHideFlags: 0
